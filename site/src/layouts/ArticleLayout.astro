@@ -1,0 +1,39 @@
+---
+// 記事用レイアウト。目次・本文・免責を表示。構造化データは BaseLayout に委譲。
+import BaseLayout from './BaseLayout.astro';
+const { entry, headings = [] } = Astro.props;
+const d = entry.data;
+const toc = headings.filter((h) => h.depth === 2); // H2を目次に
+---
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  canonical={d.canonical}
+  published={d.published}
+  updated={d.updated}
+  author={d.author}
+  breadcrumb={d.breadcrumb}
+  faq={d.faq}
+>
+  <article>
+    <h1>{d.title}</h1>
+    {d.hero_image && (
+      <figure>
+        <img src={d.hero_image.src} alt={d.hero_image.alt} />
+        {d.hero_image.caption && <figcaption>{d.hero_image.caption}</figcaption>}
+      </figure>
+    )}
+    {toc.length > 0 && (
+      <nav class="toc">
+        <strong>目次</strong>
+        <ul>
+          {toc.map((h) => (
+            <li><a href={`#${h.slug}`}>{h.text}</a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+    <div class="content"><slot /></div>
+    {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
+  </article>
+</BaseLayout>

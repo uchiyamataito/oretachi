@@ -1,0 +1,24 @@
+---
+// トップページ。記事一覧とサービスの第一声。
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const articles = (await getCollection('articles')).sort((a, b) =>
+  a.data.published < b.data.published ? 1 : -1
+);
+---
+<BaseLayout
+  title="オレタチ｜離婚を切り出された男のための初動ナビ"
+  description="離婚を切り出された男性へ。最初の14日にやること・やってはいけないこと・お金と手続きを男性目線で。"
+  canonical="https://oretachi.me/"
+>
+  <h1>大丈夫だ。お前は終わらない。</h1>
+  <p>離婚を切り出された男のための、初動ナビ。</p>
+  <ul class="article-list">
+    {articles.map((a) => (
+      <li>
+        <a href={`/${a.slug}`}>{a.data.title}</a>
+        <p>{a.data.description}</p>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

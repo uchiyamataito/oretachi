@@ -1,0 +1,53 @@
+---
+// Q&Aブラウズ（カード一覧＋キーワード検索＋お悩み分類フィルタ）。
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('qa')).sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
+const cats = [...new Set(items.map((i) => i.data.category))];
+---
+<BaseLayout
+  title="Q&A｜オレタチ"
+  description="離婚を切り出された男のための、よくある疑問とその答え。大丈夫、たいていの疑問はここにある。"
+  canonical="https://oretachi.me/qa"
+>
+  <h1>Q&amp;A ― お前の疑問に、ズバッと答える</h1>
+  <p>大丈夫、たいていの疑問はここにある。お前だけじゃない。</p>
+  <input id="q" class="qa-search" type="search" placeholder="キーワードで探す（例：保険 子ども）" />
+  <div class="filters">
+    <button type="button" class="f active" data-cat="">すべて</button>
+    {cats.map((c) => <button type="button" class="f" data-cat={c}>{c}</button>)}
+  </div>
+  <p id="count" class="qa-count"></p>
+  <ul class="qa-grid">
+    {items.map((i) => (
+      <li class="qa-card" data-cat={i.data.category} data-text={`${i.data.question} ${i.data.description} ${(i.data.tags || []).join(' ')}`}>
+        <a href={`/qa/${i.slug}`}>
+          <span class="chip">{i.data.category}</span>
+          <span class="qa-q">Q. {i.data.question}</span>
+          <span class="qa-ex">{i.data.description}</span>
+          <span class="qa-more">読む ›</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <script is:inline>
+    (function () {
+      var q = document.getElementById('q'), count = document.getElementById('count');
+      var cards = [].slice.call(document.querySelectorAll('.qa-card'));
+      var fbtns = [].slice.call(document.querySelectorAll('.f'));
+      var cat = '';
+      function apply() {
+        var kw = (q.value || '').trim().toLowerCase(); var n = 0;
+        cards.forEach(function (c) {
+          var okC = !cat || c.getAttribute('data-cat') === cat;
+          var okK = !kw || c.getAttribute('data-text').toLowerCase().indexOf(kw) > -1;
+          var show = okC && okK; c.style.display = show ? '' : 'none'; if (show) n++;
+        });
+        count.textContent = n + '件表示中';
+      }
+      q.addEventListener('input', apply);
+      fbtns.forEach(function (b) { b.addEventListener('click', function () { cat = b.getAttribute('data-cat'); fbtns.forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); apply(); }); });
+      apply();
+    })();
+  </script>
+</BaseLayout>
