@@ -52,6 +52,14 @@ const faqLd = faq && faq.length
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" /><!-- 準備中：検索登録させない。index解禁OKになったら、この1行を削除して再デプロイ -->
+    <!-- Google tag (gtag.js) / GA4: G-JYDMZ20R7G -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JYDMZ20R7G"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JYDMZ20R7G');
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
