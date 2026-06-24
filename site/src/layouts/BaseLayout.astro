@@ -12,17 +12,21 @@ const {
   faq = [],
 } = Astro.props;
 
-const articleLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: title,
-  description,
-  datePublished: published,
-  dateModified: updated,
-  author: { '@type': 'Organization', name: author },
-  publisher: { '@type': 'Organization', name: 'オレタチ' },
-  mainEntityOfPage: canonical,
-};
+// 記事/Q&A（published を渡すページ）のみ Article 構造化データを出す。
+// about（規約・運営者情報など）は published を渡さない＝Article 扱いにせず日付undefinedを避ける。
+const articleLd = published
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title,
+      description,
+      datePublished: published,
+      dateModified: updated,
+      author: { '@type': 'Organization', name: author },
+      publisher: { '@type': 'Organization', name: 'オレタチ' },
+      mainEntityOfPage: canonical,
+    }
+  : null;
 const crumbLd = breadcrumb && breadcrumb.length
   ? {
       '@context': 'https://schema.org',
@@ -54,7 +58,7 @@ const faqLd = faq && faq.length
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="article" />
-    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    {articleLd && <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />}
     {crumbLd && <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />}
     {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
   </head>
@@ -65,7 +69,7 @@ const faqLd = faq && faq.length
     </header>
     <main><slot /></main>
     <footer class="site-footer">
-      <nav class="foot-nav"><a href="/about/operator">運営者情報</a><a href="/about/editorial">編集方針</a><a href="/about/privacy">プライバシーポリシー</a></nav>
+      <nav class="foot-nav"><a href="/about/operator">運営者情報</a><a href="/about/editorial">編集方針</a><a href="/about/privacy">プライバシーポリシー</a><a href="/about/terms">利用規約</a></nav>
       <p>&copy; オレタチ</p>
     </footer>
   </body>

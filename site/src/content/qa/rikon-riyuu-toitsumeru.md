@@ -6,8 +6,8 @@ tags: ["やってはいけない", "初動", "コミュニケーション"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-kiridasareta-atama-masshiro"]
 author: "オレタチ編集部"
-published: "2026-07-DD"
-updated: "2026-07-DD"
+published: "2026-06-25"
+updated: "2026-06-25"
 canonical: "https://oretachi.me/qa/rikon-riyuu-toitsumeru"
 disclaimer: "一般的な情報です。個別の対応に迷う時は弁護士など専門家へ。"
 ---

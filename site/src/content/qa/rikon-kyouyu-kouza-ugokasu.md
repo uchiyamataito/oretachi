@@ -5,8 +5,8 @@ category: "お金と手続き"
 tags: ["お金と手続き", "やってはいけない", "財産"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "オレタチ編集部"
-published: "2026-07-DD"
-updated: "2026-07-DD"
+published: "2026-06-25"
+updated: "2026-06-25"
 canonical: "https://oretachi.me/qa/rikon-kyouyu-kouza-ugokasu"
 disclaimer: "一般的な情報です。お金の動かし方・財産分与の判断は弁護士など専門家へご相談ください。"
 ---

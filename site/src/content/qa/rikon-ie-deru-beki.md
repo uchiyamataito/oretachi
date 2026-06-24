@@ -5,8 +5,8 @@ category: "生活"
 tags: ["生活", "別居", "初動"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "オレタチ編集部"
-published: "2026-07-DD"
-updated: "2026-07-DD"
+published: "2026-06-25"
+updated: "2026-06-25"
 canonical: "https://oretachi.me/qa/rikon-ie-deru-beki"
 disclaimer: "一般的な情報です。別居・住まいの判断は状況により影響が大きいため、迷う時は弁護士へ。"
 ---
