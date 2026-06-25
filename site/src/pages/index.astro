@@ -1,144 +1,117 @@
 ---
-// トップページ（F1.5デザイン）。メルカリ型カルーセル＋状況チップ＋TODAY＋記事カード＋CTA。
-// データ連動：画像・タイトル・URLは記事コレクションから取得。カルーセルの並び/タグはfeaturedで curate。
+// トップ（F1.5 / UX設計=23）。
+// 思想：混乱した初回ユーザーに"選ばせず、一つ選ぶだけ"。静かな共感ヒーロー→オンボ主役→TODAY→記事。
+// オンボtileは現在地(localStorage)を保存しつつ最適記事へ（ルール版・最速レーン）。AI層で対話ナビ・モーダルに接続。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('articles');
 const bySlug = Object.fromEntries(all.map((a) => [a.slug, a]));
 
-// --- カルーセル（curate：slug＋タグ表示）。画像/タイトル/URLは記事から自動 ---
-const featured = [
-  { slug: 'rikon-kiridasareta-saisho-14nichi', tag: '特集・初動', sub: '14日でやること', tone: 'coral' },
-  { slug: 'rikon-nani-kara-hajimeru',          tag: '手続き',     sub: '全体像',       tone: 'navy'  },
-  { slug: 'rikon-okane-checklist',             tag: 'お金と手続き', sub: '財産分与',     tone: 'mint'  },
-  { slug: 'rikon-dansei-soudansaki',           tag: '気持ち・相談', sub: '相談先',       tone: 'coral' },
-  { slug: 'rikon-mada-wakaretakunai',          tag: '気持ち',     sub: '関係修復',     tone: 'navy'  },
-].filter((f) => bySlug[f.slug]);
-
-// --- 状況チップ（今は該当記事へ。AI層実装後に対話ナビ・モーダル起動へ差し替え） ---
-const situ = [
-  { label: '切り出された直後', href: '/rikon-kiridasareta-saisho-14nichi' },
-  { label: 'まだ別れたくない', href: '/rikon-mada-wakaretakunai' },
-  { label: 'お金が不安',       href: '/rikon-okane-checklist' },
-  { label: '誰にも言えない',   href: '/rikon-dansei-soudansaki' },
+// オンボ主役：今いちばんしんどいのは？（心理状態→最適な最初の1記事＋現在地）
+const onb = [
+  { label: '切り出された直後',     hint: 'まず最初の14日にやること', icon: 'clock-hour-4', href: '/rikon-kiridasareta-saisho-14nichi', phase: '切り出された直後', kanshin: '初動' },
+  { label: 'お金が不安',           hint: '財産分与・棚卸し・これからのお金', icon: 'coin',        href: '/rikon-okane-checklist',            phase: '', kanshin: 'お金' },
+  { label: '子どものこと',         hint: '保険証・児童手当・親権の前提', icon: 'mood-kid',    href: '/rikon-kodomo-hoken',               phase: '', kanshin: '子ども' },
+  { label: 'まだ別れたくない',     hint: '追いすがる前に読んでほしい', icon: 'heart',       href: '/rikon-mada-wakaretakunai',         phase: 'まだ別れたくない', kanshin: '気持ち' },
+  { label: '誰にも言えない',       hint: '一人で抱える前に・相談先', icon: 'message-circle', href: '/rikon-dansei-soudansaki',          phase: '', kanshin: '相談' },
+  { label: '何からか分からない',   hint: '気持ち・お金・手続きの全体マップ', icon: 'map-2',     href: '/rikon-nani-kara-hajimeru',         phase: '', kanshin: '全体' },
 ];
 
-// --- 記事カード（全記事を新着順。カテゴリからタグ色を推定） ---
+// 記事カード（全記事・新着順・タグは1トーン＝カテゴリ名のみ）
 const cards = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
-function toneFor(cat = '') {
-  if (/保険|お金|手続き|税|年金/.test(cat)) return { cls: 'tag-mint', label: 'お金と手続き' };
-  if (/気持ち|初動|相談|心/.test(cat)) return { cls: 'tag-coral-s', label: '気持ち・相談' };
-  return { cls: 'tag-navy', label: cat || '記事' };
+function tagLabel(cat = '') {
+  if (/保険|お金|税|年金/.test(cat)) return 'お金・保険';
+  if (/手続き/.test(cat)) return '手続き';
+  if (/気持ち|初動|相談|心/.test(cat)) return '気持ち・相談';
+  if (/子/.test(cat)) return '子ども';
+  return cat || '記事';
 }
-const ovCls = { coral: 'ov-coral', mint: 'ov-mint', navy: 'ov-navy' };
-const pillCls = { coral: 't-coral', mint: 't-mint', navy: 't-navy' };
 ---
 <BaseLayout
   title="オレタチ｜離婚を切り出された男のための初動ナビ"
-  description="離婚を切り出された男性へ。最初の14日にやること・やってはいけないこと・お金と手続きを男性目線で。"
+  description="離婚を切り出された男性へ。何から考えればいいか分からなくて当然だ。今いちばんしんどいことを一つ選べば、最初の一歩が見つかる。お金・手続き・気持ち・子ども・相談先を男性目線で。"
   canonical="https://oretachi.me/"
 >
-  <h1 class="sr-only" style="position:absolute;left:-9999px">オレタチ｜離婚を切り出された男のための初動ナビ</h1>
   <div class="home">
 
-    <!-- HERO カルーセル -->
-    <section class="hero" aria-label="特集記事">
-      <div class="hero-photos">
-        {featured.map((f, i) => {
-          const a = bySlug[f.slug];
-          return (
-            <a class={`photo${i === 0 ? ' is-active' : ''}`} href={`/${f.slug}`} aria-hidden={i === 0 ? 'false' : 'true'}>
-              <img src={a.data.hero_image?.src} alt={a.data.title} loading={i === 0 ? 'eager' : 'lazy'} />
-              <span class="ov-tags"><span class={`ov ${ovCls[f.tone]}`}>{f.tag}</span><span class="ov ov-sub">{f.sub}</span></span>
-            </a>
-          );
-        })}
-      </div>
+    <!-- 再訪バナー（現在地があればJSで表示） -->
+    <a class="welcome" id="welcome" href="/" hidden>
+      <span class="wb-txt">おかえり。前回は<b id="wb-label">―</b>が気がかりだったね。</span>
+      <span class="wb-go">続きを見る →</span>
+    </a>
 
-      <div class="hero-bodies">
-        {featured.map((f, i) => {
-          const a = bySlug[f.slug];
-          return (
-            <div class={`slide${i === 0 ? ' is-active' : ''}`}>
-              <a class="s-title" href={`/${f.slug}`}>{a.data.title}</a>
-              <div class="pc-tags"><span class={`pill ${pillCls[f.tone]}`}>{f.tag}</span><span class="pill t-sub">{f.sub}</span></div>
-            </div>
-          );
-        })}
-        <div class="hero-dots">
-          {featured.map((f, i) => (
-            <button class={`dot${i === 0 ? ' is-active' : ''}`} aria-label={`特集 ${i + 1} を表示`}></button>
-          ))}
-          <button class="carousel-ctrl" id="carousel-toggle" aria-label="自動切替を一時停止"><i class="ti ti-player-pause"></i></button>
-        </div>
-      </div>
+    <!-- 静かな共感ヒーロー -->
+    <section class="hero2">
+      <p class="eyebrow">離婚を切り出された男のための、初動ナビ</p>
+      <h1>大丈夫だ。<br>まず、一緒に整理しよう。</h1>
+      <p class="sub">何から考えればいいか分からなくて、当然だ。全部を一度に背負わなくていい。<strong>今いちばんしんどいことを、ひとつだけ</strong>選んでくれ。そこから始めよう。</p>
     </section>
 
-    <!-- 今のあなたは？ -->
-    <div class="lead">今のあなたは？</div>
-    <nav class="situ-chips" aria-label="状況から探す">
-      {situ.map((s) => (
-        <a class="situ" href={s.href}><i class="ti ti-point"></i>{s.label}</a>
+    <!-- オンボ主役：今いちばんしんどいのは？ -->
+    <div class="onb-head">今、いちばんしんどいのは？</div>
+    <p class="onb-note">ひとつ選ぶだけでいい。うまく言葉にできなくて大丈夫。</p>
+    <nav class="onb" aria-label="今の状況から始める">
+      {onb.map((o) => (
+        <a class="onb-tile" href={o.href} data-phase={o.phase} data-kanshin={o.kanshin} data-label={o.label}>
+          <i class={`ti ti-${o.icon}`} aria-hidden="true"></i>
+          <span class="ol">{o.label}</span>
+          <span class="oh">{o.hint}</span>
+        </a>
       ))}
     </nav>
+    <!-- 言語化できない人の伴走入口（AI層で対話ナビ・モーダルに接続。現状は全体マップへ） -->
+    <a class="onb-talk" href="/rikon-nani-kara-hajimeru" data-kanshin="全体" data-label="何から始める">
+      <i class="ti ti-messages" aria-hidden="true"></i>うまく言葉にできない時は、ここから<span class="badge">準備中</span>
+    </a>
 
     <!-- TODAY -->
     <div class="today">
-      <div class="k"><i class="ti ti-sun-low"></i>TODAY ― 今日の、たった一つ</div>
+      <div class="k"><i class="ti ti-sun-low" aria-hidden="true"></i>TODAY ― 今日の、たった一つ</div>
       <div class="t">返事を急がない。「少し考えたい」で十分だ。</div>
     </div>
 
-    <!-- 記事一覧 -->
-    <div class="sh">
-      <h2>記事</h2>
-    </div>
+    <!-- 記事（落ち着いた1トーン・回遊の受け皿） -->
+    <div class="sh"><h2>読んでおきたい記事</h2></div>
     <div class="cards">
-      {cards.map((a) => {
-        const t = toneFor(a.data.category);
-        return (
-          <a class="card" href={`/${a.slug}`}>
-            <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
-            <div class="cbody"><span class={`tag-s ${t.cls}`}>{t.label}</span><h3>{a.data.title}</h3></div>
-          </a>
-        );
-      })}
+      {cards.map((a) => (
+        <a class="card" href={`/${a.slug}`}>
+          <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
+          <div class="cbody"><span class="tag1">{tagLabel(a.data.category)}</span><h3>{a.data.title}</h3></div>
+        </a>
+      ))}
     </div>
 
-    <!-- CTA（初動ナビ＝準備中。AI層実装後に対話ナビへ） -->
-    <div class="home-cta">
-      <div class="sub">あなたの状況に合わせた、最初の一歩を。</div>
-      <a class="btn" href="/shindan">初動ナビを試す<i class="ti ti-arrow-right"></i></a>
+    <!-- つらい時の安全網 -->
+    <div class="safety">
+      <b>つらくて動けない時は、無理しないでくれ。</b> 眠れない・消えてしまいたいと感じるほどなら、いのちより大切なものはない。よりそいホットライン <b>0120-279-338</b>（24時間・無料）など、声を出さなくても頼れる窓口がある。詳しくは <a href="/rikon-dansei-soudansaki">相談先のページ</a>へ。
     </div>
 
   </div>
 
   <script>
-    // カルーセル（自動7秒・ホバー停止・手動切替・一時停止ボタン・reduced-motion尊重）
-    const photos = Array.from(document.querySelectorAll('.home .photo'));
-    const slides = Array.from(document.querySelectorAll('.home .hero-bodies .slide'));
-    const dots = Array.from(document.querySelectorAll('.home .dot'));
-    const toggle = document.getElementById('carousel-toggle');
-    if (photos.length > 1) {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let i = 0, timer = null, paused = reduce;
-      const go = (n) => {
-        photos[i].classList.remove('is-active'); slides[i].classList.remove('is-active'); dots[i].classList.remove('is-active');
-        i = (n + photos.length) % photos.length;
-        photos[i].classList.add('is-active'); slides[i].classList.add('is-active'); dots[i].classList.add('is-active');
-      };
-      const start = () => { if (paused) return; stop(); timer = setInterval(() => go(i + 1), 7000); };
-      const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
-      dots.forEach((d, n) => d.addEventListener('click', () => { go(n); start(); }));
-      const hero = document.querySelector('.home .hero');
-      hero.addEventListener('mouseenter', stop);
-      hero.addEventListener('mouseleave', start);
-      if (toggle) {
-        const sync = () => { toggle.innerHTML = paused ? '<i class="ti ti-player-play"></i>' : '<i class="ti ti-player-pause"></i>'; toggle.setAttribute('aria-label', paused ? '自動切替を再生' : '自動切替を一時停止'); };
-        toggle.addEventListener('click', () => { paused = !paused; paused ? stop() : start(); sync(); });
-        sync();
+    // 現在地の保存（オンボtileクリック）＋再訪バナー（軽量・PIIなし）
+    const KEY = 'oretachi_state';
+    const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
+    document.querySelectorAll('.home .onb-tile, .home .onb-talk').forEach((el) => {
+      el.addEventListener('click', () => {
+        const prev = read() || {};
+        const phase = el.getAttribute('data-phase') || prev.phase || '';
+        const kanshin = el.getAttribute('data-kanshin') || '';
+        const list = Array.from(new Set([...(prev.kanshin || []), kanshin].filter(Boolean)));
+        const state = { phase, kanshin: list, next: el.getAttribute('href'), label: el.getAttribute('data-label') || '', ts: Date.now() };
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+      });
+    });
+    const st = read();
+    if (st && (st.label || (st.kanshin && st.kanshin.length))) {
+      const w = document.getElementById('welcome');
+      const lab = document.getElementById('wb-label');
+      if (w && lab) {
+        lab.textContent = st.label || (st.kanshin && st.kanshin[0]) || 'あのこと';
+        if (st.next) w.setAttribute('href', st.next);
+        w.removeAttribute('hidden');
       }
-      start();
     }
   </script>
 </BaseLayout>
