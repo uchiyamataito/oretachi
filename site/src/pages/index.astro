@@ -1,14 +1,11 @@
 ---
-// トップ＝回遊ハブ／マイページ（15§8-3の6レール＋§0.9の現在地マップ=時系列）。
-// 未オンボ(現在地なし)＝案内＋オンボ。オンボ済＝現在地ベースでカスタマイズ。
-// 全てlocalStorage現在地のルール型（F1.5・バックエンド不要）。静的に新着＝クロール可。
+// トップ＝回遊ハブ／マイページ（15§8-3レール＋§0.9現在地マップ=時系列）。
+// 改修：本物の縦タイムライン／TODAY・アバター削除／全レール横断で重複表示なし／新着は少数。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('articles');
-const bySlug = Object.fromEntries(all.map((a) => [a.slug, a]));
 
-// 記事メタ（局面・関心・順序・特集・ランキング）＝ルール型レコメンドの根拠（curate）
 const META = {
   'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['初動', '気持ち'], seq: 1, pick: true, rank: 2, tag: '気持ち・初動' },
   'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後'], kanshin: ['全体', '手続き'], seq: 2, pick: true, rank: 3, tag: '全体マップ' },
@@ -23,12 +20,9 @@ const META = {
   'rikon-seimeihoken-uketorinin':      { phases: ['成立後'], kanshin: ['お金', '手続き'], seq: 9, tag: '手続き' },
 };
 const data = all.map((a) => ({
-  slug: a.slug, title: a.data.title, img: a.data.hero_image?.src || '',
-  published: a.data.published,
+  slug: a.slug, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published,
   ...(META[a.slug] || { phases: [], kanshin: [], seq: 99, pick: false, rank: 99, tag: '記事' }),
 }));
-
-// オンボ（現在地を作る）
 const onb = [
   { label: '切り出された直後',   hint: 'まず最初の14日にやること',       icon: 'clock-hour-4',   href: '/rikon-kiridasareta-saisho-14nichi', phase: '切り出された直後', kanshin: '初動' },
   { label: 'お金が不安',         hint: '財産分与・棚卸し・これからのお金', icon: 'coin',          href: '/rikon-okane-checklist',            phase: '', kanshin: 'お金' },
@@ -41,16 +35,14 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
 ---
 <BaseLayout
   title="オレタチ｜離婚を切り出された男のための初動ナビ"
-  description="離婚を切り出された男性のためのマイページ型ナビ。今いちばんしんどいことを選べば、現在地（時系列）に合わせて、次に読むべきこと・あなたへのおすすめを出します。お金・手続き・気持ち・子ども・相談先。"
+  description="離婚を切り出された男性のためのマイページ型ナビ。今いちばんしんどいことを選べば、あなたの現在地（時系列）に合わせて次に読むべきこと・おすすめを出します。お金・手続き・気持ち・子ども・相談先。"
   canonical="https://oretachi.me/"
 >
   <div class="home">
-
-    <!-- マイページ用スロット（オンボ済の時だけJSが描画） -->
     <div id="greet-slot"></div>
     <div id="journey-slot"></div>
 
-    <!-- 未オンボ＝共感ヒーロー＋オンボ（現在地を作る） -->
+    <!-- 未オンボ＝共感ヒーロー＋オンボ -->
     <div id="hero-onb">
       <section class="hero2">
         <p class="eyebrow">離婚を切り出された男のための、初動ナビ</p>
@@ -73,27 +65,19 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
       </a>
     </div>
 
-    <!-- TODAY（常時） -->
-    <div class="today">
-      <div class="k"><i class="ti ti-sun-low" aria-hidden="true"></i>TODAY ― 今日の、たった一つ</div>
-      <div class="t">返事を急がない。「少し考えたい」で十分だ。</div>
+    <!-- レール（JS生成・全レール横断で重複なし）。server fallbackはクロール用の全記事リスト -->
+    <div id="rails">
+      <div class="sh"><h2>記事</h2><a href="/articles">すべて見る →</a></div>
+      <div class="cards">
+        {newest.map((a) => (
+          <a class="card" href={`/${a.slug}`}>
+            <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
+            <div class="cbody"><span class="tag1">{(META[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
+          </a>
+        ))}
+      </div>
     </div>
 
-    <!-- JS生成レール（未オンボ＝まず読む/ランキング/特集 ｜ オンボ済＝おすすめ/同じ状況/ランキング/特集） -->
-    <div id="rails"></div>
-
-    <!-- 新着（静的＝クロール可・no-JSでも動く） -->
-    <div class="sh"><h2>新着の記事</h2><a href="/articles">記事をすべて見る →</a></div>
-    <div class="cards">
-      {newest.map((a) => (
-        <a class="card" href={`/${a.slug}`}>
-          <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
-          <div class="cbody"><span class="tag1">{(META[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
-        </a>
-      ))}
-    </div>
-
-    <!-- セクション入口 -->
     <div class="nav-cards">
       <a class="nav-card" href="/articles"><i class="ti ti-news" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">記事を読む</span><span class="nc-d">お金・手続き・気持ち・子ども</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
       <a class="nav-card" href="/qa"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">よくある疑問に、一問即答</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
@@ -103,18 +87,15 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
     <div class="safety">
       <b>つらくて動けない時は、無理しないでくれ。</b> 眠れない・消えてしまいたいと感じるほどなら、いのちより大切なものはない。よりそいホットライン <b>0120-279-338</b>（24時間・無料）など、声を出さなくても頼れる窓口がある。詳しくは <a href="/rikon-dansei-soudansaki">相談先のページ</a>へ。
     </div>
-
   </div>
 
   <script type="application/json" id="art-data" set:html={JSON.stringify(data)}></script>
-
   <script>
     const KEY = 'oretachi_state';
     const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
     const data = JSON.parse(document.getElementById('art-data')?.textContent || '[]');
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-    // オンボtileで現在地を保存（PIIなし）
     document.querySelectorAll('#hero-onb .onb-tile, #hero-onb .onb-talk').forEach((el) => {
       el.addEventListener('click', () => {
         const prev = read() || {};
@@ -122,66 +103,73 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
         const k = el.getAttribute('data-kanshin') || '';
         const kanshin = Array.from(new Set([...(prev.kanshin || []), k].filter(Boolean)));
         const hist = Array.from(new Set([...(prev.history || []), (el.getAttribute('href') || '').replace('/', '')].filter(Boolean))).slice(-12);
-        localStorage.setItem(KEY, JSON.stringify({ phase, kanshin, history: hist, next: el.getAttribute('href'), label: el.getAttribute('data-label') || '', ts: Date.now() }));
+        localStorage.setItem(KEY, JSON.stringify({ phase, kanshin, history: hist, label: el.getAttribute('data-label') || '', ts: Date.now() }));
       });
     });
 
     const PHASES = [
-      { key: '危機・初動', match: ['切り出された直後', ''] },
-      { key: '分岐：復縁／離婚進行', match: ['まだ別れたくない', '別居', '協議・調停中'] },
-      { key: '再出発', match: ['成立後'] },
+      { key: '危機・初動', match: ['切り出された直後', ''], st: '気持ちの応急処置と、最初の14日' },
+      { key: '分岐：復縁／離婚進行', match: ['まだ別れたくない', '別居', '協議・調停中'], st: '関係修復か、別居・協議・調停か' },
+      { key: '再出発', match: ['成立後'], st: '生活の立て直しと、これから' },
     ];
     const phaseIndex = (p) => { for (let i = 0; i < PHASES.length; i++) if (PHASES[i].match.includes(p || '')) return i; return 0; };
     const card = (a) => `<a class="rcard" href="/${a.slug}"><div class="rthumb"><img src="${esc(a.img)}" alt="${esc(a.title)}" loading="lazy"></div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
     const rail = (title, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(title)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(card).join('')}</div></section>` : '';
-    const score = (a, st) => {
-      let s = 0;
-      const ks = a.kanshin || [];
-      (st.kanshin || []).forEach((k) => { if (ks.includes(k)) s += 2; });
-      if (st.phase && (a.phases || []).includes(st.phase)) s += 1;
-      if (a.pick) s += 0.4;
-      if ((st.history || []).includes(a.slug)) s -= 5; // 既読は下げる
-      return s;
-    };
+    const rankRail = (title, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(title)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
+
+    // 重複表示なし：一度出したslugは記録し、以降のレールから除外
+    const shown = new Set();
+    const take = (list, n) => { const out = []; for (const a of list) { if (out.length >= n) break; if (shown.has(a.slug)) continue; shown.add(a.slug); out.push(a); } return out; };
 
     const st = read();
     const railsEl = document.getElementById('rails');
+    const byNewest = [...data].sort((a, b) => (a.published < b.published ? 1 : -1));
+    const byRank = [...data].sort((a, b) => (a.rank || 99) - (b.rank || 99));
+    const bySeq = [...data].sort((a, b) => (a.seq || 99) - (b.seq || 99));
+
     if (st && (st.phase || (st.kanshin && st.kanshin.length))) {
-      // ===== オンボ済＝マイページ =====
       document.getElementById('hero-onb').style.display = 'none';
       const label = st.label || (st.kanshin && st.kanshin[0]) || 'あのこと';
-      // おかえり
       document.getElementById('greet-slot').innerHTML =
-        `<div class="greet"><div class="av"><i class="ti ti-user"></i></div><div><div class="gt">おかえり</div><div class="gs">前回は「${esc(label)}」が気がかりだったね。続きから一緒に。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
+        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">前回は「${esc(label)}」が気がかりだったね。続きから一緒に。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
       document.getElementById('reset-state')?.addEventListener('click', () => { localStorage.removeItem(KEY); location.reload(); });
-      // 現在地マップ（時系列）
+
+      // 現在地マップ＝縦タイムライン（時系列）
       const ci = phaseIndex(st.phase);
-      const steps = PHASES.map((p, i) =>
-        `<div class="jstep ${i < ci ? 'done' : ''} ${i === ci ? 'current' : ''}"><div class="ph">フェーズ${i + 1}</div><div class="pn">${esc(p.key)}</div>${i === ci ? '<span class="now">今ここ</span>' : ''}</div>`
-      ).join('');
-      const ranked = [...data].sort((a, b) => score(b, st) - score(a, st));
-      const nextOne = ranked[0];
-      const nextHtml = nextOne ? `<a class="next-step" href="/${nextOne.slug}"><span class="ns-k">次の一歩</span><span class="ns-b"><span class="ns-t">${esc(nextOne.title)}</span></span><i class="ti ti-arrow-right ns-go"></i></a>` : '';
-      document.getElementById('journey-slot').innerHTML =
-        `<div class="journey"><div class="jk"><i class="ti ti-route"></i>あなたの現在地</div><div class="jsteps">${steps}</div>${nextHtml}</div>`;
-      // レール：おすすめ／同じ状況の人／ランキング／特集
-      const osusume = ranked.filter((a) => a.slug !== (nextOne && nextOne.slug) && score(a, st) > 0).slice(0, 6);
-      const cohort = data.filter((a) => st.phase && (a.phases || []).includes(st.phase)).slice(0, 6);
-      const ranking = [...data].sort((a, b) => (a.rank || 99) - (b.rank || 99)).slice(0, 5);
-      const tokushu = data.filter((a) => a.pick);
-      const rankingHtml = `<section class="rail"><div class="rail-head"><h2>よく読まれている</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${ranking.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>`;
+      const nodes = PHASES.map((p, i) => {
+        const cls = i < ci ? 'done' : (i === ci ? 'current' : 'future');
+        const now = i === ci ? '<span class="tl-now">今ここ</span>' : '';
+        return `<li class="tl-node ${cls}"><span class="tl-dot"></span><div class="tl-c"><span class="tl-ph">フェーズ${i + 1}</span><div class="tl-nm">${esc(p.key)}${now}</div><div class="tl-st">${esc(p.st)}</div></div></li>`;
+      }).join('');
+
+      // スコアで次の一歩＆おすすめ
+      const score = (a) => { let s = 0; const ks = a.kanshin || []; (st.kanshin || []).forEach((k) => { if (ks.includes(k)) s += 2; }); if (st.phase && (a.phases || []).includes(st.phase)) s += 1; if (a.pick) s += 0.4; if ((st.history || []).includes(a.slug)) s -= 5; return s; };
+      const ranked = [...data].sort((a, b) => score(b) - score(a));
+      const next = take(ranked, 1)[0];
+      const nextHtml = next ? `<a class="next-step" href="/${next.slug}"><span class="ns-k">次の一歩</span><span class="ns-b"><span class="ns-t">${esc(next.title)}</span></span><i class="ti ti-arrow-right ns-go"></i></a>` : '';
+      document.getElementById('journey-slot').innerHTML = `<div class="journey"><div class="jk"><i class="ti ti-route"></i>あなたの現在地</div><ol class="tl">${nodes}</ol>${nextHtml}</div>`;
+
+      const osusume = take(ranked.filter((a) => score(a) > 0), 4);
+      const ranking = take(byRank, 3);
+      const cohort = take(data.filter((a) => st.phase && (a.phases || []).includes(st.phase)), 3);
+      const tokushu = take(data.filter((a) => a.pick), 2);
+      const arrivals = take(byNewest, 3);
       railsEl.innerHTML =
         rail('あなたへのおすすめ', '現在地に合わせて', osusume) +
+        rankRail('よく読まれている', ranking) +
         (cohort.length ? rail('同じ状況の人がよく読む', '', cohort) : '') +
-        rankingHtml +
-        rail('特集・編集部ピック', '', tokushu);
+        rail('特集・編集部ピック', '', tokushu) +
+        rail('新着', '', arrivals);
     } else {
-      // ===== 未オンボ＝案内（まず読む／ランキング／特集） =====
-      const mazu = [...data].sort((a, b) => (a.seq || 99) - (b.seq || 99)).slice(0, 6);
-      const ranking = [...data].sort((a, b) => (a.rank || 99) - (b.rank || 99)).slice(0, 5);
-      const tokushu = data.filter((a) => a.pick);
-      const rankingHtml = `<section class="rail"><div class="rail-head"><h2>よく読まれている</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${ranking.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>`;
-      railsEl.innerHTML = rail('まず読むなら', '初動でつまずかないために', mazu) + rankingHtml + rail('特集・編集部ピック', '', tokushu);
+      const mazu = take(bySeq, 4);
+      const ranking = take(byRank, 3);
+      const tokushu = take(data.filter((a) => a.pick), 2);
+      const arrivals = take(byNewest, 3);
+      railsEl.innerHTML =
+        rail('まず読むなら', '初動でつまずかないために', mazu) +
+        rankRail('よく読まれている', ranking) +
+        rail('特集・編集部ピック', '', tokushu) +
+        rail('新着', '', arrivals);
     }
   </script>
 </BaseLayout>
