@@ -161,6 +161,22 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .safety b{font-family:'Zen Kaku Gothic New'}
 .home .safety a{color:var(--teal);font-weight:700;text-decoration:underline}
 
+/* セクションへの入口（記事一覧/Q&A/相談先） */
+.home .nav-cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+.home .nav-card{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line2);border-radius:16px;padding:18px 18px;box-shadow:0 10px 24px -20px rgba(21,35,58,.5);transition:.16s}
+.home .nav-card:hover,.home .nav-card:focus-visible{border-color:var(--coral);transform:translateY(-2px)}
+.home .nav-card i{font-size:26px;color:var(--coral);flex:none}
+.home .nav-card .nc-body{flex:1;min-width:0}
+.home .nav-card .nc-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15.5px;color:var(--navy)}
+.home .nav-card .nc-d{font-size:12px;color:var(--muted);margin-top:2px}
+.home .nav-card .nc-go{flex:none;color:var(--faint);font-size:18px}
+@media(min-width:760px){.home .nav-cards{grid-template-columns:repeat(3,1fr)}.home .nav-card{flex-direction:column;align-items:flex-start;gap:8px}.home .nav-card .nc-go{display:none}}
+
+/* 記事一覧ページの見出し帯 */
+.listing-head{max-width:1040px;margin:0 auto;padding:18px 2px 6px}
+.listing-head h1{font-size:26px;margin:0}
+.listing-head p{color:var(--muted);font-size:.92rem;margin:.5em 0 0}
+
 /* ===== PC ===== */
 @media (min-width:760px){
   .home .hero2{padding-top:48px}

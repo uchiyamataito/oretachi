@@ -1,32 +1,24 @@
 ---
-// トップ（F1.5 / UX設計=23）。
-// 思想：混乱した初回ユーザーに"選ばせず、一つ選ぶだけ"。静かな共感ヒーロー→オンボ主役→TODAY→記事。
-// オンボtileは現在地(localStorage)を保存しつつ最適記事へ（ルール版・最速レーン）。AI層で対話ナビ・モーダルに接続。
+// トップ＝入口・案内（IA：記事一覧は /articles に分離）。UX設計=23。
+// 静かな共感ヒーロー → オンボ主役（一つ選ぶだけ）→ TODAY → まず読む数本 → 各セクション入口 → 安全網。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('articles');
 const bySlug = Object.fromEntries(all.map((a) => [a.slug, a]));
 
-// オンボ主役：今いちばんしんどいのは？（心理状態→最適な最初の1記事＋現在地）
 const onb = [
-  { label: '切り出された直後',     hint: 'まず最初の14日にやること', icon: 'clock-hour-4', href: '/rikon-kiridasareta-saisho-14nichi', phase: '切り出された直後', kanshin: '初動' },
-  { label: 'お金が不安',           hint: '財産分与・棚卸し・これからのお金', icon: 'coin',        href: '/rikon-okane-checklist',            phase: '', kanshin: 'お金' },
-  { label: '子どものこと',         hint: '保険証・児童手当・親権の前提', icon: 'mood-kid',    href: '/rikon-kodomo-hoken',               phase: '', kanshin: '子ども' },
-  { label: 'まだ別れたくない',     hint: '追いすがる前に読んでほしい', icon: 'heart',       href: '/rikon-mada-wakaretakunai',         phase: 'まだ別れたくない', kanshin: '気持ち' },
-  { label: '誰にも言えない',       hint: '一人で抱える前に・相談先', icon: 'message-circle', href: '/rikon-dansei-soudansaki',          phase: '', kanshin: '相談' },
-  { label: '何からか分からない',   hint: '気持ち・お金・手続きの全体マップ', icon: 'map-2',     href: '/rikon-nani-kara-hajimeru',         phase: '', kanshin: '全体' },
+  { label: '切り出された直後',   hint: 'まず最初の14日にやること',     icon: 'clock-hour-4',  href: '/rikon-kiridasareta-saisho-14nichi', phase: '切り出された直後', kanshin: '初動' },
+  { label: 'お金が不安',         hint: '財産分与・棚卸し・これからのお金', icon: 'coin',         href: '/rikon-okane-checklist',            phase: '', kanshin: 'お金' },
+  { label: '子どものこと',       hint: '保険証・児童手当・親権の前提',   icon: 'mood-kid',     href: '/rikon-kodomo-hoken',               phase: '', kanshin: '子ども' },
+  { label: 'まだ別れたくない',   hint: '追いすがる前に読んでほしい',     icon: 'heart',        href: '/rikon-mada-wakaretakunai',         phase: 'まだ別れたくない', kanshin: '気持ち' },
+  { label: '誰にも言えない',     hint: '一人で抱える前に・相談先',       icon: 'message-circle', href: '/rikon-dansei-soudansaki',         phase: '', kanshin: '相談' },
+  { label: '何からか分からない', hint: '気持ち・お金・手続きの全体マップ', icon: 'map-2',       href: '/rikon-nani-kara-hajimeru',         phase: '', kanshin: '全体' },
 ];
 
-// 記事カード（全記事・新着順・タグは1トーン＝カテゴリ名のみ）
-const cards = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
-function tagLabel(cat = '') {
-  if (/保険|お金|税|年金/.test(cat)) return 'お金・保険';
-  if (/手続き/.test(cat)) return '手続き';
-  if (/気持ち|初動|相談|心/.test(cat)) return '気持ち・相談';
-  if (/子/.test(cat)) return '子ども';
-  return cat || '記事';
-}
+// トップに置くのは"まず読む"3本だけ（全記事は /articles）
+const pickSlugs = ['rikon-kiridasareta-saisho-14nichi', 'rikon-nani-kara-hajimeru', 'rikon-dansei-soudansaki'];
+const picks = pickSlugs.map((s) => bySlug[s]).filter(Boolean);
 ---
 <BaseLayout
   title="オレタチ｜離婚を切り出された男のための初動ナビ"
@@ -60,7 +52,6 @@ function tagLabel(cat = '') {
         </a>
       ))}
     </nav>
-    <!-- 言語化できない人の伴走入口（AI層で対話ナビ・モーダルに接続。現状は全体マップへ） -->
     <a class="onb-talk" href="/rikon-nani-kara-hajimeru" data-kanshin="全体" data-label="何から始める">
       <i class="ti ti-messages" aria-hidden="true"></i>うまく言葉にできない時は、ここから<span class="badge">準備中</span>
     </a>
@@ -71,15 +62,34 @@ function tagLabel(cat = '') {
       <div class="t">返事を急がない。「少し考えたい」で十分だ。</div>
     </div>
 
-    <!-- 記事（落ち着いた1トーン・回遊の受け皿） -->
-    <div class="sh"><h2>読んでおきたい記事</h2></div>
+    <!-- まず読むなら（厳選3本のみ。全記事は /articles） -->
+    <div class="sh"><h2>まず読むなら</h2><a href="/articles">記事をすべて見る →</a></div>
     <div class="cards">
-      {cards.map((a) => (
+      {picks.map((a) => (
         <a class="card" href={`/${a.slug}`}>
           <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
-          <div class="cbody"><span class="tag1">{tagLabel(a.data.category)}</span><h3>{a.data.title}</h3></div>
+          <div class="cbody"><h3>{a.data.title}</h3></div>
         </a>
       ))}
+    </div>
+
+    <!-- 各セクションへの入口 -->
+    <div class="nav-cards">
+      <a class="nav-card" href="/articles">
+        <i class="ti ti-news" aria-hidden="true"></i>
+        <span class="nc-body"><span class="nc-t">記事を読む</span><span class="nc-d">お金・手続き・気持ち・子ども</span></span>
+        <i class="ti ti-chevron-right nc-go" aria-hidden="true"></i>
+      </a>
+      <a class="nav-card" href="/qa">
+        <i class="ti ti-help-circle" aria-hidden="true"></i>
+        <span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">よくある疑問に、一問即答</span></span>
+        <i class="ti ti-chevron-right nc-go" aria-hidden="true"></i>
+      </a>
+      <a class="nav-card" href="/rikon-dansei-soudansaki">
+        <i class="ti ti-lifebuoy" aria-hidden="true"></i>
+        <span class="nc-body"><span class="nc-t">相談先・窓口</span><span class="nc-d">一人で抱える前に</span></span>
+        <i class="ti ti-chevron-right nc-go" aria-hidden="true"></i>
+      </a>
     </div>
 
     <!-- つらい時の安全網 -->

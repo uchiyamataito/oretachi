@@ -1,0 +1,56 @@
+---
+// 記事一覧（IA：トップから分離した"記事を全部ブラウズする場"）。お悩みカテゴリで絞り込み。
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('articles')).sort((a, b) =>
+  a.data.published < b.data.published ? 1 : -1
+);
+function bucket(cat = '') {
+  if (/子/.test(cat)) return '子ども';
+  if (/気持ち|初動|相談|心/.test(cat)) return '気持ち・相談';
+  if (/保険|お金|税|年金/.test(cat)) return 'お金・保険';
+  if (/手続き/.test(cat)) return '手続き';
+  return 'その他';
+}
+const filters = ['すべて', 'お金・保険', '手続き', '気持ち・相談', '子ども'];
+---
+<BaseLayout
+  title="記事一覧｜オレタチ"
+  description="離婚を切り出された男性向けの記事一覧。お金・保険、手続き、気持ち・相談、子どものことから、必要な記事を探せます。"
+  canonical="https://oretachi.me/articles"
+>
+  <div class="listing-head">
+    <h1>記事を読む</h1>
+    <p>お金・手続き・気持ち・子ども。気になるテーマから探してください。</p>
+  </div>
+  <div class="home">
+    <div class="filters" id="cat-filters" role="tablist" aria-label="お悩みカテゴリ">
+      {filters.map((f, i) => (
+        <button class={`f${i === 0 ? ' active' : ''}`} data-filter={f}>{f}</button>
+      ))}
+    </div>
+    <div class="cards" id="article-cards" style="margin-top:18px">
+      {all.map((a) => (
+        <a class="card" href={`/${a.slug}`} data-cat={bucket(a.data.category)}>
+          <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
+          <div class="cbody"><span class="tag1">{bucket(a.data.category)}</span><h3>{a.data.title}</h3></div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    const btns = Array.from(document.querySelectorAll('#cat-filters .f'));
+    const cards = Array.from(document.querySelectorAll('#article-cards .card'));
+    btns.forEach((b) => b.addEventListener('click', () => {
+      btns.forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      const f = b.getAttribute('data-filter');
+      cards.forEach((c) => {
+        const show = f === 'すべて' || c.getAttribute('data-cat') === f;
+        c.style.display = show ? '' : 'none';
+      });
+    }));
+  </script>
+</BaseLayout>
