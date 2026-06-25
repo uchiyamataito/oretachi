@@ -1,43 +1,215 @@
-:root{--maxw:720px;--fg:#1a1a1a;--muted:#666;--accent:#1f6feb;--line:#e5e5e5}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--fg);line-height:1.85;font-size:17px;background:#fff}
-main{max-width:var(--maxw);margin:0 auto;padding:20px 16px 64px}
-.site-header,.site-footer{max-width:var(--maxw);margin:0 auto;padding:14px 16px}
-.brand{font-weight:800;font-size:20px;text-decoration:none;color:var(--fg)}
-h1{font-size:1.6rem;line-height:1.5;margin:.6em 0}
-h2{font-size:1.3rem;margin:1.8em 0 .6em;padding-top:.4em;border-top:1px solid var(--line)}
-h3{font-size:1.1rem;margin:1.4em 0 .4em}
-a{color:var(--accent)}
-img{max-width:100%;height:auto;border-radius:8px}
-table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:1em 0}
-th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;font-size:.95rem}
-blockquote{margin:1em 0;padding:.6em 1em;background:#f6f8fa;border-left:4px solid var(--accent);border-radius:4px}
-.toc{background:#f6f8fa;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:1.2em 0}
-.toc ul{margin:.4em 0 0;padding-left:1.2em}
-.disclaimer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:1em;margin-top:2em}
-.article-list{list-style:none;padding:0}
-.article-list li{border-bottom:1px solid var(--line);padding:14px 0}
-.article-list p{color:var(--muted);font-size:.9rem;margin:.3em 0 0}
-.site-nav{display:inline-flex;gap:14px;margin-left:14px}
-.site-nav a{font-size:.95rem;text-decoration:none;color:var(--fg)}
-.qa-search{width:100%;padding:12px 14px;font-size:1rem;border:1px solid var(--line);border-radius:10px;margin:.6em 0}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:.4em 0}
-.f{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer}
-.f.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* ===========================================================
+   オレタチ デザインシステム（F1.5）
+   ブランド：落ち着き・誠実・信頼 × 洗練・モダン
+   配色＝ネイビー/コーラル/ミント＋生成り、見出し＝Zen Kaku Gothic New
+   - 基本（全ページ）＋既存コンポーネント（記事/Q&A/about）＋トップ(.home)
+   =========================================================== */
+:root{
+  --navy:#1B3A57; --coral:#E2703A; --coral-deep:#B5481F;
+  --mint:#9BD9C1; --teal:#0F6E56;
+  --cream:#FCFAF6; --surface:#EDE7DD;
+  --ink:#2C2A26; --muted:#6E6354; --faint:#8C8270;
+  --line:#ECE3D5; --line2:#E4DACB;
+  --maxw:760px;
+  --accent:var(--coral); --fg:var(--ink);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Noto Sans JP',system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
+  color:var(--ink);line-height:1.85;font-size:16.5px;
+  background:
+    radial-gradient(120% 60% at 12% -5%, rgba(155,217,193,.16), transparent 60%),
+    radial-gradient(110% 55% at 96% 0%, rgba(226,112,58,.08), transparent 55%),
+    var(--cream);
+  background-attachment:fixed;
+}
+main{max-width:var(--maxw);margin:0 auto;padding:8px 18px 72px}
+a{color:var(--coral-deep)}
+img{max-width:100%;height:auto;border-radius:12px}
+h1,h2,h3,h4{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;color:var(--navy);line-height:1.5}
+h1{font-size:1.7rem;font-weight:900;margin:.7em 0 .5em}
+h2{font-size:1.32rem;font-weight:700;margin:2em 0 .6em;padding-top:.6em;border-top:2px solid var(--line)}
+h3{font-size:1.12rem;font-weight:700;margin:1.5em 0 .4em;color:var(--ink)}
+p{margin:.9em 0}
+strong{color:var(--coral-deep)}
+ul,ol{padding-left:1.3em}
+li{margin:.3em 0}
+hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:1.2em 0;font-size:.95rem}
+th,td{border:1px solid var(--line2);padding:9px 11px;text-align:left}
+th{background:#F4EEE4;color:var(--navy);font-weight:700}
+blockquote{margin:1.2em 0;padding:.8em 1.1em;background:#fff;border:1px solid var(--line);
+  border-left:4px solid var(--mint);border-radius:10px;box-shadow:0 8px 20px -18px rgba(21,35,58,.4)}
+blockquote p:first-child{margin-top:0}blockquote p:last-child{margin-bottom:0}
+
+/* ===== ヘッダー / フッター（全ページ共通） ===== */
+.site-header{
+  display:flex;align-items:center;gap:6px;max-width:var(--maxw);margin:0 auto;padding:14px 18px;
+  position:sticky;top:0;z-index:30;background:rgba(252,250,246,.88);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)
+}
+.brand{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:21px;color:var(--navy);letter-spacing:2px;text-decoration:none}
+.site-nav{display:inline-flex;gap:6px;margin-left:auto}
+.site-nav a{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--navy);
+  padding:8px 12px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center}
+.site-nav a:hover{background:#F1EADD}
+.site-footer{max-width:var(--maxw);margin:0 auto;padding:28px 18px 36px;border-top:1px solid var(--line);
+  background:#F6F1E8;text-align:center}
+.foot-nav{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;margin-bottom:10px}
+.foot-nav a{font-size:.85rem;color:var(--muted);text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+.foot-nav a:hover{color:var(--coral-deep)}
+.site-footer p{font-size:.78rem;color:var(--faint);margin:.4em 0 0}
+
+/* ===== 記事レイアウト ===== */
+article figure{margin:0 0 1.2em}
+article figure img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;box-shadow:0 14px 30px -20px rgba(21,35,58,.5)}
+article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-align:center}
+.toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:1.4em 0}
+.toc strong{color:var(--navy)}
+.toc ul{margin:.5em 0 0;padding-left:1.2em}
+.toc a{color:var(--navy);text-decoration:none}
+.toc a:hover{color:var(--coral-deep)}
+.content{font-size:1.02rem}
+.disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
+
+/* パンくず（表示UI） */
+.crumbs{font-size:.8rem;color:var(--muted);margin:.6em 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.crumbs a{color:var(--muted);text-decoration:none}
+.crumbs a:hover{color:var(--coral-deep)}
+.crumbs .sep{color:var(--faint)}
+
+/* 関連モジュール */
+.related{margin:2.4em 0 0;border-top:2px solid var(--line);padding-top:1.2em}
+.related h3{margin-top:0}
+.related ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem}
+.related a:hover{border-color:var(--coral)}
+@media(min-width:600px){.related ul{grid-template-columns:1fr 1fr}}
+
+/* CTA（記事末） */
+.cta-box{margin:2.4em 0 0;background:var(--navy);border-radius:18px;padding:24px 22px;color:#fff;text-align:center}
+.cta-box p{color:rgba(255,255,255,.9);margin:.3em 0 1em}
+.cta-box .btn,a.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;
+  font-family:'Zen Kaku Gothic New';font-weight:700;border-radius:32px;padding:14px 30px;text-decoration:none;
+  box-shadow:0 12px 24px -12px rgba(226,112,58,.7)}
+
+/* ===== Q&A 一覧/詳細 ===== */
+.qa-search{width:100%;padding:13px 15px;font-size:1rem;border:1px solid var(--line2);border-radius:12px;margin:.6em 0;background:#fff}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:.6em 0}
+.f{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:9px 14px;font-size:.85rem;cursor:pointer;min-height:40px}
+.f.active{background:var(--coral);color:#fff;border-color:var(--coral)}
 .qa-count{color:var(--muted);font-size:.85rem;margin:.4em 0}
 .qa-grid{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:600px){.qa-grid{grid-template-columns:1fr 1fr}}
-.qa-card a{display:block;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--fg);background:#fff}
-.qa-card a:hover{border-color:var(--accent)}
-.chip{display:inline-block;background:#eef3ff;color:var(--accent);border-radius:999px;padding:2px 10px;font-size:.78rem;margin-right:6px}
-.chip.ghost{background:#f3f4f6;color:var(--muted)}
-.qa-q{display:block;font-weight:700;margin:.5em 0 .3em;line-height:1.5}
+.qa-card a{display:block;border:1px solid var(--line);border-radius:14px;padding:15px 17px;text-decoration:none;color:var(--ink);background:#fff}
+.qa-card a:hover{border-color:var(--coral)}
+.chip{display:inline-block;background:#DDE6F0;color:var(--navy);border-radius:999px;padding:3px 11px;font-size:.78rem;margin-right:6px;font-weight:700}
+.chip.ghost{background:#F1EADD;color:var(--muted)}
+.qa-q{display:block;font-family:'Zen Kaku Gothic New';font-weight:700;margin:.5em 0 .3em;line-height:1.5;color:var(--navy)}
 .qa-ex{display:block;color:var(--muted);font-size:.9rem}
-.qa-more{display:block;text-align:right;color:var(--accent);font-size:.85rem;margin-top:.4em}
-.qa-badge{display:inline-block;background:var(--accent);color:#fff;font-weight:800;border-radius:8px;padding:0 10px;font-size:1rem}
-.helpful{border:1px solid var(--line);border-radius:12px;padding:16px;margin:1.6em 0;text-align:center;background:#f9fafb}
-.helpful-q{font-weight:700;margin:.2em 0 .6em}
-.helpful button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 16px;margin:0 4px;font-size:.95rem}
-.back{margin-top:1.4em}
-.foot-nav{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:8px}
-.foot-nav a{font-size:.85rem;color:var(--muted);text-decoration:none}
+.qa-more{display:block;text-align:right;color:var(--coral-deep);font-size:.85rem;margin-top:.4em;font-weight:700}
+.qa-badge{display:inline-block;background:var(--coral);color:#fff;font-weight:800;border-radius:8px;padding:0 10px}
+.helpful{border:1px solid var(--line);border-radius:14px;padding:18px;margin:1.8em 0;text-align:center;background:#fff}
+.helpful-q{font-weight:700;margin:.2em 0 .6em;color:var(--navy)}
+.helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 18px;margin:0 4px;font-size:.95rem;min-height:44px}
+.back{margin-top:1.6em}
+.article-list{list-style:none;padding:0}
+.article-list li{border-bottom:1px solid var(--line);padding:14px 0}
+.article-list p{color:var(--muted);font-size:.9rem;margin:.3em 0 0}
+
+/* ===========================================================
+   トップページ（.home 配下＝他ページと衝突させない）
+   =========================================================== */
+.home{max-width:1100px;margin:0 auto}
+.home a{text-decoration:none;color:inherit}
+
+/* HERO カルーセル */
+.home .hero{padding-top:18px}
+.home .photo{display:none;position:relative}
+.home .photo.is-active{display:block;animation:hfade .55s ease}
+.home .photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:50% 40%;border-radius:18px;display:block;box-shadow:0 14px 30px -18px rgba(21,35,58,.5)}
+.home .ov-tags{position:absolute;left:12px;bottom:12px;display:flex;gap:7px}
+.home .ov{font-size:11px;font-weight:700;border-radius:8px;padding:5px 10px;box-shadow:0 2px 8px rgba(21,35,58,.25)}
+.home .ov-coral{background:var(--coral);color:#fff}
+.home .ov-mint{background:var(--teal);color:#fff}
+.home .ov-navy{background:var(--navy);color:#fff}
+.home .ov-sub{background:rgba(255,255,255,.94);color:var(--ink)}
+.home .hero-bodies{position:relative}
+.home .slide{display:none}
+.home .slide.is-active{display:block;animation:hfade .55s ease}
+@keyframes hfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.home .s-title{display:block;font-family:'Zen Kaku Gothic New';font-weight:700;color:var(--navy);font-size:20px;line-height:1.5;margin:14px 0 0}
+.home .pc-tags{display:none;gap:8px;margin-top:18px}
+.home .pill{font-size:12.5px;font-weight:700;border-radius:8px;padding:6px 13px;background:transparent;border:1px solid var(--line2);display:inline-block}
+.home .t-coral{color:var(--coral-deep);border-color:#E9C4B2}
+.home .t-mint{color:var(--teal);border-color:#AFD9C9}
+.home .t-navy{color:var(--navy);border-color:#B9C7D6}
+.home .t-sub{color:var(--muted)}
+.home .hero-dots{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:16px}
+.home .dot{width:26px;height:6px;border-radius:3px;border:none;padding:0;cursor:pointer;background:#C9BBA3;transition:.2s}
+.home .dot.is-active{background:var(--coral);width:32px}
+.home .carousel-ctrl{margin-left:6px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);
+  background:#fff;color:var(--navy);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+
+/* 今のあなたは？ チップ */
+.home .lead{font-size:12px;color:var(--faint);letter-spacing:1.5px;margin:30px 0 10px}
+.home .situ-chips{display:flex;flex-wrap:wrap;gap:8px}
+.home .situ{font-size:12.5px;color:var(--navy);background:#fff;border:1px solid var(--line2);border-radius:20px;padding:9px 14px;min-height:40px;display:inline-flex;align-items:center}
+.home .situ:hover{border-color:var(--coral)}
+.home .situ i{color:var(--coral);font-size:14px;margin-right:4px;vertical-align:-1px}
+
+/* TODAY */
+.home .today{background:#fff;border:1px solid var(--line);border-left:4px solid var(--mint);border-radius:18px;padding:22px 20px;margin-top:26px;box-shadow:0 8px 20px -16px rgba(21,35,58,.4)}
+.home .today .k{font-size:11px;color:var(--teal);letter-spacing:2px;font-weight:700;display:flex;align-items:center;gap:6px}
+.home .today .t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:18px;color:var(--ink);margin-top:10px;line-height:1.6}
+
+/* セクション見出し */
+.home .sh{display:flex;align-items:baseline;justify-content:space-between;margin:34px 0 16px}
+.home .sh h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:18px;margin:0;color:var(--ink);border:none;padding:0}
+.home .sh a{font-size:12.5px;color:var(--coral-deep);font-weight:700}
+
+/* 記事カード */
+.home .cards{display:flex;flex-direction:column;gap:18px}
+.home .card{display:flex;gap:14px;align-items:center}
+.home .card .thumb{flex:none;width:116px;height:86px;border-radius:14px;overflow:hidden;box-shadow:0 8px 16px -12px rgba(21,35,58,.5)}
+.home .card .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.home .card .cbody{min-width:0}
+.home .tag-mint{background:#DDF1E9;color:var(--teal)}
+.home .tag-coral-s{background:#FBE3D8;color:var(--coral-deep)}
+.home .tag-navy{background:#DDE6F0;color:var(--navy)}
+.home .tag-s{font-size:10.5px;font-weight:700;border-radius:6px;padding:3px 8px;display:inline-block}
+.home .card h3{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14.5px;line-height:1.5;margin:8px 0 0;color:var(--ink)}
+
+/* トップCTA */
+.home .home-cta{margin:40px 4px 8px;text-align:center}
+.home .home-cta .sub{font-size:13px;color:var(--muted)}
+.home .home-cta .btn{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;border-radius:32px;padding:15px 32px;box-shadow:0 12px 24px -12px rgba(27,58,87,.7)}
+.home .home-cta .btn i{font-size:17px}
+
+/* ===== PC ===== */
+@media (min-width:760px){
+  .home .hero{padding-top:30px;display:grid;grid-template-columns:1.32fr 1fr;gap:40px;align-items:stretch}
+  .home .ov-tags{display:none}
+  .home .hero-bodies{display:flex;flex-direction:column;justify-content:center}
+  .home .s-title{font-size:26px;line-height:1.55;margin-top:0}
+  .home .pc-tags{display:flex;margin-top:20px}
+  .home .hero-dots{position:absolute;left:0;bottom:2px;margin-top:0;justify-content:flex-start}
+  .home .lead{margin-top:44px;font-size:13px}
+  .home .situ{font-size:13.5px;padding:10px 16px}
+  .home .today{padding:28px 34px;margin-top:36px}
+  .home .today .t{font-size:21px}
+  .home .sh{margin:50px 0 22px}.home .sh h2{font-size:22px}
+  .home .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:32px 30px}
+  .home .card{flex-direction:column;align-items:stretch;gap:0}
+  .home .card .thumb{width:100%;height:auto;aspect-ratio:16/9;border-radius:16px}
+  .home .card h3{font-size:16px;margin-top:12px}
+  .home .home-cta{margin:58px 0 10px}
+  .home .home-cta .btn{font-size:16px;padding:16px 40px}
+}
+
+/* アクセシビリティ：動きを減らす設定の人には自動切替を抑制 */
+@media (prefers-reduced-motion:reduce){
+  .home .photo.is-active,.home .slide.is-active{animation:none}
+}
