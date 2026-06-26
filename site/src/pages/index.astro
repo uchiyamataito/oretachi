@@ -1,78 +1,63 @@
 ---
-// トップ＝回遊ハブ／マイページ（15§8-3レール＋§0.9現在地マップ=時系列）。
-// 改修：本物の縦タイムライン／TODAY・アバター削除／全レール横断で重複表示なし／新着は少数。
+// トップ＝マイページ（24スペック）。未オンボ=大導線→5問モーダル。オンボ済=状態依存アコーディオン時系列＋記事/Q&Aレコメンド。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const all = await getCollection('articles');
+const arts = await getCollection('articles');
+const qas = await getCollection('qa');
 
-const META = {
-  'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['初動', '気持ち'], seq: 1, pick: true, rank: 2, tag: '気持ち・初動' },
-  'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後'], kanshin: ['全体', '手続き'], seq: 2, pick: true, rank: 3, tag: '全体マップ' },
-  'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], seq: 3, rank: 1, tag: 'お金' },
-  'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '別居', '協議・調停中', '成立後', 'まだ別れたくない'], kanshin: ['相談', '気持ち'], seq: 2, pick: true, rank: 4, tag: '相談' },
-  'rikon-mada-wakaretakunai':          { phases: ['まだ別れたくない'], kanshin: ['気持ち'], seq: 1, rank: 5, tag: '気持ち' },
-  'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], seq: 4, rank: 6, tag: '手続き' },
-  'rikon-kodomo-hoken':                { phases: ['別居', '成立後'], kanshin: ['子ども', '手続き'], seq: 5, tag: '子ども' },
-  'rikon-nenkin-tetsuzuki':            { phases: ['成立後'], kanshin: ['手続き', 'お金'], seq: 6, tag: '手続き' },
-  'rikon-fuyou-zeikin':                { phases: ['成立後'], kanshin: ['お金', '手続き'], seq: 7, tag: 'お金' },
-  'rikon-seimeihoken-sonomama':        { phases: ['成立後'], kanshin: ['お金', '手続き'], seq: 8, tag: 'お金' },
-  'rikon-seimeihoken-uketorinin':      { phases: ['成立後'], kanshin: ['お金', '手続き'], seq: 9, tag: '手続き' },
+const AMETA = {
+  'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, pick: true, rank: 2, tag: '気持ち・初動' },
+  'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 3, tag: '全体マップ' },
+  'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], kids: false, rank: 1, tag: 'お金' },
+  'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '協議・調停中'], kanshin: ['相談', '気持ち'], kids: false, pick: true, rank: 4, tag: '相談' },
+  'rikon-mada-wakaretakunai':          { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, rank: 5, tag: '気持ち' },
+  'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], kids: false, rank: 6, tag: '手続き' },
+  'rikon-kodomo-hoken':                { phases: ['別居', '成立後'], kanshin: ['子ども', '手続き'], kids: true, tag: '子ども' },
+  'rikon-nenkin-tetsuzuki':            { phases: ['成立後'], kanshin: ['手続き', 'お金'], kids: false, tag: '手続き' },
+  'rikon-fuyou-zeikin':                { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金' },
+  'rikon-seimeihoken-sonomama':        { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金' },
+  'rikon-seimeihoken-uketorinin':      { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: '手続き' },
 };
-const data = all.map((a) => ({
-  slug: a.slug, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published,
-  ...(META[a.slug] || { phases: [], kanshin: [], seq: 99, pick: false, rank: 99, tag: '記事' }),
-}));
-const onb = [
-  { label: '切り出された直後',   hint: 'まず最初の14日にやること',       icon: 'clock-hour-4',   href: '/rikon-kiridasareta-saisho-14nichi', phase: '切り出された直後', kanshin: '初動' },
-  { label: 'お金が不安',         hint: '財産分与・棚卸し・これからのお金', icon: 'coin',          href: '/rikon-okane-checklist',            phase: '', kanshin: 'お金' },
-  { label: '子どものこと',       hint: '保険証・児童手当・親権の前提',   icon: 'mood-kid',      href: '/rikon-kodomo-hoken',               phase: '', kanshin: '子ども' },
-  { label: 'まだ別れたくない',   hint: '追いすがる前に読んでほしい',     icon: 'heart',         href: '/rikon-mada-wakaretakunai',         phase: 'まだ別れたくない', kanshin: '気持ち' },
-  { label: '誰にも言えない',     hint: '一人で抱える前に・相談先',       icon: 'message-circle', href: '/rikon-dansei-soudansaki',          phase: '', kanshin: '相談' },
-  { label: '何からか分からない', hint: '気持ち・お金・手続きの全体マップ', icon: 'map-2',        href: '/rikon-nani-kara-hajimeru',         phase: '', kanshin: '全体' },
-];
-const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
+const QMETA = {
+  'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'] },
+  'rikon-riyuu-toitsumeru':        { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+  'rikon-ie-deru-beki':            { phases: ['切り出された直後', '別居'], kanshin: ['手続き', 'お金'] },
+  'rikon-kodomo-setsumei':         { phases: ['切り出された直後'], kanshin: ['子ども', '気持ち'] },
+  'rikon-kyouyu-kouza-ugokasu':    { phases: ['切り出された直後', '別居'], kanshin: ['お金'] },
+  'rikon-kiridasareta-atama-masshiro': { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+  'rikon-nemurenai-byoin':         { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+};
+const adata = arts.map((a) => ({ slug: a.slug, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published, ...(AMETA[a.slug] || { phases: [], kanshin: [], kids: false, pick: false, rank: 99, tag: '記事' }) }));
+const qdata = qas.map((q) => ({ slug: q.slug, q: q.data.question, d: q.data.description, ...(QMETA[q.slug] || { phases: [], kanshin: [] }) }));
+const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
 ---
 <BaseLayout
   title="オレタチ｜離婚を切り出された男のための初動ナビ"
-  description="離婚を切り出された男性のためのマイページ型ナビ。今いちばんしんどいことを選べば、あなたの現在地（時系列）に合わせて次に読むべきこと・おすすめを出します。お金・手続き・気持ち・子ども・相談先。"
+  description="離婚を切り出された男性のためのマイページ型ナビ。5つの質問で、あなたの現在地（時系列）に合わせて、次にやること・あなたへのおすすめ記事とQ&Aを出します。"
   canonical="https://oretachi.me/"
 >
   <div class="home">
     <div id="greet-slot"></div>
     <div id="journey-slot"></div>
 
-    <!-- 未オンボ＝共感ヒーロー＋オンボ -->
-    <div id="hero-onb">
-      <section class="hero2">
-        <p class="eyebrow">離婚を切り出された男のための、初動ナビ</p>
-        <h1>大丈夫だ。<br>まず、一緒に整理しよう。</h1>
-        <p class="sub">何から考えればいいか分からなくて、当然だ。<strong>今いちばんしんどいことを、ひとつだけ</strong>選んでくれ。あなたの「現在地」に合わせて、次に読むものを出していく。</p>
-      </section>
-      <div class="onb-head">今、いちばんしんどいのは？</div>
-      <p class="onb-note">ひとつ選ぶだけでいい。うまく言葉にできなくて大丈夫。</p>
-      <nav class="onb" aria-label="今の状況から始める">
-        {onb.map((o) => (
-          <a class="onb-tile" href={o.href} data-phase={o.phase} data-kanshin={o.kanshin} data-label={o.label}>
-            <i class={`ti ti-${o.icon}`} aria-hidden="true"></i>
-            <span class="ol">{o.label}</span>
-            <span class="oh">{o.hint}</span>
-          </a>
-        ))}
-      </nav>
-      <a class="onb-talk" href="/rikon-nani-kara-hajimeru" data-kanshin="全体" data-label="何から始める">
-        <i class="ti ti-messages" aria-hidden="true"></i>うまく言葉にできない時は、ここから<span class="badge">準備中</span>
-      </a>
+    <!-- 未オンボ＝大導線（エンプティステート） -->
+    <div class="emptyhero" id="emptyhero">
+      <div class="ghost"></div>
+      <div class="eh-k">YOUR MAP</div>
+      <div class="eh-t">あなたの“現在地マップ”は、まだぼんやりしています。</div>
+      <div class="eh-s">何から考えればいいか分からなくて、当然だ。<strong>5つの質問（約30秒）</strong>に答えると、あなたの状況に合わせた<strong>時系列（やることの順番）</strong>と、次に読むべき記事・Q&Aが並びます。</div>
+      <button class="eh-btn" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>現在地をつくる</button>
+      <div class="eh-mini">氏名や連絡先は聞きません。回答はこの端末内だけに保存されます。</div>
     </div>
 
-    <!-- レール（JS生成・全レール横断で重複なし）。server fallbackはクロール用の全記事リスト -->
     <div id="rails">
       <div class="sh"><h2>記事</h2><a href="/articles">すべて見る →</a></div>
       <div class="cards">
         {newest.map((a) => (
           <a class="card" href={`/${a.slug}`}>
             <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
-            <div class="cbody"><span class="tag1">{(META[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
+            <div class="cbody"><span class="tag1">{(AMETA[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
           </a>
         ))}
       </div>
@@ -80,7 +65,7 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
 
     <div class="nav-cards">
       <a class="nav-card" href="/articles"><i class="ti ti-news" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">記事を読む</span><span class="nc-d">お金・手続き・気持ち・子ども</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
-      <a class="nav-card" href="/qa"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">よくある疑問に、一問即答</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
+      <a class="nav-card" href="/qa"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">同じ状況の小さな疑問に、一問即答</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
       <a class="nav-card" href="/rikon-dansei-soudansaki"><i class="ti ti-lifebuoy" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">相談先・窓口</span><span class="nc-d">一人で抱える前に</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
     </div>
 
@@ -89,87 +74,195 @@ const newest = [...all].sort((a, b) => (a.data.published < b.data.published ? 1 
     </div>
   </div>
 
-  <script type="application/json" id="art-data" set:html={JSON.stringify(data)}></script>
+  <!-- オンボ・モーダル -->
+  <div class="onbm" id="onbm" role="dialog" aria-modal="true" aria-label="現在地をつくる">
+    <div class="ov" id="onbm-ov"></div>
+    <div class="sheet">
+      <div class="bar"><div class="dots" id="onbm-dots"></div><button class="close" id="onbm-close" aria-label="閉じる">×</button></div>
+      <div id="onbm-q"></div>
+    </div>
+  </div>
+
+  <script type="application/json" id="adata" set:html={JSON.stringify(adata)}></script>
+  <script type="application/json" id="qdata" set:html={JSON.stringify(qdata)}></script>
   <script>
     const KEY = 'oretachi_state';
     const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
-    const data = JSON.parse(document.getElementById('art-data')?.textContent || '[]');
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const A = JSON.parse(document.getElementById('adata')?.textContent || '[]');
+    const Q = JSON.parse(document.getElementById('qdata')?.textContent || '[]');
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-    document.querySelectorAll('#hero-onb .onb-tile, #hero-onb .onb-talk').forEach((el) => {
-      el.addEventListener('click', () => {
-        const prev = read() || {};
-        const phase = el.getAttribute('data-phase') || prev.phase || '';
-        const k = el.getAttribute('data-kanshin') || '';
-        const kanshin = Array.from(new Set([...(prev.kanshin || []), k].filter(Boolean)));
-        const hist = Array.from(new Set([...(prev.history || []), (el.getAttribute('href') || '').replace('/', '')].filter(Boolean))).slice(-12);
-        localStorage.setItem(KEY, JSON.stringify({ phase, kanshin, history: hist, label: el.getAttribute('data-label') || '', ts: Date.now() }));
-      });
-    });
-
-    const PHASES = [
-      { key: '危機・初動', match: ['切り出された直後', ''], st: '気持ちの応急処置と、最初の14日' },
-      { key: '分岐：復縁／離婚進行', match: ['まだ別れたくない', '別居', '協議・調停中'], st: '関係修復か、別居・協議・調停か' },
-      { key: '再出発', match: ['成立後'], st: '生活の立て直しと、これから' },
+    // ===== オンボ設問（24§1） =====
+    const QUESTIONS = [
+      { id: 'phase', h: '今、どの段階にいますか？', s: 'あなたの“現在地”を教えて。', multi: false, opts: [
+        { v: '切り出された直後', t: '妻に切り出されたばかり' }, { v: '別居', t: '別居中／別居を考えている' },
+        { v: '協議・調停中', t: '協議・調停を進めている' }, { v: '成立後', t: 'もう離婚は成立した' } ] },
+      { id: 'route', h: 'これからの気持ちに近いのは？', s: '答えで、出す情報を変える。', multi: false, opts: [
+        { v: 'fukuen', t: 'まだ別れたくない・やり直したい' }, { v: 'rikon', t: '離婚に向けて進めたい' }, { v: 'mitei', t: 'まだ決められない' } ] },
+      { id: 'kids', h: 'お子さんはいますか？', s: '', multi: false, opts: [
+        { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
+      { id: 'trouble', h: '今の話し合いの状況は？', s: '安全と緊急度の確認のためだけに使う。', multi: false, opts: [
+        { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' } ] },
+      { id: 'kanshin', h: '今いちばん不安なことは？', s: 'いくつ選んでもいい。', multi: true, opts: [
+        { v: 'お金', t: 'お金・財産' }, { v: '手続き', t: '各種手続き' }, { v: '気持ち', t: '気持ち・メンタル' }, { v: '子ども', t: '子どものこと' }, { v: '相談', t: '相談相手がいない' } ] },
     ];
-    const phaseIndex = (p) => { for (let i = 0; i < PHASES.length; i++) if (PHASES[i].match.includes(p || '')) return i; return 0; };
-    const card = (a) => `<a class="rcard" href="/${a.slug}"><div class="rthumb"><img src="${esc(a.img)}" alt="${esc(a.title)}" loading="lazy"></div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
-    const rail = (title, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(title)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(card).join('')}</div></section>` : '';
-    const rankRail = (title, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(title)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
 
-    // 重複表示なし：一度出したslugは記録し、以降のレールから除外
-    const shown = new Set();
-    const take = (list, n) => { const out = []; for (const a of list) { if (out.length >= n) break; if (shown.has(a.slug)) continue; shown.add(a.slug); out.push(a); } return out; };
+    // ===== 状態依存タイムライン定義（24§3） =====
+    const PH_RIKON = [
+      { key: '切り出された直後', name: '初動・心の整理', desc: 'まず急がない。最初の14日。', todos: [
+        { l: '返事を急がない｜最初の14日でやること', h: '/rikon-kiridasareta-saisho-14nichi' },
+        { l: '健康保険など“期限のある手続き”を確認', h: '/rikon-kenkohoken-tetsuzuki' },
+        { l: 'つらい時は一人で抱えない｜相談先', h: '/rikon-dansei-soudansaki' } ] },
+      { key: '別居', name: '別居・生活とお金', desc: '生活基盤とお金を守る。', todos: [
+        { l: 'お金の棚卸し・証拠の確保', h: '/rikon-okane-checklist' },
+        { l: '共有口座を動かす前に', h: '/qa/rikon-kyouyu-kouza-ugokasu' },
+        { l: '家を出るべきか迷ったら', h: '/qa/rikon-ie-deru-beki' },
+        { l: '子の保険証・児童手当', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
+      { key: '協議・調停中', name: '協議・調停', desc: '話し合いの進め方。', todos: [
+        { l: '何から進める？全体マップ', h: '/rikon-nani-kara-hajimeru' },
+        { l: '相談先・専門家の選び方', h: '/rikon-dansei-soudansaki' },
+        { l: '個別の交渉は弁護士に相談を', h: '/rikon-dansei-soudansaki', cond: 'dispute', kind: 'legal' },
+        { l: '親権・養育費の前提を知る', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
+      { key: '成立後', name: '成立・名義変更', desc: '手続きを片づける。', todos: [
+        { l: '健康保険の切替', h: '/rikon-kenkohoken-tetsuzuki' },
+        { l: '年金の手続き', h: '/rikon-nenkin-tetsuzuki' },
+        { l: '保険の受取人を変える', h: '/rikon-seimeihoken-uketorinin' },
+        { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin' } ] },
+      { key: '再出発', name: '再出発', desc: '生活を立て直す。', todos: [
+        { l: 'お金の立て直し', h: '/rikon-okane-checklist' },
+        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' } ] },
+    ];
+    const PH_FUKUEN = [
+      { key: '切り出された直後', name: '初動・心の整理', desc: 'まず落ち着く。', todos: [
+        { l: '最初の14日でやること・やってはいけないこと', h: '/rikon-kiridasareta-saisho-14nichi' },
+        { l: '頭が真っ白でも、それで普通だ', h: '/qa/rikon-kiridasareta-atama-masshiro' } ] },
+      { key: '修復', name: '関係修復を試みる', desc: '追わない。冷却と、誠実な対話。', todos: [
+        { l: 'まだ別れたくない人へ｜NG行動とやること', h: '/rikon-mada-wakaretakunai' },
+        { l: '理由を問い詰めない', h: '/qa/rikon-riyuu-toitsumeru' },
+        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' } ] },
+      { key: '合流', name: 'もし離婚に進むことになったら', desc: '念のため、進む場合の備えも。', todos: [
+        { l: '何から始める？全体マップ', h: '/rikon-nani-kara-hajimeru' } ] },
+    ];
 
-    const st = read();
-    const railsEl = document.getElementById('rails');
-    const byNewest = [...data].sort((a, b) => (a.published < b.published ? 1 : -1));
-    const byRank = [...data].sort((a, b) => (a.rank || 99) - (b.rank || 99));
-    const bySeq = [...data].sort((a, b) => (a.seq || 99) - (b.seq || 99));
+    // ====== モーダル制御 ======
+    const modal = document.getElementById('onbm');
+    const qWrap = document.getElementById('onbm-q');
+    const dotsEl = document.getElementById('onbm-dots');
+    let answers = {}, idx = 0;
+    const openModal = () => { answers = {}; idx = 0; modal.classList.add('open'); document.body.style.overflow = 'hidden'; renderQ(); };
+    const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+    document.getElementById('start-onb')?.addEventListener('click', openModal);
+    document.getElementById('onbm-close')?.addEventListener('click', closeModal);
+    document.getElementById('onbm-ov')?.addEventListener('click', closeModal);
 
-    if (st && (st.phase || (st.kanshin && st.kanshin.length))) {
-      document.getElementById('hero-onb').style.display = 'none';
-      const label = st.label || (st.kanshin && st.kanshin[0]) || 'あのこと';
+    function renderQ() {
+      dotsEl.innerHTML = QUESTIONS.map((_, i) => `<span class="${i <= idx ? 'on' : ''}"></span>`).join('');
+      const q = QUESTIONS[idx];
+      const sel = answers[q.id];
+      const opts = q.opts.map((o) => {
+        const on = q.multi ? (sel || []).includes(o.v) : sel === o.v;
+        return `<button class="opt ${on ? 'sel' : ''}" data-v="${esc(o.v)}">${esc(o.t)}<i class="ti ti-check ck"></i></button>`;
+      }).join('');
+      const isLast = idx === QUESTIONS.length - 1;
+      qWrap.innerHTML =
+        `<div class="qh">${esc(q.h)}</div>${q.s ? `<div class="qs">${esc(q.s)}</div>` : ''}` +
+        `<div class="opts">${opts}</div>` +
+        `<div class="nav">${idx > 0 ? '<button class="back" id="q-back">戻る</button>' : ''}<button class="next" id="q-next" ${(!q.multi && !sel) || (q.multi && !(sel && sel.length)) ? 'disabled' : ''}>${isLast ? 'これでつくる' : '次へ'}</button></div>` +
+        (q.id === 'kanshin' || q.id === 'trouble' ? '' : `<button class="skip" id="q-skip">スキップ</button>`);
+      qWrap.querySelectorAll('.opt').forEach((b) => b.addEventListener('click', () => {
+        const v = b.getAttribute('data-v');
+        if (q.multi) { const cur = new Set(answers[q.id] || []); cur.has(v) ? cur.delete(v) : cur.add(v); answers[q.id] = [...cur]; renderQ(); }
+        else { answers[q.id] = v; setTimeout(advance, 160); }
+      }));
+      document.getElementById('q-next')?.addEventListener('click', advance);
+      document.getElementById('q-back')?.addEventListener('click', () => { idx = Math.max(0, idx - 1); renderQ(); });
+      document.getElementById('q-skip')?.addEventListener('click', advance);
+    }
+    function advance() { if (idx < QUESTIONS.length - 1) { idx++; renderQ(); } else { finish(); } }
+    function finish() {
+      const st = {
+        phase: answers.phase || '切り出された直後', route: answers.route || 'mitei', kids: answers.kids || 'none',
+        trouble: answers.trouble || 'calm', kanshin: answers.kanshin || [],
+        history: (read() || {}).history || [], label: (answers.kanshin && answers.kanshin[0]) || answers.phase || '', ts: Date.now(),
+      };
+      localStorage.setItem(KEY, JSON.stringify(st));
+      closeModal(); renderMypage(st);
+    }
+
+    // ====== レンダリング ======
+    const acard = (a) => `<a class="rcard" href="/${a.slug}"><div class="rthumb"><img src="${esc(a.img)}" alt="${esc(a.title)}" loading="lazy"></div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
+    const qcard = (x) => `<a class="qcard" href="/qa/${x.slug}"><span class="qbadge">Q&A</span><div class="qq">${esc(x.q)}</div><span class="qa">${esc(x.d)}</span></a>`;
+    const railA = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(acard).join('')}</div></section>` : '';
+    const railQ = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(qcard).join('')}</div></section>` : '';
+    const railRank = (t, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
+
+    function renderMypage(st) {
+      document.getElementById('emptyhero').style.display = 'none';
+      const railsEl = document.getElementById('rails');
+      // おかえり
+      const lab = st.label || st.phase || 'あのこと';
       document.getElementById('greet-slot').innerHTML =
-        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">前回は「${esc(label)}」が気がかりだったね。続きから一緒に。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
+        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">あなたの現在地に合わせて、やることと読みものを並べたよ。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
       document.getElementById('reset-state')?.addEventListener('click', () => { localStorage.removeItem(KEY); location.reload(); });
 
-      // 現在地マップ＝縦タイムライン（時系列）
-      const ci = phaseIndex(st.phase);
-      const nodes = PHASES.map((p, i) => {
-        const cls = i < ci ? 'done' : (i === ci ? 'current' : 'future');
-        const now = i === ci ? '<span class="tl-now">今ここ</span>' : '';
-        return `<li class="tl-node ${cls}"><span class="tl-dot"></span><div class="tl-c"><span class="tl-ph">フェーズ${i + 1}</span><div class="tl-nm">${esc(p.key)}${now}</div><div class="tl-st">${esc(p.st)}</div></div></li>`;
+      // タイムライン（ルート選択＋現在地＋アコーディオン）
+      const fukuen = st.route === 'fukuen';
+      const phases = fukuen ? PH_FUKUEN : PH_RIKON;
+      let ci = fukuen ? (st.phase === '切り出された直後' ? 0 : 1) : Math.max(0, phases.findIndex((p) => p.key === st.phase));
+      if (ci < 0) ci = 0;
+      const visited = new Set(st.history || []);
+      const phaseHtml = phases.map((p, i) => {
+        const cls = i < ci ? 'done' : (i === ci ? 'current open' : 'future');
+        let todos = (p.todos || []).filter((t) => !t.cond || (t.cond === 'kids' && st.kids === 'minor') || (t.cond === 'dispute' && (st.trouble === 'dispute' || st.trouble === 'danger')));
+        // 危険時は安全を最上部に
+        if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki', kind: 'safe' }, ...todos];
+        const todoHtml = todos.map((t) => {
+          const done = visited.has((t.h || '').replace(/^\//, '').replace(/^qa\//, ''));
+          const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
+          return `<a class="todo${done ? ' done2' : ''}${kind}" href="${esc(t.h)}"><span class="tk"></span><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a>`;
+        }).join('');
+        return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
+      document.getElementById('journey-slot').innerHTML =
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>あなたの時系列｜現在地と、やること</div><div class="jsub">今のフェーズを開いています。前後はタップで開けます。</div>${phaseHtml}</div>`;
+      document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
 
-      // スコアで次の一歩＆おすすめ
-      const score = (a) => { let s = 0; const ks = a.kanshin || []; (st.kanshin || []).forEach((k) => { if (ks.includes(k)) s += 2; }); if (st.phase && (a.phases || []).includes(st.phase)) s += 1; if (a.pick) s += 0.4; if ((st.history || []).includes(a.slug)) s -= 5; return s; };
-      const ranked = [...data].sort((a, b) => score(b) - score(a));
-      const next = take(ranked, 1)[0];
-      const nextHtml = next ? `<a class="next-step" href="/${next.slug}"><span class="ns-k">次の一歩</span><span class="ns-b"><span class="ns-t">${esc(next.title)}</span></span><i class="ti ti-arrow-right ns-go"></i></a>` : '';
-      document.getElementById('journey-slot').innerHTML = `<div class="journey"><div class="jk"><i class="ti ti-route"></i>あなたの現在地</div><ol class="tl">${nodes}</ol>${nextHtml}</div>`;
-
-      const osusume = take(ranked.filter((a) => score(a) > 0), 4);
-      const ranking = take(byRank, 3);
-      const cohort = take(data.filter((a) => st.phase && (a.phases || []).includes(st.phase)), 3);
-      const tokushu = take(data.filter((a) => a.pick), 2);
-      const arrivals = take(byNewest, 3);
+      // レコメンド（重複なし：記事プール／Q&Aプールで別管理）
+      const shownA = new Set(), shownQ = new Set();
+      const takeA = (list, n) => { const o = []; for (const a of list) { if (o.length >= n) break; if (shownA.has(a.slug)) continue; shownA.add(a.slug); o.push(a); } return o; };
+      const takeQ = (list, n) => { const o = []; for (const x of list) { if (o.length >= n) break; if (shownQ.has(x.slug)) continue; shownQ.add(x.slug); o.push(x); } return o; };
+      const scoreA = (a) => { let s = 0; (st.kanshin || []).forEach((k) => { if ((a.kanshin || []).includes(k)) s += 2; }); if ((a.phases || []).includes(st.phase)) s += 1; if (a.kids && st.kids === 'minor') s += 1; if (a.pick) s += 0.4; if (visited.has(a.slug)) s -= 5; return s; };
+      const scoreQ = (x) => { let s = 0; (st.kanshin || []).forEach((k) => { if ((x.kanshin || []).includes(k)) s += 2; }); if ((x.phases || []).includes(st.phase)) s += 1; return s; };
+      const recA = takeA([...A].sort((a, b) => scoreA(b) - scoreA(a)).filter(scoreA), 4);
+      const recQ = takeQ([...Q].sort((a, b) => scoreQ(b) - scoreQ(a)).filter((x) => scoreQ(x) > 0), 4);
+      const rank = takeA([...A].sort((a, b) => (a.rank || 99) - (b.rank || 99)), 3);
+      const toku = takeA(A.filter((a) => a.pick), 2);
+      const arr = takeA([...A].sort((a, b) => (a.published < b.published ? 1 : -1)), 3);
       railsEl.innerHTML =
-        rail('あなたへのおすすめ', '現在地に合わせて', osusume) +
-        rankRail('よく読まれている', ranking) +
-        (cohort.length ? rail('同じ状況の人がよく読む', '', cohort) : '') +
-        rail('特集・編集部ピック', '', tokushu) +
-        rail('新着', '', arrivals);
-    } else {
-      const mazu = take(bySeq, 4);
-      const ranking = take(byRank, 3);
-      const tokushu = take(data.filter((a) => a.pick), 2);
-      const arrivals = take(byNewest, 3);
-      railsEl.innerHTML =
-        rail('まず読むなら', '初動でつまずかないために', mazu) +
-        rankRail('よく読まれている', ranking) +
-        rail('特集・編集部ピック', '', tokushu) +
-        rail('新着', '', arrivals);
+        railA('あなたへのおすすめ', '現在地に合わせて', recA) +
+        railQ('あなたに合ったQ&A', '同じ状況の小さな疑問に、一問即答', recQ.length ? recQ : takeQ(Q, 3)) +
+        railRank('よく読まれている', rank) +
+        railA('特集・編集部ピック', '', toku) +
+        railA('新着', '', arr);
     }
+
+    function renderEmpty() {
+      const railsEl = document.getElementById('rails');
+      const shownA = new Set();
+      const takeA = (list, n) => { const o = []; for (const a of list) { if (o.length >= n) break; if (shownA.has(a.slug)) continue; shownA.add(a.slug); o.push(a); } return o; };
+      const popA = takeA([...A].sort((a, b) => (a.rank || 99) - (b.rank || 99)), 4);
+      const toku = takeA(A.filter((a) => a.pick), 2);
+      const arr = takeA([...A].sort((a, b) => (a.published < b.published ? 1 : -1)), 3);
+      const popQ = Q.slice(0, 4);
+      railsEl.innerHTML =
+        railA('よく読まれている記事', '', popA) +
+        railQ('よく読まれているQ&A', '同じ状況の小さな疑問に、一問即答', popQ) +
+        railA('特集・編集部ピック', '', toku) +
+        railA('新着', '', arr);
+    }
+
+    const st = read();
+    if (st && (st.phase || (st.kanshin && st.kanshin.length) || st.route)) renderMypage(st);
+    else renderEmpty();
   </script>
 </BaseLayout>
