@@ -21,6 +21,7 @@ html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
 /* ページが短くてもフッターを最下部に（スティッキーフッター） */
 body{min-height:100vh;display:flex;flex-direction:column}
+body>*{min-width:0}  /* flex子要素が縮まずに横はみ出しする不具合の対策 */
 main{flex:1 0 auto}
 /* アンカー遷移時に見出しが sticky ヘッダーへ隠れないように */
 h1[id],h2[id],h3[id],h4[id]{scroll-margin-top:72px}
@@ -86,7 +87,18 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .crumbs a{color:var(--muted);text-decoration:none}
 .crumbs a:hover{color:var(--coral-deep);text-decoration:underline}
 .crumbs span{color:var(--faint)}
-.content{font-size:1.02rem;overflow-wrap:break-word}
+/* 記事・Q&A本文の可読性（落ち着いた階層・オレンジ強調を抑制・余白広め） */
+.content{font-size:1.04rem;line-height:1.95;overflow-wrap:break-word;color:#33302B}
+.content > p{margin:1.15em 0}
+.content h2{font-size:1.26rem;font-weight:800;color:var(--navy);line-height:1.5;margin:2.3em 0 .8em;padding:11px 14px;border:none;border-left:5px solid var(--mint);background:linear-gradient(90deg,#EEF6F1,rgba(238,246,241,0) 85%);border-radius:0 10px 10px 0}
+.content h3{font-size:1.08rem;font-weight:700;color:var(--navy);line-height:1.5;margin:1.9em 0 .5em;padding-left:12px;border-left:3px solid var(--teal)}
+.content h2:first-child,.content h3:first-child{margin-top:.3em}
+.content strong{color:var(--navy);font-weight:700}
+.content a{color:var(--coral-deep);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.content ul,.content ol{padding-left:1.4em;margin:1em 0}
+.content li{margin:.5em 0;line-height:1.85}
+.content li::marker{color:var(--teal)}
+.content blockquote{line-height:1.85}
 .disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
 .crumbs{font-size:.8rem;color:var(--muted);margin:.6em 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--coral-deep)}.crumbs .sep{color:var(--faint)}
