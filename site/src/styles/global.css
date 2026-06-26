@@ -189,8 +189,9 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .browse .facet{display:flex;flex-direction:column;gap:7px}
 .browse .facet-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .browse .facet-label{font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.04em}
-.browse .facet-clear{background:none;border:none;color:var(--coral-deep);font-size:11px;font-weight:700;cursor:pointer;padding:2px 2px;min-height:26px;flex:none}
-.browse .facet-clear[hidden]{display:none}
+/* クリアは常に場所を確保し、出る/隠れるで位置がズレないよう visibility で切替 */
+.browse .facet-clear{display:inline-flex;align-items:center;background:none;border:none;color:var(--coral-deep);font-size:11px;font-weight:700;cursor:pointer;padding:2px 2px;min-height:26px;flex:none}
+.browse .facet-clear[hidden]{visibility:hidden}
 /* チップは折り返さず1行で横スクロール（縦の高さを節約） */
 .browse .chips{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
 .browse .chips::-webkit-scrollbar{display:none}
