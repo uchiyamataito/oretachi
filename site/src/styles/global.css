@@ -326,6 +326,15 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .todo .tg{flex:none;color:var(--coral);font-size:16px}
 .home .todo.safe{background:#F1F6F3;border-color:#CFE6DC}.home .todo.safe .tt{color:var(--teal)}
 .home .todo.legal{background:#FFF6F0;border-color:#F3D9C8}.home .todo.legal .tt{color:var(--coral-deep)}
+.home .todo.coming{background:#F7F2EA;border:1px dashed var(--line2);cursor:default}
+.home .todo.coming .ci{flex:none;color:var(--faint);font-size:16px}
+.home .todo.coming .tt{color:var(--faint);font-weight:500}
+.home .todo .cm{font-size:10px;color:var(--faint);margin-left:6px;font-weight:700}
+/* 凡例（色の意味） */
+.home .jrny .legend{display:flex;gap:16px;margin:2px 0 14px;font-size:11px;color:var(--muted)}
+.home .leg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:0}
+.home .d-cur{background:var(--coral)}
+.home .d-done{background:var(--teal)}
 
 /* Q&Aカード（レール内） */
 .home .qcard{scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 15px}

@@ -34,7 +34,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
 ---
 <BaseLayout
   title="オレタチ｜離婚を切り出された男のための初動ナビ"
-  description="離婚を切り出された男性のためのマイページ型ナビ。5つの質問で、あなたの現在地（時系列）に合わせて、次にやること・あなたへのおすすめ記事とQ&Aを出します。"
+  description="離婚を切り出された男のためのマイページ型ナビ。5つの質問で、お前の現在地（時系列）に合わせて、次にやること・お前に合う記事とQ&Aを出す。ひとりじゃない。"
   canonical="https://oretachi.me/"
 >
   <div class="home">
@@ -121,16 +121,16 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       { key: '協議・調停中', name: '協議・調停', desc: '話し合いの進め方。', todos: [
         { l: '何から進める？全体マップ', h: '/rikon-nani-kara-hajimeru' },
         { l: '相談先・専門家の選び方', h: '/rikon-dansei-soudansaki' },
-        { l: '個別の交渉は弁護士に相談を', h: '/rikon-dansei-soudansaki', cond: 'dispute', kind: 'legal' },
-        { l: '親権・養育費の前提を知る', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
+        { l: '弁護士など専門家への相談を考える', h: '/rikon-dansei-soudansaki', cond: 'dispute', kind: 'legal' },
+        { l: '親権の前提を知る（子どもの手続き）', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
       { key: '成立後', name: '成立・名義変更', desc: '手続きを片づける。', todos: [
         { l: '健康保険の切替', h: '/rikon-kenkohoken-tetsuzuki' },
         { l: '年金の手続き', h: '/rikon-nenkin-tetsuzuki' },
         { l: '保険の受取人を変える', h: '/rikon-seimeihoken-uketorinin' },
         { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin' } ] },
       { key: '再出発', name: '再出発', desc: '生活を立て直す。', todos: [
-        { l: 'お金の立て直し', h: '/rikon-okane-checklist' },
-        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' } ] },
+        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' },
+        { l: '再出発（生活・お金の立て直し）の記事', coming: true } ] },
     ];
     const PH_FUKUEN = [
       { key: '切り出された直後', name: '初動・心の整理', desc: 'まず落ち着く。', todos: [
@@ -217,6 +217,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         // 危険時は安全を最上部に
         if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki', kind: 'safe' }, ...todos];
         const todoHtml = todos.map((t) => {
+          if (t.coming) return `<div class="todo coming"><i class="ti ti-pencil ci"></i><span class="tt">${esc(t.l)}<span class="cm">準備中</span></span></div>`;
           const done = visited.has((t.h || '').replace(/^\//, '').replace(/^qa\//, ''));
           const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
           return `<a class="todo${done ? ' done2' : ''}${kind}" href="${esc(t.h)}"><span class="tk"></span><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a>`;
@@ -224,7 +225,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
-        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div>${phaseHtml}</div>`;
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過・安全</span></div>${phaseHtml}</div>`;
       document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
 
       // レコメンド（重複なし：記事プール／Q&Aプールで別管理）
