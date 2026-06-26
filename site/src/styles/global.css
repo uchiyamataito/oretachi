@@ -114,10 +114,10 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .content li::marker{color:var(--teal)}
 /* まとめ等のチェックリスト：箇条点＋空チェックボックスをやめ、緑の✓アイコンに */
 .content ul.contains-task-list{list-style:none;padding-left:0}
-.content li.task-list-item{display:flex;align-items:flex-start;gap:10px;padding-left:0;margin:.55em 0;line-height:1.7}
+.content li.task-list-item{position:relative;padding-left:30px;margin:.6em 0;line-height:1.8}
 .content li.task-list-item input[type=checkbox]{display:none}
 .content li.task-list-item::marker{content:''}
-.content li.task-list-item::before{content:'✓';flex:none;margin-top:.2em;width:20px;height:20px;border-radius:5px;background:var(--teal);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1}
+.content li.task-list-item::before{content:'✓';position:absolute;left:0;top:.32em;width:19px;height:19px;border-radius:5px;background:var(--teal);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1}
 .content blockquote{line-height:1.85}
 .disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
 .crumbs{font-size:.8rem;color:var(--muted);margin:.6em 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
