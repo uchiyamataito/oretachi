@@ -120,8 +120,6 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .content li.task-list-item::before{content:'✓';position:absolute;left:0;top:.32em;width:19px;height:19px;border-radius:5px;background:var(--teal);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1}
 .content blockquote{line-height:1.85}
 .disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
-.crumbs{font-size:.8rem;color:var(--muted);margin:.6em 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--coral-deep)}.crumbs .sep{color:var(--faint)}
 .related{margin:2.4em 0 0;border-top:2px solid var(--line);padding-top:1.2em}.related h3{margin-top:0}
 .related ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
 .related a{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem}
