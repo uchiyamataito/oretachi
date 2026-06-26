@@ -32,17 +32,21 @@ const cards = items.map((q) => {
     <input class="kw-search" id="kw" type="search" placeholder="キーワードで探す（例：保険 子ども 口座）" aria-label="キーワード検索" />
 
     <div class="facet">
-      <span class="facet-label">テーマ（複数選べる）</span>
+      <div class="facet-top">
+        <span class="facet-label">テーマ（複数選べる）</span>
+        <button type="button" class="facet-clear" data-clear="theme" hidden>× クリア</button>
+      </div>
       <div class="chips" data-group="theme">
-        <button type="button" class="ch active" data-v="">すべて</button>
         {THEMES.map((t) => <button type="button" class="ch" data-v={t.v}>{t.t}</button>)}
       </div>
     </div>
 
     <div class="facet">
-      <span class="facet-label">今いる段階（時系列）</span>
+      <div class="facet-top">
+        <span class="facet-label">今いる段階（時系列）</span>
+        <button type="button" class="facet-clear" data-clear="phase" hidden>× クリア</button>
+      </div>
       <div class="chips" data-group="phase">
-        <button type="button" class="ch active" data-v="">すべて</button>
         {PHASES.map((p) => <button type="button" class="ch" data-v={p.v}>{p.t}</button>)}
       </div>
     </div>
@@ -92,36 +96,41 @@ const cards = items.map((q) => {
         empty.hidden = n !== 0;
       }
 
+      function syncChips() {
+        document.querySelectorAll('#browse .chips[data-group="theme"] .ch').forEach(function (x) {
+          x.classList.toggle('active', themes.has(x.getAttribute('data-v')));
+        });
+        document.querySelectorAll('#browse .chips[data-group="phase"] .ch').forEach(function (x) {
+          x.classList.toggle('active', phase === x.getAttribute('data-v'));
+        });
+        var tc = document.querySelector('.facet-clear[data-clear="theme"]');
+        var pc = document.querySelector('.facet-clear[data-clear="phase"]');
+        if (tc) tc.hidden = themes.size === 0;
+        if (pc) pc.hidden = phase === '';
+      }
       document.querySelectorAll('#browse .chips').forEach(function (group) {
         var g = group.getAttribute('data-group');
         group.querySelectorAll('.ch').forEach(function (b) {
           b.addEventListener('click', function () {
             var v = b.getAttribute('data-v');
-            if (g === 'theme') {
-              if (v === '') { themes.clear(); }
-              else { themes.has(v) ? themes.delete(v) : themes.add(v); }
-              group.querySelectorAll('.ch').forEach(function (x) {
-                var xv = x.getAttribute('data-v');
-                x.classList.toggle('active', xv === '' ? themes.size === 0 : themes.has(xv));
-              });
-            } else {
-              phase = v;
-              group.querySelectorAll('.ch').forEach(function (x) { x.classList.remove('active'); });
-              b.classList.add('active');
-            }
-            apply();
+            if (g === 'theme') { themes.has(v) ? themes.delete(v) : themes.add(v); }
+            else { phase = (phase === v) ? '' : v; }
+            syncChips(); apply();
           });
+        });
+      });
+      document.querySelectorAll('.facet-clear').forEach(function (fc) {
+        fc.addEventListener('click', function () {
+          if (fc.getAttribute('data-clear') === 'theme') { themes.clear(); } else { phase = ''; }
+          syncChips(); apply();
         });
       });
       kw.addEventListener('input', apply);
       document.getElementById('clear').addEventListener('click', function () {
         themes.clear(); phase = ''; kw.value = '';
-        document.querySelectorAll('#browse .ch').forEach(function (x) {
-          x.classList.toggle('active', x.getAttribute('data-v') === '');
-        });
-        apply();
+        syncChips(); apply();
       });
-      apply();
+      syncChips(); apply();
     })();
   </script>
 </BaseLayout>

@@ -186,10 +186,15 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 /* 一覧の絞り込み（記事/Q&A 共通）テーマ×段階×キーワード */
 .browse{max-width:1040px;margin:10px auto 4px;display:flex;flex-direction:column;gap:14px;padding:0 2px}
 .browse .kw-search{width:100%;box-sizing:border-box;padding:13px 15px;font-size:1rem;border:1px solid var(--line2);border-radius:12px;background:#fff;color:var(--ink)}
-.browse .facet{display:flex;flex-direction:column;gap:8px}
+.browse .facet{display:flex;flex-direction:column;gap:7px}
+.browse .facet-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .browse .facet-label{font-size:11px;font-weight:700;color:var(--faint);letter-spacing:.04em}
-.browse .chips{display:flex;flex-wrap:wrap;gap:8px}
-.browse .ch{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 14px;font-size:.85rem;color:var(--muted);cursor:pointer;min-height:38px;transition:.12s}
+.browse .facet-clear{background:none;border:none;color:var(--coral-deep);font-size:11px;font-weight:700;cursor:pointer;padding:2px 2px;min-height:26px;flex:none}
+.browse .facet-clear[hidden]{display:none}
+/* チップは折り返さず1行で横スクロール（縦の高さを節約） */
+.browse .chips{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.browse .chips::-webkit-scrollbar{display:none}
+.browse .ch{flex:none;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:8px 14px;font-size:.85rem;color:var(--muted);cursor:pointer;min-height:38px;white-space:nowrap;transition:.12s}
 .browse .ch:hover{border-color:var(--navy)}
 .browse .ch.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .browse .result-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
