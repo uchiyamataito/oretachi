@@ -132,6 +132,22 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 22px;font-size:.95rem;min-height:46px}
 .helpful-note{display:block;margin-top:12px;color:var(--faint);font-size:11.5px;line-height:1.6}
 .back{margin-top:1.6em}
+/* 詳細ページの回遊レコメンド（記事/Q&A共用） */
+.recos{margin-top:2.4em;display:flex;flex-direction:column;gap:24px}
+.reco{background:#FBF5EE;border:1px solid var(--line);border-radius:16px;padding:18px 18px 20px}
+.reco-head{margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed var(--line2)}
+.reco-head h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:17px;margin:0;color:var(--navy);border:none;padding:0;display:flex;align-items:center;gap:8px;line-height:1.4}
+.reco-head h2 i{color:var(--coral);font-size:20px;flex:none}
+.reco-head p{font-size:12.5px;color:var(--muted);margin:5px 0 0}
+.reco-list{display:flex;flex-direction:column;gap:10px}
+.reco-item{position:relative;display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 38px 13px 13px;text-decoration:none;box-shadow:0 8px 18px -17px rgba(21,35,58,.5);transition:.15s}
+.reco-item:hover,.reco-item:focus-visible{border-color:var(--coral);transform:translateY(-1px);box-shadow:0 12px 22px -17px rgba(21,35,58,.55)}
+.reco-type{flex:none;font-size:10px;font-weight:800;border-radius:6px;padding:3px 9px;letter-spacing:.02em}
+.reco-type.article{background:#FBEFE7;color:var(--coral-deep)}
+.reco-type.qa{background:#E9EFF4;color:var(--navy)}
+.reco-t{flex:1;min-width:0;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;line-height:1.55;color:var(--ink)}
+.reco-go{position:absolute;right:12px;color:var(--faint);font-size:18px;transition:.15s}
+.reco-item:hover .reco-go,.reco-item:focus-visible .reco-go{color:var(--coral);transform:translateX(2px)}
 .article-list{list-style:none;padding:0}.article-list li{border-bottom:1px solid var(--line);padding:14px 0}
 .article-list p{color:var(--muted);font-size:.9rem;margin:.3em 0 0}
 

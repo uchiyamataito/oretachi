@@ -1,7 +1,8 @@
 ---
 // Q&A詳細レイアウト。質問（見出し）→タグ→区切り→回答（要点＝メイン）→くわしく（本文＝サブ）。
 import BaseLayout from './BaseLayout.astro';
-const { entry } = Astro.props;
+import RecoRails from '../components/RecoRails.astro';
+const { entry, recos } = Astro.props;
 const d = entry.data;
 // category と重複するタグ・重複タグを除外（同じタグが2つ出る不具合の対策）
 const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
@@ -36,6 +37,8 @@ const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
       </div>
       <small class="helpful-note">※評価は公開後に有効化（個人を特定する情報は記録しない）</small>
     </div>
+
+    <RecoRails recos={recos} />
 
     {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
     <p class="back"><a href="/qa">← ほかのQ&amp;Aも見る（お前だけじゃない）</a></p>

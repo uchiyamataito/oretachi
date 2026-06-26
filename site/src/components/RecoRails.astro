@@ -1,0 +1,45 @@
+---
+// 詳細ページ末尾の回遊レコメンド（記事/Q&A共用）。recos={related, next} を受け取る。
+const { recos } = Astro.props;
+const related = (recos && recos.related) || [];
+const next = (recos && recos.next) || [];
+const label = (t) => (t === 'qa' ? 'Q&A' : '記事');
+---
+{(related.length > 0 || next.length > 0) && (
+  <div class="recos">
+    {related.length > 0 && (
+      <section class="reco">
+        <div class="reco-head">
+          <h2><i class="ti ti-users" aria-hidden="true"></i>お前だけじゃない</h2>
+          <p>同じ道を通った男たちが、こんな記事・Q&amp;Aも見ている。</p>
+        </div>
+        <div class="reco-list">
+          {related.map((x) => (
+            <a class="reco-item" href={x.url}>
+              <span class={`reco-type ${x.type}`}>{label(x.type)}</span>
+              <span class="reco-t">{x.title}</span>
+              <i class="ti ti-chevron-right reco-go" aria-hidden="true"></i>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+    {next.length > 0 && (
+      <section class="reco">
+        <div class="reco-head">
+          <h2><i class="ti ti-bulb" aria-hidden="true"></i>この先のこと、先回りしておくか</h2>
+          <p>今は関係なくても、知っておくと、いざという時に慌てないで済む。</p>
+        </div>
+        <div class="reco-list">
+          {next.map((x) => (
+            <a class="reco-item" href={x.url}>
+              <span class={`reco-type ${x.type}`}>{label(x.type)}</span>
+              <span class="reco-t">{x.title}</span>
+              <i class="ti ti-chevron-right reco-go" aria-hidden="true"></i>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+)}
