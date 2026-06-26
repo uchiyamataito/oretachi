@@ -1,11 +1,18 @@
 ---
-// Q&A詳細レイアウト。質問（見出し）→タグ→区切り→回答（要点＝メイン）→くわしく（本文＝サブ）。
+// Q&A詳細レイアウト。質問（見出し）→タグ→区切り→回答（要点＝メイン）→くわしく（本文＝サブ）→評価→回遊。
 import BaseLayout from './BaseLayout.astro';
 import RecoRails from '../components/RecoRails.astro';
 const { entry, recos } = Astro.props;
 const d = entry.data;
+const site = 'https://oretachi.me';
 // category と重複するタグ・重複タグを除外（同じタグが2つ出る不具合の対策）
 const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
+// パンくず（各 ListItem に item=URL を付与）
+const crumbs = [
+  { name: 'ホーム', url: `${site}/` },
+  { name: 'Q&A', url: `${site}/qa` },
+  { name: d.question, url: d.canonical },
+];
 ---
 <BaseLayout
   title={`${d.question}｜オレタチ Q&A`}
@@ -14,9 +21,13 @@ const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
   published={d.published}
   updated={d.updated}
   author={d.author}
-  breadcrumb={["ホーム", "Q&A", d.category]}
+  breadcrumb={crumbs}
   faq={[{ q: d.question, a: d.description }]}
 >
+  <nav class="crumbs" aria-label="パンくず">
+    <a href="/">ホーム</a><span aria-hidden="true">›</span><a href="/qa">Q&amp;A</a>
+  </nav>
+
   <article class="qa">
     <h1 class="qa-question">{d.question}</h1>
     <p class="qa-cats"><span class="chip">{d.category}</span>{tags.map((t) => <span class="chip ghost">{t}</span>)}</p>
@@ -29,13 +40,13 @@ const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
       <div class="content"><slot /></div>
     </div>
 
-    <div class="helpful">
+    <div class="helpful" id="helpful" data-slug={entry.slug}>
       <p class="helpful-q">この回答、役に立ったか？</p>
       <div class="helpful-btns">
-        <button type="button" disabled>助かった</button>
-        <button type="button" disabled>微妙</button>
+        <button type="button" class="hb" data-v="helpful">助かった</button>
+        <button type="button" class="hb" data-v="soso">微妙</button>
       </div>
-      <small class="helpful-note">※評価は公開後に有効化（個人を特定する情報は記録しない）</small>
+      <small class="helpful-note">※個人を特定する情報は記録しない（匿名の集計のみ）</small>
     </div>
 
     <RecoRails recos={recos} />
@@ -43,4 +54,28 @@ const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
     {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
     <p class="back"><a href="/qa">← ほかのQ&amp;Aも見る（お前だけじゃない）</a></p>
   </article>
+
+  <script is:inline>
+    (function () {
+      var box = document.getElementById('helpful');
+      if (!box) return;
+      var slug = box.getAttribute('data-slug');
+      var KEY = 'oretachi_fb_' + slug;
+      function thank() {
+        var q = box.querySelector('.helpful-q');
+        var b = box.querySelector('.helpful-btns');
+        if (q) q.textContent = 'ありがとう。お前の声は、改善に使わせてもらう。';
+        if (b) b.innerHTML = '<span class="helpful-done">✓ 受け取った</span>';
+      }
+      try { if (localStorage.getItem(KEY)) { thank(); return; } } catch (e) {}
+      box.querySelectorAll('.hb').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var v = btn.getAttribute('data-v');
+          try { if (window.gtag) gtag('event', 'qa_feedback', { qa_slug: slug, rating: v }); } catch (e) {}
+          try { localStorage.setItem(KEY, v); } catch (e) {}
+          thank();
+        });
+      });
+    })();
+  </script>
 </BaseLayout>

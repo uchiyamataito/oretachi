@@ -77,6 +77,11 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:1.4em 0}
 .toc strong{color:var(--navy)}.toc ul{margin:.5em 0 0;padding-left:1.2em}
 .toc a{color:var(--navy);text-decoration:none}.toc a:hover{color:var(--coral-deep)}
+/* 可視パンくず（記事/Q&A詳細の上部） */
+.crumbs{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 8px}
+.crumbs a{color:var(--muted);text-decoration:none}
+.crumbs a:hover{color:var(--coral-deep);text-decoration:underline}
+.crumbs span{color:var(--faint)}
 .content{font-size:1.02rem;overflow-wrap:break-word}
 .disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
 .crumbs{font-size:.8rem;color:var(--muted);margin:.6em 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
@@ -116,7 +121,7 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .qa-card[data-cat="相談"] a{border-left-color:#9B8FB8}.qa-card[data-cat="相談"] .qa-cat{background:#ECE7F2;color:#5E5080}
 .qa-badge{display:inline-block;background:var(--coral);color:#fff;font-weight:800;border-radius:8px;padding:0 10px}
 /* Q&A詳細：質問（見出し）→タグ→区切り→回答ボックス→くわしく（サブ） */
-.qa-question{font-family:'Zen Kaku Gothic New';font-size:22px;line-height:1.55;margin:0 0 12px;color:var(--navy)}
+.qa-question{font-family:'Zen Kaku Gothic New';font-size:22px;line-height:1.55;margin:14px 0 18px;color:var(--navy)}
 .qa-cats{margin:0}
 .qa-div{border:none;border-top:1px solid var(--line);margin:16px 0}
 .qa-answer-box{background:#F1F6F3;border:1px solid #CFE6DC;border-radius:14px;padding:16px 17px}
@@ -129,7 +134,10 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .helpful{border:1px solid var(--line);border-radius:14px;padding:18px;margin:2em 0;text-align:center;background:#fff}
 .helpful-q{font-weight:700;margin:.2em 0 .8em;color:var(--navy)}
 .helpful-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 22px;font-size:.95rem;min-height:46px}
+.helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 22px;font-size:.95rem;min-height:46px;cursor:pointer;transition:.14s}
+.helpful .hb:hover{border-color:var(--coral);color:var(--coral-deep)}
+.helpful .hb:active{transform:scale(.98)}
+.helpful-done{display:inline-block;color:var(--teal);font-weight:700;padding:11px 0}
 .helpful-note{display:block;margin-top:12px;color:var(--faint);font-size:11.5px;line-height:1.6}
 .back{margin-top:1.6em}
 /* 詳細ページの回遊レコメンド（記事/Q&A共用） */
@@ -209,7 +217,7 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .safety{margin-top:34px;background:#F1F6F3;border:1px solid #CFE6DC;border-radius:14px;padding:16px 18px;font-size:.86rem;color:var(--teal)}
 .home .safety b{font-family:'Zen Kaku Gothic New'}
 .home .safety a{color:var(--teal);font-weight:700;text-decoration:underline}
-.home .safety .safety-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;text-decoration:none;background:#fff;border:1px solid #CFE6DC;border-radius:999px;padding:9px 16px;min-height:42px;font-size:.85rem}
+.home .safety .safety-link{display:flex;width:fit-content;align-items:center;gap:7px;margin:16px auto 0;text-decoration:none;background:#fff;border:1px solid #CFE6DC;border-radius:999px;padding:9px 18px;min-height:42px;font-size:.85rem}
 .home .safety .safety-link i{font-size:17px}
 .home .safety .safety-link:hover{border-color:var(--teal);background:#EAF3EE}
 

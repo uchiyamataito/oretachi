@@ -27,11 +27,17 @@ const articleLd = published
       mainEntityOfPage: canonical,
     }
   : null;
+// パンくず構造化データ。各 ListItem に item（URL）を持たせる（Search Consoleの "item がありません" 対策）。
+// breadcrumb は {name, url} の配列。文字列配列でも後方互換で動く。
 const crumbLd = breadcrumb && breadcrumb.length
   ? {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: breadcrumb.map((n, i) => ({ '@type': 'ListItem', position: i + 1, name: n })),
+      itemListElement: breadcrumb.map((c, i) => {
+        const name = typeof c === 'string' ? c : c.name;
+        const url = typeof c === 'string' ? null : c.url;
+        return { '@type': 'ListItem', position: i + 1, name, ...(url ? { item: url } : {}) };
+      }),
     }
   : null;
 const faqLd = faq && faq.length

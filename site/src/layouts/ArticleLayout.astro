@@ -5,6 +5,13 @@ import RecoRails from '../components/RecoRails.astro';
 const { entry, headings = [], recos } = Astro.props;
 const d = entry.data;
 const toc = headings.filter((h) => h.depth === 2); // H2を目次に
+const site = 'https://oretachi.me';
+// パンくず（各 ListItem に item=URL を付与）。ホーム > 記事 > 当該記事。
+const crumbs = [
+  { name: 'ホーム', url: `${site}/` },
+  { name: '記事', url: `${site}/articles` },
+  { name: d.title, url: d.canonical },
+];
 ---
 <BaseLayout
   title={d.title}
@@ -13,9 +20,12 @@ const toc = headings.filter((h) => h.depth === 2); // H2を目次に
   published={d.published}
   updated={d.updated}
   author={d.author}
-  breadcrumb={d.breadcrumb}
+  breadcrumb={crumbs}
   faq={d.faq}
 >
+  <nav class="crumbs" aria-label="パンくず">
+    <a href="/">ホーム</a><span aria-hidden="true">›</span><a href="/articles">記事</a>
+  </nav>
   <article>
     <h1>{d.title}</h1>
     {d.hero_image && (
