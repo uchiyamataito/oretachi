@@ -18,6 +18,9 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+/* アンカー遷移時に見出しが sticky ヘッダーへ隠れないように */
+h1[id],h2[id],h3[id],h4[id]{scroll-margin-top:72px}
 body{
   font-family:'Noto Sans JP',system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;
   color:var(--ink);line-height:1.85;font-size:16px;

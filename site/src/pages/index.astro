@@ -108,40 +108,41 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     ];
 
     // ===== 状態依存タイムライン定義（24§3） =====
+    // h は記事内の該当セクション（見出しID＝github-slugger）まで指してアンカー遷移させる
     const PH_RIKON = [
       { key: '切り出された直後', name: '初動・心の整理', desc: 'まず急がない。最初の14日。', todos: [
-        { l: '返事を急がない｜最初の14日でやること', h: '/rikon-kiridasareta-saisho-14nichi' },
-        { l: '健康保険など“期限のある手続き”を確認', h: '/rikon-kenkohoken-tetsuzuki' },
-        { l: 'つらい時は一人で抱えない｜相談先', h: '/rikon-dansei-soudansaki' } ] },
+        { l: '返事を急がない｜最初の14日でやること', h: '/rikon-kiridasareta-saisho-14nichi#まず押さえる3つ' },
+        { l: '健康保険など“期限のある手続き”を確認', h: '/rikon-kenkohoken-tetsuzuki#まず押さえる3つ' },
+        { l: 'つらい時は一人で抱えない｜相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
       { key: '別居', name: '別居・生活とお金', desc: '生活基盤とお金を守る。', todos: [
-        { l: 'お金の棚卸し・証拠の確保', h: '/rikon-okane-checklist' },
+        { l: 'お金の棚卸し・証拠の確保', h: '/rikon-okane-checklist#-棚卸し資産プラスと負債マイナスを全部出す' },
         { l: '共有口座を動かす前に', h: '/qa/rikon-kyouyu-kouza-ugokasu' },
         { l: '家を出るべきか迷ったら', h: '/qa/rikon-ie-deru-beki' },
-        { l: '子の保険証・児童手当', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
+        { l: '子の保険証・児童手当', h: '/rikon-kodomo-hoken#-子どもの健康保険保険証資格', cond: 'kids' } ] },
       { key: '協議・調停中', name: '協議・調停', desc: '話し合いの進め方。', todos: [
-        { l: '何から進める？全体マップ', h: '/rikon-nani-kara-hajimeru' },
-        { l: '相談先・専門家の選び方', h: '/rikon-dansei-soudansaki' },
-        { l: '弁護士など専門家への相談を考える', h: '/rikon-dansei-soudansaki', cond: 'dispute', kind: 'legal' },
-        { l: '親権の前提を知る（子どもの手続き）', h: '/rikon-kodomo-hoken', cond: 'kids' } ] },
+        { l: '何から進める？全体マップ', h: '/rikon-nani-kara-hajimeru#束をほどくやることは5つのかたまりに収まる' },
+        { l: '相談先・専門家の選び方', h: '/rikon-dansei-soudansaki#既存の相談窓口を役割と限界で正直に整理する' },
+        { l: '弁護士など専門家への相談を考える', h: '/rikon-dansei-soudansaki#既存の相談窓口を役割と限界で正直に整理する', cond: 'dispute', kind: 'legal' },
+        { l: '親権の前提を知る（子どもの手続き）', h: '/rikon-kodomo-hoken#親権が起点でもその判断には私たちは踏み込めない', cond: 'kids' } ] },
       { key: '成立後', name: '成立・名義変更', desc: '手続きを片づける。', todos: [
-        { l: '健康保険の切替', h: '/rikon-kenkohoken-tetsuzuki' },
-        { l: '年金の手続き', h: '/rikon-nenkin-tetsuzuki' },
-        { l: '保険の受取人を変える', h: '/rikon-seimeihoken-uketorinin' },
-        { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin' } ] },
+        { l: '健康保険の切替', h: '/rikon-kenkohoken-tetsuzuki#あなたはどのケース早見表' },
+        { l: '年金の手続き', h: '/rikon-nenkin-tetsuzuki#誰が何をどこでやるか一枚で' },
+        { l: '保険の受取人を変える', h: '/rikon-seimeihoken-uketorinin#手順3ステップ' },
+        { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin#-健康保険の扶養を外す' } ] },
       { key: '再出発', name: '再出発', desc: '生活を立て直す。', todos: [
-        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' },
+        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' },
         { l: '再出発（生活・お金の立て直し）の記事', coming: true } ] },
     ];
     const PH_FUKUEN = [
       { key: '切り出された直後', name: '初動・心の整理', desc: 'まず落ち着く。', todos: [
-        { l: '最初の14日でやること・やってはいけないこと', h: '/rikon-kiridasareta-saisho-14nichi' },
+        { l: '最初の14日でやること・やってはいけないこと', h: '/rikon-kiridasareta-saisho-14nichi#やるべきとやってはいけないを一枚で' },
         { l: '頭が真っ白でも、それで普通だ', h: '/qa/rikon-kiridasareta-atama-masshiro' } ] },
       { key: '修復', name: '関係修復を試みる', desc: '追わない。冷却と、誠実な対話。', todos: [
-        { l: 'まだ別れたくない人へ｜NG行動とやること', h: '/rikon-mada-wakaretakunai' },
+        { l: 'まだ別れたくない人へ｜NG行動とやること', h: '/rikon-mada-wakaretakunai#やるべきとやってはいけないを一枚で' },
         { l: '理由を問い詰めない', h: '/qa/rikon-riyuu-toitsumeru' },
-        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki' } ] },
+        { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
       { key: '合流', name: 'もし離婚に進むことになったら', desc: '念のため、進む場合の備えも。', todos: [
-        { l: '何から始める？全体マップ', h: '/rikon-nani-kara-hajimeru' } ] },
+        { l: '何から始める？全体マップ', h: '/rikon-nani-kara-hajimeru#束をほどくやることは5つのかたまりに収まる' } ] },
     ];
 
     // ====== モーダル制御 ======
@@ -217,7 +218,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         const cls = i < ci ? 'done' : (i === ci ? 'current open' : 'future');
         let todos = (p.todos || []).filter((t) => !t.cond || (t.cond === 'kids' && st.kids === 'minor') || (t.cond === 'dispute' && (st.trouble === 'dispute' || st.trouble === 'danger')));
         // 危険時は安全を最上部に
-        if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki', kind: 'safe' }, ...todos];
+        if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki#危機のときは迷わずここへ命が最優先', kind: 'safe' }, ...todos];
         const todoHtml = todos.map((t) => {
           if (t.coming) return `<div class="todo coming"><i class="ti ti-pencil ci"></i><span class="tt">${esc(t.l)}<span class="cm">準備中</span></span></div>`;
           const dkey = `${p.name}|${t.l}`;
