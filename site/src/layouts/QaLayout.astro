@@ -2,6 +2,7 @@
 // Q&A詳細レイアウト。質問（見出し）→タグ→区切り→回答（要点＝メイン）→くわしく（本文＝サブ）→評価→回遊。
 import BaseLayout from './BaseLayout.astro';
 import RecoRails from '../components/RecoRails.astro';
+import { withTrailingSlash } from '../utils/url';
 const { entry, recos } = Astro.props;
 const d = entry.data;
 const site = 'https://oretachi.me';
@@ -10,8 +11,8 @@ const tags = [...new Set(d.tags || [])].filter((t) => t !== d.category);
 // パンくず（各 ListItem に item=URL を付与）
 const crumbs = [
   { name: 'ホーム', url: `${site}/` },
-  { name: 'Q&A', url: `${site}/qa` },
-  { name: d.question, url: d.canonical },
+  { name: 'Q&A', url: `${site}/qa/` },
+  { name: d.question, url: withTrailingSlash(d.canonical) },
 ];
 ---
 <BaseLayout

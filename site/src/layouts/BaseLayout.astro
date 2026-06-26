@@ -1,6 +1,7 @@
 ---
 // 全ページ共通の枠。<head>のメタ・OGP・canonical・構造化データ（JSON-LD）を出力。
 import '../styles/global.css';
+import { withTrailingSlash } from '../utils/url';
 const {
   title,
   description,
@@ -11,6 +12,12 @@ const {
   breadcrumb = [],
   faq = [],
 } = Astro.props;
+
+// canonical は配信URL（ディレクトリ形式＝末尾スラッシュ付き）に正規化する。
+// 明示の canonical が渡されればそれを、なければ現在ページのURLを基準にする。
+const canonicalUrl = withTrailingSlash(
+  canonical || new URL(Astro.url.pathname, Astro.site).href
+);
 
 // 記事/Q&A（published を渡すページ）のみ Article 構造化データを出す。
 // about（規約・運営者情報など）は published を渡さない＝Article 扱いにせず日付undefinedを避ける。
@@ -24,7 +31,7 @@ const articleLd = published
       dateModified: updated,
       author: { '@type': 'Organization', name: author },
       publisher: { '@type': 'Organization', name: 'オレタチ' },
-      mainEntityOfPage: canonical,
+      mainEntityOfPage: canonicalUrl,
     }
   : null;
 // パンくず構造化データ。各 ListItem に item（URL）を持たせる（Search Consoleの "item がありません" 対策）。
@@ -71,7 +78,8 @@ const faqLd = faq && faq.length
     </script>
     <title>{title}</title>
     <meta name="description" content={description} />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="article" />
