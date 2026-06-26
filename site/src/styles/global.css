@@ -44,6 +44,10 @@ hr{border:none;border-top:1px solid var(--line);margin:2em 0}
 table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:1.2em 0;font-size:.95rem}
 th,td{border:1px solid var(--line2);padding:9px 11px;text-align:left}
 th{background:#F4EEE4;color:var(--navy);font-weight:700}
+/* 定義テーブル（運営者情報など）：見出し列を1行・適切な幅に。横スクロールではなく通常レイアウト */
+.def-table{display:table;table-layout:auto}
+.def-table th{white-space:nowrap;width:1%;vertical-align:top;text-align:left}
+.def-table td{vertical-align:top;line-height:1.7}
 /* コードブロック（AIプロンプト例など）：長い日本語行で横スクロールが出ないよう折り返す */
 pre{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:1.2em 0;font-size:.9rem;line-height:1.75;overflow-x:auto;-webkit-overflow-scrolling:touch}
 pre code{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
