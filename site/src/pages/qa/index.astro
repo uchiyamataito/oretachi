@@ -1,11 +1,18 @@
 ---
-// Q&A一覧（ブラウズ）。記事一覧と同じ軸＝テーマ（複数選択）×段階（時系列）×キーワードで絞り込む。
-// 絞り込みはクライアント側のみ（URLは増やさない）。
+// Q&A一覧（ブラウズ）。記事一覧と同じ軸＝テーマ（複数選択）×段階（時系列）×キーワード（関連度つき・本文含む）。
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { QMETA, THEMES, PHASES } from '../../data/meta';
 
 const items = (await getCollection('qa')).sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
+const strip = (s = '') =>
+  s.replace(/```[\s\S]*?```/g, ' ')
+   .replace(/<!--[\s\S]*?-->/g, ' ')
+   .replace(/https?:\/\/\S+/g, ' ')
+   .replace(/[#>*`_\[\]()|~]/g, ' ')
+   .replace(/\s+/g, ' ')
+   .trim().toLowerCase().slice(0, 4000);
+
 const cards = items.map((q) => {
   const m = QMETA[q.slug] || { phases: [], kanshin: [] };
   return {
@@ -14,9 +21,14 @@ const cards = items.map((q) => {
     description: q.data.description,
     kanshin: m.kanshin || [],
     phases: m.phases || [],
-    text: `${q.data.question} ${q.data.description} ${(q.data.tags || []).join(' ')}`,
   };
 });
+const sidx = items.map((q) => ({
+  slug: q.slug,
+  t: (q.data.question || '').toLowerCase(),
+  s: `${(q.data.tags || []).join(' ')} ${q.data.description || ''}`.toLowerCase(),
+  b: strip(q.body || ''),
+}));
 ---
 <BaseLayout
   title="Q&A｜オレタチ"
@@ -24,8 +36,8 @@ const cards = items.map((q) => {
   canonical="https://oretachi.me/qa"
 >
   <div class="listing-head">
-    <h1>Q&amp;A ― お前の疑問に、ズバッと答える</h1>
-    <p>大丈夫、たいていの疑問はここにある。お前だけじゃない。</p>
+    <h1>Q&amp;Aを読む</h1>
+    <p>お前の疑問に、ズバッと答える。大丈夫、たいていの疑問はここにある。お前だけじゃない。</p>
   </div>
 
   <div class="browse" id="browse">
@@ -53,13 +65,13 @@ const cards = items.map((q) => {
 
     <div class="result-meta">
       <span class="rc" id="count"></span>
-      <button type="button" class="clear" id="clear">条件をクリア</button>
+      <button type="button" class="clear" id="clear">条件を全てクリア</button>
     </div>
   </div>
 
   <ul class="qa-grid" id="cards">
     {cards.map((i) => (
-      <li class="qa-card" data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')} data-text={i.text}>
+      <li class="qa-card" data-slug={i.slug} data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')}>
         <a href={`/qa/${i.slug}`}>
           <span class="qa-q">Q. {i.question}</span>
           <span class="qa-ex">{i.description}</span>
@@ -70,28 +82,54 @@ const cards = items.map((q) => {
   </ul>
   <p class="empty-msg" id="empty" hidden>条件に合うQ&amp;Aがなかった。条件を少し緩めてみてくれ。</p>
 
+  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx)}></script>
   <script is:inline>
     (function () {
-      var cards = [].slice.call(document.querySelectorAll('#cards .qa-card'));
+      var idx = {};
+      try { JSON.parse(document.getElementById('sidx').textContent).forEach(function (r) { idx[r.slug] = r; }); } catch (e) {}
+      var container = document.getElementById('cards');
+      var cards = [].slice.call(container.querySelectorAll('.qa-card'));
+      var original = cards.slice();
       var kw = document.getElementById('kw');
       var count = document.getElementById('count');
       var empty = document.getElementById('empty');
       var themes = new Set();
       var phase = '';
 
+      function kwScore(rec, terms) {
+        var s = 0, all = true;
+        for (var i = 0; i < terms.length; i++) {
+          var term = terms[i], hit = 0;
+          if (rec.t.indexOf(term) > -1) hit += 3;
+          if (rec.s.indexOf(term) > -1) hit += 2;
+          if (rec.b.indexOf(term) > -1) hit += 1;
+          if (hit === 0) all = false;
+          s += hit;
+        }
+        return { match: all, score: s };
+      }
+
       function apply() {
         var q = (kw.value || '').trim().toLowerCase();
-        var n = 0;
+        var terms = q ? q.split(/[\s　]+/).filter(Boolean) : [];
+        var n = 0, vis = [];
         cards.forEach(function (c) {
           var ks = (c.getAttribute('data-kanshin') || '').split('|').filter(Boolean);
           var ps = (c.getAttribute('data-phases') || '').split('|').filter(Boolean);
           var okTheme = themes.size === 0 || ks.some(function (k) { return themes.has(k); });
           var okPhase = !phase || ps.indexOf(phase) > -1;
-          var okKw = !q || (c.getAttribute('data-text') || '').toLowerCase().indexOf(q) > -1;
-          var show = okTheme && okPhase && okKw;
+          var rec = idx[c.getAttribute('data-slug')] || { t: '', s: '', b: '' };
+          var sc = terms.length ? kwScore(rec, terms) : { match: true, score: 0 };
+          var show = okTheme && okPhase && sc.match;
           c.style.display = show ? '' : 'none';
-          if (show) n++;
+          if (show) { n++; vis.push({ c: c, score: sc.score }); }
         });
+        if (terms.length) {
+          vis.sort(function (a, b) { return b.score - a.score; });
+          vis.forEach(function (v) { container.appendChild(v.c); });
+        } else {
+          original.forEach(function (c) { container.appendChild(c); });
+        }
         count.textContent = n + '件';
         empty.hidden = n !== 0;
       }
@@ -108,6 +146,7 @@ const cards = items.map((q) => {
         if (tc) tc.hidden = themes.size === 0;
         if (pc) pc.hidden = phase === '';
       }
+
       document.querySelectorAll('#browse .chips').forEach(function (group) {
         var g = group.getAttribute('data-group');
         group.querySelectorAll('.ch').forEach(function (b) {

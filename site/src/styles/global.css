@@ -167,6 +167,9 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .safety{margin-top:34px;background:#F1F6F3;border:1px solid #CFE6DC;border-radius:14px;padding:16px 18px;font-size:.86rem;color:var(--teal)}
 .home .safety b{font-family:'Zen Kaku Gothic New'}
 .home .safety a{color:var(--teal);font-weight:700;text-decoration:underline}
+.home .safety .safety-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;text-decoration:none;background:#fff;border:1px solid #CFE6DC;border-radius:999px;padding:9px 16px;min-height:42px;font-size:.85rem}
+.home .safety .safety-link i{font-size:17px}
+.home .safety .safety-link:hover{border-color:var(--teal);background:#EAF3EE}
 
 /* セクションへの入口（記事一覧/Q&A/相談先） */
 .home .nav-cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
@@ -177,7 +180,7 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .nav-card .nc-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15.5px;color:var(--navy)}
 .home .nav-card .nc-d{font-size:12px;color:var(--muted);margin-top:2px}
 .home .nav-card .nc-go{flex:none;color:var(--faint);font-size:18px}
-@media(min-width:760px){.home .nav-cards{grid-template-columns:repeat(3,1fr)}.home .nav-card{flex-direction:column;align-items:flex-start;gap:8px}.home .nav-card .nc-go{display:none}}
+@media(min-width:760px){.home .nav-cards{grid-template-columns:repeat(2,1fr)}.home .nav-card{flex-direction:column;align-items:flex-start;gap:8px}.home .nav-card .nc-go{display:none}}
 
 /* 記事一覧ページの見出し帯 */
 .listing-head{max-width:1040px;margin:0 auto;padding:18px 2px 6px}

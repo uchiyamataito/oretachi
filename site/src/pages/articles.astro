@@ -1,6 +1,6 @@
 ---
 // 記事一覧（ブラウズ）。テーマ（複数選択）×段階（時系列）×キーワードで絞り込む。
-// 絞り込みはクライアント側のみ（URLは増やさない＝pSEOの薄ページ量産を避ける）。
+// キーワードはタイトル/タグ・説明/本文を重み付けした"関連度つき"検索（クライアント側のみ・URLは増やさない）。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { AMETA, THEMES, PHASES } from '../data/meta';
@@ -8,6 +8,15 @@ import { AMETA, THEMES, PHASES } from '../data/meta';
 const all = (await getCollection('articles')).sort((a, b) =>
   a.data.published < b.data.published ? 1 : -1
 );
+// 本文も検索対象に。Markdown記号を軽く除去し小文字化（関連度づけ用）。
+const strip = (s = '') =>
+  s.replace(/```[\s\S]*?```/g, ' ')
+   .replace(/<!--[\s\S]*?-->/g, ' ')
+   .replace(/https?:\/\/\S+/g, ' ')
+   .replace(/[#>*`_\[\]()|~]/g, ' ')
+   .replace(/\s+/g, ' ')
+   .trim().toLowerCase().slice(0, 4000);
+
 const cards = all.map((a) => {
   const m = AMETA[a.slug] || { phases: [], kanshin: [], tag: '記事' };
   return {
@@ -17,9 +26,15 @@ const cards = all.map((a) => {
     tag: m.tag || '記事',
     kanshin: m.kanshin || [],
     phases: m.phases || [],
-    text: `${a.data.title} ${(a.data.tags || []).join(' ')} ${a.data.description || ''}`,
   };
 });
+// 検索インデックス（t=タイトル / s=タグ+説明 / b=本文。重み付けに使う）
+const sidx = all.map((a) => ({
+  slug: a.slug,
+  t: (a.data.title || '').toLowerCase(),
+  s: `${(a.data.tags || []).join(' ')} ${a.data.description || ''}`.toLowerCase(),
+  b: strip(a.body || ''),
+}));
 ---
 <BaseLayout
   title="記事一覧｜オレタチ"
@@ -57,13 +72,13 @@ const cards = all.map((a) => {
 
     <div class="result-meta">
       <span class="rc" id="count"></span>
-      <button type="button" class="clear" id="clear">条件をクリア</button>
+      <button type="button" class="clear" id="clear">条件を全てクリア</button>
     </div>
   </div>
 
   <div class="cards" id="cards">
     {cards.map((a) => (
-      <a class="card" href={`/${a.slug}`} data-kanshin={a.kanshin.join('|')} data-phases={a.phases.join('|')} data-text={a.text}>
+      <a class="card" href={`/${a.slug}`} data-slug={a.slug} data-kanshin={a.kanshin.join('|')} data-phases={a.phases.join('|')}>
         <div class="thumb"><img src={a.img} alt={a.title} loading="lazy" /></div>
         <div class="cbody"><span class="tag1">{a.tag}</span><h3>{a.title}</h3></div>
       </a>
@@ -72,28 +87,55 @@ const cards = all.map((a) => {
   <p class="empty-msg" id="empty" hidden>条件に合う記事がなかった。条件を少し緩めてみてくれ。</p>
   </div>
 
+  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx)}></script>
   <script is:inline>
     (function () {
-      var cards = [].slice.call(document.querySelectorAll('#cards .card'));
+      var idx = {};
+      try { JSON.parse(document.getElementById('sidx').textContent).forEach(function (r) { idx[r.slug] = r; }); } catch (e) {}
+      var container = document.getElementById('cards');
+      var cards = [].slice.call(container.querySelectorAll('.card'));
+      var original = cards.slice();
       var kw = document.getElementById('kw');
       var count = document.getElementById('count');
       var empty = document.getElementById('empty');
-      var themes = new Set(); // テーマ＝複数選択（OR）
-      var phase = '';         // 段階＝単一選択
+      var themes = new Set();
+      var phase = '';
+
+      // 関連度：タイトル一致×3／タグ・説明×2／本文×1。複数語は全語ヒットを条件に合算。
+      function kwScore(rec, terms) {
+        var s = 0, all = true;
+        for (var i = 0; i < terms.length; i++) {
+          var term = terms[i], hit = 0;
+          if (rec.t.indexOf(term) > -1) hit += 3;
+          if (rec.s.indexOf(term) > -1) hit += 2;
+          if (rec.b.indexOf(term) > -1) hit += 1;
+          if (hit === 0) all = false;
+          s += hit;
+        }
+        return { match: all, score: s };
+      }
 
       function apply() {
         var q = (kw.value || '').trim().toLowerCase();
-        var n = 0;
+        var terms = q ? q.split(/[\s　]+/).filter(Boolean) : [];
+        var n = 0, vis = [];
         cards.forEach(function (c) {
           var ks = (c.getAttribute('data-kanshin') || '').split('|').filter(Boolean);
           var ps = (c.getAttribute('data-phases') || '').split('|').filter(Boolean);
           var okTheme = themes.size === 0 || ks.some(function (k) { return themes.has(k); });
           var okPhase = !phase || ps.indexOf(phase) > -1;
-          var okKw = !q || (c.getAttribute('data-text') || '').toLowerCase().indexOf(q) > -1;
-          var show = okTheme && okPhase && okKw;
+          var rec = idx[c.getAttribute('data-slug')] || { t: '', s: '', b: '' };
+          var sc = terms.length ? kwScore(rec, terms) : { match: true, score: 0 };
+          var show = okTheme && okPhase && sc.match;
           c.style.display = show ? '' : 'none';
-          if (show) n++;
+          if (show) { n++; vis.push({ c: c, score: sc.score }); }
         });
+        if (terms.length) { // キーワードあり＝関連度順に並べ替え
+          vis.sort(function (a, b) { return b.score - a.score; });
+          vis.forEach(function (v) { container.appendChild(v.c); });
+        } else { // キーワードなし＝元の並び（新着順）に戻す
+          original.forEach(function (c) { container.appendChild(c); });
+        }
         count.textContent = n + '件';
         empty.hidden = n !== 0;
       }
@@ -110,7 +152,7 @@ const cards = all.map((a) => {
         if (tc) tc.hidden = themes.size === 0;
         if (pc) pc.hidden = phase === '';
       }
-      // チップ操作（テーマ＝複数トグル／段階＝単一トグル。同じものを再タップで解除）
+
       document.querySelectorAll('#browse .chips').forEach(function (group) {
         var g = group.getAttribute('data-group');
         group.querySelectorAll('.ch').forEach(function (b) {
@@ -122,7 +164,6 @@ const cards = all.map((a) => {
           });
         });
       });
-      // 個別リセット（軸ごと）
       document.querySelectorAll('.facet-clear').forEach(function (fc) {
         fc.addEventListener('click', function () {
           if (fc.getAttribute('data-clear') === 'theme') { themes.clear(); } else { phase = ''; }
