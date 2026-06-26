@@ -45,10 +45,10 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     <div class="emptyhero" id="emptyhero">
       <div class="ghost"></div>
       <div class="eh-k">YOUR MAP</div>
-      <div class="eh-t">あなたの“現在地マップ”は、まだぼんやりしています。</div>
-      <div class="eh-s">何から考えればいいか分からなくて、当然だ。<strong>5つの質問（約30秒）</strong>に答えると、あなたの状況に合わせた<strong>時系列（やることの順番）</strong>と、次に読むべき記事・Q&Aが並びます。</div>
-      <button class="eh-btn" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>現在地をつくる</button>
-      <div class="eh-mini">氏名や連絡先は聞きません。回答はこの端末内だけに保存されます。</div>
+      <div class="eh-t">お前の“現在地マップ”は、まだぼんやりしている。</div>
+      <div class="eh-s">何から考えればいいか分からなくて、当たり前だ。全部を一度に背負わなくていい。<strong>5つの質問（約30秒）</strong>に答えてくれりゃ、お前の状況に合わせた<strong>“やる順番（時系列）”</strong>と、次に読むべき記事・Q&Aが並ぶ。一緒にやろう。</div>
+      <button class="eh-btn" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>お前の現在地をつくる</button>
+      <div class="eh-mini">名前も連絡先も聞かない。答えはこの端末の中だけに残る。</div>
     </div>
 
     <div id="rails">
@@ -94,16 +94,16 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
 
     // ===== オンボ設問（24§1） =====
     const QUESTIONS = [
-      { id: 'phase', h: '今、どの段階にいますか？', s: 'あなたの“現在地”を教えて。', multi: false, opts: [
+      { id: 'phase', h: '今、お前はどの段階にいる？', s: 'まずは現在地を教えてくれ。', multi: false, opts: [
         { v: '切り出された直後', t: '妻に切り出されたばかり' }, { v: '別居', t: '別居中／別居を考えている' },
         { v: '協議・調停中', t: '協議・調停を進めている' }, { v: '成立後', t: 'もう離婚は成立した' } ] },
-      { id: 'route', h: 'これからの気持ちに近いのは？', s: '答えで、出す情報を変える。', multi: false, opts: [
+      { id: 'route', h: 'これからの気持ちに、近いのは？', s: 'この答えで、出す情報を変える。', multi: false, opts: [
         { v: 'fukuen', t: 'まだ別れたくない・やり直したい' }, { v: 'rikon', t: '離婚に向けて進めたい' }, { v: 'mitei', t: 'まだ決められない' } ] },
-      { id: 'kids', h: 'お子さんはいますか？', s: '', multi: false, opts: [
+      { id: 'kids', h: '子どもはいるか？', s: '', multi: false, opts: [
         { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
-      { id: 'trouble', h: '今の話し合いの状況は？', s: '安全と緊急度の確認のためだけに使う。', multi: false, opts: [
+      { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false, opts: [
         { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' } ] },
-      { id: 'kanshin', h: '今いちばん不安なことは？', s: 'いくつ選んでもいい。', multi: true, opts: [
+      { id: 'kanshin', h: '今、いちばん不安なのは？', s: 'いくつ選んでもいい。', multi: true, opts: [
         { v: 'お金', t: 'お金・財産' }, { v: '手続き', t: '各種手続き' }, { v: '気持ち', t: '気持ち・メンタル' }, { v: '子ども', t: '子どものこと' }, { v: '相談', t: '相談相手がいない' } ] },
     ];
 
@@ -202,7 +202,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       // おかえり
       const lab = st.label || st.phase || 'あのこと';
       document.getElementById('greet-slot').innerHTML =
-        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">あなたの現在地に合わせて、やることと読みものを並べたよ。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
+        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">お前の現在地に合わせて、やることと読みものを並べたぞ。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
       document.getElementById('reset-state')?.addEventListener('click', () => { localStorage.removeItem(KEY); location.reload(); });
 
       // タイムライン（ルート選択＋現在地＋アコーディオン）
@@ -224,7 +224,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
-        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>あなたの時系列｜現在地と、やること</div><div class="jsub">今のフェーズを開いています。前後はタップで開けます。</div>${phaseHtml}</div>`;
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div>${phaseHtml}</div>`;
       document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
 
       // レコメンド（重複なし：記事プール／Q&Aプールで別管理）
@@ -239,8 +239,8 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       const toku = takeA(A.filter((a) => a.pick), 2);
       const arr = takeA([...A].sort((a, b) => (a.published < b.published ? 1 : -1)), 3);
       railsEl.innerHTML =
-        railA('あなたへのおすすめ', '現在地に合わせて', recA) +
-        railQ('あなたに合ったQ&A', '同じ状況の小さな疑問に、一問即答', recQ.length ? recQ : takeQ(Q, 3)) +
+        railA('お前におすすめ', '現在地に合わせて', recA) +
+        railQ('お前に合うQ&A', '同じ道を通った男たちの、よくある疑問', recQ.length ? recQ : takeQ(Q, 3)) +
         railRank('よく読まれている', rank) +
         railA('特集・編集部ピック', '', toku) +
         railA('新着', '', arr);
@@ -256,7 +256,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       const popQ = Q.slice(0, 4);
       railsEl.innerHTML =
         railA('よく読まれている記事', '', popA) +
-        railQ('よく読まれているQ&A', '同じ状況の小さな疑問に、一問即答', popQ) +
+        railQ('よく読まれているQ&A', '同じ道を通った男たちの、よくある疑問', popQ) +
         railA('特集・編集部ピック', '', toku) +
         railA('新着', '', arr);
     }
