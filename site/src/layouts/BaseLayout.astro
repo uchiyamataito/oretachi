@@ -81,13 +81,17 @@ const faqLd = faq && faq.length
   </head>
   <body>
     <header class="site-header">
-      <a href="/" class="brand">オレタチ</a>
-      <nav class="site-nav"><a href="/articles">記事</a><a href="/qa">Q&amp;A</a><a href="/shindan">初動ナビ</a></nav>
+      <div class="header-inner">
+        <a href="/" class="brand">オレタチ</a>
+        <nav class="site-nav"><a href="/articles">記事</a><a href="/qa">Q&amp;A</a><a href="/shindan">初動ナビ</a></nav>
+      </div>
     </header>
     <main><slot /></main>
     <footer class="site-footer">
-      <nav class="foot-nav"><a href="/about/operator">運営者情報</a><a href="/about/editorial">編集方針</a><a href="/about/privacy">プライバシーポリシー</a><a href="/about/terms">利用規約</a></nav>
-      <p>&copy; オレタチ</p>
+      <div class="footer-inner">
+        <nav class="foot-nav"><a href="/about/operator">運営者情報</a><a href="/about/editorial">編集方針</a><a href="/about/privacy">プライバシーポリシー</a><a href="/about/terms">利用規約</a></nav>
+        <p>&copy; オレタチ</p>
+      </div>
     </footer>
   </body>
 </html>
