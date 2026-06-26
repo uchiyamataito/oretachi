@@ -34,7 +34,7 @@ body{
     var(--cream);
   background-attachment:fixed;
 }
-main{max-width:var(--maxw);margin:0 auto;padding:8px 18px 80px}
+main{width:100%;box-sizing:border-box;max-width:var(--maxw);margin:0 auto;padding:8px 18px 80px}
 a{color:var(--coral-deep)}
 img{max-width:100%;height:auto;border-radius:12px}
 h1,h2,h3,h4{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;color:var(--navy);line-height:1.5}
@@ -90,8 +90,9 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 /* 記事・Q&A本文の可読性（落ち着いた階層・オレンジ強調を抑制・余白広め） */
 .content{font-size:1.04rem;line-height:1.95;overflow-wrap:break-word;color:#33302B}
 .content > p{margin:1.15em 0}
-.content h2{font-size:1.26rem;font-weight:800;color:var(--navy);line-height:1.5;margin:2.3em 0 .8em;padding:11px 14px;border:none;border-left:5px solid var(--mint);background:linear-gradient(90deg,#EEF6F1,rgba(238,246,241,0) 85%);border-radius:0 10px 10px 0}
-.content h3{font-size:1.08rem;font-weight:700;color:var(--navy);line-height:1.5;margin:1.9em 0 .5em;padding-left:12px;border-left:3px solid var(--teal)}
+.content h2{font-size:1.3rem;font-weight:800;color:var(--navy);line-height:1.5;margin:2.5em 0 .9em;padding:0 0 .5em;border:none;border-bottom:1px solid var(--line2);position:relative}
+.content h2::after{content:'';position:absolute;left:0;bottom:-1px;width:46px;height:3px;background:var(--navy);border-radius:2px}
+.content h3{font-size:1.08rem;font-weight:700;color:var(--navy);line-height:1.5;margin:1.9em 0 .5em;padding-left:11px;border-left:3px solid var(--line2)}
 .content h2:first-child,.content h3:first-child{margin-top:.3em}
 .content strong{color:var(--navy);font-weight:700}
 .content a{color:var(--coral-deep);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
