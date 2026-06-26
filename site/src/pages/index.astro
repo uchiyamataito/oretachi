@@ -258,7 +258,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       railsEl.innerHTML =
         railA('お前におすすめの記事', '現在地に合わせて', recA) +
         railQ('お前におすすめのQ&A', '同じ道を通った男たちの、よくある疑問', recQ.length ? recQ : takeQ(Q, 3)) +
-        railRank('よく読まれている', rank) +
+        railRank('よく読まれている記事', rank) +
         railA('特集・編集部ピック', '', toku) +
         railA('新着', '', arr);
     }
