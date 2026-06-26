@@ -308,7 +308,8 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .jrny .jk{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:6px}
 .home .jrny .jsub{font-size:12px;color:var(--muted);margin:0 0 14px}
 .home .jph{position:relative;display:flex;gap:14px;padding-bottom:6px}
-.home .jph:not(:last-child) .jph-line{position:absolute;left:9px;top:12px;bottom:-12px;width:2px;background:var(--line2)}
+.home .jph .jph-line{position:absolute;left:9px;top:12px;bottom:-12px;width:2px;background:var(--line2)}
+.home .jph:last-child .jph-line{display:none}
 .home .jph:last-child{padding-bottom:0}
 .home .jph:last-child .jph-main{padding-bottom:0}
 .home .jph.done .jph-line{background:var(--teal)}
