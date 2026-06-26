@@ -81,7 +81,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       { id: 'kids', h: '子どもはいるか？', s: '', multi: false, opts: [
         { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
       { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false, opts: [
-        { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' } ] },
+        { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' }, { v: 'unknown', t: 'まだ、どうなるか分からない' } ] },
       { id: 'kanshin', h: '今、いちばん不安なのは？', s: 'いくつ選んでもいい。', multi: true, opts: [
         { v: 'お金', t: 'お金・財産' }, { v: '手続き', t: '各種手続き' }, { v: '気持ち', t: '気持ち・メンタル' }, { v: '子ども', t: '子どものこと' }, { v: '相談', t: '相談相手がいない' } ] },
     ];
@@ -208,7 +208,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
-        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過・安全</span></div>${phaseHtml}</div>`;
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
       document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
       // 手動チェック（閲覧≠完了。本人がON/OFF。記事リンクには遷移しない）
       document.querySelectorAll('#journey-slot .todo .tk').forEach((b) => b.addEventListener('click', (e) => {

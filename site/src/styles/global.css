@@ -120,21 +120,8 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .content li.task-list-item::before{content:'✓';position:absolute;left:0;top:.32em;width:19px;height:19px;border-radius:5px;background:var(--teal);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1}
 .content blockquote{line-height:1.85}
 .disclaimer{color:var(--muted);font-size:.84rem;background:#F4EEE4;border-radius:12px;padding:14px 16px;margin-top:2.4em}
-.related{margin:2.4em 0 0;border-top:2px solid var(--line);padding-top:1.2em}.related h3{margin-top:0}
-.related ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
-.related a{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem}
-.related a:hover{border-color:var(--coral)}
-@media(min-width:600px){.related ul{grid-template-columns:1fr 1fr}}
-.cta-box{margin:2.4em 0 0;background:var(--navy);border-radius:18px;padding:24px 22px;color:#fff;text-align:center}
-.cta-box p{color:rgba(255,255,255,.9);margin:.3em 0 1em}
-a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:700;border-radius:32px;padding:14px 30px;text-decoration:none;box-shadow:0 12px 24px -12px rgba(226,112,58,.7)}
 
 /* ===== Q&A ===== */
-.qa-search{width:100%;padding:13px 15px;font-size:1rem;border:1px solid var(--line2);border-radius:12px;margin:.6em 0;background:#fff}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:.6em 0}
-.f{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:9px 14px;font-size:.85rem;cursor:pointer;min-height:40px}
-.f.active{background:var(--coral);color:#fff;border-color:var(--coral)}
-.qa-count{color:var(--muted);font-size:.85rem;margin:.4em 0}
 .qa-grid{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:600px){.qa-grid{grid-template-columns:1fr 1fr}}
 .qa-card{display:flex}
@@ -153,7 +140,6 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 [data-cat="気持ち"]{--cat:#C98E7E;--cat-bg:#F4E7E2;--cat-fg:#9C5746}
 [data-cat="子ども"]{--cat:#7FBBA6;--cat-bg:#E6F1EC;--cat-fg:#0F6E56}
 [data-cat="相談"]{--cat:#9B8FB8;--cat-bg:#ECE7F2;--cat-fg:#5E5080}
-.qa-badge{display:inline-block;background:var(--coral);color:#fff;font-weight:800;border-radius:8px;padding:0 10px}
 /* Q&A詳細：質問（見出し）→タグ→区切り→回答ボックス→くわしく（サブ） */
 .qa-question{font-family:'Zen Kaku Gothic New';font-size:22px;line-height:1.55;margin:14px 0 18px;color:var(--navy)}
 .qa-cats{margin:0}
@@ -191,50 +177,12 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .reco-t{flex:1;min-width:0;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;line-height:1.55;color:var(--ink)}
 .reco-go{position:absolute;right:12px;color:var(--faint);font-size:18px;transition:.15s}
 .reco-item:hover .reco-go,.reco-item:focus-visible .reco-go{color:var(--coral);transform:translateX(2px)}
-.article-list{list-style:none;padding:0}.article-list li{border-bottom:1px solid var(--line);padding:14px 0}
-.article-list p{color:var(--muted);font-size:.9rem;margin:.3em 0 0}
 
 /* ===========================================================
    トップ（.home）：静かなヒーロー → オンボ主役 → TODAY → 記事
    =========================================================== */
 .home{max-width:1040px;margin:0 auto}
 .home a{text-decoration:none;color:inherit}
-
-/* 再訪バナー（JSで現在地があれば表示） */
-.home .welcome{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);
-  border-left:4px solid var(--coral);border-radius:14px;padding:14px 18px;margin:14px 0 0;
-  box-shadow:0 8px 20px -18px rgba(21,35,58,.4)}
-.home .welcome .wb-txt{flex:1;min-width:0;font-size:.92rem}
-.home .welcome b{color:var(--navy);font-family:'Zen Kaku Gothic New'}
-.home .welcome .wb-go{flex:none;color:var(--coral-deep);font-weight:700;font-size:.88rem;white-space:nowrap}
-
-/* 静かなヒーロー */
-.home .hero2{padding:34px 2px 6px;max-width:680px}
-.home .hero2 .eyebrow{font-size:12px;letter-spacing:2px;color:var(--faint);font-weight:700;margin:0}
-.home .hero2 h1{font-size:30px;line-height:1.45;margin:14px 0 0;color:var(--navy)}
-.home .hero2 .sub{font-size:15px;color:var(--muted);margin:16px 0 0;line-height:1.9}
-
-/* オンボ主役：今いちばんしんどいのは？ */
-.home .onb-head{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;color:var(--ink);margin:30px 0 4px}
-.home .onb-note{font-size:12.5px;color:var(--faint);margin:0 0 14px}
-.home .onb{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.home .onb-tile{display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--line2);
-  border-radius:16px;padding:16px 16px 15px;min-height:104px;box-shadow:0 10px 24px -20px rgba(21,35,58,.5);
-  transition:.16s;justify-content:center}
-.home .onb-tile:hover,.home .onb-tile:focus-visible{border-color:var(--coral);transform:translateY(-2px);box-shadow:0 14px 28px -18px rgba(226,112,58,.45)}
-.home .onb-tile i{font-size:24px;color:var(--coral)}
-.home .onb-tile .ol{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;color:var(--navy);line-height:1.4}
-.home .onb-tile .oh{font-size:11.5px;color:var(--muted);line-height:1.5}
-.home .onb-talk{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;
-  background:var(--navy);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14.5px;
-  border-radius:14px;padding:15px;box-shadow:0 12px 26px -16px rgba(27,58,87,.7)}
-.home .onb-talk i{font-size:18px}
-.home .onb-talk .badge{font-size:10px;background:rgba(255,255,255,.2);border-radius:6px;padding:2px 7px;font-weight:700;letter-spacing:.5px}
-
-/* TODAY */
-.home .today{background:#fff;border:1px solid var(--line);border-left:4px solid var(--mint);border-radius:16px;padding:20px;margin-top:26px;box-shadow:0 8px 20px -16px rgba(21,35,58,.4)}
-.home .today .k{font-size:11px;color:var(--teal);letter-spacing:2px;font-weight:700;display:flex;align-items:center;gap:6px}
-.home .today .t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:18px;color:var(--ink);margin-top:10px;line-height:1.6}
 
 /* 記事セクション */
 .home .sh{display:flex;align-items:baseline;justify-content:space-between;margin:38px 0 16px}
@@ -301,34 +249,11 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 /* 現在地マップ＝時系列ジャーニー（3フェーズ） */
 .home .journey{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 18px 20px;margin-top:12px;box-shadow:0 10px 28px -22px rgba(21,35,58,.55)}
 .home .journey .jk{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:14px}
-/* 縦タイムライン（線でつながった進行＝時系列） */
-.home .tl{list-style:none;margin:0;padding:0}
-.home .tl-node{position:relative;display:flex;gap:14px;padding-bottom:20px}
-.home .tl-node:last-child{padding-bottom:0}
-.home .tl-node:not(:last-child)::before{content:'';position:absolute;left:8px;top:20px;bottom:0;width:2px;background:var(--line2)}
-.home .tl-node.done:not(:last-child)::before{background:var(--teal)}
-.home .tl-dot{flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;background:#D8CEBE;border:3px solid var(--cream);box-shadow:0 0 0 1px var(--line2);z-index:1;position:relative;display:flex;align-items:center;justify-content:center}
-.home .tl-node.done .tl-dot{background:var(--teal);box-shadow:0 0 0 1px var(--teal)}
-.home .tl-node.done .tl-dot::after{content:'';width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
-.home .tl-node.current .tl-dot{background:var(--coral);box-shadow:0 0 0 5px rgba(226,112,58,.18)}
-.home .tl-c{min-width:0;padding-top:-1px}
-.home .tl-ph{font-size:10px;color:var(--faint);font-weight:700;letter-spacing:.5px}
-.home .tl-nm{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;color:var(--navy);line-height:1.45}
-.home .tl-node.future .tl-nm{color:var(--faint);font-weight:500}
-.home .tl-now{display:inline-block;margin-left:8px;font-size:10px;font-weight:700;background:var(--coral);color:#fff;border-radius:6px;padding:1px 8px;vertical-align:2px}
-.home .tl-st{font-size:11.5px;color:var(--muted);margin-top:1px}
-.home .next-step{margin-top:14px;display:flex;align-items:center;gap:12px;background:#FFF6F0;border:1px solid #F3D9C8;border-radius:14px;padding:14px 16px}
-.home .next-step .ns-k{flex:none;font-size:10px;font-weight:700;color:var(--coral-deep);letter-spacing:1px}
-.home .next-step .ns-b{min-width:0}
-.home .next-step .ns-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14.5px;color:var(--navy);line-height:1.5}
-.home .next-step .ns-go{flex:none;color:var(--coral);font-size:20px}
-
 /* 回遊レール（横スクロールの発見） */
 .home .rail{margin-top:30px}
 .home .rail-head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .home .rail-head h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:18px;margin:0;color:var(--ink);border:none;padding:0;white-space:nowrap;flex:none}
 .home .rail-head .rh-note{font-size:11.5px;color:var(--faint)}
-.home .rail-head .rail-kind{align-self:center;font-size:10px;font-weight:800;color:var(--tag-fg);background:var(--tag-bg);border-radius:6px;padding:2px 8px}
 .home .rail-scroller{display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
 .home .rail-scroller::-webkit-scrollbar{height:0}
 .home .rcard{scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
@@ -344,25 +269,16 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .rank-item .rt{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;color:var(--ink);line-height:1.5}
 @media (min-width:760px){
   .home .rail-scroller{grid-auto-columns:30%}
-  .home .tl-nm{font-size:16px}
 }
 
 /* ===== PC ===== */
 @media (min-width:760px){
-  .home .hero2{padding-top:48px}
-  .home .hero2 h1{font-size:40px}
-  .home .hero2 .sub{font-size:16px}
-  .home .onb{grid-template-columns:repeat(3,1fr);gap:14px}
-  .home .onb-tile{min-height:120px}
-  .home .onb-talk{margin-top:16px}
-  .home .today{padding:26px 32px;margin-top:36px}.home .today .t{font-size:21px}
   .home .sh{margin:54px 0 22px}.home .sh h2{font-size:22px}
   .home .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
   .home .card{flex-direction:column;align-items:stretch;gap:0}
   .home .card .thumb{width:100%;height:auto;aspect-ratio:16/9;border-radius:16px}
   .home .card h3{font-size:16px;margin-top:12px}
 }
-@media (prefers-reduced-motion:reduce){.home .onb-tile{transition:none}}
 
 /* ========== 未オンボの大導線（エンプティステート型） ========== */
 .home .emptyhero{position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--line);
