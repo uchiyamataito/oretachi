@@ -1,52 +1,126 @@
 ---
-// Q&Aブラウズ（カード一覧＋キーワード検索＋お悩み分類フィルタ）。
+// Q&A一覧（ブラウズ）。記事一覧と同じ軸＝テーマ（複数選択）×段階（時系列）×キーワードで絞り込む。
+// 絞り込みはクライアント側のみ（URLは増やさない）。
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { QMETA, THEMES, PHASES } from '../../data/meta';
+
 const items = (await getCollection('qa')).sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
-const cats = [...new Set(items.map((i) => i.data.category))];
+const cards = items.map((q) => {
+  const m = QMETA[q.slug] || { phases: [], kanshin: [] };
+  return {
+    slug: q.slug,
+    question: q.data.question,
+    description: q.data.description,
+    kanshin: m.kanshin || [],
+    phases: m.phases || [],
+    text: `${q.data.question} ${q.data.description} ${(q.data.tags || []).join(' ')}`,
+  };
+});
 ---
 <BaseLayout
   title="Q&A｜オレタチ"
-  description="離婚を切り出された男のための、よくある疑問とその答え。大丈夫、たいていの疑問はここにある。"
+  description="離婚を切り出された男のための、よくある疑問とその答え。テーマ（お金・手続き・気持ち・子ども・相談）や今いる段階、キーワードから探せる。大丈夫、たいていの疑問はここにある。"
   canonical="https://oretachi.me/qa"
 >
-  <h1>Q&amp;A ― お前の疑問に、ズバッと答える</h1>
-  <p>大丈夫、たいていの疑問はここにある。お前だけじゃない。</p>
-  <input id="q" class="qa-search" type="search" placeholder="キーワードで探す（例：保険 子ども）" />
-  <div class="filters">
-    <button type="button" class="f active" data-cat="">すべて</button>
-    {cats.map((c) => <button type="button" class="f" data-cat={c}>{c}</button>)}
+  <div class="listing-head">
+    <h1>Q&amp;A ― お前の疑問に、ズバッと答える</h1>
+    <p>大丈夫、たいていの疑問はここにある。お前だけじゃない。</p>
   </div>
-  <p id="count" class="qa-count"></p>
-  <ul class="qa-grid">
-    {items.map((i) => (
-      <li class="qa-card" data-cat={i.data.category} data-text={`${i.data.question} ${i.data.description} ${(i.data.tags || []).join(' ')}`}>
+
+  <div class="browse" id="browse">
+    <input class="kw-search" id="kw" type="search" placeholder="キーワードで探す（例：保険 子ども 口座）" aria-label="キーワード検索" />
+
+    <div class="facet">
+      <span class="facet-label">テーマ（複数選べる）</span>
+      <div class="chips" data-group="theme">
+        <button type="button" class="ch active" data-v="">すべて</button>
+        {THEMES.map((t) => <button type="button" class="ch" data-v={t.v}>{t.t}</button>)}
+      </div>
+    </div>
+
+    <div class="facet">
+      <span class="facet-label">今いる段階（時系列）</span>
+      <div class="chips" data-group="phase">
+        <button type="button" class="ch active" data-v="">すべて</button>
+        {PHASES.map((p) => <button type="button" class="ch" data-v={p.v}>{p.t}</button>)}
+      </div>
+    </div>
+
+    <div class="result-meta">
+      <span class="rc" id="count"></span>
+      <button type="button" class="clear" id="clear">条件をクリア</button>
+    </div>
+  </div>
+
+  <ul class="qa-grid" id="cards">
+    {cards.map((i) => (
+      <li class="qa-card" data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')} data-text={i.text}>
         <a href={`/qa/${i.slug}`}>
-          <span class="chip">{i.data.category}</span>
-          <span class="qa-q">Q. {i.data.question}</span>
-          <span class="qa-ex">{i.data.description}</span>
+          <span class="qa-q">Q. {i.question}</span>
+          <span class="qa-ex">{i.description}</span>
           <span class="qa-more">読む ›</span>
         </a>
       </li>
     ))}
   </ul>
+  <p class="empty-msg" id="empty" hidden>条件に合うQ&amp;Aがなかった。条件を少し緩めてみてくれ。</p>
+
   <script is:inline>
     (function () {
-      var q = document.getElementById('q'), count = document.getElementById('count');
-      var cards = [].slice.call(document.querySelectorAll('.qa-card'));
-      var fbtns = [].slice.call(document.querySelectorAll('.f'));
-      var cat = '';
+      var cards = [].slice.call(document.querySelectorAll('#cards .qa-card'));
+      var kw = document.getElementById('kw');
+      var count = document.getElementById('count');
+      var empty = document.getElementById('empty');
+      var themes = new Set();
+      var phase = '';
+
       function apply() {
-        var kw = (q.value || '').trim().toLowerCase(); var n = 0;
+        var q = (kw.value || '').trim().toLowerCase();
+        var n = 0;
         cards.forEach(function (c) {
-          var okC = !cat || c.getAttribute('data-cat') === cat;
-          var okK = !kw || c.getAttribute('data-text').toLowerCase().indexOf(kw) > -1;
-          var show = okC && okK; c.style.display = show ? '' : 'none'; if (show) n++;
+          var ks = (c.getAttribute('data-kanshin') || '').split('|').filter(Boolean);
+          var ps = (c.getAttribute('data-phases') || '').split('|').filter(Boolean);
+          var okTheme = themes.size === 0 || ks.some(function (k) { return themes.has(k); });
+          var okPhase = !phase || ps.indexOf(phase) > -1;
+          var okKw = !q || (c.getAttribute('data-text') || '').toLowerCase().indexOf(q) > -1;
+          var show = okTheme && okPhase && okKw;
+          c.style.display = show ? '' : 'none';
+          if (show) n++;
         });
-        count.textContent = n + '件表示中';
+        count.textContent = n + '件';
+        empty.hidden = n !== 0;
       }
-      q.addEventListener('input', apply);
-      fbtns.forEach(function (b) { b.addEventListener('click', function () { cat = b.getAttribute('data-cat'); fbtns.forEach(function (x) { x.classList.remove('active'); }); b.classList.add('active'); apply(); }); });
+
+      document.querySelectorAll('#browse .chips').forEach(function (group) {
+        var g = group.getAttribute('data-group');
+        group.querySelectorAll('.ch').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var v = b.getAttribute('data-v');
+            if (g === 'theme') {
+              if (v === '') { themes.clear(); }
+              else { themes.has(v) ? themes.delete(v) : themes.add(v); }
+              group.querySelectorAll('.ch').forEach(function (x) {
+                var xv = x.getAttribute('data-v');
+                x.classList.toggle('active', xv === '' ? themes.size === 0 : themes.has(xv));
+              });
+            } else {
+              phase = v;
+              group.querySelectorAll('.ch').forEach(function (x) { x.classList.remove('active'); });
+              b.classList.add('active');
+            }
+            apply();
+          });
+        });
+      });
+      kw.addEventListener('input', apply);
+      document.getElementById('clear').addEventListener('click', function () {
+        themes.clear(); phase = ''; kw.value = '';
+        document.querySelectorAll('#browse .ch').forEach(function (x) {
+          x.classList.toggle('active', x.getAttribute('data-v') === '');
+        });
+        apply();
+      });
       apply();
     })();
   </script>

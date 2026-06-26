@@ -1,56 +1,131 @@
 ---
-// 記事一覧（IA：トップから分離した"記事を全部ブラウズする場"）。お悩みカテゴリで絞り込み。
+// 記事一覧（ブラウズ）。テーマ（複数選択）×段階（時系列）×キーワードで絞り込む。
+// 絞り込みはクライアント側のみ（URLは増やさない＝pSEOの薄ページ量産を避ける）。
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { AMETA, THEMES, PHASES } from '../data/meta';
 
 const all = (await getCollection('articles')).sort((a, b) =>
   a.data.published < b.data.published ? 1 : -1
 );
-function bucket(cat = '') {
-  if (/子/.test(cat)) return '子ども';
-  if (/気持ち|初動|相談|心/.test(cat)) return '気持ち・相談';
-  if (/保険|お金|税|年金/.test(cat)) return 'お金・保険';
-  if (/手続き/.test(cat)) return '手続き';
-  return 'その他';
-}
-const filters = ['すべて', 'お金・保険', '手続き', '気持ち・相談', '子ども'];
+const cards = all.map((a) => {
+  const m = AMETA[a.slug] || { phases: [], kanshin: [], tag: '記事' };
+  return {
+    slug: a.slug,
+    title: a.data.title,
+    img: a.data.hero_image?.src || '',
+    tag: m.tag || '記事',
+    kanshin: m.kanshin || [],
+    phases: m.phases || [],
+    text: `${a.data.title} ${(a.data.tags || []).join(' ')} ${a.data.description || ''}`,
+  };
+});
 ---
 <BaseLayout
   title="記事一覧｜オレタチ"
-  description="離婚を切り出された男性向けの記事一覧。お金・保険、手続き、気持ち・相談、子どものことから、必要な記事を探せます。"
+  description="離婚を切り出された男性向けの記事一覧。テーマ（お金・手続き・気持ち・子ども・相談）や、今いる段階（切り出し直後・別居・協議調停・成立後）、キーワードから、必要な記事を探せます。"
   canonical="https://oretachi.me/articles"
 >
   <div class="listing-head">
     <h1>記事を読む</h1>
-    <p>お金・手続き・気持ち・子ども。お前に必要なものだけ、気になるテーマから探してくれ。</p>
+    <p>お前に必要なものだけ。テーマと、今いる段階で絞り込んでくれ。</p>
   </div>
+
   <div class="home">
-    <div class="filters" id="cat-filters" role="tablist" aria-label="お悩みカテゴリ">
-      {filters.map((f, i) => (
-        <button class={`f${i === 0 ? ' active' : ''}`} data-filter={f}>{f}</button>
-      ))}
+  <div class="browse" id="browse">
+    <input class="kw-search" id="kw" type="search" placeholder="キーワードで探す（例：保険 子ども 財産分与）" aria-label="キーワード検索" />
+
+    <div class="facet">
+      <span class="facet-label">テーマ（複数選べる）</span>
+      <div class="chips" data-group="theme">
+        <button type="button" class="ch active" data-v="">すべて</button>
+        {THEMES.map((t) => <button type="button" class="ch" data-v={t.v}>{t.t}</button>)}
+      </div>
     </div>
-    <div class="cards" id="article-cards" style="margin-top:18px">
-      {all.map((a) => (
-        <a class="card" href={`/${a.slug}`} data-cat={bucket(a.data.category)}>
-          <div class="thumb"><img src={a.data.hero_image?.src} alt={a.data.title} loading="lazy" /></div>
-          <div class="cbody"><span class="tag1">{bucket(a.data.category)}</span><h3>{a.data.title}</h3></div>
-        </a>
-      ))}
+
+    <div class="facet">
+      <span class="facet-label">今いる段階（時系列）</span>
+      <div class="chips" data-group="phase">
+        <button type="button" class="ch active" data-v="">すべて</button>
+        {PHASES.map((p) => <button type="button" class="ch" data-v={p.v}>{p.t}</button>)}
+      </div>
+    </div>
+
+    <div class="result-meta">
+      <span class="rc" id="count"></span>
+      <button type="button" class="clear" id="clear">条件をクリア</button>
     </div>
   </div>
 
-  <script>
-    const btns = Array.from(document.querySelectorAll('#cat-filters .f'));
-    const cards = Array.from(document.querySelectorAll('#article-cards .card'));
-    btns.forEach((b) => b.addEventListener('click', () => {
-      btns.forEach((x) => x.classList.remove('active'));
-      b.classList.add('active');
-      const f = b.getAttribute('data-filter');
-      cards.forEach((c) => {
-        const show = f === 'すべて' || c.getAttribute('data-cat') === f;
-        c.style.display = show ? '' : 'none';
+  <div class="cards" id="cards">
+    {cards.map((a) => (
+      <a class="card" href={`/${a.slug}`} data-kanshin={a.kanshin.join('|')} data-phases={a.phases.join('|')} data-text={a.text}>
+        <div class="thumb"><img src={a.img} alt={a.title} loading="lazy" /></div>
+        <div class="cbody"><span class="tag1">{a.tag}</span><h3>{a.title}</h3></div>
+      </a>
+    ))}
+  </div>
+  <p class="empty-msg" id="empty" hidden>条件に合う記事がなかった。条件を少し緩めてみてくれ。</p>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var cards = [].slice.call(document.querySelectorAll('#cards .card'));
+      var kw = document.getElementById('kw');
+      var count = document.getElementById('count');
+      var empty = document.getElementById('empty');
+      var themes = new Set(); // テーマ＝複数選択（OR）
+      var phase = '';         // 段階＝単一選択
+
+      function apply() {
+        var q = (kw.value || '').trim().toLowerCase();
+        var n = 0;
+        cards.forEach(function (c) {
+          var ks = (c.getAttribute('data-kanshin') || '').split('|').filter(Boolean);
+          var ps = (c.getAttribute('data-phases') || '').split('|').filter(Boolean);
+          var okTheme = themes.size === 0 || ks.some(function (k) { return themes.has(k); });
+          var okPhase = !phase || ps.indexOf(phase) > -1;
+          var okKw = !q || (c.getAttribute('data-text') || '').toLowerCase().indexOf(q) > -1;
+          var show = okTheme && okPhase && okKw;
+          c.style.display = show ? '' : 'none';
+          if (show) n++;
+        });
+        count.textContent = n + '件';
+        empty.hidden = n !== 0;
+      }
+
+      // チップ操作
+      document.querySelectorAll('#browse .chips').forEach(function (group) {
+        var g = group.getAttribute('data-group');
+        group.querySelectorAll('.ch').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var v = b.getAttribute('data-v');
+            if (g === 'theme') {
+              if (v === '') { themes.clear(); }
+              else { themes.has(v) ? themes.delete(v) : themes.add(v); }
+              // active表示：すべて or 各テーマ
+              group.querySelectorAll('.ch').forEach(function (x) {
+                var xv = x.getAttribute('data-v');
+                x.classList.toggle('active', xv === '' ? themes.size === 0 : themes.has(xv));
+              });
+            } else { // phase＝単一
+              phase = v;
+              group.querySelectorAll('.ch').forEach(function (x) { x.classList.remove('active'); });
+              b.classList.add('active');
+            }
+            apply();
+          });
+        });
       });
-    }));
+      kw.addEventListener('input', apply);
+      document.getElementById('clear').addEventListener('click', function () {
+        themes.clear(); phase = ''; kw.value = '';
+        document.querySelectorAll('#browse .ch').forEach(function (x) {
+          x.classList.toggle('active', x.getAttribute('data-v') === '');
+        });
+        apply();
+      });
+      apply();
+    })();
   </script>
 </BaseLayout>

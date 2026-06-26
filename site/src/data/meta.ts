@@ -1,0 +1,39 @@
+// 記事・Q&A の共通メタ（単一の元データ）。トップ(index)・記事一覧・Q&A一覧で共用する。
+// phases=段階（時系列）, kanshin=テーマ（関心）, kids=子ども関連, route=復縁/離婚, pick=編集部ピック, rank=人気順, tag=表示タグ
+export const AMETA: Record<string, any> = {
+  'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, pick: true, rank: 2, tag: '気持ち・初動' },
+  'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 3, tag: '全体マップ' },
+  'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], kids: false, rank: 1, tag: 'お金' },
+  'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '協議・調停中'], kanshin: ['相談', '気持ち'], kids: false, pick: true, rank: 4, tag: '相談' },
+  'rikon-mada-wakaretakunai':          { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, rank: 5, tag: '気持ち', route: 'fukuen' },
+  'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], kids: false, rank: 6, tag: '手続き', route: 'rikon' },
+  'rikon-kodomo-hoken':                { phases: ['別居', '成立後'], kanshin: ['子ども', '手続き'], kids: true, tag: '子ども', route: 'rikon' },
+  'rikon-nenkin-tetsuzuki':            { phases: ['成立後'], kanshin: ['手続き', 'お金'], kids: false, tag: '手続き', route: 'rikon' },
+  'rikon-fuyou-zeikin':                { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金', route: 'rikon' },
+  'rikon-seimeihoken-sonomama':        { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金', route: 'rikon' },
+  'rikon-seimeihoken-uketorinin':      { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: '手続き', route: 'rikon' },
+};
+export const QMETA: Record<string, any> = {
+  'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], route: 'rikon' },
+  'rikon-riyuu-toitsumeru':        { phases: ['切り出された直後'], kanshin: ['気持ち'], route: 'fukuen' },
+  'rikon-ie-deru-beki':            { phases: ['切り出された直後', '別居'], kanshin: ['手続き', 'お金'] },
+  'rikon-kodomo-setsumei':         { phases: ['切り出された直後'], kanshin: ['子ども', '気持ち'] },
+  'rikon-kyouyu-kouza-ugokasu':    { phases: ['切り出された直後', '別居'], kanshin: ['お金'] },
+  'rikon-kiridasareta-atama-masshiro': { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+  'rikon-nemurenai-byoin':         { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+};
+
+// 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）
+export const THEMES = [
+  { v: 'お金', t: 'お金' },
+  { v: '手続き', t: '手続き' },
+  { v: '気持ち', t: '気持ち' },
+  { v: '子ども', t: '子ども' },
+  { v: '相談', t: '相談' },
+];
+export const PHASES = [
+  { v: '切り出された直後', t: '切り出し直後' },
+  { v: '別居', t: '別居' },
+  { v: '協議・調停中', t: '協議・調停' },
+  { v: '成立後', t: '成立後' },
+];
