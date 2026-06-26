@@ -192,7 +192,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     // ====== レンダリング ======
     const acard = (a) => `<a class="rcard" href="/${a.slug}"><div class="rthumb"><img src="${esc(a.img)}" alt="${esc(a.title)}" loading="lazy"></div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
     const qcard = (x) => `<a class="qcard" href="/qa/${x.slug}"><span class="qbadge">Q&A</span><div class="qq">${esc(x.q)}</div><span class="qa">${esc(x.d)}</span></a>`;
-    const railA = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(acard).join('')}</div></section>` : '';
+    const railA = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2><span class="rail-kind">記事</span>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(acard).join('')}</div></section>` : '';
     const railQ = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(qcard).join('')}</div></section>` : '';
     const railRank = (t, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
 

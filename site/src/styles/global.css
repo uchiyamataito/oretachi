@@ -214,6 +214,7 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .rail-head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
 .home .rail-head h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:18px;margin:0;color:var(--ink);border:none;padding:0}
 .home .rail-head .rh-note{font-size:11.5px;color:var(--faint)}
+.home .rail-head .rail-kind{align-self:center;font-size:10px;font-weight:800;color:var(--tag-fg);background:var(--tag-bg);border-radius:6px;padding:2px 8px}
 .home .rail-scroller{display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
 .home .rail-scroller::-webkit-scrollbar{height:0}
 .home .rcard{scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
@@ -282,16 +283,16 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .onbm .close{margin-left:auto;background:none;border:none;color:var(--faint);font-size:22px;cursor:pointer;line-height:1}
 .onbm .qh{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:19px;color:var(--navy);line-height:1.5}
 .onbm .qs{font-size:12.5px;color:var(--muted);margin:6px 0 16px}
-.onbm .opts{display:flex;flex-direction:column;gap:10px}
+.onbm .opts{display:flex;flex-direction:column;gap:10px;margin-top:16px}
 .onbm .opt{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line2);border-radius:14px;
   padding:15px 16px;font-size:15px;color:var(--ink);text-align:left;cursor:pointer;min-height:54px;transition:.14s}
 .onbm .opt:hover,.onbm .opt:focus-visible{border-color:var(--coral)}
 .onbm .opt.sel{border-color:var(--coral);background:#FFF6F0}
 .onbm .opt .ck{margin-left:auto;color:var(--coral);font-size:18px;opacity:0;flex:none}
 .onbm .opt.sel .ck{opacity:1}
-.onbm .nav{display:flex;gap:10px;margin-top:20px;align-items:stretch}
-.onbm .nav .back{flex:none;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:0 20px;min-height:52px;color:var(--muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
-.onbm .nav .next{flex:1;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:0 14px;min-height:52px;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.onbm .nav{display:flex;gap:10px;margin-top:20px;align-items:center}
+.onbm .nav .back{flex:none;box-sizing:border-box;height:54px;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:0 20px;color:var(--muted);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.onbm .nav .next{flex:1;box-sizing:border-box;height:54px;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:0 14px;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .onbm .nav .next:disabled{opacity:.4}
 .onbm .skip{display:block;text-align:center;margin-top:12px;color:var(--faint);font-size:12px;background:none;border:none;cursor:pointer;width:100%}
 
@@ -319,8 +320,8 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .todo{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:9px;text-decoration:none}
 .home .todo:hover{border-color:var(--coral)}
 /* 左マーカー：未読＝何も出さない（チェックボックスに見せない）／読んだ＝緑チェック */
-.home .todo .tk{flex:none;width:18px;height:18px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center}
-.home .todo.done2 .tk{background:var(--teal)}
+.home .todo .tk{flex:none;width:18px;height:18px;border-radius:50%;background:transparent;display:none;align-items:center;justify-content:center}
+.home .todo.done2 .tk{background:var(--teal);display:flex}
 .home .todo.done2 .tk::after{content:'';width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
 .home .todo .tt{flex:1;min-width:0;font-size:13.5px;color:var(--ink);font-weight:700;line-height:1.5}
 .home .todo .tg{flex:none;color:var(--coral);font-size:16px}
