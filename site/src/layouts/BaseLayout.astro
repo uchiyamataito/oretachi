@@ -93,5 +93,16 @@ const faqLd = faq && faq.length
         <p>&copy; オレタチ</p>
       </div>
     </footer>
+    <script is:inline>
+      // 記事内テーブルをモバイルでカード型に積み替えるため、各セルに見出し名を付与。
+      document.querySelectorAll('.content table').forEach(function (t) {
+        var ths = [].map.call(t.querySelectorAll('thead th'), function (th) { return th.textContent.trim(); });
+        if (!ths.length) return;
+        [].forEach.call(t.querySelectorAll('tbody tr'), function (tr) {
+          [].forEach.call(tr.children, function (td, i) { if (ths[i]) td.setAttribute('data-label', ths[i]); });
+        });
+        t.classList.add('stacked');
+      });
+    </script>
   </body>
 </html>

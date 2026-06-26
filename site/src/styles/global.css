@@ -48,13 +48,26 @@ hr{border:none;border-top:1px solid var(--line);margin:2em 0}
 table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:1.2em 0;font-size:.95rem}
 th,td{border:1px solid var(--line2);padding:9px 11px;text-align:left}
 th{background:#F4EEE4;color:var(--navy);font-weight:700}
+td{vertical-align:top}
+/* モバイル：長文テーブルはカード型に積み替えて可読性を上げる（JSで data-label 付与済み） */
+@media(max-width:600px){
+  .content table.stacked{display:block;overflow:visible;border:none;font-size:.95rem}
+  .content table.stacked thead{display:none}
+  .content table.stacked tbody{display:block}
+  .content table.stacked tr{display:block;background:#fff;border:1px solid var(--line2);border-radius:12px;padding:4px 14px;margin:0 0 12px;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
+  .content table.stacked td{display:block;border:none;border-bottom:1px solid var(--line);padding:10px 0;text-align:left;line-height:1.75}
+  .content table.stacked tr td:last-child{border-bottom:none}
+  .content table.stacked td::before{content:attr(data-label);display:block;font-size:.72rem;font-weight:700;color:var(--teal);letter-spacing:.03em;margin-bottom:3px}
+  .content table.stacked td:first-child{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:1.02rem;color:var(--navy)}
+  .content table.stacked td:first-child::before{display:none}
+}
 /* 定義テーブル（運営者情報など）：見出し列を1行・適切な幅に。横スクロールではなく通常レイアウト */
 .def-table{display:table;table-layout:auto}
 .def-table th{white-space:nowrap;width:1%;vertical-align:top;text-align:left}
 .def-table td{vertical-align:top;line-height:1.7}
-/* コードブロック（AIプロンプト例など）：長い日本語行で横スクロールが出ないよう折り返す */
-pre{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:1.2em 0;font-size:.9rem;line-height:1.75;overflow-x:auto;-webkit-overflow-scrolling:touch}
-pre code{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+/* プロンプト例など（コードブロック）：強い背景をやめ、引用的な淡いボックスに */
+pre{background:#F6F1E8;border:1px solid var(--line2);border-radius:10px;padding:15px 16px;margin:1.4em 0;font-size:.95rem;line-height:1.85;color:var(--ink);overflow-x:auto;-webkit-overflow-scrolling:touch;font-family:inherit}
+pre code{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font-family:inherit;background:none;color:inherit}
 code{overflow-wrap:anywhere;word-break:break-word}
 blockquote{margin:1.2em 0;padding:.9em 1.1em;background:#fff;border:1px solid var(--line);
   border-top:3px solid var(--mint);border-radius:10px;box-shadow:0 8px 20px -18px rgba(21,35,58,.4)}
