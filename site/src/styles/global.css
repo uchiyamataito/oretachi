@@ -19,6 +19,9 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth}
+/* ページが短くてもフッターを最下部に（スティッキーフッター） */
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
 /* アンカー遷移時に見出しが sticky ヘッダーへ隠れないように */
 h1[id],h2[id],h3[id],h4[id]{scroll-margin-top:72px}
 body{
@@ -135,7 +138,8 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .helpful{border:1px solid var(--line);border-radius:14px;padding:18px;margin:2em 0;text-align:center;background:#fff}
 .helpful-q{font-weight:700;margin:.2em 0 .8em;color:var(--navy)}
 .helpful-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 22px;font-size:.95rem;min-height:46px;cursor:pointer;transition:.14s}
+.helpful button{border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 12px;font-size:.95rem;min-height:46px;cursor:pointer;transition:.14s}
+.helpful .hb{flex:1 1 0;min-width:112px;max-width:168px}
 .helpful .hb:hover{border-color:var(--coral);color:var(--coral-deep)}
 .helpful .hb:active{transform:scale(.98)}
 .helpful-done{display:inline-block;color:var(--teal);font-weight:700;padding:11px 0}
