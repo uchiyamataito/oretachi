@@ -320,10 +320,13 @@ a.btn-primary,.cta-box .btn{display:inline-flex;align-items:center;gap:8px;backg
 .home .todo{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:9px;text-decoration:none}
 .home .todo:hover{border-color:var(--coral)}
 /* 左マーカー：未読＝何も出さない（チェックボックスに見せない）／読んだ＝緑チェック */
-.home .todo .tk{flex:none;width:18px;height:18px;border-radius:50%;background:transparent;display:none;align-items:center;justify-content:center}
-.home .todo.done2 .tk{background:var(--teal);display:flex}
-.home .todo.done2 .tk::after{content:'';width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
+.home .todo .tk{flex:none;width:22px;height:22px;border:2px solid var(--line2);border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:.12s}
+.home .todo .tk:hover{border-color:var(--teal)}
+.home .todo.done2 .tk{background:var(--teal);border-color:var(--teal)}
+.home .todo.done2 .tk::after{content:'';width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
+.home .todo .tlink{flex:1;min-width:0;display:flex;align-items:center;gap:9px;text-decoration:none}
 .home .todo .tt{flex:1;min-width:0;font-size:13.5px;color:var(--ink);font-weight:700;line-height:1.5}
+.home .todo.done2 .tt{color:var(--muted)}
 .home .todo .tg{flex:none;color:var(--coral);font-size:16px}
 .home .todo.safe{background:#F1F6F3;border-color:#CFE6DC}.home .todo.safe .tt{color:var(--teal)}
 .home .todo.legal{background:#FFF6F0;border-color:#F3D9C8}.home .todo.legal .tt{color:var(--coral-deep)}

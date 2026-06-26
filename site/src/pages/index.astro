@@ -183,7 +183,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       const st = {
         phase: answers.phase || '切り出された直後', route: answers.route || 'mitei', kids: answers.kids || 'none',
         trouble: answers.trouble || 'calm', kanshin: answers.kanshin || [],
-        history: (read() || {}).history || [], label: (answers.kanshin && answers.kanshin[0]) || answers.phase || '', ts: Date.now(),
+        history: (read() || {}).history || [], done: (read() || {}).done || [], label: (answers.kanshin && answers.kanshin[0]) || answers.phase || '', ts: Date.now(),
       };
       localStorage.setItem(KEY, JSON.stringify(st));
       closeModal(); renderMypage(st);
@@ -199,6 +199,8 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     function renderMypage(st) {
       document.getElementById('emptyhero').style.display = 'none';
       const railsEl = document.getElementById('rails');
+      st.done = st.done || [];                 // 手動チェック（本人が完了をON/OFF）
+      const doneSet = new Set(st.done);
       // おかえり
       const lab = st.label || st.phase || 'あのこと';
       document.getElementById('greet-slot').innerHTML =
@@ -218,15 +220,25 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki', kind: 'safe' }, ...todos];
         const todoHtml = todos.map((t) => {
           if (t.coming) return `<div class="todo coming"><i class="ti ti-pencil ci"></i><span class="tt">${esc(t.l)}<span class="cm">準備中</span></span></div>`;
-          const done = visited.has((t.h || '').replace(/^\//, '').replace(/^qa\//, ''));
+          const dkey = `${p.name}|${t.l}`;
+          const done = doneSet.has(dkey);
           const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
-          return `<a class="todo${done ? ' done2' : ''}${kind}" href="${esc(t.h)}"><span class="tk"></span><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a>`;
+          return `<div class="todo${done ? ' done2' : ''}${kind}"><button class="tk" type="button" data-dk="${esc(dkey)}" aria-label="完了の切り替え"></button><a class="tlink" href="${esc(t.h)}"><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a></div>`;
         }).join('');
         return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
         `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過・安全</span></div>${phaseHtml}</div>`;
       document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
+      // 手動チェック（閲覧≠完了。本人がON/OFF。記事リンクには遷移しない）
+      document.querySelectorAll('#journey-slot .todo .tk').forEach((b) => b.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const k = b.getAttribute('data-dk');
+        doneSet.has(k) ? doneSet.delete(k) : doneSet.add(k);
+        st.done = [...doneSet];
+        localStorage.setItem(KEY, JSON.stringify(st));
+        b.closest('.todo').classList.toggle('done2');
+      }));
 
       // レコメンド（重複なし：記事プール／Q&Aプールで別管理）
       const shownA = new Set(), shownQ = new Set();
