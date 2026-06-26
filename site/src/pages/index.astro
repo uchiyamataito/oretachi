@@ -184,7 +184,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       // おかえり
       const lab = st.label || st.phase || 'あのこと';
       document.getElementById('greet-slot').innerHTML =
-        `<div class="greet"><div><div class="gt">おかえり</div><div class="gs">お前の現在地に合わせて、やることと読みものを並べたぞ。</div></div><button class="reset" id="reset-state">最初から</button></div>`;
+        `<div class="greet"><div class="greet-top"><div class="gt">おかえり</div><button class="reset" id="reset-state">最初から</button></div><div class="gs">お前の現在地に合わせて、やることと読みものを並べたぞ。</div></div>`;
       document.getElementById('reset-state')?.addEventListener('click', () => { localStorage.removeItem(KEY); location.reload(); });
 
       // タイムライン（ルート選択＋現在地＋アコーディオン）
