@@ -1,5 +1,5 @@
 ---
-// Q&A詳細レイアウト。Q → 回答/解説/対策（本文）→「役に立った」→ 関連。
+// Q&A詳細レイアウト。Q（質問）→ A（要点回答＝メイン）→ くわしく（本文＝サブ）→ 評価 → 関連。
 import BaseLayout from './BaseLayout.astro';
 const { entry } = Astro.props;
 const d = entry.data;
@@ -15,16 +15,32 @@ const d = entry.data;
   faq={[{ q: d.question, a: d.description }]}
 >
   <article class="qa">
-    <p class="qa-badge">Q</p>
-    <h1>{d.question}</h1>
     <p class="qa-cats"><span class="chip">{d.category}</span>{(d.tags || []).map((t) => <span class="chip ghost">{t}</span>)}</p>
-    <div class="content"><slot /></div>
+
+    <div class="qa-row q">
+      <span class="qa-mark q">Q</span>
+      <h1 class="qa-question">{d.question}</h1>
+    </div>
+
+    <div class="qa-row a">
+      <span class="qa-mark a">A</span>
+      <p class="qa-answer">{d.description}</p>
+    </div>
+
+    <div class="qa-detail">
+      <p class="qa-detail-label"><i class="ti ti-notes" aria-hidden="true"></i>くわしく</p>
+      <div class="content"><slot /></div>
+    </div>
+
     <div class="helpful">
       <p class="helpful-q">この回答、役に立ったか？</p>
-      <button type="button" disabled>助かった</button>
-      <button type="button" disabled>うーん、もう一歩</button>
-      <small>※評価は公開後に有効化（個人を特定する情報は記録しない）</small>
+      <div class="helpful-btns">
+        <button type="button" disabled>助かった</button>
+        <button type="button" disabled>微妙</button>
+      </div>
+      <small class="helpful-note">※評価は公開後に有効化（個人を特定する情報は記録しない）</small>
     </div>
+
     {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
     <p class="back"><a href="/qa">← ほかのQ&amp;Aも見る（お前だけじゃない）</a></p>
   </article>

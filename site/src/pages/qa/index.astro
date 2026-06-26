@@ -21,6 +21,7 @@ const cards = items.map((q) => {
     description: q.data.description,
     kanshin: m.kanshin || [],
     phases: m.phases || [],
+    cat: (m.kanshin && m.kanshin[0]) || '相談', // 差し色用の代表テーマ
   };
 });
 const sidx = items.map((q) => ({
@@ -71,11 +72,12 @@ const sidx = items.map((q) => ({
 
   <ul class="qa-grid" id="cards">
     {cards.map((i) => (
-      <li class="qa-card" data-slug={i.slug} data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')}>
+      <li class="qa-card" data-slug={i.slug} data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')} data-cat={i.cat}>
         <a href={`/qa/${i.slug}`}>
+          <span class="qa-cat">{i.cat}</span>
           <span class="qa-q">Q. {i.question}</span>
           <span class="qa-ex">{i.description}</span>
-          <span class="qa-more">読む ›</span>
+          <i class="ti ti-chevron-right qa-go" aria-hidden="true"></i>
         </a>
       </li>
     ))}
