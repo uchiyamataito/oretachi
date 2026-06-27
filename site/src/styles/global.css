@@ -77,9 +77,11 @@ blockquote p:first-child{margin-top:0}blockquote p:last-child{margin-bottom:0}
 /* ===== ヘッダー / フッター（背景は全幅・中身は中央寄せ） ===== */
 .site-header{position:sticky;top:0;z-index:30;background:rgba(252,250,246,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-inner{display:flex;align-items:center;gap:6px;max-width:var(--maxw);margin:0 auto;padding:14px 18px}
-.brand{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:21px;color:var(--navy);letter-spacing:2px;text-decoration:none;flex:none}
+.brand{display:inline-flex;align-items:center;gap:5px;font-family:'Zen Kaku Gothic New';font-weight:900;font-size:22px;letter-spacing:1px;text-decoration:none;flex:none;line-height:1;white-space:nowrap}
+.brand-icon{width:36px;height:36px;border-radius:8px;display:block;flex:none}
+.brand-name{color:var(--navy)}
 /* サービス説明の一言（デスクトップのみ・初見への説明＋主要語の常時表示） */
-.site-tagline{margin-left:14px;font-size:12px;color:var(--muted);line-height:1.4;white-space:nowrap}
+.site-tagline{margin-left:14px;font-size:12px;color:var(--muted);line-height:1.5;white-space:normal}
 @media(max-width:800px){.site-tagline{display:none}}
 .site-nav{display:inline-flex;gap:4px;margin-left:auto}
 .site-nav a{font-size:.9rem;font-weight:700;text-decoration:none;color:var(--navy);padding:8px 12px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center}

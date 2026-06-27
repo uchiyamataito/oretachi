@@ -64,6 +64,9 @@ const faqLd = faq && faq.length
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
@@ -90,8 +93,8 @@ const faqLd = faq && faq.length
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a href="/" class="brand">オレタチ</a>
-        <span class="site-tagline">離婚に直面した男性へ。やること・読みもの・相談先を、ひとつに。</span>
+        <a href="/" class="brand" aria-label="オレタチ"><img src="/app-icon.png" alt="" class="brand-icon" width="36" height="36" /><span class="brand-name">オレタチ</span></a>
+        <span class="site-tagline">離婚に直面した男性へ。<br />やること・読みもの・相談先を、ひとつに。</span>
         <nav class="site-nav"><a href="/articles">記事</a><a href="/qa">Q&amp;A</a><a href="/shindan">初動ナビ</a></nav>
       </div>
     </header>
