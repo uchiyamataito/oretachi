@@ -1,17 +1,19 @@
 // 記事・Q&A の共通メタ（単一の元データ）。トップ(index)・記事一覧・Q&A一覧で共用する。
 // phases=段階（時系列）, kanshin=テーマ（関心）, kids=子ども関連, route=復縁/離婚, pick=編集部ピック, rank=人気順, tag=表示タグ
 export const AMETA: Record<string, any> = {
-  'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, pick: true, rank: 2, tag: '気持ち・初動' },
-  'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 3, tag: '全体マップ' },
-  'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], kids: false, rank: 1, tag: 'お金' },
-  'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '協議・調停中'], kanshin: ['相談', '気持ち'], kids: false, pick: true, rank: 4, tag: '相談' },
-  'rikon-mada-wakaretakunai':          { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, rank: 5, tag: '気持ち', route: 'fukuen' },
-  'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], kids: false, rank: 6, tag: '手続き', route: 'rikon' },
+  'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, pick: true, rank: 1, tag: '気持ち・初動' },
+  'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 5, tag: '全体マップ' },
+  'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], kids: false, rank: 4, tag: 'お金' },
+  'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '協議・調停中'], kanshin: ['相談', '気持ち'], kids: false, pick: true, rank: 6, tag: '相談' },
+  'rikon-mada-wakaretakunai':          { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, rank: 7, tag: '気持ち', route: 'fukuen' },
+  'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], kids: false, rank: 8, tag: '手続き', route: 'rikon' },
   'rikon-kodomo-hoken':                { phases: ['別居', '成立後'], kanshin: ['子ども', '手続き'], kids: true, tag: '子ども', route: 'rikon' },
   'rikon-nenkin-tetsuzuki':            { phases: ['成立後'], kanshin: ['手続き', 'お金'], kids: false, tag: '手続き', route: 'rikon' },
   'rikon-fuyou-zeikin':                { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金', route: 'rikon' },
   'rikon-seimeihoken-sonomama':        { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: 'お金', route: 'rikon' },
   'rikon-seimeihoken-uketorinin':      { phases: ['成立後'], kanshin: ['お金', '手続き'], kids: false, tag: '手続き', route: 'rikon' },
+  'rikon-bekkyo':                      { phases: ['切り出された直後', '別居'], kanshin: ['手続き', 'お金'], kids: false, pick: true, rank: 3, tag: '別居' },
+  'rikon-kaesu-kotoba':                { phases: ['切り出された直後'], kanshin: ['気持ち', '相談'], kids: false, pick: true, rank: 2, tag: '気持ち・初動' },
 };
 export const QMETA: Record<string, any> = {
   'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], route: 'rikon' },

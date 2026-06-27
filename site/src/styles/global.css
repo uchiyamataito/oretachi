@@ -195,6 +195,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .card{display:flex;gap:14px;align-items:center}
 .home .card .thumb{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;box-shadow:0 8px 16px -12px rgba(21,35,58,.5)}
 .home .card .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;border-radius:0}
+.home .thumb-ph{display:block;width:100%;height:100%;background:linear-gradient(135deg,#eceef3,#dfe3ec)}
 .home .card .cbody{min-width:0}
 .home .tag1{font-size:10.5px;font-weight:700;border-radius:6px;padding:3px 9px;display:inline-block;background:var(--tag-bg);color:var(--tag-fg)}
 .home .card h3{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14.5px;line-height:1.5;margin:8px 0 0;color:var(--ink)}
@@ -278,7 +279,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 @media (min-width:760px){
   .home .sh{margin:54px 0 22px}.home .sh h2{font-size:22px}
   .home .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
-  .home .card{flex-direction:column;align-items:stretch;gap:0}
+  .home .card{flex-direction:column;align-items:stretch;gap:10px}
   .home .card .thumb{width:100%;height:auto;aspect-ratio:16/9;border-radius:16px}
   .home .card h3{font-size:16px;margin-top:12px}
 }

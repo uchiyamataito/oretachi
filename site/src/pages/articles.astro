@@ -79,7 +79,7 @@ const sidx = all.map((a) => ({
   <div class="cards" id="cards">
     {cards.map((a) => (
       <a class="card" href={`/${a.slug}`} data-slug={a.slug} data-kanshin={a.kanshin.join('|')} data-phases={a.phases.join('|')}>
-        <div class="thumb"><img src={a.img} alt={a.title} loading="lazy" /></div>
+        <div class="thumb">{a.img ? <img src={a.img} alt={a.title} loading="lazy" /> : <span class="thumb-ph" aria-hidden="true"></span>}</div>
         <div class="cbody"><span class="tag1">{a.tag}</span><h3>{a.title}</h3></div>
       </a>
     ))}
