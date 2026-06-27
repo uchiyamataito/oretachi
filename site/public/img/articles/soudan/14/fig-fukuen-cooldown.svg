@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 552" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">冷却期間のイメージ：追う→いったん引く→相手に余白が生まれる</title>
+  <rect width="480" height="552" fill="#ffffff"/>
+
+  <!-- step1 追いかける -->
+  <rect x="40" y="24" width="400" height="128" rx="16" fill="#fdeeea" stroke="#eebbb0"/>
+  <circle cx="88" cy="74" r="23" fill="#e0664c"/>
+  <text x="88" y="82" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="128" y="70" font-size="20" font-weight="700" fill="#2b3a5b">追いかける</text>
+  <text x="128" y="104" font-size="15" fill="#7a6a66">迫るほど、相手は引いていく</text>
+
+  <path d="M240 160 L240 184" stroke="#c2c9d4" stroke-width="3"/>
+  <path d="M231 177 L240 188 L249 177 Z" fill="#c2c9d4"/>
+
+  <!-- step2 いったん引く -->
+  <rect x="40" y="190" width="400" height="128" rx="16" fill="#eef1f6" stroke="#c9d2e0"/>
+  <circle cx="88" cy="240" r="23" fill="#2b3a5b"/>
+  <text x="88" y="248" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="128" y="236" font-size="20" font-weight="700" fill="#2b3a5b">いったん引く</text>
+  <text x="128" y="270" font-size="15" fill="#5b6677">圧を抜いて、話せる「間」をつくる</text>
+
+  <path d="M240 326 L240 350" stroke="#c2c9d4" stroke-width="3"/>
+  <path d="M231 343 L240 354 L249 343 Z" fill="#c2c9d4"/>
+
+  <!-- step3 余白が生まれる -->
+  <rect x="40" y="356" width="400" height="128" rx="16" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <circle cx="88" cy="406" r="23" fill="#3a9b6e"/>
+  <text x="88" y="414" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="128" y="402" font-size="20" font-weight="700" fill="#2b3a5b">余白が生まれる</text>
+  <text x="128" y="436" font-size="15" fill="#46715b">「また話せるかも」の余地ができる</text>
+
+  <text x="240" y="520" font-size="14" fill="#9ca3af" text-anchor="middle">冷却期間は「あきらめ」ではなく、話せる土台をつくる時間</text>
+</svg>

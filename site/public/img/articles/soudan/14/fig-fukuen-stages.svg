@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">妻の心の段階：不満→あきらめ→無関心（無関心が赤信号）</title>
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="36" y="44" font-size="19" font-weight="700" fill="#2b3a5b">妻の心には「順番」がある</text>
+
+  <!-- stage1 不満 -->
+  <rect x="36" y="74" width="180" height="92" rx="14" fill="#fdeeea" stroke="#eebbb0"/>
+  <text x="126" y="116" font-size="20" font-weight="700" fill="#2b3a5b" text-anchor="middle">不満</text>
+  <text x="126" y="146" font-size="13" fill="#7a6a66" text-anchor="middle">伝えても変わらない</text>
+
+  <path d="M224 120 L256 120" stroke="#c2c9d4" stroke-width="3"/>
+  <path d="M250 112 L262 120 L250 128 Z" fill="#c2c9d4"/>
+
+  <!-- stage2 あきらめ -->
+  <rect x="270" y="74" width="180" height="92" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
+  <text x="360" y="116" font-size="20" font-weight="700" fill="#2b3a5b" text-anchor="middle">あきらめ</text>
+  <text x="360" y="146" font-size="13" fill="#5b6677" text-anchor="middle">期待しなくなる</text>
+
+  <path d="M458 120 L490 120" stroke="#c2c9d4" stroke-width="3"/>
+  <path d="M484 112 L496 120 L484 128 Z" fill="#c2c9d4"/>
+
+  <!-- stage3 無関心 -->
+  <rect x="504" y="74" width="180" height="92" rx="14" fill="#fbe3e0" stroke="#e0664c" stroke-width="2"/>
+  <text x="594" y="110" font-size="20" font-weight="700" fill="#c2402b" text-anchor="middle">無関心</text>
+  <text x="594" y="140" font-size="13" fill="#a85040" text-anchor="middle">怒りも消える＝赤信号</text>
+  <circle cx="528" cy="92" r="9" fill="#e0664c"/>
+
+  <text x="36" y="216" font-size="15" fill="#2b3a5b">怒っている＝まだ「変わってほしい」期待が残っている。</text>
+  <text x="36" y="246" font-size="15" fill="#2b3a5b">本当に手遅れに近いのは、淡々と事務的になった（無関心の）時。</text>
+  <text x="36" y="278" font-size="13.5" fill="#9ca3af">「静かになった＝脈あり」と早合点しないこと。</text>
+</svg>

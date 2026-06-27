@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">再出発の順番：①心と体を休める ②生活のリズム ③お金と手続き ④子どもとの関わり ⑤増えた時間を自分のために</title>
+  <rect width="560" height="560" fill="#ffffff"/>
+  <text x="32" y="40" font-size="20" font-weight="700" fill="#2b3a5b">再出発は、この順番で</text>
+
+  <line x1="60" y1="110" x2="60" y2="502" stroke="#d7dbe2" stroke-width="3"/>
+
+  <circle cx="60" cy="110" r="23" fill="#2b3a5b"/>
+  <text x="60" y="118" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="100" y="104" font-size="17" font-weight="700" fill="#2b3a5b">心と体を、まず休める</text>
+  <text x="100" y="128" font-size="13.5" fill="#6b7280">回復を待つ。焦らない</text>
+
+  <circle cx="60" cy="208" r="23" fill="#2b3a5b"/>
+  <text x="60" y="216" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="100" y="202" font-size="17" font-weight="700" fill="#2b3a5b">生活のリズムを整える</text>
+  <text x="100" y="226" font-size="13.5" fill="#6b7280">睡眠・食事・住まい</text>
+
+  <circle cx="60" cy="306" r="23" fill="#2b3a5b"/>
+  <text x="60" y="314" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="100" y="300" font-size="17" font-weight="700" fill="#2b3a5b">お金と手続きを片づける</text>
+  <text x="100" y="324" font-size="13.5" fill="#6b7280">期限のあるものだけ先に</text>
+
+  <circle cx="60" cy="404" r="23" fill="#2b3a5b"/>
+  <text x="60" y="412" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+  <text x="100" y="398" font-size="17" font-weight="700" fill="#2b3a5b">子どもとの関わりを整える</text>
+  <text x="100" y="422" font-size="13.5" fill="#6b7280">面会・養育費・子の前の言動</text>
+
+  <circle cx="60" cy="502" r="23" fill="#3a9b6e"/>
+  <text x="60" y="510" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+  <text x="100" y="496" font-size="17" font-weight="700" fill="#2b6b4a">増えた時間を、自分のために</text>
+  <text x="100" y="520" font-size="13.5" fill="#5f7a6b">孤独は、時間がやわらげる</text>
+</svg>

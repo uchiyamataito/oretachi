@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 210" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">立て直す生活の土台：睡眠・食事・住まい・お金の流れ</title>
+  <rect width="700" height="210" fill="#ffffff"/>
+  <text x="24" y="34" font-size="18" font-weight="700" fill="#2b3a5b">立て直す、生活の4つの土台</text>
+
+  <rect x="24" y="52" width="156" height="134" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
+  <text x="102" y="86" font-size="16" font-weight="700" fill="#2b3a5b" text-anchor="middle">睡眠</text>
+  <text x="102" y="118" font-size="13" fill="#5b6677" text-anchor="middle">だいたい一定の</text>
+  <text x="102" y="138" font-size="13" fill="#5b6677" text-anchor="middle">時間に寝起き</text>
+
+  <rect x="196" y="52" width="156" height="134" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <text x="274" y="86" font-size="16" font-weight="700" fill="#2b6b4a" text-anchor="middle">食事</text>
+  <text x="274" y="118" font-size="13" fill="#46715b" text-anchor="middle">自炊にこだわらない</text>
+  <text x="274" y="138" font-size="13" fill="#46715b" text-anchor="middle">「食べない」だけ回避</text>
+
+  <rect x="368" y="52" width="156" height="134" rx="14" fill="#fdeeea" stroke="#eebbb0"/>
+  <text x="446" y="86" font-size="16" font-weight="700" fill="#9a4634" text-anchor="middle">住まい</text>
+  <text x="446" y="118" font-size="13" fill="#8a5547" text-anchor="middle">一気にやらない</text>
+  <text x="446" y="138" font-size="13" fill="#8a5547" text-anchor="middle">今日は一角だけ</text>
+
+  <rect x="540" y="52" width="136" height="134" rx="14" fill="#fdf3e9" stroke="#f0d2b0"/>
+  <text x="608" y="86" font-size="16" font-weight="700" fill="#7a5a2e" text-anchor="middle">お金の流れ</text>
+  <text x="608" y="118" font-size="13" fill="#9a7b4e" text-anchor="middle">期限あるものを</text>
+  <text x="608" y="138" font-size="13" fill="#9a7b4e" text-anchor="middle">先に確認</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">少し動いていいサイン：3つのチェック</title>
+  <rect width="600" height="320" fill="#ffffff"/>
+  <text x="36" y="48" font-size="19" font-weight="700" fill="#2b3a5b">この3つがそろえば、少し動いていいサイン</text>
+
+  <g>
+    <rect x="36" y="80" width="28" height="28" rx="6" fill="#3a9b6e"/>
+    <path d="M43 94 L49 100 L58 87" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="100" font-size="16.5" fill="#33433a">相手が、身構えなくなった</text>
+  </g>
+  <g>
+    <rect x="36" y="138" width="28" height="28" rx="6" fill="#3a9b6e"/>
+    <path d="M43 152 L49 158 L58 145" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="158" font-size="16.5" fill="#33433a">事務連絡が、普通に返ってくる</text>
+  </g>
+  <g>
+    <rect x="36" y="196" width="28" height="28" rx="6" fill="#3a9b6e"/>
+    <path d="M43 210 L49 216 L58 203" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="80" y="216" font-size="16.5" fill="#33433a">自分が、感情をぶつけず話せる</text>
+  </g>
+
+  <text x="36" y="282" font-size="14" fill="#9ca3af">※日数ではなく「相手の状態」で見るのがコツ</text>
+</svg>

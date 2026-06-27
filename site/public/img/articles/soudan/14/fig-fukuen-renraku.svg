@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 452" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">冷却期間の連絡：やっていい連絡とやってはいけない連絡</title>
+  <rect width="700" height="452" fill="#ffffff"/>
+
+  <!-- OK column -->
+  <rect x="24" y="24" width="320" height="404" rx="16" fill="#eef7f1" stroke="#bfe0cc"/>
+  <circle cx="58" cy="64" r="18" fill="#3a9b6e"/>
+  <text x="58" y="71" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">◎</text>
+  <text x="88" y="71" font-size="19" font-weight="700" fill="#2b3a5b">こうする</text>
+  <g font-size="15.5" fill="#33433a">
+    <text x="48" y="128">・必要な事務連絡を、淡々と</text>
+    <text x="48" y="170">　（子ども・お金・荷物など）</text>
+    <text x="48" y="218">・短く、用件だけ</text>
+    <text x="48" y="266">・返事を急かさない</text>
+    <text x="48" y="314">・送る前に一晩おく</text>
+  </g>
+  <text x="48" y="384" font-size="13.5" fill="#5f7a6b">相手が「負担に感じないか」で判断</text>
+
+  <!-- NG column -->
+  <rect x="356" y="24" width="320" height="404" rx="16" fill="#fdeeea" stroke="#eebbb0"/>
+  <circle cx="390" cy="64" r="18" fill="#e0664c"/>
+  <text x="390" y="71" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">✕</text>
+  <text x="420" y="71" font-size="19" font-weight="700" fill="#2b3a5b">さける</text>
+  <g font-size="15.5" fill="#5b3a32">
+    <text x="380" y="128">・毎日の「元気？」「会いたい」</text>
+    <text x="380" y="176">・気持ちを綴った長文</text>
+    <text x="380" y="224">・「なんで」と問い詰める</text>
+    <text x="380" y="272">・「もう一度だけ」の懇願</text>
+    <text x="380" y="320">・深夜のLINE</text>
+  </g>
+  <text x="380" y="384" font-size="13.5" fill="#9a5b4c">頻度と中身で、相手は引いてしまう</text>
+</svg>
