@@ -86,7 +86,12 @@ export function initBrowse(cardSelector) {
       syncChips(); apply();
     });
   });
-  kw.addEventListener('input', apply);
+  // キーワードは「検索実行（Enter）」または検索欄の×クリアで反映する。
+  // スマホで1文字ごとに裏で絞り込まれる違和感を避け、Enterでキーボードも閉じる。
+  kw.addEventListener('search', apply);
+  kw.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { apply(); kw.blur(); }
+  });
   var clearAll = document.getElementById('clear');
   if (clearAll) clearAll.addEventListener('click', function () {
     themes.clear(); phase = ''; kw.value = '';
