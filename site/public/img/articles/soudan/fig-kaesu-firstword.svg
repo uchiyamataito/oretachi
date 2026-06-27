@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">最初の一言：その場で答えを出さず「少し時間がほしい」と伝える</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">迷ったら、最初の一言はこれでいい</text>
+
+  <!-- quote card -->
+  <rect x="36" y="64" width="628" height="76" rx="16" fill="#eef7f1" stroke="#bfe0cc"/>
+  <text x="350" y="110" font-size="18" font-weight="700" fill="#2b3a5b" text-anchor="middle">「突然で、正直まだ受け止めきれない。少し、時間がほしい。」</text>
+
+  <!-- 3 points -->
+  <rect x="36" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
+  <text x="136" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">結論を出さない</text>
+  <rect x="250" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
+  <text x="350" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">相手を責めない</text>
+  <rect x="464" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
+  <text x="564" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">短く</text>
+
+  <text x="36" y="268" font-size="13.5" fill="#6b7280">なぜ効く？ 相手は長く考え決意して言っている。即否定や説得は、その決意を固めるだけだから。</text>
+</svg>

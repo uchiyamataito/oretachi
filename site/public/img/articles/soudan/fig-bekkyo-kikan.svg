@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 322" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">別居期間と離婚の関係：協議なら0年でも、裁判では目安3〜5年（有責は10年〜）。ただし総合判断</title>
+  <rect width="700" height="322" fill="#ffffff"/>
+  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">「別居◯年で自動的に離婚」は、ない</text>
+
+  <!-- 協議 -->
+  <rect x="36" y="64" width="628" height="78" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <text x="58" y="96" font-size="16" font-weight="700" fill="#3a9b6e">話し合い（協議）で合意できれば</text>
+  <text x="58" y="124" font-size="15" fill="#33433a">別居 0年でも離婚できる。逆に合意できなければ、何年でも自動では離婚にならない。</text>
+
+  <!-- 裁判 -->
+  <rect x="36" y="158" width="628" height="138" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
+  <text x="58" y="188" font-size="16" font-weight="700" fill="#2b3a5b">裁判になった場合（目安）</text>
+  <!-- year scale -->
+  <line x1="58" y1="224" x2="624" y2="224" stroke="#aeb6c4" stroke-width="2"/>
+  <g font-size="12" fill="#6b7280" text-anchor="middle">
+    <text x="58" y="246">0年</text>
+    <text x="246" y="246">3年</text>
+    <text x="340" y="246">5年</text>
+    <text x="624" y="246">10年〜</text>
+  </g>
+  <rect x="246" y="216" width="94" height="16" rx="4" fill="#3a9b6e"/>
+  <text x="293" y="210" font-size="12.5" fill="#3a9b6e" text-anchor="middle">一般的な目安 3〜5年</text>
+  <circle cx="624" cy="224" r="7" fill="#e0664c"/>
+  <text x="624" y="206" font-size="12.5" fill="#e0664c" text-anchor="end">有責側は10年〜</text>
+  <text x="58" y="278" font-size="13.5" fill="#5b6677">※同居期間・別居の事情・子の有無などの総合判断。年数だけでは決まらない。</text>
+</svg>

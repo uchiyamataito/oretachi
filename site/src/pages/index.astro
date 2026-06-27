@@ -91,9 +91,11 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     const PH_RIKON = [
       { key: '切り出された直後', name: '初動・心の整理', desc: 'まず急がない。最初の14日。', todos: [
         { l: '返事を急がない｜最初の14日でやること', h: '/rikon-kiridasareta-saisho-14nichi#まず押さえる3つ' },
+        { l: '妻に切り出されたら何て返す？NG対応と一言', h: '/rikon-kaesu-kotoba' },
         { l: '健康保険など“期限のある手続き”を確認', h: '/rikon-kenkohoken-tetsuzuki#まず押さえる3つ' },
         { l: 'つらい時は一人で抱えない｜相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
       { key: '別居', name: '別居・生活とお金', desc: '生活基盤とお金を守る。', todos: [
+        { l: '別居の期間・生活費（婚姻費用）とNG行動', h: '/rikon-bekkyo' },
         { l: 'お金の棚卸し・証拠の確保', h: '/rikon-okane-checklist#-棚卸し資産プラスと負債マイナスを全部出す' },
         { l: '共有口座を動かす前に', h: '/qa/rikon-kyouyu-kouza-ugokasu' },
         { l: '家を出るべきか迷ったら', h: '/qa/rikon-ie-deru-beki' },
@@ -115,6 +117,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     const PH_FUKUEN = [
       { key: '切り出された直後', name: '初動・心の整理', desc: 'まず落ち着く。', todos: [
         { l: '最初の14日でやること・やってはいけないこと', h: '/rikon-kiridasareta-saisho-14nichi#やるべきとやってはいけないを一枚で' },
+        { l: '妻に切り出されたら何て返す？NG対応と一言', h: '/rikon-kaesu-kotoba' },
         { l: '頭が真っ白でも、それで普通だ', h: '/qa/rikon-kiridasareta-atama-masshiro' } ] },
       { key: '修復', name: '関係修復を試みる', desc: '追わない。冷却と、誠実な対話。', todos: [
         { l: 'まだ別れたくない人へ｜NG行動とやること', h: '/rikon-mada-wakaretakunai#やるべきとやってはいけないを一枚で' },
@@ -227,7 +230,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       // オンボ5軸を反映：kanshin(Q5)×2 / phase(Q1)×1 / kids(Q3)×1 / route(Q2:復縁⇔離婚) / trouble(Q4:危険・揉め→相談)
       const routeFit = (m) => (!m.route || st.route === 'mitei') ? 0 : (m.route === st.route ? 1.5 : -2.5);
       const troubleFit = (m) => ((st.trouble === 'danger' || st.trouble === 'dispute') && (m.kanshin || []).includes('相談')) ? 1.5 : 0;
-      const scoreA = (a) => { let s = 0; (st.kanshin || []).forEach((k) => { if ((a.kanshin || []).includes(k)) s += 2; }); if ((a.phases || []).includes(st.phase)) s += 1; if (a.kids && st.kids === 'minor') s += 1; s += routeFit(a); s += troubleFit(a); if (a.pick) s += 0.4; if (visited.has(a.slug)) s -= 5; return s; };
+      const scoreA = (a) => { let s = 0; (st.kanshin || []).forEach((k) => { if ((a.kanshin || []).includes(k)) s += 2; }); if ((a.phases || []).includes(st.phase)) s += 1; if (a.kids && st.kids === 'minor') s += 1; s += routeFit(a); s += troubleFit(a); if (a.pick) s += 0.4; if (a.pri) s += a.pri; if (visited.has(a.slug)) s -= 5; return s; };
       const scoreQ = (x) => { let s = 0; (st.kanshin || []).forEach((k) => { if ((x.kanshin || []).includes(k)) s += 2; }); if ((x.phases || []).includes(st.phase)) s += 1; s += routeFit(x); s += troubleFit(x); return s; };
       const recA = takeA([...A].sort((a, b) => scoreA(b) - scoreA(a)).filter((a) => scoreA(a) > 0), 4);
       const recQ = takeQ([...Q].sort((a, b) => scoreQ(b) - scoreQ(a)).filter((x) => scoreQ(x) > 0), 4);

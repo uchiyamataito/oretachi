@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">別居で先に押さえる3つ：期間・お金・やってはいけないこと</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="46" font-size="20" font-weight="700" fill="#2b3a5b">別居で先に押さえる、3つだけ</text>
+
+  <!-- card1 期間 -->
+  <rect x="36" y="72" width="196" height="184" rx="16" fill="#eef1f6" stroke="#c9d2e0"/>
+  <rect x="36" y="72" width="196" height="46" rx="16" fill="#2b3a5b"/>
+  <rect x="36" y="98" width="196" height="20" fill="#2b3a5b"/>
+  <text x="134" y="102" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">① 期間</text>
+  <text x="134" y="162" font-size="15" fill="#2b3a5b" text-anchor="middle">何年で離婚？</text>
+  <text x="134" y="192" font-size="15" font-weight="700" fill="#2b3a5b" text-anchor="middle">決まった年数はない</text>
+  <text x="134" y="224" font-size="12.5" fill="#6b7280" text-anchor="middle">年数より過ごし方</text>
+
+  <!-- card2 お金 -->
+  <rect x="252" y="72" width="196" height="184" rx="16" fill="#fdf3e9" stroke="#f0d2b0"/>
+  <rect x="252" y="72" width="196" height="46" rx="16" fill="#d98a3d"/>
+  <rect x="252" y="98" width="196" height="20" fill="#d98a3d"/>
+  <text x="350" y="102" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">② お金</text>
+  <text x="350" y="162" font-size="15" fill="#7a5a2e" text-anchor="middle">生活費（婚姻費用）と</text>
+  <text x="350" y="192" font-size="15" font-weight="700" fill="#7a5a2e" text-anchor="middle">出る前の「控え」</text>
+  <text x="350" y="224" font-size="12.5" fill="#9a7b4e" text-anchor="middle">請求は早めに</text>
+
+  <!-- card3 NG -->
+  <rect x="468" y="72" width="196" height="184" rx="16" fill="#fdeeea" stroke="#eebbb0"/>
+  <rect x="468" y="72" width="196" height="46" rx="16" fill="#e0664c"/>
+  <rect x="468" y="98" width="196" height="20" fill="#e0664c"/>
+  <text x="566" y="102" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">③ やってはいけない</text>
+  <text x="566" y="162" font-size="15" fill="#9a4634" text-anchor="middle">無断で出ない／</text>
+  <text x="566" y="192" font-size="15" font-weight="700" fill="#9a4634" text-anchor="middle">子の連れ出しは慎重に</text>
+  <text x="566" y="224" font-size="12.5" fill="#b06b58" text-anchor="middle">勢いの口約束も×</text>
+</svg>
