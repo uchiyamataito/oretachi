@@ -63,20 +63,26 @@ export function recommend(pool: PoolItem[], cur: PoolItem) {
 
   // (2) この先レール：現在地より後のフェーズ（先回り）。近い未来を優先。
   const curIdx = Math.max(-1, ...(cur.phases || []).map((p) => PHASE_ORDER.indexOf(p)));
-  const next = (curIdx >= 0 && curIdx < PHASE_ORDER.length - 1)
-    ? others
-        .filter((x) => !used.has(x.slug))
-        .filter((x) => (x.phases || []).some((p) => PHASE_ORDER.indexOf(p) > curIdx))
-        .filter((x) => !(x.phases || []).some((p) => (cur.phases || []).includes(p)))
-        .map((x) => {
-          const future = (x.phases || []).map((p) => PHASE_ORDER.indexOf(p)).filter((i) => i > curIdx);
-          const nIdx = future.length ? Math.min(...future) : 99;
-          return { x, s: relScore(x, cur) - (nIdx - curIdx) * 0.3 };
-        })
-        .sort((a, b) => b.s - a.s)
-        .map((o) => o.x)
-        .slice(0, 3)
-    : [];
+  let next: PoolItem[] = [];
+  if (curIdx >= 0 && curIdx < PHASE_ORDER.length - 1) {
+    // 「より後ろのフェーズ」を1つでも持つ記事が候補。
+    const futureCands = others
+      .filter((x) => !used.has(x.slug))
+      .filter((x) => (x.phases || []).some((p) => PHASE_ORDER.indexOf(p) > curIdx));
+    // 現在記事とフェーズを共有しない“純粋に先”の記事を優先。
+    // それが無ければ、先のフェーズを持つ記事で補完（終盤記事でも空にしない）。
+    const pure = futureCands.filter((x) => !(x.phases || []).some((p) => (cur.phases || []).includes(p)));
+    const base = pure.length > 0 ? pure : futureCands;
+    next = base
+      .map((x) => {
+        const future = (x.phases || []).map((p) => PHASE_ORDER.indexOf(p)).filter((i) => i > curIdx);
+        const nIdx = future.length ? Math.min(...future) : 99;
+        return { x, s: relScore(x, cur) - (nIdx - curIdx) * 0.3 };
+      })
+      .sort((a, b) => b.s - a.s)
+      .map((o) => o.x)
+      .slice(0, 3);
+  }
 
   return { related: relatedTop, next };
 }
