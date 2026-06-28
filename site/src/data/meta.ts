@@ -30,6 +30,16 @@ export const QMETA: Record<string, any> = {
   'rikon-shuufuku-ng':             { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
   'rikon-kiridashita-gawa-koukai': { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
   'rikon-yori-modosu-kakuritsu':   { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
+  'rikon-bekkyo-nannen':           { phases: ['切り出された直後', '別居'], kanshin: ['手続き', '気持ち'], spouse_contact: true, route: 'rikon' },
+  'rikon-bekkyo-seikatsuhi':       { phases: ['別居'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-chichioya-shinken':       { phases: ['協議・調停中', '成立後'], kanshin: ['子ども', '手続き'], route: 'rikon' },
+  'rikon-yoikuhi-itsumade':        { phases: ['成立後'], kanshin: ['お金', '子ども'], route: 'rikon' },
+  'rikon-yoikuhi-harawarenai':     { phases: ['成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-zaisan-zeikin-shakkin':   { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-kiridasareru-otto-tokuchou': { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
+  'rikon-jibun-ga-warui':          { phases: ['切り出された直後'], kanshin: ['気持ち', '相談'] },
+  'rikon-tsuma-rikon-sign':        { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
+  'rikon-kodomo-eikyou':           { phases: ['切り出された直後', '成立後'], kanshin: ['子ども', '気持ち'] },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）
