@@ -25,6 +25,10 @@ export const QMETA: Record<string, any> = {
   'rikon-kyouyu-kouza-ugokasu':    { phases: ['切り出された直後', '別居'], kanshin: ['お金'] },
   'rikon-kiridasareta-atama-masshiro': { phases: ['切り出された直後'], kanshin: ['気持ち'] },
   'rikon-nemurenai-byoin':         { phases: ['切り出された直後'], kanshin: ['気持ち'] },
+  'rikon-kiridasareta-mazu-nani':  { phases: ['切り出された直後'], kanshin: ['気持ち', '相談'] },
+  'rikon-shuufuku-ng':             { phases: ['切り出された直後'], kanshin: ['気持ち'], route: 'fukuen' },
+  'rikon-kiridashita-gawa-koukai': { phases: ['切り出された直後'], kanshin: ['気持ち'], route: 'fukuen' },
+  'rikon-yori-modosu-kakuritsu':   { phases: ['切り出された直後'], kanshin: ['気持ち'], route: 'fukuen' },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）
