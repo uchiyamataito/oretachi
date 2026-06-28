@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 348" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">親権の判断要素：主たる監護の実績・継続性・子の意思・生活の安定</title>
+  <rect width="700" height="348" fill="#ffffff"/>
+  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">何で決まる？　基準は「子の利益」</text>
+
+  <!-- card1 主たる監護（最重要） -->
+  <rect x="36" y="66" width="306" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <text x="56" y="96" font-size="16.5" font-weight="700" fill="#3a9b6e">① 主たる監護の実績</text>
+  <text x="56" y="122" font-size="13.5" fill="#33433a">食事・送り迎え・通院・寝かしつけ</text>
+  <text x="56" y="144" font-size="13.5" fill="#33433a">など日々の積み重ね。</text>
+  <text x="56" y="164" font-size="13" font-weight="700" fill="#3a9b6e">＝ここがいちばん重い</text>
+
+  <!-- card2 継続性 -->
+  <rect x="358" y="66" width="306" height="120" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
+  <text x="378" y="96" font-size="16.5" font-weight="700" fill="#2b3a5b">② 継続性</text>
+  <text x="378" y="122" font-size="13.5" fill="#33433a">今の生活・学校・友人関係を</text>
+  <text x="378" y="144" font-size="13.5" fill="#33433a">維持できるか。環境を変えない</text>
+  <text x="378" y="164" font-size="13.5" fill="#33433a">方が子に良い、という見方。</text>
+
+  <!-- card3 子の意思 -->
+  <rect x="36" y="202" width="306" height="120" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
+  <text x="56" y="232" font-size="16.5" font-weight="700" fill="#2b3a5b">③ 子の意思</text>
+  <text x="56" y="258" font-size="13.5" fill="#33433a">年齢が上がるほど尊重される</text>
+  <text x="56" y="280" font-size="13.5" fill="#33433a">（特に15歳以上は手続きで</text>
+  <text x="56" y="300" font-size="13.5" fill="#33433a">意見が聴かれる）。</text>
+
+  <!-- card4 生活の安定 -->
+  <rect x="358" y="202" width="306" height="120" rx="14" fill="#fdf3e9" stroke="#f0d2b0"/>
+  <text x="378" y="232" font-size="16.5" font-weight="700" fill="#d98a3d">④ 生活の安定</text>
+  <text x="378" y="258" font-size="13.5" fill="#7a5a2e">住まい・収入・子と過ごせる</text>
+  <text x="378" y="280" font-size="13.5" fill="#7a5a2e">時間・サポート。収入は多さ</text>
+  <text x="378" y="300" font-size="13.5" fill="#7a5a2e">より「安定して育てられるか」。</text>
+</svg>

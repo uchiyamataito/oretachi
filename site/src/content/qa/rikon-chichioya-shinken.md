@@ -3,7 +3,7 @@ question: "父親が親権を取れる確率・条件は？"
 description: "取れないわけではないが現実は母親が大半。決め手は『子の利益』＝主たる監護の実績と生活の安定。日頃の関わりが効く。"
 category: "子ども・手続き"
 tags: ["親権", "子ども", "手続き"]
-related_articles: ["rikon-dansei-soudansaki"]
+related_articles: ["rikon-shinken-chichioya", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-kodomo-eikyou", "rikon-kodomo-setsumei"]
 author: "オレタチ編集部"
 published: "2026-06-28"
