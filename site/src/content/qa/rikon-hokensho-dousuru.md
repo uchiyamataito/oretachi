@@ -1,12 +1,12 @@
 ---
 question: "離婚したら、健康保険証ってどうなるんだ？"
-description: "あなたの立場で変わる。会社員なら基本そのまま、扶養だったなら14日以内に切替。要点だけ先に。"
+description: "立場で変わる。会社員本人なら資格は基本そのまま、配偶者の扶養だったなら14日以内に国保へ切替が必要だ。"
 category: "お金と手続き"
 tags: ["健康保険", "手続き"]
 related_articles: ["rikon-kenkohoken-tetsuzuki"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-hokensho-dousuru"
 disclaimer: "一般的な手続き情報です。最新の正確な情報は各窓口でご確認ください。"
 ---

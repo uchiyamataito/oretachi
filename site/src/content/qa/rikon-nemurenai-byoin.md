@@ -1,13 +1,13 @@
 ---
 question: "離婚を切り出されてから眠れない・食べられない。病院に行くべきか？"
-description: "つらさが続くなら、行っていい。むしろ頼っていい。受診を考える目安と、今すぐ使える相談先をまとめた。"
+description: "つらさが続くなら心療内科・精神科に行っていい。消えたい気持ちがあるなら、2週間を待たず今すぐ相談を。"
 category: "気持ち"
 tags: ["気持ち", "心のケア", "相談窓口"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi"]
 related_qa: ["rikon-kiridasareta-atama-masshiro"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-nemurenai-byoin"
 disclaimer: "一般的な情報であり、医療行為ではありません。つらさが強い時は医療機関・相談窓口へ。"
 ---

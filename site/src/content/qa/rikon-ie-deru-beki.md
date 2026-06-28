@@ -1,12 +1,12 @@
 ---
 question: "離婚を切り出された。気まずいから、とりあえず家を出た方がいいか？"
-description: "勢いで出るのは待ってくれ。別居は生活費・財産・子どもの話に影響しうる。ただし身の危険や限界が近いなら安全確保が最優先。判断の分かれ目を整理。"
+description: "勢いで出るのは待て。別居は生活費・財産・子どもの話に影響しうる。ただし身の危険や限界が近いなら安全確保が最優先だ。"
 category: "生活"
 tags: ["生活", "別居", "初動"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-ie-deru-beki"
 disclaimer: "一般的な情報です。別居・住まいの判断は状況により影響が大きいため、迷う時は弁護士へ。"
 ---

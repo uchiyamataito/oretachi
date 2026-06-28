@@ -1,12 +1,12 @@
 ---
 question: "離婚するかもしれない。子どもにはどう説明すればいい？"
-description: "まだ決まっていないなら、今すぐ詳しく話さなくていい。子に不安を背負わせない伝え方と、そのまま使える一言。やりがちなNGも。"
+description: "離婚が未確定なら今すぐ詳しく話さなくていい。未確定の不安を子に背負わせず、普段どおり接するのが今いちばんの説明になる。"
 category: "子ども"
 tags: ["子ども", "気持ち", "コミュニケーション"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kodomo-setsumei"
 disclaimer: "一般的な情報です。親権・面会交流など法的な取り決めは弁護士へご相談ください。"
 ---

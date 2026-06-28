@@ -1,13 +1,13 @@
 ---
 question: "離婚を切り出された。理由を問い詰めて、はっきりさせるべきか？"
-description: "今は問い詰めない方が得策。興奮状態の追及は口論を生み、後の話し合いで不利な言質にもなる。代わりの一手と、そのまま使える一言を紹介。"
+description: "今は問い詰めるな。興奮状態の追及は口論を生み、後の話し合いで不利な言質になりうる。一度だけ静かに伝え一晩おくのが得策だ。"
 category: "やってはいけない"
 tags: ["やってはいけない", "初動", "コミュニケーション"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-kiridasareta-atama-masshiro"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-riyuu-toitsumeru"
 disclaimer: "一般的な情報です。個別の対応に迷う時は弁護士など専門家へ。"
 ---

@@ -1,12 +1,12 @@
 ---
 question: "離婚を切り出されて、頭が真っ白。これって普通か？"
-description: "まったく普通だ。強い衝撃に対する心の防御反応で、多くの人が通る。結論と、今やるべき一手を説明する。"
+description: "まったく普通だ。頭が真っ白になるのは強い衝撃への心の防御反応。今すぐ重要な返事や決断をしないのが第一歩。"
 category: "気持ち"
 tags: ["ショック", "初動"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi"]
 author: "オレタチ編集部"
 published: "2026-06-25"
-updated: "2026-06-25"
+updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kiridasareta-atama-masshiro"
 disclaimer: "一般的な情報であり、医療行為ではありません。つらさが強い時は相談窓口・医療機関へ。"
 ---
