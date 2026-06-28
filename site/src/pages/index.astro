@@ -62,14 +62,15 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     </div>
   </div>
 
-  <script type="application/json" id="adata" set:html={JSON.stringify(adata)}></script>
-  <script type="application/json" id="qdata" set:html={JSON.stringify(qdata)}></script>
+  <script type="application/json" id="adata" set:html={JSON.stringify(adata).replace(/</g, '\\u003c')}></script>
+  <script type="application/json" id="qdata" set:html={JSON.stringify(qdata).replace(/</g, '\\u003c')}></script>
   <script>
     const KEY = 'oretachi_state';
     const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
     const A = JSON.parse(document.getElementById('adata')?.textContent || '[]');
     const Q = JSON.parse(document.getElementById('qdata')?.textContent || '[]');
-    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const safeUrl = (u) => { const s = String(u == null ? '' : u); return /^(https?:|\/|#|mailto:)/i.test(s) ? s : '#'; };
 
     // ===== オンボ設問（24§1） =====
     const QUESTIONS = [
@@ -174,11 +175,11 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     }
 
     // ====== レンダリング ======
-    const acard = (a) => `<a class="rcard" href="/${a.slug}"><div class="rthumb">${a.img ? `<img src="${esc(a.img)}" alt="${esc(a.title)}" loading="lazy">` : '<span class="thumb-ph" aria-hidden="true"></span>'}</div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
-    const qcard = (x) => { const cat = (x.kanshin && x.kanshin[0]) || '相談'; return `<a class="qcard" href="/qa/${x.slug}" data-cat="${esc(cat)}"><span class="qcat">${esc(cat)}</span><div class="qq">Q. ${esc(x.q)}</div><span class="qa">${esc(x.d)}</span><i class="ti ti-chevron-right qgo" aria-hidden="true"></i></a>`; };
+    const acard = (a) => `<a class="rcard" href="${esc(safeUrl('/' + a.slug))}"><div class="rthumb">${a.img ? `<img src="${esc(safeUrl(a.img))}" alt="${esc(a.title)}" loading="lazy">` : '<span class="thumb-ph" aria-hidden="true"></span>'}</div><div class="rb"><span class="rtag">${esc(a.tag)}</span><div class="rt">${esc(a.title)}</div></div></a>`;
+    const qcard = (x) => { const cat = (x.kanshin && x.kanshin[0]) || '相談'; return `<a class="qcard" href="${esc(safeUrl('/qa/' + x.slug))}" data-cat="${esc(cat)}"><span class="qcat">${esc(cat)}</span><div class="qq">Q. ${esc(x.q)}</div><span class="qa">${esc(x.d)}</span><i class="ti ti-chevron-right qgo" aria-hidden="true"></i></a>`; };
     const railA = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(acard).join('')}</div></section>` : '';
     const railQ = (t, note, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2>${note ? `<span class="rh-note">${esc(note)}</span>` : ''}</div><div class="rail-scroller">${items.map(qcard).join('')}</div></section>` : '';
-    const railRank = (t, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="/${a.slug}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
+    const railRank = (t, items) => items.length ? `<section class="rail"><div class="rail-head"><h2>${esc(t)}</h2><span class="rh-note">いま読まれている順</span></div><div class="rank-ol">${items.map((a, i) => `<a class="rank-item ${i === 0 ? 'top' : ''}" href="${esc(safeUrl('/' + a.slug))}"><span class="rt">${esc(a.title)}</span></a>`).join('')}</div></section>` : '';
 
     function renderMypage(st) {
       document.getElementById('emptyhero').style.display = 'none';
@@ -207,7 +208,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
           const dkey = `${p.name}|${t.l}`;
           const done = doneSet.has(dkey);
           const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
-          return `<div class="todo${done ? ' done2' : ''}${kind}"><button class="tk" type="button" data-dk="${esc(dkey)}" aria-label="完了の切り替え"></button><a class="tlink" href="${esc(t.h)}"><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a></div>`;
+          return `<div class="todo${done ? ' done2' : ''}${kind}"><button class="tk" type="button" data-dk="${esc(dkey)}" aria-label="完了の切り替え"></button><a class="tlink" href="${esc(safeUrl(t.h))}"><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a></div>`;
         }).join('');
         return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');

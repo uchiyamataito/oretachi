@@ -87,7 +87,7 @@ const sidx = all.map((a) => ({
   <p class="empty-msg" id="empty" hidden>条件に合う記事がなかった。条件を少し緩めてみてくれ。</p>
   </div>
 
-  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx)}></script>
+  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx).replace(/</g, '\\u003c')}></script>
   <script>
     import { initBrowse } from '../scripts/browse.js';
     initBrowse('.card');
