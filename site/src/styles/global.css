@@ -353,6 +353,9 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .jph-now{font-size:10px;font-weight:700;background:var(--coral);color:#fff;border-radius:6px;padding:1px 8px}
 .home .jph-cv{margin-left:auto;color:var(--faint);font-size:18px;transition:.2s}
 .home .jph.open .jph-cv{transform:rotate(180deg)}
+.home .jph-cv.cue{animation:jphCue 1.2s ease-in-out 5}
+@keyframes jphCue{0%,100%{color:var(--faint);opacity:.6}50%{color:var(--coral);opacity:1}}
+@media (prefers-reduced-motion:reduce){.home .jph-cv.cue{animation:none}}
 .home .jph-desc{font-size:12px;color:var(--muted);margin:3px 0 0}
 .home .jph-body{margin-top:12px;display:none}
 .home .jph.open .jph-body{display:block}

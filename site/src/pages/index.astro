@@ -198,7 +198,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       if (ci < 0) ci = 0;
       const visited = new Set(st.history || []);
       const phaseHtml = phases.map((p, i) => {
-        const cls = i < ci ? 'done' : (i === ci ? 'current open' : 'future');
+        const cls = i < ci ? 'done' : (i === ci ? 'current' : 'future');
         let todos = (p.todos || []).filter((t) => !t.cond || (t.cond === 'kids' && st.kids === 'minor') || (t.cond === 'dispute' && (st.trouble === 'dispute' || st.trouble === 'danger')));
         // 危険時は安全を最上部に
         if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki#危機のときは迷わずここへ命が最優先', kind: 'safe' }, ...todos];
@@ -209,11 +209,11 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
           const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
           return `<div class="todo${done ? ' done2' : ''}${kind}"><button class="tk" type="button" data-dk="${esc(dkey)}" aria-label="完了の切り替え"></button><a class="tlink" href="${esc(t.h)}"><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a></div>`;
         }).join('');
-        return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
+        return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
-        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">今いるフェーズだけ開いてある。前後はタップで開けるぞ。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
-      document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => b.closest('.jph').classList.toggle('open')));
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">各フェーズはタップで開けるぞ。まずは「今ここ」から。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
+      document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => { b.closest('.jph').classList.toggle('open'); const cv = b.querySelector('.jph-cv'); if (cv) cv.classList.remove('cue'); }));
       // 手動チェック（閲覧≠完了。本人がON/OFF。記事リンクには遷移しない）
       document.querySelectorAll('#journey-slot .todo .tk').forEach((b) => b.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
