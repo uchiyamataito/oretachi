@@ -351,7 +351,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .jph-nm{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15.5px;color:var(--navy)}
 .home .jph.future .jph-nm{color:var(--faint);font-weight:500}
 .home .jph-now{font-size:10px;font-weight:700;background:var(--coral);color:#fff;border-radius:6px;padding:1px 8px}
-.home .jph-cv{margin-left:auto;color:var(--faint);font-size:18px;transition:.2s}
+.home .jph-cv{margin-left:auto;color:var(--faint);font-size:18px;line-height:1;display:inline-flex;align-items:center;justify-content:center;transition:.2s}
 .home .jph.open .jph-cv{transform:rotate(180deg)}
 .home .jph-cv.cue{position:relative}
 .home .jph-cv.cue::after{content:'';position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2px solid var(--coral);opacity:0;pointer-events:none;animation:jphRing 1.4s ease-out 5}
