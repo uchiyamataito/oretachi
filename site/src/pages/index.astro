@@ -84,8 +84,9 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         // 表示ラベルのみ差し替える。未定義フェーズは既定optsにフォールバックするため、将来のフェーズ追加でも壊れない。
         optsByPhase: {
           '成立後': [
-            { v: 'rikon', t: '前を向いて再出発したい' }, { v: 'fukuen', t: 'やり直せるなら、やり直したい' }, { v: 'mitei', t: '気持ちの整理が、まだつかない' } ] },
-        } },
+            { v: 'rikon', t: '前を向いて再出発したい' }, { v: 'fukuen', t: 'やり直せるなら、やり直したい' }, { v: 'mitei', t: '気持ちの整理が、まだつかない' } ],
+        },
+      },
       { id: 'kids', h: '子どもはいるか？', s: '', multi: false, opts: [
         { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
       { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false, opts: [
