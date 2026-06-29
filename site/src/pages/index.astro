@@ -247,7 +247,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         } else if (i < phases.length - 1 && allDone) {
           actHtml = `<div class="jph-advance-wrap"><span class="jph-advance-msg">この段階は一通り済んだな。</span><button class="jph-advance" type="button" data-key="${esc(phases[i + 1].key)}"><i class="ti ti-arrow-down" aria-hidden="true"></i>「${esc(phases[i + 1].name)}」へ進む</button></div>`;
         }
-        return `<div class="jph ${cls}${openCls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}${actHtml}</div></div></div>`;
+        return `<div class="jph ${cls}${openCls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div>${actHtml}<div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
         `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">各フェーズはタップで開けるぞ。まずは「今ここ」から。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
