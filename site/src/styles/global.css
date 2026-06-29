@@ -377,6 +377,16 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .todo.coming .ci{flex:none;color:var(--faint);font-size:16px}
 .home .todo.coming .tt{color:var(--faint);font-weight:500}
 .home .todo .cm{font-size:10px;color:var(--faint);margin-left:6px;font-weight:700}
+/* 現在地の操作（ここにする／次へ進む） */
+.home .jph-setcur,.home .jph-advance{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:8px 14px;cursor:pointer;line-height:1;min-height:34px}
+.home .jph-setcur{margin-top:3px;color:var(--muted);background:#fff;border:1px solid var(--line2)}
+.home .jph-setcur:hover{border-color:var(--coral);color:var(--coral)}
+.home .jph-setcur i{font-size:15px}
+.home .jph-advance-wrap{margin-top:10px;padding-top:12px;border-top:1px dashed var(--line2);display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.home .jph-advance-msg{font-size:12px;color:var(--muted)}
+.home .jph-advance{color:#fff;background:var(--coral);border:1px solid var(--coral)}
+.home .jph-advance:hover{filter:brightness(.96)}
+.home .jph-advance i{font-size:15px}
 /* 凡例（色の意味） */
 .home .jrny .legend{display:flex;gap:16px;margin:2px 0 14px;font-size:11px;color:var(--muted)}
 .home .leg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:0}

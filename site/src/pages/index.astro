@@ -77,8 +77,15 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       { id: 'phase', h: '今、お前はどの段階にいる？', s: 'まずは現在地を教えてくれ。', multi: false, opts: [
         { v: '切り出された直後', t: '妻に切り出されたばかり' }, { v: '別居', t: '別居中／別居を考えている' },
         { v: '協議・調停中', t: '協議・調停を進めている' }, { v: '成立後', t: 'もう離婚は成立した' } ] },
-      { id: 'route', h: 'これからの気持ちに、近いのは？', s: 'この答えで、出す情報を変える。', multi: false, opts: [
-        { v: 'fukuen', t: 'まだ別れたくない・やり直したい' }, { v: 'rikon', t: '離婚に向けて進めたい' }, { v: 'mitei', t: 'まだ決められない' } ] },
+      { id: 'route', h: 'これからの気持ちに、近いのは？', s: 'この答えで、出す情報を変える。', multi: false,
+        opts: [
+          { v: 'fukuen', t: 'まだ別れたくない・やり直したい' }, { v: 'rikon', t: '離婚に向けて進めたい' }, { v: 'mitei', t: 'まだ決められない' } ],
+        // フェーズ別の文言出し分け。route値（fukuen/rikon/mitei）は不変＝下流ロジック（時系列・レコメンド）に無影響。
+        // 表示ラベルのみ差し替える。未定義フェーズは既定optsにフォールバックするため、将来のフェーズ追加でも壊れない。
+        optsByPhase: {
+          '成立後': [
+            { v: 'rikon', t: '前を向いて再出発したい' }, { v: 'fukuen', t: 'やり直せるなら、やり直したい' }, { v: 'mitei', t: '気持ちの整理が、まだつかない' } ] },
+        } },
       { id: 'kids', h: '子どもはいるか？', s: '', multi: false, opts: [
         { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
       { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false, opts: [
@@ -145,7 +152,9 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       dotsEl.innerHTML = QUESTIONS.map((_, i) => `<span class="${i <= idx ? 'on' : ''}"></span>`).join('');
       const q = QUESTIONS[idx];
       const sel = answers[q.id];
-      const opts = q.opts.map((o) => {
+      // フェーズ別の選択肢出し分け（route等）。該当なければ既定opts。
+      const qOpts = (q.optsByPhase && q.optsByPhase[answers.phase]) || q.opts;
+      const opts = qOpts.map((o) => {
         const on = q.multi ? (sel || []).includes(o.v) : sel === o.v;
         return `<button class="opt ${on ? 'sel' : ''}" data-v="${esc(o.v)}">${esc(o.t)}<i class="ti ti-check ck"></i></button>`;
       }).join('');
@@ -194,7 +203,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         return show;
       } catch (e) { return true; }
     }
-    function renderMypage(st) {
+    function renderMypage(st, openKey) {
       document.getElementById('emptyhero').style.display = 'none';
       const railsEl = document.getElementById('rails');
       st.done = st.done || [];                 // 手動チェック（本人が完了をON/OFF）
@@ -210,10 +219,14 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       const phases = fukuen ? PH_FUKUEN : PH_RIKON;
       let ci = fukuen ? (st.phase === '切り出された直後' ? 0 : 1) : Math.max(0, phases.findIndex((p) => p.key === st.phase));
       if (ci < 0) ci = 0;
+      // 手動の現在地オーバーライド（curKey）。本人がタップで「今ここ」を移動できる。
+      // トラック（離婚/復縁）に存在するキーのみ採用。無効なら従来のphase由来にフォールバック。
+      if (st.curKey) { const k = phases.findIndex((p) => p.key === st.curKey); if (k >= 0) ci = k; }
       const visited = new Set(st.history || []);
       const showCue = shouldCueNow();
       const phaseHtml = phases.map((p, i) => {
         const cls = i < ci ? 'done' : (i === ci ? 'current' : 'future');
+        const openCls = (openKey && p.key === openKey) ? ' open' : '';
         let todos = (p.todos || []).filter((t) => !t.cond || (t.cond === 'kids' && st.kids === 'minor') || (t.cond === 'dispute' && (st.trouble === 'dispute' || st.trouble === 'danger')));
         // 危険時は安全を最上部に
         if (i === ci && st.trouble === 'danger') todos = [{ l: 'まず身の安全を｜DV相談プラス 0120-279-889（24時間）', h: '/rikon-dansei-soudansaki#危機のときは迷わずここへ命が最優先', kind: 'safe' }, ...todos];
@@ -224,7 +237,16 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
           const kind = t.kind === 'safe' ? ' safe' : (t.kind === 'legal' ? ' legal' : '');
           return `<div class="todo${done ? ' done2' : ''}${kind}"><button class="tk" type="button" data-dk="${esc(dkey)}" aria-label="完了の切り替え"></button><a class="tlink" href="${esc(safeUrl(t.h))}"><span class="tt">${esc(t.l)}</span><i class="ti ti-chevron-right tg"></i></a></div>`;
         }).join('');
-        return `<div class="jph ${cls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}</div></div></div>`;
+        // 現在地の操作：他フェーズ＝「ここを今ここにする」／現フェーズで全完了＝「次へ進む」をやさしく提案
+        const realTodos = todos.filter((t) => !t.coming);
+        const allDone = realTodos.length > 0 && realTodos.every((t) => doneSet.has(`${p.name}|${t.l}`));
+        let actHtml = '';
+        if (i !== ci) {
+          actHtml = `<button class="jph-setcur" type="button" data-key="${esc(p.key)}"><i class="ti ti-map-pin" aria-hidden="true"></i>ここを「今ここ」にする</button>`;
+        } else if (i < phases.length - 1 && allDone) {
+          actHtml = `<div class="jph-advance-wrap"><span class="jph-advance-msg">この段階は一通り済んだな。</span><button class="jph-advance" type="button" data-key="${esc(phases[i + 1].key)}"><i class="ti ti-arrow-down" aria-hidden="true"></i>「${esc(phases[i + 1].name)}」へ進む</button></div>`;
+        }
+        return `<div class="jph ${cls}${openCls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div><div class="jph-body">${todoHtml}${actHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
         `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">各フェーズはタップで開けるぞ。まずは「今ここ」から。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
@@ -237,6 +259,13 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         st.done = [...doneSet];
         localStorage.setItem(KEY, JSON.stringify(st));
         b.closest('.todo').classList.toggle('done2');
+      }));
+      // 「今ここ」を手動で移動（ここにする／次へ進む）。移動先フェーズを開いた状態で再描画。
+      document.querySelectorAll('#journey-slot .jph-setcur, #journey-slot .jph-advance').forEach((b) => b.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        st.curKey = b.getAttribute('data-key');
+        localStorage.setItem(KEY, JSON.stringify(st));
+        renderMypage(st, st.curKey);
       }));
 
       // レコメンド（重複なし：記事プール／Q&Aプールで別管理）
