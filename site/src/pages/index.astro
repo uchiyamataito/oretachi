@@ -83,14 +83,23 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         // フェーズ別の文言出し分け。route値（fukuen/rikon/mitei）は不変＝下流ロジック（時系列・レコメンド）に無影響。
         // 表示ラベルのみ差し替える。未定義フェーズは既定optsにフォールバックするため、将来のフェーズ追加でも壊れない。
         optsByPhase: {
+          // 成立後は復縁トラック（fukuen）に入ると時系列が破綻するため、再出発/整理の2択に絞る。
           '成立後': [
-            { v: 'rikon', t: '前を向いて再出発したい' }, { v: 'fukuen', t: 'やり直せるなら、やり直したい' }, { v: 'mitei', t: '気持ちの整理が、まだつかない' } ],
+            { v: 'rikon', t: '前を向いて再出発したい' }, { v: 'mitei', t: '気持ちの整理が、まだつかない' } ],
         },
       },
       { id: 'kids', h: '子どもはいるか？', s: '', multi: false, opts: [
         { v: 'minor', t: '未成年の子がいる' }, { v: 'adult', t: '成人の子のみ' }, { v: 'none', t: 'いない' } ] },
-      { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false, opts: [
-        { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' }, { v: 'unknown', t: 'まだ、どうなるか分からない' } ] },
+      { id: 'trouble', h: '今の話し合いの状況は？', s: 'お前の安全と緊急度を確かめるためだけに使う。', multi: false,
+        opts: [
+          { v: 'calm', t: 'まだ／円満に進みそう' }, { v: 'dispute', t: '揉めている・相手が弁護士を立てた' }, { v: 'danger', t: '暴力など、身の危険がある' }, { v: 'unknown', t: 'まだ、どうなるか分からない' } ],
+        // 成立後は「話し合い」終了前提に合わせ、見出し・選択肢を離婚後の文脈に出し分け（値calm/dispute/danger/unknownは不変）。
+        hByPhase: { '成立後': '離婚後、相手とのやり取りは？' },
+        optsByPhase: {
+          '成立後': [
+            { v: 'calm', t: '落ち着いている／連絡はほぼない' }, { v: 'dispute', t: '養育費・面会などで揉めている' }, { v: 'danger', t: '暴力・つきまといなど、身の危険がある' }, { v: 'unknown', t: 'まだ、どうなるか分からない' } ],
+        },
+      },
       { id: 'kanshin', h: '今、いちばん不安なのは？', s: 'いくつ選んでもいい。', multi: true, opts: [
         { v: 'お金', t: 'お金・財産' }, { v: '手続き', t: '各種手続き' }, { v: '気持ち', t: '気持ち・メンタル' }, { v: '子ども', t: '子どものこと' }, { v: '相談', t: '相談相手がいない' } ] },
     ];
@@ -153,7 +162,8 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       dotsEl.innerHTML = QUESTIONS.map((_, i) => `<span class="${i <= idx ? 'on' : ''}"></span>`).join('');
       const q = QUESTIONS[idx];
       const sel = answers[q.id];
-      // フェーズ別の選択肢出し分け（route等）。該当なければ既定opts。
+      // フェーズ別の出し分け（見出し・選択肢）。該当なければ既定値にフォールバック。
+      const qH = (q.hByPhase && q.hByPhase[answers.phase]) || q.h;
       const qOpts = (q.optsByPhase && q.optsByPhase[answers.phase]) || q.opts;
       const opts = qOpts.map((o) => {
         const on = q.multi ? (sel || []).includes(o.v) : sel === o.v;
@@ -161,7 +171,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       }).join('');
       const isLast = idx === QUESTIONS.length - 1;
       qWrap.innerHTML =
-        `<div class="qh">${esc(q.h)}</div>${q.s ? `<div class="qs">${esc(q.s)}</div>` : ''}` +
+        `<div class="qh">${esc(qH)}</div>${q.s ? `<div class="qs">${esc(q.s)}</div>` : ''}` +
         `<div class="opts">${opts}</div>` +
         `<div class="nav">${idx > 0 ? '<button class="back" id="q-back">戻る</button>' : ''}<button class="next" id="q-next" ${(!q.multi && !sel) || (q.multi && !(sel && sel.length)) ? 'disabled' : ''}>${isLast ? 'これでつくる' : '次へ'}</button></div>` +
         (q.id === 'kanshin' || q.id === 'trouble' ? '' : `<button class="skip" id="q-skip">スキップ</button>`);
@@ -183,7 +193,19 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       };
       localStorage.setItem(KEY, JSON.stringify(st));
       try { sessionStorage.removeItem('oretachi_cue_sess'); localStorage.removeItem('oretachi_cue_last'); } catch (e) {}
-      closeModal(); renderMypage(st);
+      closeModal(); renderMypage(st); showDotTip();
+    }
+
+    // オンボ完了直後に1回だけ、「ドットで今ここを動かせる」ことを説明する小モーダル。
+    function showDotTip() {
+      try { if (localStorage.getItem('oretachi_tip_dot')) return; } catch (e) {}
+      const wrap = document.createElement('div');
+      wrap.className = 'dottip';
+      wrap.innerHTML = '<div class="dottip-card" role="dialog" aria-modal="true"><div class="dottip-t">現在地は、あとから動かせる</div><div class="dottip-d">状況が進んだら、時系列の左の<span class="dottip-dot"></span>（丸）をタップして「今ここ」を移してくれ。今のお前に合った“やること”に並び替わる。</div><button class="dottip-ok" type="button">わかった</button></div>';
+      document.body.appendChild(wrap);
+      const close = () => { try { localStorage.setItem('oretachi_tip_dot', '1'); } catch (e) {} wrap.remove(); };
+      wrap.querySelector('.dottip-ok')?.addEventListener('click', close);
+      wrap.addEventListener('click', (e) => { if (e.target === wrap) close(); });
     }
 
     // ====== レンダリング ======
@@ -241,17 +263,23 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         // 現在地の操作：他フェーズ＝「ここを今ここにする」／現フェーズで全完了＝「次へ進む」をやさしく提案
         const realTodos = todos.filter((t) => !t.coming);
         const allDone = realTodos.length > 0 && realTodos.every((t) => doneSet.has(`${p.name}|${t.l}`));
+        // 現在地の切替は各フェーズのドット(jdot)タップで行う（下のハンドラ）。
+        // 現フェーズでtodoを全完了したときだけ、やさしく次へ進む提案を出す。
         let actHtml = '';
-        if (i !== ci) {
-          actHtml = `<button class="jph-setcur" type="button" data-key="${esc(p.key)}"><i class="ti ti-map-pin" aria-hidden="true"></i>ここを「今ここ」にする</button>`;
-        } else if (i < phases.length - 1 && allDone) {
+        if (i === ci && i < phases.length - 1 && allDone) {
           actHtml = `<div class="jph-advance-wrap"><span class="jph-advance-msg">この段階は一通り済んだな。</span><button class="jph-advance" type="button" data-key="${esc(phases[i + 1].key)}"><i class="ti ti-arrow-down" aria-hidden="true"></i>「${esc(phases[i + 1].name)}」へ進む</button></div>`;
         }
-        return `<div class="jph ${cls}${openCls}"><span class="jph-line"></span><span class="jdot"></span><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div>${actHtml}<div class="jph-body">${todoHtml}</div></div></div>`;
+        return `<div class="jph ${cls}${openCls}"><span class="jph-line"></span><button class="jdot" type="button" data-key="${esc(p.key)}" aria-label="「${esc(p.name)}」を今ここにする"></button><div class="jph-main"><button class="jph-head" data-i="${i}"><span class="jph-nm">${esc(p.name)}</span>${i === ci ? '<span class="jph-now">今ここ</span>' : ''}<i class="ti ti-chevron-down jph-cv${i === ci && showCue ? ' cue' : ''}"></i></button><div class="jph-desc">${esc(p.desc)}</div>${actHtml}<div class="jph-body">${todoHtml}</div></div></div>`;
       }).join('');
       document.getElementById('journey-slot').innerHTML =
-        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">各フェーズはタップで開けるぞ。まずは「今ここ」から。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
+        `<div class="journey jrny"><div class="jk"><i class="ti ti-route"></i>お前の時系列｜現在地と、やること</div><div class="jsub">各フェーズはタップで開ける。左の<span class="jsub-dot" aria-hidden="true"></span>をタップすると「今ここ」を動かせる。</div><div class="legend"><span><i class="leg-dot d-cur"></i>今ここ・要注意</span><span><i class="leg-dot d-done"></i>通過</span></div>${phaseHtml}</div>`;
       document.querySelectorAll('#journey-slot .jph-head').forEach((b) => b.addEventListener('click', () => { b.closest('.jph').classList.toggle('open'); const cv = b.querySelector('.jph-cv'); if (cv) cv.classList.remove('cue'); }));
+      // ドット(jdot)タップで「今ここ」を切り替え。移動先を開いた状態で再描画。
+      document.querySelectorAll('#journey-slot .jdot').forEach((b) => b.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const k = b.getAttribute('data-key'); if (!k) return;
+        st.curKey = k; localStorage.setItem(KEY, JSON.stringify(st)); renderMypage(st, k);
+      }));
       // 手動チェック（閲覧≠完了。本人がON/OFF。記事リンクには遷移しない）
       document.querySelectorAll('#journey-slot .todo .tk').forEach((b) => b.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();

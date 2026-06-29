@@ -377,16 +377,24 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .todo.coming .ci{flex:none;color:var(--faint);font-size:16px}
 .home .todo.coming .tt{color:var(--faint);font-weight:500}
 .home .todo .cm{font-size:10px;color:var(--faint);margin-left:6px;font-weight:700}
-/* 現在地の操作（ここにする／次へ進む） */
-.home .jph-setcur,.home .jph-advance{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:8px 14px;cursor:pointer;line-height:1;min-height:34px}
-.home .jph-setcur{margin-top:8px;color:var(--muted);background:#fff;border:1px solid var(--line2)}
-.home .jph-setcur:hover{border-color:var(--coral);color:var(--coral)}
-.home .jph-setcur i{font-size:15px}
-.home .jph-advance-wrap{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.home .jph-advance-msg{font-size:12px;color:var(--muted)}
-.home .jph-advance{color:#fff;background:var(--coral);border:1px solid var(--coral)}
+/* 次へ進む提案（現フェーズ全完了時のみ） */
+.home .jph-advance{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:8px 14px;cursor:pointer;line-height:1;min-height:34px;color:#fff;background:var(--coral);border:1px solid var(--coral)}
 .home .jph-advance:hover{filter:brightness(.96)}
 .home .jph-advance i{font-size:15px}
+.home .jph-advance-wrap{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.home .jph-advance-msg{font-size:12px;color:var(--muted)}
+/* ドット＝現在地切替ボタン */
+.home button.jdot{cursor:pointer;padding:0;appearance:none;-webkit-appearance:none;transition:transform .12s}
+.home button.jdot::before{content:'';position:absolute;inset:-9px;border-radius:50%}
+.home button.jdot:hover{transform:scale(1.14)}
+.home .jsub-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#D8CEBE;box-shadow:0 0 0 1px var(--line2);vertical-align:-1px;margin:0 3px}
+/* オンボ完了の1回モーダル（ドット説明） */
+.dottip{position:fixed;inset:0;background:rgba(21,35,58,.45);display:flex;align-items:center;justify-content:center;z-index:200;padding:24px}
+.dottip-card{background:#fff;border-radius:18px;max-width:340px;width:100%;padding:22px 20px;box-shadow:0 20px 50px -20px rgba(21,35,58,.6)}
+.dottip-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;color:var(--navy);margin-bottom:8px}
+.dottip-d{font-size:13px;color:var(--ink);line-height:1.7}
+.dottip-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--coral);vertical-align:-1px;margin:0 2px}
+.dottip-ok{margin-top:16px;width:100%;background:var(--coral);color:#fff;border:none;border-radius:999px;padding:11px;font-weight:700;font-size:14px;cursor:pointer}
 /* 凡例（色の意味） */
 .home .jrny .legend{display:flex;gap:16px;margin:2px 0 14px;font-size:11px;color:var(--muted)}
 .home .leg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:0}
