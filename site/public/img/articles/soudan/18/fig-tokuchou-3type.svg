@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 324" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">妻が離婚を切り出す夫によくある3つの型。どれも「悪気はなかった」が共通する</title>
+  <rect width="700" height="324" fill="#ffffff"/>
+  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">よく見る「特徴」は、この3つの型</text>
+
+  <!-- card 1 -->
+  <rect x="28" y="66" width="206" height="182" rx="14" fill="#f3f6fb" stroke="#cdd8ea"/>
+  <circle cx="131" cy="100" r="17" fill="#3a9b6e"/>
+  <text x="131" y="107" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="131" y="136" font-size="14.5" font-weight="700" fill="#2b3a5b" text-anchor="middle">気づけなかった型</text>
+  <text x="44" y="164" font-size="11.5" fill="#33433a">家事・育児の負担が、</text>
+  <text x="44" y="184" font-size="11.5" fill="#33433a">知らないうちに妻へ偏る。</text>
+  <text x="44" y="204" font-size="11.5" fill="#33433a">「手伝っている」つもりが、</text>
+  <text x="44" y="224" font-size="11.5" fill="#33433a">妻は「私が全部回してる」。</text>
+
+  <!-- card 2 -->
+  <rect x="247" y="66" width="206" height="182" rx="14" fill="#f3f6fb" stroke="#cdd8ea"/>
+  <circle cx="350" cy="100" r="17" fill="#3a9b6e"/>
+  <text x="350" y="107" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="350" y="136" font-size="14.5" font-weight="700" fill="#2b3a5b" text-anchor="middle">受け止めそびれ型</text>
+  <text x="263" y="164" font-size="11.5" fill="#33433a">妻の不満を、受け止め</text>
+  <text x="263" y="184" font-size="11.5" fill="#33433a">そびれていた。「それくらい」</text>
+  <text x="263" y="204" font-size="11.5" fill="#33433a">「こうすれば」と返して、</text>
+  <text x="263" y="224" font-size="11.5" fill="#33433a">“分かってもらえない”が積もる。</text>
+
+  <!-- card 3 -->
+  <rect x="466" y="66" width="206" height="182" rx="14" fill="#f3f6fb" stroke="#cdd8ea"/>
+  <circle cx="569" cy="100" r="17" fill="#3a9b6e"/>
+  <text x="569" y="107" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="569" y="136" font-size="14.5" font-weight="700" fill="#2b3a5b" text-anchor="middle">安心を渡せなかった型</text>
+  <text x="482" y="164" font-size="11.5" fill="#33433a">お金の不安や、責められると</text>
+  <text x="482" y="184" font-size="11.5" fill="#33433a">感じる日々。強い口調や</text>
+  <text x="482" y="204" font-size="11.5" fill="#33433a">無関心。小さく見えても、</text>
+  <text x="482" y="224" font-size="11.5" fill="#33433a">積み重なっていく。</text>
+
+  <!-- bottom band -->
+  <rect x="28" y="264" width="644" height="48" rx="12" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <text x="350" y="287" font-size="15" font-weight="700" fill="#3a9b6e" text-anchor="middle">共通するのは「悪気はなかった」こと。</text>
+  <text x="350" y="305" font-size="12.5" fill="#33433a" text-anchor="middle">性格やハズレの話じゃない。気づけなかっただけ――そして、今から変えられる。</text>
+</svg>

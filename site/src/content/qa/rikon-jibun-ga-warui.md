@@ -3,7 +3,7 @@ question: "「離婚したくない、自分が悪いんだ」と責めてしま
 description: "自分を責めても解決しないし、過度な自責は心の限界のサインのことも。反省と自罰は別。つらければ頼っていい。"
 category: "気持ち・整理"
 tags: ["気持ち", "メンタル", "相談"]
-related_articles: ["rikon-dansei-soudansaki", "rikon-saishuppatsu"]
+related_articles: ["rikon-koukai", "rikon-dansei-soudansaki", "rikon-saishuppatsu"]
 related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-nemurenai-byoin"]
 author: "オレタチ編集部"
 published: "2026-06-28"

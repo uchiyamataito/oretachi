@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">気持ちが離れていく段階。不満を言う（まだ期待あり）から、あきらめ、無関心（赤信号）へ。ただし無関心＝手遅れとは限らない</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="42" font-size="20" font-weight="700" fill="#2b3a5b">いちばんの赤信号は、怒りより「無関心」</text>
+
+  <!-- stage 1 -->
+  <rect x="28" y="78" width="186" height="118" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
+  <text x="121" y="108" font-size="15" font-weight="700" fill="#3a9b6e" text-anchor="middle">① 不満を言う</text>
+  <text x="121" y="140" font-size="12.5" fill="#33433a" text-anchor="middle">責めてくる・ぶつかる。</text>
+  <text x="121" y="160" font-size="12.5" fill="#33433a" text-anchor="middle">つらいが、まだ</text>
+  <text x="121" y="180" font-size="13" font-weight="700" fill="#3a9b6e" text-anchor="middle">「変わってほしい」</text>
+
+  <!-- arrow -->
+  <path d="M222 137 l22 0 m-8 -7 l8 7 -8 7" fill="none" stroke="#9aa6b8" stroke-width="2.5"/>
+
+  <!-- stage 2 -->
+  <rect x="254" y="78" width="186" height="118" rx="14" fill="#fdf3e7" stroke="#eccfa6"/>
+  <text x="347" y="108" font-size="15" font-weight="700" fill="#d98a3d" text-anchor="middle">② あきらめ</text>
+  <text x="347" y="140" font-size="12.5" fill="#33433a" text-anchor="middle">言っても無駄だと感じ、</text>
+  <text x="347" y="160" font-size="12.5" fill="#33433a" text-anchor="middle">不満を口にしなく</text>
+  <text x="347" y="180" font-size="12.5" fill="#33433a" text-anchor="middle">なっていく。</text>
+
+  <!-- arrow -->
+  <path d="M448 137 l22 0 m-8 -7 l8 7 -8 7" fill="none" stroke="#9aa6b8" stroke-width="2.5"/>
+
+  <!-- stage 3 -->
+  <rect x="480" y="78" width="192" height="118" rx="14" fill="#fbecec" stroke="#e6b3b3"/>
+  <text x="576" y="108" font-size="15" font-weight="700" fill="#c0392b" text-anchor="middle">③ 無関心（赤信号）</text>
+  <text x="576" y="140" font-size="12.5" fill="#33433a" text-anchor="middle">会話が事務的に。予定を</text>
+  <text x="576" y="160" font-size="12.5" fill="#33433a" text-anchor="middle">共有しない。淡々と</text>
+  <text x="576" y="180" font-size="12.5" fill="#33433a" text-anchor="middle">距離を取る。</text>
+
+  <!-- note -->
+  <rect x="28" y="216" width="644" height="62" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="350" y="240" font-size="13.5" font-weight="700" fill="#2b3a5b" text-anchor="middle">ただし「無関心＝もう手遅れ」とは限らない。</text>
+  <text x="350" y="262" font-size="12.5" fill="#33433a" text-anchor="middle">疲れて一時的に心を閉じている場合もある。サインは判定の道具じゃなく、自分が落ち着くための目安だ。</text>
+</svg>

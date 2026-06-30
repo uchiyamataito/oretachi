@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 290" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">立ち直りの波：最初がいちばんつらく、波がありながら少しずつ楽になっていく</title>
+  <rect width="700" height="290" fill="#ffffff"/>
+  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">つらさには、波と底がある</text>
+
+  <!-- axes -->
+  <line x1="70" y1="70" x2="70" y2="230" stroke="#aeb6c4" stroke-width="2"/>
+  <line x1="70" y1="230" x2="660" y2="230" stroke="#aeb6c4" stroke-width="2"/>
+  <text x="48" y="80" font-size="12" fill="#6b7280" text-anchor="end">楽</text>
+  <text x="48" y="226" font-size="12" fill="#6b7280" text-anchor="end">辛</text>
+
+  <!-- recovery curve: starts low (つらい), wavy, trending up -->
+  <path d="M90 212 C140 222 150 150 200 165 C245 178 250 120 300 138 C345 153 355 108 405 120 C450 131 470 95 520 104 C570 112 600 92 640 96" fill="none" stroke="#3a9b6e" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- markers -->
+  <circle cx="90" cy="212" r="6" fill="#e0664c"/>
+  <line x1="92" y1="150" x2="92" y2="205" stroke="#e0664c" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="86" y="142" font-size="12.5" font-weight="700" fill="#e0664c">今が一番つらい</text>
+  <circle cx="640" cy="96" r="6" fill="#3a9b6e"/>
+  <text x="636" y="86" font-size="12.5" font-weight="700" fill="#3a9b6e" text-anchor="end">時間とともに、楽に</text>
+
+  <text x="120" y="256" font-size="12" fill="#6b7280">数週間〜数か月</text>
+  <text x="640" y="256" font-size="12" fill="#6b7280" text-anchor="end">その後（波はあっても上向き）</text>
+  <text x="70" y="280" font-size="12.5" fill="#5b6677">※ずっと同じ深さで沈み続けるわけじゃない。多くの人が、波を繰り返しながら戻っていく。</text>
+</svg>

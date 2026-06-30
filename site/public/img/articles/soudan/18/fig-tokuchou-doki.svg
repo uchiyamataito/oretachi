@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">妻側の離婚申立て動機の割合（令和6年・2024年 司法統計）。性格が合わない38.3%が最多で、支え・安心に関わる項目が続く</title>
+  <rect width="700" height="360" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">妻側が挙げる「離婚したい理由」の割合</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">“支え・安心”に関わる項目が、上位に並ぶ（令和6年／複数選択可）</text>
+
+  <!-- 1 性格が合わない -->
+  <text x="36" y="96" font-size="13.5" font-weight="700" fill="#2b3a5b">性格が合わない</text>
+  <rect x="190" y="84" width="383" height="18" rx="4" fill="#2b3a5b"/>
+  <text x="581" y="98" font-size="13" font-weight="700" fill="#2b3a5b">38.3%</text>
+
+  <!-- 2 生活費を渡さない -->
+  <text x="36" y="134" font-size="13.5" font-weight="700" fill="#2b3a5b">生活費を渡さない</text>
+  <rect x="190" y="122" width="289" height="18" rx="4" fill="#d98a3d"/>
+  <text x="487" y="136" font-size="13" font-weight="700" fill="#c0793a">28.9%</text>
+
+  <!-- 3 精神的に虐待する -->
+  <text x="36" y="172" font-size="13.5" font-weight="700" fill="#2b3a5b">精神的に虐待する</text>
+  <rect x="190" y="160" width="262" height="18" rx="4" fill="#d98a3d"/>
+  <text x="460" y="174" font-size="13" font-weight="700" fill="#c0793a">26.2%</text>
+
+  <!-- 4 暴力を振るう -->
+  <text x="36" y="210" font-size="13.5" font-weight="700" fill="#2b3a5b">暴力を振るう</text>
+  <rect x="190" y="198" width="178" height="18" rx="4" fill="#c0793a"/>
+  <text x="376" y="212" font-size="13" font-weight="700" fill="#c0793a">17.8%</text>
+
+  <!-- 5 異性関係 -->
+  <text x="36" y="248" font-size="13.5" font-weight="700" fill="#2b3a5b">異性関係</text>
+  <rect x="190" y="236" width="133" height="18" rx="4" fill="#c0793a"/>
+  <text x="331" y="250" font-size="13" font-weight="700" fill="#c0793a">13.3%</text>
+
+  <!-- note box -->
+  <rect x="36" y="272" width="628" height="76" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="52" y="294" font-size="12" fill="#33433a">※ 裁判所「令和6年 司法統計年報（家事編）第19表 婚姻関係事件数―申立ての動機別」より、妻からの申立て。</text>
+  <text x="52" y="312" font-size="12" fill="#33433a">　申立件数に対する割合で、複数選択可のため合計は100%を超える。割合は年により変動する。</text>
+  <text x="52" y="330" font-size="12" fill="#33433a">　「いきなり」に見えても、相手の中では理由が積み重なっていることが多い。</text>
+</svg>

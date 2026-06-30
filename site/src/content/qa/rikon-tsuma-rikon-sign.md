@@ -3,7 +3,7 @@ question: "妻が離婚したいサイン・理由が分からない時、どう
 description: "“サイン探し”より“聞く姿勢”。会話が減る・事務的・無関心は赤信号のことも。問い詰めず一度『聞きたい』と伝える。"
 category: "気持ち・整理"
 tags: ["気持ち", "復縁", "夫婦"]
-related_articles: ["rikon-fukuen-shuufuku", "rikon-mada-wakaretakunai"]
+related_articles: ["rikon-kiridasareru-tokuchou-sain", "rikon-fukuen-shuufuku", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-riyuu-toitsumeru", "rikon-shuufuku-ng"]
 author: "オレタチ編集部"
 published: "2026-06-28"

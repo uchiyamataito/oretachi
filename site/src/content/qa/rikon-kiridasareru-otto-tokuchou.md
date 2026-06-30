@@ -3,7 +3,7 @@ question: "妻から離婚を切り出される夫に、共通点はある？"
 description: "『ハズレ』の話じゃない。多いのは悪気なく“気づけなかった”型。家事の偏りや不満の受け止めそびれ。今から変えられる。"
 category: "気持ち・整理"
 tags: ["気持ち", "復縁", "夫婦"]
-related_articles: ["rikon-fukuen-shuufuku", "rikon-kaesu-kotoba"]
+related_articles: ["rikon-kiridasareru-tokuchou-sain", "rikon-fukuen-shuufuku", "rikon-kaesu-kotoba"]
 related_qa: ["rikon-jibun-ga-warui", "rikon-tsuma-rikon-sign"]
 author: "オレタチ編集部"
 published: "2026-06-28"
