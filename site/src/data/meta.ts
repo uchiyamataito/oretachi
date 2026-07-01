@@ -45,6 +45,9 @@ export const QMETA: Record<string, any> = {
   'rikon-jibun-ga-warui':          { phases: ['切り出された直後'], kanshin: ['気持ち', '相談'] },
   'rikon-tsuma-rikon-sign':        { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
   'rikon-kodomo-eikyou':           { phases: ['切り出された直後', '成立後'], kanshin: ['子ども', '気持ち'] },
+  'rikon-dame-bengoshi-mikiwake':  { phases: ['協議・調停中', '切り出された直後'], kanshin: ['相談', 'お金'], route: 'rikon' },
+  'rikon-bengoshi-sagashikata':    { phases: ['協議・調停中', '切り出された直後'], kanshin: ['相談', '手続き'], route: 'rikon' },
+  'rikon-bengoshi-hiyou-harenai':  { phases: ['協議・調停中'], kanshin: ['お金', '相談'], route: 'rikon' },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）
