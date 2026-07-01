@@ -1,0 +1,166 @@
+---
+// 「オレタチとは」ページ（/about）
+// このページだけトンマナを変える：運営者（編集長）からの丁寧で親切な手紙のトーン。お前/オレの強い語りは使わない。
+// アクセント色は coral=強調だけ（ガイドライン準拠）：キャッチ見出しと統計の数字に限定。
+// F1デザイン（global.css）をベースに、記事っぽさを抑えた手紙的レイアウトを scoped CSS で構成。
+// 名義は匿名（編集長）。監修なしを体験談boxで明示開示。具体的な年は伏せる。CTAはトップ（/）へ。
+import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumb = [
+  { name: 'ホーム', url: 'https://oretachi.me/' },
+  { name: 'オレタチとは', url: 'https://oretachi.me/about' },
+];
+---
+<BaseLayout
+  title="オレタチとは｜離婚で独りになった男性のための場所"
+  description="離婚で独りになる男性の孤独に、男性の目線で寄り添う場所。離婚を経験した編集長が「あの時こんな場所があれば」という思いでつくりました。"
+  canonical="https://oretachi.me/about"
+  breadcrumb={breadcrumb}
+>
+  <article class="about">
+
+    <!-- ① ヒーロー（丁寧・編集長からのメッセージ／キャッチはオレンジ強調） -->
+    <header class="ab-hero">
+      <p class="ab-kicker">オレタチとは</p>
+      <h1 class="ab-hero-h">あなたは、独りじゃない。</h1>
+      <p class="ab-hero-sub">離婚に直面し、独りを感じているあなたへ。<br />この場所をつくった、編集長からのメッセージです。</p>
+    </header>
+
+    <!-- 名前の由来（冒頭に） -->
+    <section class="ab-sec">
+      <h2 class="ab-h2">「オレタチ」という名前のこと</h2>
+      <p>この名前には、ひとつの願いを込めています。</p>
+      <p>今はつらくても、いつかこの時期を乗り越えて、幸せになってほしい。そして願わくは、いつか同じ痛みを抱える次の誰かを、今度はそっと見守る側になっていってほしい。</p>
+      <p>ひとりの「オレ」が、やがて誰かを支える「オレたち」へ。そんな巡りを願って、この名前にしました。</p>
+    </section>
+
+    <!-- なぜ男性に向けて -->
+    <section class="ab-sec">
+      <h2 class="ab-h2">なぜ、男性に向けてつくったのか</h2>
+      <p>世の中には、離婚の情報がたくさんあります。けれど、男性の孤独を正面から受けとめてくれる場所は、とても少ないように感じました。</p>
+      <p>男性には、男性にしか分かりにくい辛さがあります。友人がいても、プライドが邪魔をして「離婚されそうだ」とは、なかなか言えません。だからこそ、あえて男性の目線で、この場所をつくりました。</p>
+    </section>
+
+    <!-- 統計（丁寧に・寄り添う枠組み／数字はオレンジ強調） -->
+    <section class="ab-sec">
+      <h2 class="ab-h2">その孤独は、あなただけのものではありません</h2>
+      <p>あなたが感じてきたことは、気のせいではありません。数字にも、静かに表れています。</p>
+      <div class="ab-stats">
+        <div class="ab-stat">
+          <div class="ab-stat-num">約<span class="big">7</span>割</div>
+          <p class="ab-stat-t">離婚調停の申し立ては、妻からが多数。男性は「告げられる側」になることが少なくありません。</p>
+          <p class="ab-stat-src">最高裁判所「司法統計年報（家事編）」より。</p>
+        </div>
+        <div class="ab-stat">
+          <div class="ab-stat-num">約<span class="big">8〜9</span>割</div>
+          <p class="ab-stat-t">離婚後に子の親権者になるのは、母親が大半です。父親が引き取るのは1割前後にとどまります。</p>
+          <p class="ab-stat-src">厚生労働省 人口動態統計より。</p>
+        </div>
+        <div class="ab-stat">
+          <div class="ab-stat-num">約<span class="big">4</span>割</div>
+          <p class="ab-stat-t">孤独を感じることがある人は、およそ4割。それは、特別な弱さではありません。</p>
+          <p class="ab-stat-src">内閣府「人々のつながりに関する基礎調査（令和6年）」より。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 編集長の話（体験談box・匿名・監修なし開示・年は伏せる） -->
+    <section class="ab-sec">
+      <h2 class="ab-h2">編集長として、少しだけ</h2>
+      <blockquote class="ab-story">
+        <p>私も、かつて離婚を経験しました。</p>
+        <p>切り出されたあの日から、世界が少し静かになったのを、今でも覚えています。職場の同僚にも、友人にも、言えませんでした。</p>
+        <p>いちばん辛かったのは、子どものことでした。夫婦の問題のはずなのに、子どもは当たり前のように離れていきました。理不尽だと感じても、その気持ちを、誰にも打ち明けられませんでした。</p>
+        <p class="ab-story-note">※これは運営者個人の体験です。専門家による監修ではありません。</p>
+      </blockquote>
+    </section>
+
+    <!-- だから作った＋やること（手紙的にまとめる） -->
+    <section class="ab-sec">
+      <h2 class="ab-h2">だから、この場所をつくりました</h2>
+      <p>あのとき、同じ経験をした人の声や、知っておきたい情報が、ひとつにまとまった場所があれば。どれだけ救われただろうと、今でも思います。</p>
+      <p>その「あれば」を、かたちにしました。ここでは、同じ辛さを経験した人たちから集めた情報を、できるだけ分かりやすくお届けしていきます。離婚のこと、子どものこと、これからの暮らしのこと。あなたが少しでも楽になって、前に進めるように。</p>
+      <p class="ab-sign">オレタチ 編集長より</p>
+    </section>
+
+    <!-- CTA：トップへ -->
+    <section class="ab-cta">
+      <p class="ab-cta-lead">まずは、ゆっくり見ていってください。</p>
+      <p class="ab-cta-sub">急がなくて大丈夫です。あなたのペースで。</p>
+      <a class="ab-cta-btn" href="/">オレタチのトップへ <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+    </section>
+
+  </article>
+
+  <style>
+    /* ===== 「オレタチとは」専用（scoped）。手紙的トーン＝記事の罫線・強い見出しを使わない ===== */
+    /* アクセント色はガイドライン準拠で coral=強調だけ：ヒーロー見出しと統計の数字に限定 */
+    .about{max-width:620px;margin:0 auto}
+
+    /* ① ヒーロー：キャッチはオレンジで強調 */
+    .ab-hero{
+      text-align:center;padding:38px 20px 34px;margin:6px 0 4px;
+      border-radius:22px;border:1px solid var(--line);
+      background:linear-gradient(180deg,#fff,#FBF6EE);
+      box-shadow:0 16px 40px -30px rgba(21,35,58,.5);
+    }
+    .ab-kicker{font-size:11px;letter-spacing:3px;color:var(--teal);font-weight:700;margin:0 0 14px}
+    .ab-hero-h{
+      font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;color:var(--coral-deep);
+      font-weight:900;font-size:1.74rem;line-height:1.5;letter-spacing:.4px;margin:0;
+    }
+    .ab-hero-sub{color:var(--muted);font-size:.96rem;line-height:1.95;margin:16px 0 0}
+
+    /* セクション：余白広め・罫線なしの軽い見出しで「手紙」感に（見出しは紺・本文は黒系） */
+    .ab-sec{margin:34px 0}
+    .ab-sec p{margin:1.05em 0;line-height:2;color:#3A362F;font-size:1.02rem}
+    .ab-h2{
+      font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;color:var(--navy);
+      font-size:1.18rem;font-weight:700;line-height:1.6;letter-spacing:.3px;
+      margin:0 0 .5em;padding:0;border:none;
+    }
+    .ab-sign{color:var(--muted);font-size:.92rem;text-align:right;margin-top:1.6em !important;font-family:'Zen Kaku Gothic New'}
+
+    /* 統計カード：数字はオレンジ強調 */
+    .ab-stats{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+    @media(min-width:600px){.ab-stats{grid-template-columns:repeat(3,1fr)}}
+    .ab-stat{
+      background:#fff;border:1px solid var(--line);border-top:2px solid var(--coral);
+      border-radius:16px;padding:16px 16px 14px;box-shadow:0 10px 24px -22px rgba(21,35,58,.45);
+    }
+    .ab-stat-num{font-family:'Zen Kaku Gothic New';font-weight:900;color:var(--navy);font-size:1.05rem;line-height:1.1;display:flex;align-items:baseline;gap:2px}
+    .ab-stat-num .big{font-size:2.5rem;color:var(--coral-deep);letter-spacing:.5px;margin:0 1px}
+    .ab-stat-t{font-size:.92rem;line-height:1.75;color:var(--ink);margin:11px 0 0;font-weight:500}
+    .ab-stat-src{font-size:.72rem;line-height:1.55;color:var(--faint);margin:9px 0 0}
+
+    /* 体験談box（白カード＋mint罫） */
+    .ab-story{
+      margin:14px 0 0;padding:20px 20px 16px;background:#fff;border:1px solid var(--line);
+      border-top:3px solid var(--mint);border-radius:14px;box-shadow:0 10px 24px -22px rgba(21,35,58,.4);
+    }
+    .ab-story p{margin:.7em 0;line-height:2;color:var(--ink);font-size:1rem}
+    .ab-story p:first-child{margin-top:0;font-family:'Zen Kaku Gothic New';font-weight:700;color:var(--navy)}
+    .ab-story-note{font-size:.78rem;color:var(--faint);margin-top:14px !important;padding-top:12px;border-top:1px dashed var(--line2)}
+
+    /* CTA */
+    .ab-cta{text-align:center;margin:40px 0 8px;padding:28px 20px 32px;
+      border-radius:20px;border:1px solid var(--line);
+      background:linear-gradient(180deg,#fff,#FBF6EE);box-shadow:0 16px 40px -30px rgba(21,35,58,.5)}
+    .ab-cta-lead{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:1.18rem;color:var(--navy);margin:0}
+    .ab-cta-sub{font-size:.9rem;color:var(--muted);margin:10px 0 0}
+    .ab-cta-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;
+      background:var(--coral);color:#fff;text-decoration:none;
+      font-family:'Zen Kaku Gothic New';font-weight:700;font-size:1rem;
+      border-radius:14px;padding:14px 28px;min-height:52px;
+      box-shadow:0 14px 28px -14px rgba(226,112,58,.7);transition:.15s;
+    }
+    .ab-cta-btn:hover{filter:brightness(.97);transform:translateY(-1px)}
+    .ab-cta-btn i{font-size:18px}
+
+    @media(max-width:600px){
+      .ab-hero{padding:32px 16px 28px}
+      .ab-hero-h{font-size:1.44rem}
+      .ab-stat-num .big{font-size:2.25rem}
+    }
+  </style>
+</BaseLayout>

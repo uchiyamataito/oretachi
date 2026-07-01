@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">借金の扱い。ギャンブルや個人的な浪費でつくった借金は対象外で相手に背負わせない。住宅ローンや教育費など夫婦の生活や共有財産のための借金は清算で考慮される</title>
+  <rect width="700" height="320" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">借金（マイナス）は、どう扱われる？</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">何のための借金かで変わる。借金そのものを「半分こ」する制度ではない。</text>
+
+  <!-- left: personal debt -->
+  <rect x="36" y="84" width="306" height="150" rx="12" fill="#f1f1f3" stroke="#d3d3d8"/>
+  <rect x="36" y="84" width="306" height="42" rx="12" fill="#6b7280"/>
+  <rect x="36" y="106" width="306" height="20" fill="#6b7280"/>
+  <text x="58" y="111" font-size="15" font-weight="700" fill="#ffffff">× 対象外（相手に背負わせない）</text>
+  <text x="58" y="152" font-size="13.5" fill="#3b3b40">・ ギャンブルでつくった借金</text>
+  <text x="58" y="180" font-size="13.5" fill="#3b3b40">・ 個人的な浪費・遊びの借金</text>
+  <text x="58" y="214" font-size="12" fill="#6b7280">＝一方の都合でつくった借金は分けない</text>
+
+  <!-- right: common debt -->
+  <rect x="358" y="84" width="306" height="150" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <rect x="358" y="84" width="306" height="42" rx="12" fill="#3f7d54"/>
+  <rect x="358" y="106" width="306" height="20" fill="#3f7d54"/>
+  <text x="380" y="111" font-size="15" font-weight="700" fill="#ffffff">△ 清算で考慮される</text>
+  <text x="380" y="152" font-size="13.5" fill="#26402e">・ 住宅ローン</text>
+  <text x="380" y="180" font-size="13.5" fill="#26402e">・ 教育費・生活のための借入</text>
+  <text x="380" y="214" font-size="12" fill="#3f7d54">＝夫婦の生活や共有財産のための借金</text>
+
+  <!-- note -->
+  <rect x="36" y="252" width="628" height="52" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="52" y="276" font-size="12.5" fill="#33433a">※ 財産分与は基本的にプラスの財産を分ける制度。マイナスが大きい場合は、プラスの財産から</text>
+  <text x="52" y="294" font-size="12.5" fill="#33433a">　差し引いて調整する考え方が多い。借金の扱いは事情で変わるので、込み入れば専門家へ。</text>
+</svg>

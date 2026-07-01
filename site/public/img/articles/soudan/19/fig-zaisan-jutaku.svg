@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">住宅ローンが残る家の財産分与の考え方。家の価値が残債を上回るアンダーローンなら差額が対象、残債が上回るオーバーローンなら家の価値はゼロ扱いで他の財産と調整</title>
+  <rect width="700" height="400" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">住宅ローンが残る家は、どう扱われる？</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">家の価値とローン残債の、どちらが大きいかで変わる。</text>
+
+  <!-- start -->
+  <rect x="250" y="80" width="200" height="46" rx="10" fill="#2b3a5b"/>
+  <text x="350" y="102" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">家の価値とローン残債を</text>
+  <text x="350" y="119" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">くらべる</text>
+
+  <!-- branch lines -->
+  <path d="M350 126 L350 144 M180 144 L520 144 M180 144 L180 168 M520 144 L520 168" stroke="#9aa6bd" stroke-width="2" fill="none"/>
+
+  <!-- left: under loan -->
+  <rect x="40" y="168" width="290" height="86" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="58" y="194" font-size="14" font-weight="700" fill="#3f7d54">価値 ＞ 残債（アンダーローン）</text>
+  <text x="58" y="220" font-size="12.5" fill="#26402e">売れば手元に残る差額があり、その</text>
+  <text x="58" y="238" font-size="12.5" fill="#26402e">差額がプラスの財産として対象になる。</text>
+
+  <!-- right: over loan -->
+  <rect x="370" y="168" width="290" height="86" rx="10" fill="#f5efe7" stroke="#e0cdb2"/>
+  <text x="388" y="194" font-size="14" font-weight="700" fill="#c0793a">残債 ＞ 価値（オーバーローン）</text>
+  <text x="388" y="220" font-size="12.5" fill="#5b4a33">家の価値はゼロ扱い。それ単独では</text>
+  <text x="388" y="238" font-size="12.5" fill="#5b4a33">対象にならず、他の財産と合わせ調整。</text>
+
+  <!-- caution box -->
+  <rect x="40" y="276" width="620" height="100" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="58" y="302" font-size="13.5" font-weight="700" fill="#a4453f">⚠ 名義を変えても、返済義務は自動では変わらない</text>
+  <text x="58" y="326" font-size="12.5" fill="#5b3b39">家の名義を相手に移しても、銀行に対する債務者は元のままのことが多い。</text>
+  <text x="58" y="346" font-size="12.5" fill="#5b3b39">払う人が滞ると、抵当権が実行されて競売になり、住む人が家を失うおそれも。</text>
+  <text x="58" y="366" font-size="12.5" font-weight="700" fill="#a4453f">「住む人・払う人・名義」がずれると複雑。自己判断せず早めに専門家へ。</text>
+</svg>
