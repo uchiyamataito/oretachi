@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">自分に関係あるかの二分岐。これから離婚する人は、離婚時に単独か共同かを取り決める。すでに離婚している人も、家庭裁判所に親権者変更を申し立てれば共同親権へ変更できる可能性がある</title>
+  <rect width="700" height="260" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">自分に関係ある？ 2つの立場</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">すでに離婚した人にも、道は開かれている。</text>
+
+  <rect x="36" y="84" width="312" height="150" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="54" y="114" font-size="15" font-weight="700" fill="#2b3a5b">これから離婚する</text>
+  <text x="54" y="146" font-size="12.5" fill="#33433a">離婚の取り決めのときに、</text>
+  <text x="54" y="166" font-size="12.5" fill="#33433a">単独か共同かを決める。</text>
+  <text x="54" y="192" font-size="12.5" fill="#33433a">決まらなければ家裁が判断。</text>
+  <text x="54" y="216" font-size="12" fill="#5b6472">親権と養育費・面会は別問題。</text>
+
+  <rect x="360" y="84" width="304" height="150" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="378" y="114" font-size="15" font-weight="700" fill="#2f6b43">すでに離婚している</text>
+  <text x="378" y="146" font-size="12.5" fill="#26402e">家庭裁判所に「親権者変更」を</text>
+  <text x="378" y="166" font-size="12.5" fill="#26402e">申し立てれば、共同に</text>
+  <text x="378" y="186" font-size="12.5" fill="#26402e">変更できる可能性がある。</text>
+  <text x="378" y="212" font-size="12" fill="#4a5a4f">判断基準はやはり「子の利益」。</text>
+</svg>

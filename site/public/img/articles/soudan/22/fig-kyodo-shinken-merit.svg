@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">共同親権の良い面と、気をつける面。良い面は、離婚後も子の重要な決定に父母双方が関われること。気をつける面は、対立が続く関係だと重要事項の協議が難しく子が板挟みになりうること。DV・高葛藤なら単独を選ぶ</title>
+  <rect width="700" height="260" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">良い面と、気をつける面</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">「父親に有利」と単純に喜ぶ話ではない。関係の質で向き不向きがある。</text>
+
+  <rect x="36" y="84" width="312" height="150" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="54" y="114" font-size="15" font-weight="700" fill="#2f6b43">良い面</text>
+  <text x="54" y="144" font-size="12.5" fill="#26402e">・離婚後も、進学など重要な</text>
+  <text x="54" y="164" font-size="12.5" fill="#26402e">　決定に父母双方が関われる。</text>
+  <text x="54" y="190" font-size="12.5" fill="#26402e">・子が「親に捨てられていない」</text>
+  <text x="54" y="210" font-size="12.5" fill="#26402e">　と感じやすい場合がある。</text>
+
+  <rect x="360" y="84" width="304" height="150" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <text x="378" y="114" font-size="15" font-weight="700" fill="#c0793a">気をつける面</text>
+  <text x="378" y="144" font-size="12.5" fill="#5b4a33">・対立が続く関係だと、重要事項の</text>
+  <text x="378" y="164" font-size="12.5" fill="#5b4a33">　協議が進まず子が板挟みに。</text>
+  <text x="378" y="190" font-size="12.5" fill="#5b4a33">・DV・高葛藤なら、無理せず</text>
+  <text x="378" y="210" font-size="12.5" fill="#5b4a33">　単独を選ぶことが子のため。</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">熟年離婚に備えて今からやること。1 生活力＝自分の食事を一品・洗濯して干す・部屋を片づける最低限から。2 お金＝取り分の計算でなく何がどれだけあるかを一枚に棚卸し。3 つながり＝一人でいいから弱音を吐ける相手や無料の相談窓口を確保。4 専門家＝協議から家裁の調停・審判へ、揉めそうなら弁護士や法テラスへ。一気にやらず、できるところから一つずつ</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">今からやること（できるところから一つずつ）</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">成立してから慌てるより、今のうちに手を動かすほうが楽。</text>
+
+  <!-- 1 生活力 -->
+  <rect x="36" y="80" width="628" height="48" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="64" cy="104" r="13" fill="#3f7d54"/>
+  <text x="64" y="109" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="90" y="109" font-size="13.5" font-weight="700" fill="#3f7d54">生活力</text>
+  <line x1="192" y1="90" x2="192" y2="118" stroke="#cfe0d1" stroke-width="1"/>
+  <text x="208" y="109" font-size="12.5" fill="#26402e">自分の食事を一品／洗濯して干す／部屋を片づける。この最低限から。</text>
+
+  <!-- 2 お金 -->
+  <rect x="36" y="134" width="628" height="48" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="64" cy="158" r="13" fill="#3f7d54"/>
+  <text x="64" y="163" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="90" y="163" font-size="13.5" font-weight="700" fill="#3f7d54">お金</text>
+  <line x1="192" y1="144" x2="192" y2="172" stroke="#cfe0d1" stroke-width="1"/>
+  <text x="208" y="163" font-size="12.5" fill="#26402e">取り分の計算でなく、まず「何がどれだけあるか」を一枚に棚卸し。</text>
+
+  <!-- 3 つながり -->
+  <rect x="36" y="188" width="628" height="48" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="64" cy="212" r="13" fill="#3f7d54"/>
+  <text x="64" y="217" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="90" y="217" font-size="13.5" font-weight="700" fill="#3f7d54">つながり</text>
+  <line x1="192" y1="198" x2="192" y2="226" stroke="#cfe0d1" stroke-width="1"/>
+  <text x="208" y="217" font-size="12.5" fill="#26402e">一人でいいから、弱音を吐ける相手を確保。無料の相談窓口も一つ。</text>
+
+  <!-- 4 専門家 -->
+  <rect x="36" y="242" width="628" height="48" rx="10" fill="#eef1f6" stroke="#cdd8ea"/>
+  <circle cx="64" cy="266" r="13" fill="#2b3a5b"/>
+  <text x="64" y="271" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+  <text x="90" y="271" font-size="13.5" font-weight="700" fill="#2b3a5b">専門家</text>
+  <line x1="192" y1="252" x2="192" y2="280" stroke="#cdd8ea" stroke-width="1"/>
+  <text x="208" y="271" font-size="12.5" fill="#33433a">協議→家裁の調停→審判。揉めそう/不安なら弁護士・法テラスへ。</text>
+</svg>

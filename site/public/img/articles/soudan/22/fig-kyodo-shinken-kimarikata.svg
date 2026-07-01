@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">親権のかたちの決まり方。まず父母の話し合いで決める。まとまらなければ家庭裁判所が子の利益を基準に判断する。DVや虐待がある場合、共同での協議が難しい場合は必ず単独親権になる</title>
+  <rect width="700" height="250" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">どう決まる？ 話し合い→家裁</text>
+
+  <rect x="36" y="66" width="196" height="88" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="54" y="96" font-size="14" font-weight="700" fill="#2f6b43">1. 父母の話し合い</text>
+  <text x="54" y="122" font-size="12" fill="#26402e">まずは協議で決める。</text>
+  <text x="54" y="142" font-size="12" fill="#26402e">合意すれば単独／共同。</text>
+
+  <path d="M240 110 h24 m-10 -8 l10 8 l-10 8" fill="none" stroke="#9aa1ab" stroke-width="2.5"/>
+
+  <rect x="272" y="66" width="196" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="290" y="96" font-size="14" font-weight="700" fill="#2b3a5b">2. 家庭裁判所</text>
+  <text x="290" y="122" font-size="12" fill="#33433a">まとまらなければ、</text>
+  <text x="290" y="142" font-size="12" fill="#33433a">「子の利益」で判断。</text>
+
+  <path d="M476 110 h24 m-10 -8 l10 8 l-10 8" fill="none" stroke="#9aa1ab" stroke-width="2.5"/>
+
+  <rect x="508" y="66" width="156" height="88" rx="12" fill="#fbeeee" stroke="#e0b8b8"/>
+  <text x="526" y="96" font-size="14" font-weight="700" fill="#b5453b">必ず単独</text>
+  <text x="526" y="122" font-size="12" fill="#6b3a35">DV・虐待、</text>
+  <text x="526" y="142" font-size="12" fill="#6b3a35">協議が困難な場合。</text>
+
+  <rect x="36" y="172" width="628" height="56" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <text x="52" y="196" font-size="12.5" fill="#5b4a33">※「子の利益」が唯一の物差し。父母の都合や勝ち負けで決まるものではない。</text>
+  <text x="52" y="216" font-size="12.5" fill="#5b4a33">　DVには身体的だけでなく、精神的・経済的・性的なものも含まれる。</text>
+</svg>
