@@ -304,6 +304,8 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
   background:var(--coral);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;border:none;cursor:pointer;
   border-radius:14px;padding:16px;box-shadow:0 14px 28px -12px rgba(226,112,58,.7)}
 .home .emptyhero .eh-mini{font-size:11px;color:var(--faint);text-align:center;margin-top:9px;position:relative;z-index:1}
+.home .emptyhero .eh-about{display:block;text-align:center;position:relative;z-index:1;margin-top:14px;font-size:12.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.home .emptyhero .eh-about:hover{color:var(--coral-deep)}
 
 /* ========== オンボ・モーダル ========== */
 .onbm{position:fixed;inset:0;z-index:100;display:none}
