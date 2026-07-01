@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">避けたいダメな弁護士の4サイン。不安をあおって即契約を迫る・費用の説明があいまいで見積もりを出さない・高圧的でこちらの話を聞かない・必ず勝てると結果を保証する</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">契約前に確認したい4つのサイン</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">大半の弁護士は誠実。ごく一部の「避けたい対応」を知っておく。</text>
+
+  <rect x="36" y="82" width="312" height="88" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="54" y="112" font-size="14" font-weight="700" fill="#a4453f">× 不安をあおって即契約を迫る</text>
+  <text x="54" y="138" font-size="12.5" fill="#5b3b39">「今すぐ依頼しないと不利」と</text>
+  <text x="54" y="156" font-size="12.5" fill="#5b3b39">急かす。冷静に考える時間をくれる人を。</text>
+
+  <rect x="360" y="82" width="304" height="88" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="378" y="112" font-size="14" font-weight="700" fill="#a4453f">× 費用の説明があいまい</text>
+  <text x="378" y="138" font-size="12.5" fill="#5b3b39">見積もりを出さない。後から高額</text>
+  <text x="378" y="156" font-size="12.5" fill="#5b3b39">請求のトラブルのもと。</text>
+
+  <rect x="36" y="182" width="312" height="88" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="54" y="212" font-size="14" font-weight="700" fill="#a4453f">× 高圧的で話を聞かない</text>
+  <text x="54" y="238" font-size="12.5" fill="#5b3b39">頭ごなしに進める人とは、長く</text>
+  <text x="54" y="256" font-size="12.5" fill="#5b3b39">やり取りできない。</text>
+
+  <rect x="360" y="182" width="304" height="88" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="378" y="212" font-size="14" font-weight="700" fill="#a4453f">×「必ず勝てる」と保証する</text>
+  <text x="378" y="238" font-size="12.5" fill="#5b3b39">結果は相手の出方で変わる。リスクも</text>
+  <text x="378" y="256" font-size="12.5" fill="#5b3b39">正直に言う人のほうが信頼できる。</text>
+</svg>

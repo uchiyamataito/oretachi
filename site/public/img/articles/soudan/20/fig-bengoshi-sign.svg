@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">弁護士を頼るサイン。相手が弁護士を立てた・話し合いにならない/本気で揉めそう・不安で動けない・DVやモラハラで直接やり取りが危険。ひとつでも当てはまれば相談を考えていい</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">弁護士を「頼るサイン」</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">いきなり必須ではない。でも、ひとつでも当てはまるなら相談を考えていい。</text>
+
+  <rect x="36" y="82" width="312" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="54" y="112" font-size="14" font-weight="700" fill="#2b3a5b">① 相手が弁護士を立てた</text>
+  <text x="54" y="138" font-size="12.5" fill="#33433a">知識と交渉の差がつきやすい。</text>
+  <text x="54" y="156" font-size="12.5" fill="#33433a">早めに相談を。</text>
+
+  <rect x="360" y="82" width="304" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="378" y="112" font-size="14" font-weight="700" fill="#2b3a5b">② 話し合いにならない/揉めそう</text>
+  <text x="378" y="138" font-size="12.5" fill="#33433a">財産・親権・慰謝料などで</text>
+  <text x="378" y="156" font-size="12.5" fill="#33433a">本気で対立している。</text>
+
+  <rect x="36" y="182" width="312" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="54" y="212" font-size="14" font-weight="700" fill="#2b3a5b">③ 不安で、自分では動けない</text>
+  <text x="54" y="238" font-size="12.5" fill="#33433a">整理してもらうだけでも</text>
+  <text x="54" y="256" font-size="12.5" fill="#33433a">楽になる。</text>
+
+  <rect x="360" y="182" width="304" height="88" rx="12" fill="#fbf3f3" stroke="#e6c4c4"/>
+  <text x="378" y="212" font-size="14" font-weight="700" fill="#a4453f">④ DV・モラハラで危険</text>
+  <text x="378" y="238" font-size="12.5" fill="#5b3b39">直接やり取りが危ない。安全確保</text>
+  <text x="378" y="256" font-size="12.5" fill="#5b3b39">を最優先に、間に入れる。</text>
+</svg>
