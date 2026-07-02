@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">別居中の生活の立て直し4つ。一日の型を決める（起きる・食う・寝る時間を固定）、家事は完璧を目指さない（冷凍・惣菜・外食も可、最低限回ればよい）、部屋を最低限整える（荒れると心も荒れる）、一人の時間を腐らせない（仕事・運動・趣味）</title>
+  <rect width="700" height="250" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">生活の立て直し（心を守る近道）</text>
+
+  <rect x="36" y="60" width="312" height="76" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="54" y="88" font-size="14" font-weight="700" fill="#3f7d54">一日の型を決める</text>
+  <text x="54" y="112" font-size="12" fill="#26402e">起きる・食う・寝る時間を固定。</text>
+  <text x="54" y="128" font-size="12" fill="#26402e">これだけで気持ちが落ち着く。</text>
+
+  <rect x="360" y="60" width="304" height="76" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="378" y="88" font-size="14" font-weight="700" fill="#3f7d54">家事は完璧を目指さない</text>
+  <text x="378" y="112" font-size="12" fill="#26402e">冷凍・惣菜・外食も組み合わせ。</text>
+  <text x="378" y="128" font-size="12" fill="#26402e">最低限回れば、まず合格。</text>
+
+  <rect x="36" y="146" width="312" height="76" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <text x="54" y="174" font-size="14" font-weight="700" fill="#3f7d54">部屋を最低限整える</text>
+  <text x="54" y="198" font-size="12" fill="#26402e">部屋が荒れると心も荒れる。</text>
+  <text x="54" y="214" font-size="12" fill="#26402e">整えると頭が少しクリアに。</text>
+
+  <rect x="360" y="146" width="304" height="76" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="378" y="174" font-size="14" font-weight="700" fill="#2b3a5b">時間を腐らせない</text>
+  <text x="378" y="198" font-size="12" fill="#33433a">仕事・運動・趣味に手をつける。</text>
+  <text x="378" y="214" font-size="12" fill="#33433a">立て直しに使えた人は強い。</text>
+</svg>

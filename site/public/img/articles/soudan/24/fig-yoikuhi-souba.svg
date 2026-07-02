@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">養育費の相場イメージ（裁判所の養育費算定表・給与所得の目安）。子1人8歳の場合、あなたの年収500万・相手100万で月4〜6万円、あなた600万・相手100万で月6〜8万円。子3人5歳9歳17歳の場合、あなた600万・相手100万でおおむね月10〜12万円。すべて給与所得の目安で、年収や私立学校の学費など特別な事情で増減する</title>
+  <rect width="700" height="300" fill="#ffffff"/>
+  <text x="36" y="36" font-size="19" font-weight="700" fill="#2b3a5b">養育費の相場イメージ（算定表・給与の目安）</text>
+  <text x="36" y="58" font-size="12.5" fill="#6b7280">「あなたの年収 × 相手の年収 × 子の人数・年齢」の交点で決まる。</text>
+
+  <rect x="36" y="74" width="628" height="92" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="54" y="100" font-size="14" font-weight="700" fill="#2b3a5b">子1人（8歳）の場合</text>
+  <text x="54" y="128" font-size="13" fill="#33433a">あなた 年収500万・相手 100万</text>
+  <text x="470" y="128" font-size="14" font-weight="700" fill="#2b3a5b">月4〜6万円</text>
+  <text x="54" y="152" font-size="13" fill="#33433a">あなた 年収600万・相手 100万</text>
+  <text x="470" y="152" font-size="14" font-weight="700" fill="#2b3a5b">月6〜8万円</text>
+
+  <rect x="36" y="176" width="628" height="60" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="54" y="202" font-size="14" font-weight="700" fill="#2b3a5b">子3人（5歳・9歳・17歳）の場合</text>
+  <text x="54" y="226" font-size="13" fill="#33433a">あなた 年収600万・相手 100万</text>
+  <text x="420" y="226" font-size="14" font-weight="700" fill="#2b3a5b">おおむね 月10〜12万円</text>
+
+  <rect x="36" y="248" width="628" height="44" rx="9" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <text x="52" y="270" font-size="11.5" fill="#5b4a33">※すべて給与所得・額面年収のイメージ。あくまで標準的な目安で、</text>
+  <text x="52" y="286" font-size="11.5" fill="#5b4a33">　正確な額は算定表そのもの・専門家・家庭裁判所で確認を。</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">修復でも離婚でも共通して効く3つの行動。1 冷静でいる（感情的な行動はどちらでもマイナス）、2 記録を残す（いつ何があったか日付つきで）、3 早めに専門家に触れておく（弁護士・法テラス・公的窓口）</title>
+  <rect width="700" height="240" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">修復でも離婚でも、共通して効く3つ</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">どちらに転んでも損しない過ごし方を、今から。</text>
+
+  <rect x="36" y="82" width="200" height="132" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <circle cx="66" cy="112" r="15" fill="#2b3a5b"/><text x="66" y="117" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+  <text x="90" y="117" font-size="15" font-weight="700" fill="#2b3a5b">冷静でいる</text>
+  <text x="56" y="150" font-size="12" fill="#33433a">感情的な行動は、修復なら</text>
+  <text x="56" y="170" font-size="12" fill="#33433a">相手を遠ざけ、離婚なら</text>
+  <text x="56" y="190" font-size="12" fill="#33433a">自分を不利にする。</text>
+
+  <rect x="250" y="82" width="200" height="132" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="280" cy="112" r="15" fill="#3f7d54"/><text x="280" y="117" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+  <text x="304" y="117" font-size="15" font-weight="700" fill="#3f7d54">記録を残す</text>
+  <text x="270" y="150" font-size="12" fill="#26402e">いつ・何があったかを</text>
+  <text x="270" y="170" font-size="12" fill="#26402e">日付つきで淡々と。</text>
+  <text x="270" y="190" font-size="12" fill="#26402e">どちらでも役立つ。</text>
+
+  <rect x="464" y="82" width="200" height="132" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <circle cx="494" cy="112" r="15" fill="#c0793a"/><text x="494" y="117" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+  <text x="518" y="117" font-size="15" font-weight="700" fill="#c0793a">早めに相談</text>
+  <text x="484" y="150" font-size="12" fill="#5b4a33">弁護士・法テラス・</text>
+  <text x="484" y="170" font-size="12" fill="#5b4a33">公的窓口へ。情報を持つ</text>
+  <text x="484" y="190" font-size="12" fill="#5b4a33">だけで損が減る。</text>
+</svg>

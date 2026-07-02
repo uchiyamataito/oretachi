@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">婚前契約とは何かの基本3柱。1 結婚前に夫婦の財産や生活のルールを書面で取り決めるもの（民法の夫婦財産契約755条〜759条が土台）、2 婚姻の届出前に締結し届出までに登記しないと第三者に対抗できない、3 婚姻の届出後は原則として内容を変更できない</title>
+  <rect width="700" height="240" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">婚前契約とは（民法の「夫婦財産契約」が土台）</text>
+
+  <rect x="36" y="66" width="200" height="150" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="56" y="94" font-size="14" font-weight="700" fill="#2b3a5b">① 書面で取り決め</text>
+  <text x="56" y="122" font-size="12" fill="#33433a">結婚前に、夫婦の</text>
+  <text x="56" y="140" font-size="12" fill="#33433a">財産や生活のルールを</text>
+  <text x="56" y="158" font-size="12" fill="#33433a">書面で決めておく。</text>
+  <text x="56" y="184" font-size="11.5" fill="#5b6472">民法755〜759条が土台</text>
+
+  <rect x="250" y="66" width="200" height="150" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
+  <text x="270" y="94" font-size="14" font-weight="700" fill="#2b3a5b">② 届出前に登記</text>
+  <text x="270" y="122" font-size="12" fill="#33433a">婚姻の届出前に締結し、</text>
+  <text x="270" y="140" font-size="12" fill="#33433a">届出までに登記しないと</text>
+  <text x="270" y="158" font-size="12" fill="#33433a">第三者に対抗できない。</text>
+  <text x="270" y="184" font-size="11.5" fill="#5b6472">タイミングが要</text>
+
+  <rect x="464" y="66" width="200" height="150" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <text x="484" y="94" font-size="14" font-weight="700" fill="#c0793a">③ 婚姻後は変更不可</text>
+  <text x="484" y="122" font-size="12" fill="#5b4a33">婚姻の届出後は、</text>
+  <text x="484" y="140" font-size="12" fill="#5b4a33">原則として内容を</text>
+  <text x="484" y="158" font-size="12" fill="#5b4a33">変更できない。</text>
+  <text x="484" y="184" font-size="11.5" fill="#8a6f4a">だから結婚前にじっくり</text>
+</svg>

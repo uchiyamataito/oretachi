@@ -49,4 +49,78 @@ const crumbs = [
     {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
     <RecoRails recos={recos} />
   </article>
+
+  <style is:global>
+    .yk-embed{margin:30px 0;border-radius:16px;border:1px solid var(--line);overflow:hidden;background:#fff;box-shadow:0 18px 44px -30px rgba(21,35,58,.55)}
+    .yk-embed *{box-sizing:border-box}
+    .yk-hd{background:linear-gradient(135deg,var(--coral),var(--coral-deep));color:#fff;padding:16px 20px}
+    .yk-hd .t{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:900;font-size:1.18rem;margin:0;display:flex;align-items:center;gap:8px;color:#fff}
+    .yk-hd .s{font-size:.82rem;margin:5px 0 0;opacity:.95;line-height:1.5}
+    .yk-bd{padding:18px 20px}
+    .yk-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 13px}
+    .yk-r .l{min-width:152px;font-weight:700;color:var(--navy);font-size:.92rem}
+    .yk-r input.n{width:96px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:1rem;text-align:right;background:#fff;color:var(--ink)}
+    .yk-r select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:.92rem;background:#fff;color:var(--ink)}
+    .yk-r .u{color:var(--muted);font-size:.85rem}
+    .yk-k{background:#f7f3ec;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:0 0 8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .yk-k .kl{font-size:.86rem;color:var(--muted);min-width:96px}
+    .yk-res{margin:6px 0 0;padding:16px 18px;border-radius:12px;background:#FBF1EA;border:1.5px dashed var(--coral)}
+    .yk-res .c{font-size:.82rem;color:var(--coral-deep);font-weight:700}
+    .yk-res .a{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:900;font-size:2rem;color:var(--coral-deep);margin:3px 0 0;line-height:1.15}
+    .yk-res .p{font-size:.78rem;color:var(--muted);margin:3px 0 0}
+    .yk-w{font-size:.8rem;color:#b5453b;margin:9px 0 0;line-height:1.5}
+    .yk-n{font-size:.76rem;color:var(--faint);line-height:1.65;margin:12px 0 0}
+    .yk-n a{color:var(--coral-deep)}
+    @media(max-width:560px){.yk-r .l{min-width:100%}}
+  </style>
+  <script>
+    const ykEl = document.getElementById('yoikuhi-keisan');
+    if (ykEl) {
+      const emp = [[75,.54],[100,.50],[125,.46],[175,.44],[275,.43],[525,.42],[725,.41],[1325,.40],[1475,.39],[2000,.38]];
+      const slf = [[66,.61],[82,.60],[98,.59],[256,.58],[349,.57],[392,.56],[496,.55],[563,.54],[784,.53],[942,.52],[1046,.51],[1179,.50],[1482,.49],[1567,.48]];
+      const ratio = (m,t)=>{const tb=t==='self'?slf:emp;for(const x of tb){if(m<=x[0])return x[1];}return tb[tb.length-1][1];};
+      ykEl.innerHTML = `
+        <div class="yk-hd"><p class="t"><i class="ti ti-calculator" aria-hidden="true"></i>養育費 かんたん計算</p><p class="s">年収と子どもを入れるだけ。裁判所の算定方式で、月額の目安（レンジ）が出ます。</p></div>
+        <div class="yk-bd">
+          <div class="yk-r"><span class="l">あなた（払う側）の年収</span><input class="n" id="yk-ob" type="number" value="500" min="0" step="10"><span class="u">万円</span><select id="yk-obt"><option value="emp">給与</option><option value="self">自営</option></select></div>
+          <div class="yk-r"><span class="l">相手（受け取る側）の年収</span><input class="n" id="yk-or" type="number" value="100" min="0" step="10"><span class="u">万円</span><select id="yk-ort"><option value="emp">給与</option><option value="self">自営</option></select></div>
+          <div class="yk-r"><span class="l">子どもの人数</span><select id="yk-cnt"><option value="1">1人</option><option value="2">2人</option><option value="3">3人</option></select></div>
+          <div id="yk-kids"></div>
+          <div class="yk-res"><div class="c">養育費の目安（月額）</div><div class="a" id="yk-amt">—</div><div class="p" id="yk-pt"></div></div>
+          <div class="yk-w" id="yk-warn"></div>
+          <p class="yk-n">※裁判所の標準算定方式（令和元年版）にもとづく<b>おおよその目安</b>です。境界に近いと隣の帯になることや、私立の学費・特別な医療費・権利者が高収入などの個別事情は反映しません。正確な額は<a href="https://www.courts.go.jp/toukei_siryou/siryo/H30shihou_houkoku/index.html" target="_blank" rel="noopener">裁判所の養育費算定表</a>・弁護士・法テラス・家庭裁判所でご確認ください。</p>
+        </div>`;
+      const $ = (id)=>document.getElementById(id);
+      const kids = $('yk-kids');
+      function calc(){
+        const ob=+$('yk-ob').value||0, or=+$('yk-or').value||0;
+        const obt=$('yk-obt').value, ort=$('yk-ort').value;
+        let sum=0; kids.querySelectorAll('select').forEach(s=>{sum+=+s.value;});
+        const obB=ob*10000*ratio(ob,obt), orB=or*10000*ratio(or,ort);
+        const amt=$('yk-amt'), pt=$('yk-pt'), warn=$('yk-warn');
+        warn.textContent='';
+        if(obB+orB<=0||sum<=0){amt.textContent='—';pt.textContent='';return;}
+        const childCost=obB*sum/(100+sum);
+        let m=childCost*obB/(obB+orB)/12/10000;
+        if(m<0)m=0;
+        let lo=Math.floor(m/2)*2; if(lo<0)lo=0; const hi=lo+2;
+        amt.textContent='月 '+lo+'〜'+hi+'万円';
+        pt.textContent='（標準算定式の計算値：約'+(Math.round(m*10)/10)+'万円）';
+        const w=[];
+        if((obt==='emp'&&ob>2000)||(obt==='self'&&ob>1567)||(ort==='emp'&&or>2000)||(ort==='self'&&or>1567)) w.push('算定表の上限（給与2000万・自営約1567万）を超える部分は、より個別の算定が必要です。');
+        if(orB>=obB) w.push('相手の収入があなたと同程度以上のケースは、算定表の目安から離れることがあります。個別にご確認を。');
+        warn.textContent=w.join(' ');
+      }
+      function renderKids(){
+        const n=+$('yk-cnt').value; let h='';
+        for(let i=1;i<=n;i++){h+=`<div class="yk-k"><span class="kl">子ども${i}の年齢</span><select data-age="${i}"><option value="62">0〜14歳</option><option value="85">15歳以上</option></select></div>`;}
+        kids.innerHTML=h;
+        kids.querySelectorAll('select').forEach(s=>s.addEventListener('change',calc));
+        calc();
+      }
+      ['yk-ob','yk-or','yk-obt','yk-ort'].forEach(id=>{const e=$(id);e.addEventListener('input',calc);e.addEventListener('change',calc);});
+      $('yk-cnt').addEventListener('change',renderKids);
+      renderKids();
+    }
+  </script>
 </BaseLayout>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">別居中に押さえる5つの軸。1 心の保ち方（不安・孤独・焦りと付き合う）、2 生活の立て直し（家事・リズム・住まい）、3 お金と証拠の扱い（自己流で動かない）、4 子との関わり（感情的にならない）、5 修復でも離婚でも共通して効く行動（冷静・記録・早めの相談）</title>
+  <rect width="700" height="320" fill="#ffffff"/>
+  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">別居中に押さえる、5つの軸</text>
+  <text x="36" y="62" font-size="12.5" fill="#6b7280">修復に進む人にも、離婚に進む人にも、共通して効く。</text>
+
+  <rect x="36" y="80" width="628" height="42" rx="10" fill="#eef1f6" stroke="#cdd8ea"/>
+  <circle cx="60" cy="101" r="12" fill="#2b3a5b"/><text x="60" y="105" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+  <text x="84" y="106" font-size="13.5" font-weight="700" fill="#2b3a5b">心の保ち方</text>
+  <text x="210" y="106" font-size="12.5" fill="#33433a">不安・孤独・焦りと、どう付き合うか</text>
+
+  <rect x="36" y="128" width="628" height="42" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="60" cy="149" r="12" fill="#3f7d54"/><text x="60" y="153" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+  <text x="84" y="154" font-size="13.5" font-weight="700" fill="#3f7d54">生活の立て直し</text>
+  <text x="210" y="154" font-size="12.5" fill="#26402e">家事・生活リズム・住まいを整える</text>
+
+  <rect x="36" y="176" width="628" height="42" rx="10" fill="#fbf6ee" stroke="#e0cdb2"/>
+  <circle cx="60" cy="197" r="12" fill="#c0793a"/><text x="60" y="201" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+  <text x="84" y="202" font-size="13.5" font-weight="700" fill="#c0793a">お金と証拠の扱い</text>
+  <text x="210" y="202" font-size="12.5" fill="#5b4a33">自己流で動かない（無断アクセスはNG）</text>
+
+  <rect x="36" y="224" width="628" height="42" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
+  <circle cx="60" cy="245" r="12" fill="#3f7d54"/><text x="60" y="249" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+  <text x="84" y="250" font-size="13.5" font-weight="700" fill="#3f7d54">子との関わり</text>
+  <text x="210" y="250" font-size="12.5" fill="#26402e">感情的にならないことが、いちばん子を守る</text>
+
+  <rect x="36" y="272" width="628" height="42" rx="10" fill="#eef1f6" stroke="#cdd8ea"/>
+  <circle cx="60" cy="293" r="12" fill="#2b3a5b"/><text x="60" y="297" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">5</text>
+  <text x="84" y="298" font-size="13.5" font-weight="700" fill="#2b3a5b">共通して効く行動</text>
+  <text x="210" y="298" font-size="12.5" fill="#33433a">冷静・記録・早めの相談（どちらに進んでも）</text>
+</svg>

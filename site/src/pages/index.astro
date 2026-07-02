@@ -115,6 +115,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         { l: 'つらい時は一人で抱えない｜相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
       { key: '別居', name: '別居・生活とお金', desc: '生活基盤とお金を守る。', todos: [
         { l: '別居の期間・生活費（婚姻費用）とNG行動', h: '/rikon-bekkyo' },
+        { l: '別居中の過ごし方｜すべきこと・やってはいけないこと', h: '/rikon-bekkyo-sugoshikata' },
         { l: 'お金の棚卸し・証拠の確保', h: '/rikon-okane-checklist#-棚卸し資産プラスと負債マイナスを全部出す' },
         { l: '共有口座を動かす前に', h: '/qa/rikon-kyouyu-kouza-ugokasu' },
         { l: '家を出るべきか迷ったら', h: '/qa/rikon-ie-deru-beki' },
@@ -132,11 +133,13 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         { l: '健康保険の切替', h: '/rikon-kenkohoken-tetsuzuki#あなたはどのケース早見表' },
         { l: '年金の手続き', h: '/rikon-nenkin-tetsuzuki#誰が何をどこでやるか一枚で' },
         { l: '保険の受取人を変える', h: '/rikon-seimeihoken-uketorinin#手順3ステップ' },
-        { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin#-健康保険の扶養を外す' } ] },
+        { l: '扶養・税金はどう変わる', h: '/rikon-fuyou-zeikin#-健康保険の扶養を外す' },
+        { l: '養育費の決め方・払われない時（2026年改正）', h: '/rikon-yoikuhi', cond: 'kids' } ] },
       { key: '再出発', name: '再出発', desc: '生活を立て直す。', todos: [
         { l: '離婚した男の再出発｜心・生活・お金の立て直し', h: '/rikon-saishuppatsu' },
         { l: '熟年離婚を切り出された夫へ｜これからの現実と立て直し', h: '/rikon-jukunen-otto' },
         { l: '離婚して後悔する？データと立ち直り方', h: '/rikon-koukai' },
+        { l: '次に備える｜婚前契約書の基礎（法的効力・作り方）', h: '/rikon-konzen-keiyaku' },
         { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
     ];
     const PH_FUKUEN = [
@@ -148,6 +151,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
         { l: '妻と復縁・関係を修復したい｜冷却期間と連絡・NG', h: '/rikon-fukuen-shuufuku' },
         { l: '切り出される夫の特徴とサイン｜今から効くこと', h: '/rikon-kiridasareru-tokuchou-sain' },
         { l: 'まだ別れたくない人へ｜NG行動とやること', h: '/rikon-mada-wakaretakunai#やるべきとやってはいけないを一枚で' },
+        { l: '別居中の過ごし方｜冷静な時間の使い方', h: '/rikon-bekkyo-sugoshikata' },
         { l: '理由を問い詰めない', h: '/qa/rikon-riyuu-toitsumeru' },
         { l: '一人で抱えない・相談先', h: '/rikon-dansei-soudansaki#無理なく踏める最初の一歩' } ] },
       { key: '合流', name: 'もし離婚に進むことになったら', desc: '念のため、進む場合の備えも。', todos: [
