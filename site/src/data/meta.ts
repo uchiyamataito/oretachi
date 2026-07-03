@@ -59,6 +59,15 @@ export const QMETA: Record<string, any> = {
   'rikon-jukunen-kyohi':             { phases: ['切り出された直後'], kanshin: ['気持ち', '手続き'], spouse_contact: true, route: 'fukuen' },
   'rikon-jukunen-nenkin-taishokukin':{ phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-jukunen-kodomo-mago':       { phases: ['成立後', '再出発'], kanshin: ['子ども', '気持ち'], route: 'rikon' },
+  'rikon-bekkyo-koninhiyou-itsukara':{ phases: ['別居', '協議・調停中'], kanshin: ['お金', '手続き'], spouse_contact: true, route: 'rikon' },
+  'rikon-bekkyo-juminhyo':           { phases: ['別居', '切り出された直後'], kanshin: ['手続き'], route: 'rikon' },
+  'rikon-bekkyo-futei-isharyo':      { phases: ['別居', '協議・調停中'], kanshin: ['お金', '相談'], route: 'rikon' },
+  'rikon-yoikuhi-menkai-tomeru':     { phases: ['成立後', '協議・調停中'], kanshin: ['子ども', 'お金'], route: 'rikon' },
+  'rikon-yoikuhi-gakuhi':            { phases: ['成立後', '協議・調停中'], kanshin: ['お金', '子ども'], route: 'rikon' },
+  'rikon-yoikuhi-kouseishousho':     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-konzen-zaisanbunyo':        { phases: ['再出発', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-konzen-template':           { phases: ['再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-konzen-jijitsukon':         { phases: ['再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）
