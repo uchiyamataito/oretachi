@@ -1,0 +1,120 @@
+---
+// 記事・Q&A共通のシェア導線。
+// (1) 本文末尾のインライン行 (2) 右下の追従ボタン→下からせり上がるモーダル。
+// 共有先＝LINE / X / Threads（公式ロゴSVG）。共有テキストにページ紹介（タイトル＋一言＋URL）を入れる。
+// url は配信URL（末尾スラッシュ付き絶対URL）、title は共有見出し、label は表示ラベル。
+const { url, title, label = 'この記事をシェア' } = Astro.props;
+const intro = `${title}｜離婚に直面した男性へ「オレタチ」`;
+const enc = encodeURIComponent(url);
+const encText = encodeURIComponent(intro);
+const encTextUrl = encodeURIComponent(`${intro}\n${url}`);
+// 公式ブランドロゴ（24x24 viewBox・単色パス）。
+const LOGO = {
+  line: 'M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.63V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314',
+  x: 'M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z',
+  threads: 'M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.291 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.99.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.32.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.865-8.02c-.216 0-.435.006-.658.018-1.836.103-2.977.946-2.916 2.143.043.897.937 1.436 1.986 1.436.043 0 .086 0 .13-.003 1.14-.062 2.65-.508 2.902-3.313a10.984 10.984 0 0 0-1.444-.28Z',
+};
+const targets = [
+  { key: 'line', href: `https://social-plugins.line.me/lineit/share?url=${enc}`, label: 'LINE', path: LOGO.line, aria: 'LINEで送る' },
+  { key: 'x', href: `https://twitter.com/intent/tweet?text=${encText}&url=${enc}`, label: 'X', path: LOGO.x, aria: 'Xでシェア' },
+  { key: 'threads', href: `https://www.threads.net/intent/post?text=${encTextUrl}`, label: 'Threads', path: LOGO.threads, aria: 'Threadsでシェア' },
+];
+---
+<section class="share-inline" aria-label="このページをシェア">
+  <p class="share-inline-h">{label}</p>
+  <p class="share-inline-s">同じ状況の誰かに、そっと渡せます。</p>
+  <div class="share-row">
+    {targets.map((t) => (
+      <a class={`sbtn ${t.key}`} href={t.href} target="_blank" rel="noopener" aria-label={t.aria} data-share={`inline-${t.key}`}>
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><path d={t.path} /></svg>
+      </a>
+    ))}
+  </div>
+</section>
+
+<button type="button" class="share-fab" id="shareFab" aria-haspopup="dialog" aria-label="シェアメニューを開く">
+  <i class="ti ti-share" aria-hidden="true"></i><span>シェア</span>
+</button>
+
+<div class="share-modal" id="shareModal" role="dialog" aria-modal="true" aria-label="このページをシェア" hidden>
+  <div class="share-overlay" data-close></div>
+  <div class="share-sheet">
+    <button type="button" class="share-close" data-close aria-label="閉じる"><i class="ti ti-x" aria-hidden="true"></i></button>
+    <div class="share-handle"></div>
+    <p class="share-sheet-h">{label}</p>
+    <p class="share-sheet-s">同じ状況の誰かに、そっと渡せます。</p>
+    <div class="share-opts">
+      {targets.map((t) => (
+        <a class={`sopt ${t.key}`} href={t.href} target="_blank" rel="noopener" aria-label={t.aria} data-share={`modal-${t.key}`}>
+          <span class="sopt-ic"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><path d={t.path} /></svg></span>
+          <span class="sopt-lb">{t.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .share-inline{margin:34px 0 4px;padding-top:20px;border-top:1px solid var(--line)}
+  .share-inline-h{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:700;color:var(--navy);font-size:1.02rem;margin:0}
+  .share-inline-s{color:var(--muted);font-size:.82rem;margin:4px 0 12px}
+  .share-row{display:flex;gap:12px}
+  .sbtn{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:transform .12s}
+  .sbtn:hover{transform:translateY(-2px)}
+  .sbtn svg{width:21px;height:21px}
+  .sbtn.x svg{width:19px;height:19px}
+  .sbtn.line{background:#06C755}
+  .sbtn.x{background:#000}
+  .sbtn.threads{background:#000}
+
+  .share-fab{position:fixed;right:16px;bottom:18px;z-index:40;width:60px;height:60px;border-radius:50%;background:#fff;border:1px solid var(--line2);box-shadow:0 8px 20px -8px rgba(21,35,58,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);cursor:pointer}
+  .share-fab i{font-size:21px}
+  .share-fab span{font-size:10px;font-weight:700;margin-top:1px}
+
+  .share-modal{position:fixed;inset:0;z-index:50}
+  .share-modal[hidden]{display:none}
+  .share-overlay{position:absolute;inset:0;background:rgba(20,24,30,.45);opacity:0;transition:opacity .2s}
+  .share-modal.open .share-overlay{opacity:1}
+  .share-sheet{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;background:#fff;border-radius:18px 18px 0 0;padding:16px 20px calc(28px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .22s ease}
+  .share-modal.open .share-sheet{transform:translateY(0)}
+  .share-close{position:absolute;top:12px;right:14px;width:32px;height:32px;border-radius:50%;background:#F1EDE4;border:none;color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px}
+  .share-handle{width:44px;height:5px;border-radius:3px;background:var(--line2);margin:0 auto 14px}
+  .share-sheet-h{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:700;color:var(--navy);font-size:1.08rem;text-align:center;margin:0 0 4px}
+  .share-sheet-s{color:var(--muted);font-size:.82rem;text-align:center;margin:0 0 20px}
+  .share-opts{display:flex;justify-content:center;gap:30px;padding-bottom:6px}
+  .sopt{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none}
+  .sopt-ic{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+  .sopt-ic svg{width:29px;height:29px}
+  .sopt.x .sopt-ic svg{width:26px;height:26px}
+  .sopt.line .sopt-ic{background:#06C755}
+  .sopt.x .sopt-ic{background:#000}
+  .sopt.threads .sopt-ic{background:#000}
+  .sopt-lb{font-size:.8rem;color:var(--ink);font-weight:700}
+  @media(min-width:900px){.share-fab{right:24px;bottom:24px}}
+</style>
+
+<script is:inline>
+  (function () {
+    var fab = document.getElementById('shareFab');
+    var modal = document.getElementById('shareModal');
+    if (!fab || !modal) return;
+    function open() {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function () { modal.classList.add('open'); });
+    }
+    function close() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(function () { modal.hidden = true; }, 220);
+    }
+    fab.addEventListener('click', open);
+    modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) close(); });
+    document.querySelectorAll('[data-share]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        try { if (window.gtag) gtag('event', 'share', { method: a.getAttribute('data-share') }); } catch (e) {}
+      });
+    });
+  })();
+</script>

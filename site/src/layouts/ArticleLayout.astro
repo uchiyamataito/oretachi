@@ -2,6 +2,7 @@
 // 記事用レイアウト。目次・本文・免責を表示。構造化データは BaseLayout に委譲。
 import BaseLayout from './BaseLayout.astro';
 import RecoRails from '../components/RecoRails.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { withTrailingSlash } from '../utils/url';
 const { entry, headings = [], recos } = Astro.props;
 const d = entry.data;
@@ -46,6 +47,7 @@ const crumbs = [
       </nav>
     )}
     <div class="content"><slot /></div>
+    <ShareButtons url={withTrailingSlash(d.canonical)} title={d.title} label="この記事をシェア" />
     {d.disclaimer && <p class="disclaimer">{d.disclaimer}</p>}
     <RecoRails recos={recos} />
   </article>

@@ -2,6 +2,7 @@
 // Q&A詳細レイアウト。質問（見出し）→タグ→区切り→回答（要点＝メイン）→くわしく（本文＝サブ）→評価→回遊。
 import BaseLayout from './BaseLayout.astro';
 import RecoRails from '../components/RecoRails.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { withTrailingSlash } from '../utils/url';
 const { entry, recos } = Astro.props;
 const d = entry.data;
@@ -40,6 +41,8 @@ const crumbs = [
       <p class="qa-detail-label"><i class="ti ti-notes" aria-hidden="true"></i>くわしく</p>
       <div class="content"><slot /></div>
     </div>
+
+    <ShareButtons url={withTrailingSlash(d.canonical)} title={d.question} label="このQ&Aをシェア" />
 
     <div class="helpful" id="helpful" data-slug={entry.slug}>
       <p class="helpful-q">この回答、役に立ったか？</p>
