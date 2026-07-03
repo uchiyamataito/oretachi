@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Cloudflare の内部エンドポイント（メールアドレス難読化リンク等）はクロール対象外
+Disallow: /cdn-cgi/
+
+Sitemap: https://oretachi.me/sitemap-index.xml
