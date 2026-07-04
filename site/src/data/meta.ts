@@ -27,6 +27,7 @@ export const AMETA: Record<string, any> = {
   'rikon-bekkyo-sugoshikata':          { phases: ['別居', '切り出された直後'], kanshin: ['気持ち', '相談'], kids: false, spouse_contact: true, pri: 3, tag: '別居' },
   'rikon-yoikuhi':                     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '子ども', '手続き'], kids: true, pri: 3, tag: '養育費', route: 'rikon' },
   'rikon-konzen-keiyaku':              { phases: ['再出発', '成立後'], kanshin: ['お金', '相談'], kids: false, pri: 2, tag: '再出発', route: 'rikon' },
+  'rikon-hitorigurashi-kaji':          { phases: ['成立後', '再出発'], kanshin: ['気持ち', '相談'], kids: false, tag: '再出発', route: 'rikon' },
 };
 export const QMETA: Record<string, any> = {
   'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], route: 'rikon' },
@@ -68,6 +69,9 @@ export const QMETA: Record<string, any> = {
   'rikon-konzen-zaisanbunyo':        { phases: ['再出発', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-konzen-template':           { phases: ['再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-konzen-jijitsukon':         { phases: ['再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
+  'rikon-hitorigurashi-sonaeru':     { phases: ['成立後', '別居'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-jisui-shinai-eiyou':        { phases: ['成立後', '再出発'], kanshin: ['相談'], route: 'rikon' },
+  'rikon-kajidaikou-hajimete':       { phases: ['成立後', '再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）

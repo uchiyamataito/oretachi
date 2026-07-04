@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" role="img" aria-labelledby="t d" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">洗濯洗剤と柔軟剤の違いと、入れる場所</title>
+  <desc id="d">洗濯洗剤は汚れとニオイを落とす必須アイテムで「洗剤」投入口へ。柔軟剤はふんわり・香り・静電気防止の任意アイテムで「柔軟剤」投入口へ。分量は入れすぎず、容器裏の水量あたりの表示に従う。</desc>
+  <rect width="700" height="240" fill="#ffffff"/>
+  <text x="24" y="32" font-size="18" font-weight="700" fill="#2b3a5b">洗剤と柔軟剤は別物。入れる場所も違う</text>
+
+  <g>
+    <rect x="24" y="50" width="320" height="128" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
+    <text x="44" y="80" font-size="16" font-weight="700" fill="#2b6b4a">洗濯洗剤　<tspan fill="#2b6b4a" font-size="13">【必須】</tspan></text>
+    <text x="44" y="108" font-size="12.5" fill="#46715b">汚れとニオイを落とす。これが</text>
+    <text x="44" y="126" font-size="12.5" fill="#46715b">ないと洗濯にならない。</text>
+    <text x="44" y="156" font-size="12.5" fill="#2b6b4a" font-weight="700">入れる場所：「洗剤」の投入口</text>
+  </g>
+  <g>
+    <rect x="356" y="50" width="320" height="128" rx="14" fill="#eef1f6" stroke="#cdd8ea"/>
+    <text x="376" y="80" font-size="16" font-weight="700" fill="#2b3a5b">柔軟剤　<tspan fill="#5b6677" font-size="13">【任意】</tspan></text>
+    <text x="376" y="108" font-size="12.5" fill="#5b6677">ふんわり・いい香り・静電気を</text>
+    <text x="376" y="126" font-size="12.5" fill="#5b6677">抑える。なくても洗える。</text>
+    <text x="376" y="156" font-size="12.5" fill="#2b3a5b" font-weight="700">入れる場所：「柔軟剤」の投入口</text>
+  </g>
+
+  <rect x="24" y="192" width="652" height="34" rx="10" fill="#fdf3e9" stroke="#f0d2b0"/>
+  <text x="350" y="214" font-size="12.5" fill="#7a5a2e" text-anchor="middle">分量は入れすぎない。容器裏の「水量◯Lで◯mL」の表示どおりが正解。</text>
+</svg>
