@@ -5,6 +5,7 @@ const articles = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    seo_title: z.string().optional(),
     description: z.string(),
     target_keyword: z.string().optional(),
     secondary_keywords: z.array(z.string()).optional(),
