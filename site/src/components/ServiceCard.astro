@@ -1,0 +1,41 @@
+---
+// アフィリエイト用サービス紹介部品（29の設計・PR表記=09§3-b準拠）
+// バリアントは variant で切替：
+//   "card"   … 記事内Tier1カード（標準）
+//   "inline" … 本文中のミニ導線（テキスト型）
+// 見た目の定義は global.css（.svc-card / .svc-inline / .pr-label）＝単一の真実。
+// 使用例：
+//   <ServiceCard name="○○宅食" desc="…" points={['1食あたり…','スキップ可']} href="…" />
+//   <ServiceCard variant="inline" name="○○宅食" desc="宅食を比較する" href="…" />
+const {
+  variant = 'card',
+  name,           // サービス名（必須）
+  desc = '',      // 一言説明
+  points = [],    // 確認ポイント（card時のみ・配列）
+  href = '#',     // リンク先（アフィリURL）
+  cta = '詳しく見る',
+  pr = true,      // PRラベル表示（アフィリリンクでは必須。原則trueのまま使う）
+  rel = 'sponsored nofollow noopener', // アフィリリンクの標準rel
+} = Astro.props;
+---
+{variant === 'inline' ? (
+  <a class="svc-inline" href={href} rel={rel} target="_blank">
+    {pr && <span class="pr-label">PR</span>}
+    <span class="svc-i-t">{desc || name}</span>
+    <i class="ti ti-chevron-right svc-i-go" aria-hidden="true"></i>
+  </a>
+) : (
+  <div class="svc-card">
+    <div class="svc-head">
+      <span class="svc-name">{name}</span>
+      {pr && <span class="pr-label">PR</span>}
+    </div>
+    {desc && <p class="svc-desc">{desc}</p>}
+    {points.length > 0 && (
+      <ul class="svc-points">
+        {points.map((p) => <li>{p}</li>)}
+      </ul>
+    )}
+    <a class="btn btn-primary small" href={href} rel={rel} target="_blank">{cta}</a>
+  </div>
+)}

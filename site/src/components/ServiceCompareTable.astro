@@ -1,0 +1,37 @@
+---
+// アフィリエイト用L2比較表（29の設計・比較ハブ /service/<category> 用）
+// 見た目の定義は global.css（.svc-table / .pr-note）＝単一の真実。
+// 使用例：
+//   <ServiceCompareTable
+//     columns={['サービス', '料金目安', '配送', '公式']}
+//     rows={[
+//       { name: '○○宅食', cells: ['1食600円台〜', '週1〜'], href: 'https://…', cta: '公式サイト' },
+//     ]}
+//   />
+// 注意：料金は一次ソースの範囲表記のみ（個別額の断定はしない＝金額表示方針 7/2改定）。
+const {
+  columns = [],     // ヘッダー行。最後の列はリンク列を想定
+  rows = [],        // { name, cells: [], href, cta } の配列
+  prNote = true,    // 表の上のPR文言（09§3-b：ページ内アフィリ含む旨の表示）
+  rel = 'sponsored nofollow noopener',
+} = Astro.props;
+---
+<div class="svc-table-wrap">
+  {prNote && <p class="pr-note">※本比較にはプロモーション（PR）を含みます。掲載基準は編集方針をご覧ください。</p>}
+  <div class="svc-table-scroll">
+  <table class="svc-table">
+    <thead>
+      <tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row" class="svc-t-name">{r.name}</th>
+          {r.cells.map((cell) => <td>{cell}</td>)}
+          <td class="svc-t-cta"><a href={r.href} rel={rel} target="_blank">{r.cta || '公式サイト'}</a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  </div>
+</div>

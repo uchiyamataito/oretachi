@@ -11,6 +11,7 @@ const {
   author = 'オレタチ編集部',
   breadcrumb = [],
   faq = [],
+  noindex = false, // 内部確認用ページ（styleguide等）はtrue＝検索エンジンに載せない
 } = Astro.props;
 
 // canonical は配信URL（ディレクトリ形式＝末尾スラッシュ付き）に正規化する。
@@ -84,6 +85,7 @@ const faqLd = faq && faq.length
       gtag('config', 'G-JYDMZ20R7G');
     </script>
     <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:url" content={canonicalUrl} />

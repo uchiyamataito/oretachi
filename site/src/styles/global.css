@@ -404,6 +404,83 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .d-cur{background:var(--coral)}
 .home .d-done{background:var(--teal)}
 
+/* ===========================================================
+   汎用ボタン（主・副）＝F1.5デザインシステム部品
+   使い所：CTA・カード内アクション。リンクにも<button>にも同じ見た目。
+   =========================================================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15px;line-height:1;
+  border-radius:999px;padding:0 22px;min-height:48px;text-decoration:none;cursor:pointer;transition:.15s;border:none}
+.btn-primary{background:var(--coral);color:#fff;box-shadow:0 10px 22px -12px rgba(226,112,58,.7)}
+.btn-primary:hover{filter:brightness(.96)}
+.btn-secondary{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-secondary:hover{background:#F1EADD}
+.btn.small{font-size:13px;min-height:40px;padding:0 16px}
+
+/* ===========================================================
+   データ表示部品（specs/03の作法：数値はベタ書きせずカード/ドーナツ/バー）
+   使い方：<div class="stat-card">…。ドーナツは --p:62 のように%を渡す。
+   =========================================================== */
+.stat-row{display:grid;grid-template-columns:1fr;gap:12px;margin:1.4em 0}
+@media(min-width:600px){.stat-row{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+.stat-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
+.stat-card .stat-cap{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.6}
+.stat-card .stat-src{display:block;font-size:10.5px;color:var(--faint);text-align:center;margin-top:4px}
+.donut{--p:50;width:96px;height:96px;border-radius:50%;margin:4px auto;position:relative;
+  background:conic-gradient(var(--coral) calc(var(--p)*1%), var(--line) 0)}
+.donut::after{content:attr(data-label);position:absolute;inset:13px;background:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:'Zen Kaku Gothic New';font-weight:900;font-size:19px;color:var(--navy)}
+.hbar{margin:8px 0 2px}
+.hbar .hbar-t{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink);margin-bottom:4px}
+.hbar .hbar-t b{color:var(--navy)}
+.hbar .hbar-track{background:var(--surface);border-radius:8px;height:12px;overflow:hidden}
+.hbar .hbar-fill{display:block;height:100%;background:var(--navy);border-radius:8px}
+.hbar .hbar-fill.accent{background:var(--coral)}
+
+/* ===========================================================
+   アフィリエイト部品（29の設計。PR表記は09§3-b準拠）
+   バリアント：①svc-card=記事内Tier1カード ②svc-table=L2比較表 ③svc-inline=本文中ミニ導線
+   色・角丸・PR表記は共通＝1か所直せば全バリアントに反映。
+   =========================================================== */
+.pr-label{display:inline-block;font-size:10.5px;font-weight:700;color:var(--muted);
+  border:1px solid var(--line2);border-radius:5px;padding:1px 8px;letter-spacing:.05em;background:#fff;flex:none}
+.pr-note{font-size:11.5px;color:var(--faint);margin:0 0 10px}
+/* ①記事内Tier1カード */
+.svc-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:18px 18px 20px;margin:1.6em 0;box-shadow:0 10px 24px -20px rgba(21,35,58,.5)}
+.svc-card .svc-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.svc-card .svc-name{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16.5px;color:var(--navy);flex:1;min-width:0}
+.svc-card .svc-desc{font-size:14px;line-height:1.8;margin:0 0 10px}
+.svc-card .svc-points{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:5px}
+.svc-card .svc-points li{position:relative;padding-left:22px;font-size:13px;color:var(--muted);line-height:1.7}
+.svc-card .svc-points li::before{content:'✓';position:absolute;left:0;top:.18em;width:16px;height:16px;border-radius:4px;
+  background:var(--teal);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.svc-card .btn{width:100%}
+@media(min-width:600px){.svc-card .btn{width:auto}}
+/* ②L2比較表（スクロールは外枠.svc-table-scrollが担当。表本体は常に幅100%） */
+.svc-table-wrap{margin:1.6em 0}
+.svc-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--line);border-radius:14px}
+/* display:table を明示＝共通ルール（table{display:block}）の上書き。外枠がスクロールを担うため表は通常レイアウトで幅100% */
+.svc-table{display:table;width:100%;min-width:480px;border-collapse:collapse;font-size:.92rem;overflow:visible;margin:0}
+/* マス目は共通ルール（th,td{border:1px solid}）をリセットし、横線のみに統一（外枠と二重にしない） */
+.svc-table th,.svc-table td{border:none;border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top;line-height:1.7}
+.svc-table thead th{background:#F4EEE4;color:var(--navy);font-weight:700;font-size:.85rem;white-space:nowrap}
+/* 四隅を外枠の角丸に沿わせる（ヘッダー背景のはみ出し防止） */
+.svc-table thead th:first-child{border-top-left-radius:13px}
+.svc-table thead th:last-child{border-top-right-radius:13px}
+.svc-table tbody tr:last-child th:first-child{border-bottom-left-radius:13px}
+.svc-table tbody tr:last-child td:last-child{border-bottom-right-radius:13px}
+.svc-table tbody tr:last-child th,.svc-table tbody tr:last-child td{border-bottom:none}
+.svc-table .svc-t-name{font-family:'Zen Kaku Gothic New';font-weight:700;color:var(--navy);white-space:nowrap}
+.svc-table .svc-t-cta a{color:var(--coral-deep);font-weight:700;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+/* ③本文中ミニ導線（テキスト型・回遊を邪魔しない） */
+.svc-inline{display:flex;align-items:center;gap:10px;background:#FBF5EE;border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;margin:1.2em 0;text-decoration:none;transition:.15s}
+.svc-inline:hover{border-color:var(--coral)}
+.svc-inline .svc-i-t{flex:1;min-width:0;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.6}
+.svc-inline .svc-i-go{flex:none;color:var(--faint);font-size:17px}
+.svc-inline:hover .svc-i-go{color:var(--coral)}
+
 /* Q&Aカード（レール内） */
 .home .qcard{position:relative;scroll-snap-align:start;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-left:3px solid var(--cat,var(--line2));border-radius:14px;padding:14px 36px 16px 14px;text-decoration:none;box-shadow:0 8px 18px -16px rgba(21,35,58,.5);transition:.15s}
 .home .qcard:hover,.home .qcard:focus-visible{border-color:var(--coral);transform:translateY(-2px);box-shadow:0 12px 22px -16px rgba(21,35,58,.55)}

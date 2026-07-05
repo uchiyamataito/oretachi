@@ -8,7 +8,10 @@ import remarkCjkFriendly from 'remark-cjk-friendly';
 // 本番ドメイン。sitemap/canonical の基準になる。
 export default defineConfig({
   site: 'https://oretachi.me',
-  integrations: [sitemap()],
+  integrations: [
+    // styleguide（内部確認用・noindex）はサイトマップに載せない
+    sitemap({ filter: (page) => !page.includes('/styleguide') }),
+  ],
   markdown: {
     // コードブロック（プロンプト例など）はダークなシンタックスハイライトを使わず、
     // CSSで引用的な淡いデザインにする（プレーン出力）。

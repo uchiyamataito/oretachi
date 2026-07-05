@@ -1,0 +1,67 @@
+---
+// F1.5 デザインシステム スタイルガイド（内部確認用・noindex・sitemap除外）
+// 新部品を追加したら必ずここにも並べる＝実物確認の単一窓口。
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ServiceCompareTable from '../components/ServiceCompareTable.astro';
+---
+<BaseLayout
+  title="スタイルガイド（内部用）｜オレタチ"
+  description="F1.5デザインシステムの部品一覧（内部確認用）"
+  noindex={true}
+>
+  <h1>スタイルガイド</h1>
+  <p style="color:var(--muted);font-size:.9rem;">F1.5の共通部品一覧。内部確認用（noindex・sitemap除外）。部品を追加したらこのページにも並べる。</p>
+
+  <h2>ボタン（主・副）</h2>
+  <p>
+    <a class="btn btn-primary" href="#">お前の現在地をつくる</a>
+    <a class="btn btn-secondary" href="#" style="margin-left:10px;">記事を読む</a>
+    <a class="btn btn-primary small" href="#" style="margin-left:10px;">小サイズ</a>
+  </p>
+
+  <h2>データ表示（カード／ドーナツ／バー）</h2>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="donut" style="--p:62" data-label="62%"></div>
+      <div class="stat-cap">ドーナツ：割合を1つ見せる時</div>
+      <span class="stat-src">出典：〇〇統計（例示）</span>
+    </div>
+    <div class="stat-card">
+      <div class="hbar">
+        <div class="hbar-t"><span>協議離婚</span><b>88%</b></div>
+        <div class="hbar-track"><span class="hbar-fill" style="width:88%"></span></div>
+      </div>
+      <div class="hbar">
+        <div class="hbar-t"><span>調停・審判</span><b>10%</b></div>
+        <div class="hbar-track"><span class="hbar-fill accent" style="width:10%"></span></div>
+      </div>
+      <div class="stat-cap">バー：分布・比較を見せる時</div>
+      <span class="stat-src">出典：〇〇統計（例示）</span>
+    </div>
+  </div>
+
+  <h2>アフィリ部品① 記事内Tier1カード</h2>
+  <ServiceCard
+    name="宅食サービス（例）"
+    desc="自炊ゼロでも栄養が偏らない。ひとり暮らし初日から使える冷凍宅配。"
+    points={['1食あたりの目安金額は公式で確認', '配送頻度・スキップ可否', '初回割引の有無']}
+    href="#"
+  />
+
+  <h2>アフィリ部品② L2比較表</h2>
+  <ServiceCompareTable
+    columns={['サービス', '料金目安', '配送', '公式']}
+    rows={[
+      { name: '宅食A（例）', cells: ['公式参照', '週1〜'], href: '#', cta: '公式サイト' },
+      { name: '宅食B（例）', cells: ['公式参照', '都度'], href: '#', cta: '公式サイト' },
+    ]}
+  />
+
+  <h2>アフィリ部品③ 本文中ミニ導線</h2>
+  <ServiceCard variant="inline" name="宅食比較" desc="ひとり暮らし向けの宅食サービスを比較する" href="#" />
+
+  <h2>既存部品（参考）</h2>
+  <p style="color:var(--muted);font-size:.9rem;">チップ・Q&Aカード・回遊モジュール・相談窓口box等は実ページ（トップ/記事/Q&A）で確認。</p>
+  <p><span class="chip">別居</span><span class="chip ghost">お金</span></p>
+</BaseLayout>
