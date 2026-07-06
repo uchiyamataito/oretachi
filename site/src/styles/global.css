@@ -300,9 +300,8 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .emptyhero .eh-k{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700}
 .home .emptyhero .eh-t{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:21px;color:var(--navy);margin:10px 0 0;line-height:1.5;position:relative;z-index:1}
 .home .emptyhero .eh-s{font-size:13.5px;color:var(--muted);margin:12px 0 0;line-height:1.85;position:relative;z-index:1}
-.home .emptyhero .eh-btn{position:relative;z-index:1;margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  background:var(--coral);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;border:none;cursor:pointer;
-  border-radius:14px;padding:16px;box-shadow:0 14px 28px -12px rgba(226,112,58,.7)}
+/* 主CTA＝共通ボタン部品.btn .btn-primaryを採用。ここではヒーロー内の配置（全幅・光の上に載せる）だけ上書き */
+.home .emptyhero .eh-cta{position:relative;z-index:1;margin-top:18px;width:100%;font-size:16px}
 .home .emptyhero .eh-mini{font-size:11px;color:var(--faint);text-align:center;margin-top:9px;position:relative;z-index:1}
 .home .emptyhero .eh-about{display:block;text-align:center;position:relative;z-index:1;margin-top:14px;font-size:12.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 .home .emptyhero .eh-about:hover{color:var(--coral-deep)}
@@ -319,7 +318,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .onbm .dots{display:flex;gap:6px}
 .onbm .dots span{width:22px;height:5px;border-radius:3px;background:#D8CEBE}
 .onbm .dots span.on{background:var(--coral)}
-.onbm .close{margin-left:auto;background:none;border:none;color:var(--faint);font-size:22px;cursor:pointer;line-height:1}
+.onbm .close{margin-left:auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--faint);font-size:22px;cursor:pointer;line-height:1}
 .onbm .qh{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:19px;color:var(--navy);line-height:1.5}
 .onbm .qs{font-size:12.5px;color:var(--muted);margin:6px 0 16px}
 .onbm .opts{display:flex;flex-direction:column;gap:10px;margin-top:16px}
@@ -397,7 +396,8 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .dottip-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;color:var(--navy);margin-bottom:8px}
 .dottip-d{font-size:13px;color:var(--ink);line-height:1.7}
 .dottip-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--coral);vertical-align:-1px;margin:0 2px}
-.dottip-ok{margin-top:16px;width:100%;background:var(--coral);color:#fff;border:none;border-radius:999px;padding:11px;font-weight:700;font-size:14px;cursor:pointer}
+/* 完了ボタン＝共通.btn .btn-primaryを採用。配置のみ上書き */
+.dottip-ok{margin-top:16px;width:100%}
 /* 凡例（色の意味） */
 .home .jrny .legend{display:flex;gap:16px;margin:2px 0 14px;font-size:11px;color:var(--muted)}
 .home .leg-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:0}

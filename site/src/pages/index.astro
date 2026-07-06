@@ -26,7 +26,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       <div class="eh-k">YOUR MAP</div>
       <div class="eh-t">お前の“現在地マップ”は、まだぼんやりしている。</div>
       <div class="eh-s">何から考えればいいか分からなくて、当たり前だ。全部を一度に背負わなくていい。<strong>5つの質問（約30秒）</strong>に答えてくれりゃ、お前の状況に合わせた<strong>“やる順番（時系列）”</strong>と、次に読むべき記事・Q&Aが並ぶ。一緒にやろう。</div>
-      <button class="eh-btn" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>お前の現在地をつくる</button>
+      <button class="btn btn-primary eh-cta" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>お前の現在地をつくる</button>
       <div class="eh-mini">名前も連絡先も聞かない。答えはこの端末の中だけに残る。</div>
       <a class="eh-about" href="/about">「オレタチ」って、どんな場所？</a>
     </div>
@@ -213,7 +213,7 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       try { if (localStorage.getItem('oretachi_tip_dot')) return; } catch (e) {}
       const wrap = document.createElement('div');
       wrap.className = 'dottip';
-      wrap.innerHTML = '<div class="dottip-card" role="dialog" aria-modal="true"><div class="dottip-t">現在地は、あとから動かせる</div><div class="dottip-d">状況が進んだら、時系列の左の<span class="dottip-dot"></span>（丸）をタップして「今ここ」を移してくれ。今のお前に合った“やること”に並び替わる。</div><button class="dottip-ok" type="button">わかった</button></div>';
+      wrap.innerHTML = '<div class="dottip-card" role="dialog" aria-modal="true"><div class="dottip-t">現在地は、あとから動かせる</div><div class="dottip-d">状況が進んだら、時系列の左の<span class="dottip-dot"></span>（丸）をタップして「今ここ」を移してくれ。今のお前に合った“やること”に並び替わる。</div><button class="btn btn-primary dottip-ok" type="button">わかった</button></div>';
       document.body.appendChild(wrap);
       const close = () => { try { localStorage.setItem('oretachi_tip_dot', '1'); } catch (e) {} wrap.remove(); };
       wrap.querySelector('.dottip-ok')?.addEventListener('click', close);
