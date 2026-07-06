@@ -1,19 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 308" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">最初の一言：その場で答えを出さず「少し時間がほしい」と伝える</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">迷ったら、最初の一言はこれでいい</text>
+  <rect x="0.5" y="0.5" width="699" height="307" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">迷ったら、最初の一言はこれでいい</text>
 
   <!-- quote card -->
-  <rect x="36" y="64" width="628" height="76" rx="16" fill="#eef7f1" stroke="#bfe0cc"/>
-  <text x="350" y="110" font-size="18" font-weight="700" fill="#2b3a5b" text-anchor="middle">「突然で、正直まだ受け止めきれない。少し、時間がほしい。」</text>
+  <rect x="36" y="72" width="628" height="76" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="350" y="117" font-size="17.5" font-weight="700" fill="#1B3A57" text-anchor="middle">「突然で、正直まだ受け止めきれない。少し、時間がほしい。」</text>
 
   <!-- 3 points -->
-  <rect x="36" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
-  <text x="136" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">結論を出さない</text>
-  <rect x="250" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
-  <text x="350" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">相手を責めない</text>
-  <rect x="464" y="172" width="200" height="60" rx="12" fill="#fdeeea" stroke="#eebbb0"/>
-  <text x="564" y="208" font-size="15.5" font-weight="700" fill="#9a4634" text-anchor="middle">短く</text>
+  <rect x="36" y="180" width="200" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="136" y="216" font-size="15" font-weight="700" fill="#B5481F" text-anchor="middle">結論を出さない</text>
+  <rect x="250" y="180" width="200" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="350" y="216" font-size="15" font-weight="700" fill="#B5481F" text-anchor="middle">相手を責めない</text>
+  <rect x="464" y="180" width="200" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="564" y="216" font-size="15" font-weight="700" fill="#B5481F" text-anchor="middle">短く</text>
 
-  <text x="36" y="268" font-size="13.5" fill="#6b7280">なぜ効く？ 相手は長く考え決意して言っている。即否定や説得は、その決意を固めるだけだから。</text>
+  <text x="36" y="278" font-size="12.5" fill="#6E6354">なぜ効く？ 相手は長く考え決意して言っている。即否定や説得は、その決意を固めるだけだから。</text>
 </svg>

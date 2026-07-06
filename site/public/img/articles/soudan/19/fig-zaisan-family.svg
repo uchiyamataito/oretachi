@@ -1,38 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">家族パターン別の共有財産の考え方。専業主婦世帯でも夫名義の預貯金・退職金は共有財産、共働きも双方の収入で築いた分が共有財産、独身時代の貯金や相続財産はどのパターンでも対象外</title>
-  <rect width="700" height="360" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">家族のパターン別：何が対象になる？</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">「誰が稼いだか・誰の名義か」ではなく「結婚後に二人で築いたか」で決まる。</text>
+  <rect x="0.5" y="0.5" width="699" height="359" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">家族のパターン別：何が対象になる？</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">「誰が稼いだか・誰の名義か」ではなく「結婚後に二人で築いたか」で決まる。</text>
+
+  <!-- table frame -->
+  <rect x="36" y="84" width="628" height="176" rx="10" fill="#FFFFFF" stroke="#E4DACB"/>
+  <path d="M36 120 V94 Q36 84 46 84 H654 Q664 84 664 94 V120 Z" fill="#FBF9F4"/>
+  <line x1="36" y1="120" x2="664" y2="120" stroke="#E4DACB"/>
+  <line x1="36" y1="196" x2="664" y2="196" stroke="#ECE3D5"/>
+  <line x1="276" y1="84" x2="276" y2="260" stroke="#ECE3D5"/>
+  <line x1="496" y1="84" x2="496" y2="260" stroke="#ECE3D5"/>
 
   <!-- header row -->
-  <rect x="36" y="80" width="240" height="36" fill="#eef1f6"/>
-  <rect x="276" y="80" width="220" height="36" fill="#eef3ee"/>
-  <rect x="496" y="80" width="168" height="36" fill="#f1f1f3"/>
-  <text x="48" y="103" font-size="13" font-weight="700" fill="#2b3a5b">パターン</text>
-  <text x="288" y="103" font-size="13" font-weight="700" fill="#3f7d54">対象になる（共有財産）</text>
-  <text x="508" y="103" font-size="13" font-weight="700" fill="#6b7280">対象外（特有財産）</text>
+  <text x="48" y="107" font-size="13" font-weight="700" fill="#1B3A57">パターン</text>
+  <text x="288" y="107" font-size="13" font-weight="700" fill="#0F6E56">対象になる（共有財産）</text>
+  <text x="508" y="107" font-size="13" font-weight="700" fill="#B5481F">対象外（特有財産）</text>
 
   <!-- row1 専業主婦 -->
-  <rect x="36" y="116" width="628" height="76" fill="#ffffff" stroke="#e3e7ee"/>
-  <text x="48" y="142" font-size="13" font-weight="700" fill="#2b3a5b">専業主婦＋子あり</text>
-  <text x="48" y="164" font-size="11.5" fill="#6b7280">夫だけが稼いでいる</text>
-  <text x="288" y="142" font-size="12.5" fill="#26402e">夫名義の預貯金</text>
-  <text x="288" y="162" font-size="12.5" fill="#26402e">将来の退職金（婚姻期間分）</text>
-  <text x="288" y="182" font-size="12.5" fill="#26402e">持ち家・車 など</text>
-  <text x="508" y="152" font-size="12.5" fill="#6b7280">結婚前の貯金</text>
-  <text x="508" y="172" font-size="12.5" fill="#6b7280">相続・贈与の財産</text>
+  <text x="48" y="146" font-size="13" font-weight="700" fill="#1B3A57">専業主婦＋子あり</text>
+  <text x="48" y="168" font-size="11.5" fill="#6E6354">夫だけが稼いでいる</text>
+  <text x="288" y="146" font-size="12.5" fill="#2C2A26">夫名義の預貯金</text>
+  <text x="288" y="166" font-size="12.5" fill="#2C2A26">将来の退職金（婚姻期間分）</text>
+  <text x="288" y="186" font-size="12.5" fill="#2C2A26">持ち家・車 など</text>
+  <text x="508" y="156" font-size="12.5" fill="#6E6354">結婚前の貯金</text>
+  <text x="508" y="176" font-size="12.5" fill="#6E6354">相続・贈与の財産</text>
 
   <!-- row2 共働き -->
-  <rect x="36" y="192" width="628" height="64" fill="#fbfcfb" stroke="#e3e7ee"/>
-  <text x="48" y="220" font-size="13" font-weight="700" fill="#2b3a5b">共働き</text>
-  <text x="48" y="240" font-size="11.5" fill="#6b7280">二人とも収入あり</text>
-  <text x="288" y="220" font-size="12.5" fill="#26402e">双方名義の預貯金</text>
-  <text x="288" y="240" font-size="12.5" fill="#26402e">二人の収入で築いた車・有価証券 など</text>
-  <text x="508" y="230" font-size="12.5" fill="#6b7280">各自の結婚前の財産・相続分</text>
+  <text x="48" y="224" font-size="13" font-weight="700" fill="#1B3A57">共働き</text>
+  <text x="48" y="244" font-size="11.5" fill="#6E6354">二人とも収入あり</text>
+  <text x="288" y="224" font-size="12.5" fill="#2C2A26">双方名義の預貯金</text>
+  <text x="288" y="244" font-size="12.5" fill="#2C2A26">二人の収入で築いた車・有価証券 など</text>
+  <text x="508" y="234" font-size="12.5" fill="#6E6354">各自の結婚前の財産・相続分</text>
 
   <!-- note -->
-  <rect x="36" y="272" width="628" height="64" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="52" y="296" font-size="12.5" fill="#33433a">※ 名義が夫でも、稼ぎ手が夫だけでも、結婚後に築いた分は共有財産。家庭を支えた相手の</text>
-  <text x="52" y="314" font-size="12.5" fill="#33433a">　貢献があったとみなす考え方による。どのパターンでも、結婚前の財産と相続・贈与は対象外。</text>
-  <text x="52" y="330" font-size="11.5" fill="#8a6d3b">　取り分の割合・最終的な金額は個別事情で決まる（専門家・家庭裁判所へ）。</text>
+  <rect x="36" y="276" width="628" height="66" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="52" y="298" font-size="12.5" fill="#6E6354">※ 名義が夫でも、稼ぎ手が夫だけでも、結婚後に築いた分は共有財産。家庭を支えた相手の</text>
+  <text x="52" y="316" font-size="12.5" fill="#6E6354">　貢献があったとみなす考え方による。どのパターンでも、結婚前の財産と相続・贈与は対象外。</text>
+  <text x="52" y="334" font-size="11.5" fill="#6E6354">　取り分の割合・最終的な金額は個別事情で決まる（専門家・家庭裁判所へ）。</text>
 </svg>

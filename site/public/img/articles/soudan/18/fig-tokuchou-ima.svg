@@ -1,33 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">今からでも効く3つ。受け止める・安心を渡す・追わない</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">今からでも効く、3つのこと</text>
+  <rect x="0.5" y="0.5" width="699" height="299" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">今からでも効く、3つのこと</text>
 
   <!-- 1 受け止める -->
-  <rect x="28" y="74" width="206" height="150" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-  <circle cx="131" cy="112" r="22" fill="#3a9b6e"/>
-  <text x="131" y="120" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
-  <text x="131" y="158" font-size="16" font-weight="700" fill="#2b3a5b" text-anchor="middle">受け止める</text>
-  <text x="131" y="184" font-size="12.5" fill="#33433a" text-anchor="middle">解決策より先に、</text>
-  <text x="131" y="203" font-size="13" font-weight="700" fill="#3a9b6e" text-anchor="middle">「そうか、しんどかったな」</text>
+  <rect x="28" y="74" width="206" height="150" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="131" cy="112" r="22" fill="#0F6E56"/>
+  <text x="131" y="120" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="131" y="158" font-size="16" font-weight="700" fill="#1B3A57" text-anchor="middle">受け止める</text>
+  <text x="131" y="184" font-size="12.5" fill="#2C2A26" text-anchor="middle">解決策より先に、</text>
+  <text x="131" y="203" font-size="13" font-weight="700" fill="#0F6E56" text-anchor="middle">「そうか、しんどかったな」</text>
 
   <!-- 2 安心を渡す -->
-  <rect x="247" y="74" width="206" height="150" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-  <circle cx="350" cy="112" r="22" fill="#3a9b6e"/>
-  <text x="350" y="120" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
-  <text x="350" y="158" font-size="16" font-weight="700" fill="#2b3a5b" text-anchor="middle">安心を渡す</text>
-  <text x="350" y="184" font-size="12.5" fill="#33433a" text-anchor="middle">感謝を言う。約束を守る。</text>
-  <text x="350" y="203" font-size="12.5" fill="#33433a" text-anchor="middle">小さな積み重ねでいい。</text>
+  <rect x="247" y="74" width="206" height="150" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="350" cy="112" r="22" fill="#0F6E56"/>
+  <text x="350" y="120" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="350" y="158" font-size="16" font-weight="700" fill="#1B3A57" text-anchor="middle">安心を渡す</text>
+  <text x="350" y="184" font-size="12.5" fill="#2C2A26" text-anchor="middle">感謝を言う。約束を守る。</text>
+  <text x="350" y="203" font-size="12.5" fill="#2C2A26" text-anchor="middle">小さな積み重ねでいい。</text>
 
   <!-- 3 追わない -->
-  <rect x="466" y="74" width="206" height="150" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-  <circle cx="569" cy="112" r="22" fill="#3a9b6e"/>
-  <text x="569" y="120" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
-  <text x="569" y="158" font-size="16" font-weight="700" fill="#2b3a5b" text-anchor="middle">追わない</text>
-  <text x="569" y="184" font-size="12.5" fill="#33433a" text-anchor="middle">問い詰めない・監視しない。</text>
-  <text x="569" y="203" font-size="12.5" fill="#33433a" text-anchor="middle">自分の生活を整える。</text>
+  <rect x="466" y="74" width="206" height="150" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="569" cy="112" r="22" fill="#0F6E56"/>
+  <text x="569" y="120" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="569" y="158" font-size="16" font-weight="700" fill="#1B3A57" text-anchor="middle">追わない</text>
+  <text x="569" y="184" font-size="12.5" fill="#2C2A26" text-anchor="middle">問い詰めない・監視しない。</text>
+  <text x="569" y="203" font-size="12.5" fill="#2C2A26" text-anchor="middle">自分の生活を整える。</text>
 
   <!-- bottom note -->
-  <rect x="28" y="246" width="644" height="40" rx="12" fill="#fff8ec" stroke="#eccfa6"/>
-  <text x="350" y="271" font-size="13" fill="#33433a" text-anchor="middle">皮肉だが、自分を立て直すことが、結果的にいちばん相手に届く。（※関係修復を保証するものではない）</text>
+  <rect x="28" y="246" width="644" height="40" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="350" y="271" font-size="13" fill="#2C2A26" text-anchor="middle">皮肉だが、自分を立て直すことが、結果的にいちばん相手に届く。（※関係修復を保証するものではない）</text>
 </svg>

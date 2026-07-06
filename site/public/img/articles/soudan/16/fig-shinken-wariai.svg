@@ -1,30 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">親権者になる割合：母親が約8〜9割、父親は約1〜2割（厚労省・司法統計）</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">親権者になるのは、母親が大半</text>
+  <rect x="0.5" y="0.5" width="699" height="299" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">親権者になるのは、母親が大半</text>
 
   <!-- pie -->
   <g>
     <!-- 母 約88% -->
-    <path d="M165 184 L165 96 A88 88 0 1 1 104.8 119.8 Z" fill="#3a9b6e" stroke="#ffffff" stroke-width="2"/>
+    <path d="M165 184 L165 96 A88 88 0 1 1 104.8 119.8 Z" fill="#1B3A57" stroke="#FFFFFF" stroke-width="2"/>
     <!-- 父 約12% -->
-    <path d="M165 184 L104.8 119.8 A88 88 0 0 1 165 96 Z" fill="#d98a3d" stroke="#ffffff" stroke-width="2"/>
-    <text x="188" y="216" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">約8〜9割</text>
+    <path d="M165 184 L104.8 119.8 A88 88 0 0 1 165 96 Z" fill="#E2703A" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="188" y="216" font-size="17" font-weight="700" fill="#FFFFFF" text-anchor="middle">約8〜9割</text>
     <!-- 父 leader -->
-    <line x1="140" y1="104" x2="152" y2="86" stroke="#d98a3d" stroke-width="2"/>
-    <text x="152" y="80" font-size="13" font-weight="700" fill="#d98a3d" text-anchor="middle">父 約1〜2割</text>
+    <line x1="140" y1="104" x2="152" y2="86" stroke="#E2703A" stroke-width="2"/>
+    <text x="152" y="80" font-size="13" font-weight="700" fill="#B5481F" text-anchor="middle">父 約1〜2割</text>
   </g>
 
   <!-- legend -->
-  <rect x="330" y="96" width="18" height="18" rx="3" fill="#3a9b6e"/>
-  <text x="356" y="111" font-size="15.5" fill="#2b3a5b">母親が親権者　<tspan font-weight="700">約8〜9割</tspan></text>
-  <rect x="330" y="128" width="18" height="18" rx="3" fill="#d98a3d"/>
-  <text x="356" y="143" font-size="15.5" fill="#2b3a5b">父親　<tspan font-weight="700">約1〜2割</tspan></text>
+  <rect x="330" y="96" width="18" height="18" rx="3" fill="#1B3A57"/>
+  <text x="356" y="111" font-size="15.5" fill="#2C2A26">母親が親権者　<tspan font-weight="700" fill="#1B3A57">約8〜9割</tspan></text>
+  <rect x="330" y="128" width="18" height="18" rx="3" fill="#E2703A"/>
+  <text x="356" y="143" font-size="15.5" fill="#2C2A26">父親　<tspan font-weight="700" fill="#1B3A57">約1〜2割</tspan></text>
 
   <!-- note -->
-  <rect x="330" y="170" width="334" height="110" rx="12" fill="#e9f3ec" stroke="#bfe0cc"/>
-  <text x="350" y="200" font-size="15.5" font-weight="700" fill="#3a9b6e">数字は事実。でも「母親優先」と</text>
-  <text x="350" y="222" font-size="15.5" font-weight="700" fill="#3a9b6e">法律で決まっているわけではない。</text>
-  <text x="350" y="246" font-size="13.5" fill="#33433a">決め手は性別じゃなく「子の利益」＝主たる</text>
-  <text x="350" y="266" font-size="13.5" fill="#33433a">監護の実績と生活の安定。</text>
+  <rect x="330" y="170" width="334" height="110" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="350" y="200" font-size="15.5" font-weight="700" fill="#0F6E56">数字は事実。でも「母親優先」と</text>
+  <text x="350" y="222" font-size="15.5" font-weight="700" fill="#0F6E56">法律で決まっているわけではない。</text>
+  <text x="350" y="246" font-size="13.5" fill="#2C2A26">決め手は性別じゃなく「子の利益」＝主たる</text>
+  <text x="350" y="266" font-size="13.5" fill="#2C2A26">監護の実績と生活の安定。</text>
 </svg>

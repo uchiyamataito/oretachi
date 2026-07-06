@@ -1,33 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 220" role="img" aria-labelledby="t d" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 232" role="img" aria-labelledby="t d" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">家事の最低ラインは4つだけ</title>
   <desc id="d">食事＝「食べない」を避ける・自炊にこだわらない。洗濯＝「着る服がない」を避ける・ためない仕組み。掃除＝「不潔で体を壊す」を避ける・一角だけ。買い物＝「切らして困る」を避ける・ネットで自動化。</desc>
-  <rect width="700" height="220" fill="#ffffff"/>
-  <text x="24" y="32" font-size="18" font-weight="700" fill="#2b3a5b">家事の最低ラインは、たった4つ</text>
-  <text x="24" y="52" font-size="12.5" fill="#8a8270">完璧じゃなく「回す」。それぞれ避けたい一線と、やり方だけ。</text>
+  <rect x="0.5" y="0.5" width="699" height="231" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">家事の最低ラインは、たった4つ</text>
+  <text x="36" y="68" font-size="12.5" fill="#6E6354">完璧じゃなく「回す」。それぞれ避けたい一線と、やり方だけ。</text>
 
-  <g>
-    <rect x="24" y="66" width="156" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-    <text x="102" y="96" font-size="16" font-weight="700" fill="#2b6b4a" text-anchor="middle">食事</text>
-    <text x="102" y="124" font-size="12" fill="#46715b" text-anchor="middle">避ける：食べない日</text>
-    <text x="102" y="150" font-size="12.5" fill="#2b6b4a" text-anchor="middle" font-weight="700">自炊にこだわらない</text>
-  </g>
-  <g>
-    <rect x="196" y="66" width="156" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-    <text x="274" y="96" font-size="16" font-weight="700" fill="#2b6b4a" text-anchor="middle">洗濯</text>
-    <text x="274" y="124" font-size="12" fill="#46715b" text-anchor="middle">避ける：着る服切れ</text>
-    <text x="274" y="150" font-size="12.5" fill="#2b6b4a" text-anchor="middle" font-weight="700">ためない仕組み</text>
-  </g>
-  <g>
-    <rect x="368" y="66" width="156" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-    <text x="446" y="96" font-size="16" font-weight="700" fill="#2b6b4a" text-anchor="middle">掃除</text>
-    <text x="446" y="124" font-size="12" fill="#46715b" text-anchor="middle">避ける：不潔で体調悪化</text>
-    <text x="446" y="150" font-size="12.5" fill="#2b6b4a" text-anchor="middle" font-weight="700">今日は一角だけ</text>
-  </g>
-  <g>
-    <rect x="540" y="66" width="136" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-    <text x="608" y="96" font-size="16" font-weight="700" fill="#2b6b4a" text-anchor="middle">買い物</text>
-    <text x="608" y="124" font-size="12" fill="#46715b" text-anchor="middle">避ける：切らして困る</text>
-    <text x="608" y="150" font-size="12.5" fill="#2b6b4a" text-anchor="middle" font-weight="700">ネットで自動化</text>
-  </g>
-  <text x="350" y="208" font-size="12.5" fill="#8a8270" text-anchor="middle">60点で回り続けるほうが、100点で三日坊主より強い。</text>
+  <!-- 食事 -->
+  <rect x="36" y="84" width="148" height="112" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H170 Q184 84 184 98 V128 Z" fill="#0F6E56"/>
+  <text x="110" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">食事</text>
+  <text x="110" y="152" font-size="11.5" fill="#6E6354" text-anchor="middle">避ける：食べない日</text>
+  <text x="110" y="178" font-size="12.5" font-weight="700" fill="#0F6E56" text-anchor="middle">自炊にこだわらない</text>
+
+  <!-- 洗濯 -->
+  <rect x="196" y="84" width="148" height="112" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M196 128 V98 Q196 84 210 84 H330 Q344 84 344 98 V128 Z" fill="#0F6E56"/>
+  <text x="270" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">洗濯</text>
+  <text x="270" y="152" font-size="11.5" fill="#6E6354" text-anchor="middle">避ける：着る服切れ</text>
+  <text x="270" y="178" font-size="12.5" font-weight="700" fill="#0F6E56" text-anchor="middle">ためない仕組み</text>
+
+  <!-- 掃除 -->
+  <rect x="356" y="84" width="148" height="112" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M356 128 V98 Q356 84 370 84 H490 Q504 84 504 98 V128 Z" fill="#0F6E56"/>
+  <text x="430" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">掃除</text>
+  <text x="430" y="152" font-size="11.5" fill="#6E6354" text-anchor="middle">避ける：不潔で体調悪化</text>
+  <text x="430" y="178" font-size="12.5" font-weight="700" fill="#0F6E56" text-anchor="middle">今日は一角だけ</text>
+
+  <!-- 買い物 -->
+  <rect x="516" y="84" width="148" height="112" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M516 128 V98 Q516 84 530 84 H650 Q664 84 664 98 V128 Z" fill="#0F6E56"/>
+  <text x="590" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">買い物</text>
+  <text x="590" y="152" font-size="11.5" fill="#6E6354" text-anchor="middle">避ける：切らして困る</text>
+  <text x="590" y="178" font-size="12.5" font-weight="700" fill="#0F6E56" text-anchor="middle">ネットで自動化</text>
+
+  <text x="350" y="218" font-size="12.5" fill="#6E6354" text-anchor="middle">60点で回り続けるほうが、100点で三日坊主より強い。</text>
 </svg>

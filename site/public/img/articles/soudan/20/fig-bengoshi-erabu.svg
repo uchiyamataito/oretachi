@@ -1,26 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 312" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">離婚弁護士の選び方4基準。離婚の実績・経験／説明が分かりやすくリスクも正直に話す／費用が明確で見積もりを出す／相性・話しやすさ</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">良い弁護士を選ぶ「4つの基準」</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">離婚に強く、信頼して任せられるかを、この4点で見る。</text>
+  <rect x="0.5" y="0.5" width="699" height="311" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">良い弁護士を選ぶ「4つの基準」</text>
+  <text x="36" y="68" font-size="12.5" fill="#6E6354">離婚に強く、信頼して任せられるかを、この4点で見る。</text>
 
-  <rect x="36" y="82" width="312" height="88" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="54" y="112" font-size="14" font-weight="700" fill="#3f7d54">① 離婚の実績・経験</text>
-  <text x="54" y="138" font-size="12.5" fill="#26402e">弁護士にも得意分野がある。取扱</text>
-  <text x="54" y="156" font-size="12.5" fill="#26402e">分野・解決事例を見る/聞く。</text>
+  <!-- card1 -->
+  <rect x="36" y="84" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H328 Q342 84 342 98 V128 Z" fill="#0F6E56"/>
+  <text x="189" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">① 離婚の実績・経験</text>
+  <text x="58" y="152" font-size="12.5" fill="#2C2A26">弁護士にも得意分野がある。取扱</text>
+  <text x="58" y="172" font-size="12.5" fill="#2C2A26">分野・解決事例を見る/聞く。</text>
 
-  <rect x="360" y="82" width="304" height="88" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="378" y="112" font-size="14" font-weight="700" fill="#3f7d54">② 説明が分かりやすく正直</text>
-  <text x="378" y="138" font-size="12.5" fill="#26402e">良い見通しだけでなく、リスク・</text>
-  <text x="378" y="156" font-size="12.5" fill="#26402e">不利な点も話すか。信頼の分かれ目。</text>
+  <!-- card2 -->
+  <rect x="358" y="84" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 128 V98 Q358 84 372 84 H650 Q664 84 664 98 V128 Z" fill="#0F6E56"/>
+  <text x="511" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">② 説明が分かりやすく正直</text>
+  <text x="380" y="152" font-size="12.5" fill="#2C2A26">良い見通しだけでなく、リスク・</text>
+  <text x="380" y="172" font-size="12.5" fill="#2C2A26">不利な点も話すか。信頼の分かれ目。</text>
 
-  <rect x="36" y="182" width="312" height="88" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="54" y="212" font-size="14" font-weight="700" fill="#3f7d54">③ 費用が明確</text>
-  <text x="54" y="238" font-size="12.5" fill="#26402e">相談料・着手金・報酬金・実費の</text>
-  <text x="54" y="256" font-size="12.5" fill="#26402e">内訳を示すか。見積書を出すか。</text>
+  <!-- card3 -->
+  <rect x="36" y="192" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 236 V206 Q36 192 50 192 H328 Q342 192 342 206 V236 Z" fill="#0F6E56"/>
+  <text x="189" y="220" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">③ 費用が明確</text>
+  <text x="58" y="260" font-size="12.5" fill="#2C2A26">相談料・着手金・報酬金・実費の</text>
+  <text x="58" y="280" font-size="12.5" fill="#2C2A26">内訳を示すか。見積書を出すか。</text>
 
-  <rect x="360" y="182" width="304" height="88" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="378" y="212" font-size="14" font-weight="700" fill="#3f7d54">④ 相性・話しやすさ</text>
-  <text x="378" y="238" font-size="12.5" fill="#26402e">込み入った話を何度もする相手。</text>
-  <text x="378" y="256" font-size="12.5" fill="#26402e">「この人になら話せる」と思えるか。</text>
+  <!-- card4 -->
+  <rect x="358" y="192" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 236 V206 Q358 192 372 192 H650 Q664 192 664 206 V236 Z" fill="#0F6E56"/>
+  <text x="511" y="220" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">④ 相性・話しやすさ</text>
+  <text x="380" y="260" font-size="12.5" fill="#2C2A26">込み入った話を何度もする相手。</text>
+  <text x="380" y="280" font-size="12.5" fill="#2C2A26">「この人になら話せる」と思えるか。</text>
 </svg>

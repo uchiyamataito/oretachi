@@ -1,33 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 348" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 356" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">親権の判断要素：主たる監護の実績・継続性・子の意思・生活の安定</title>
-  <rect width="700" height="348" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">何で決まる？　基準は「子の利益」</text>
+  <rect x="0.5" y="0.5" width="699" height="355" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">何で決まる？　基準は「子の利益」</text>
 
   <!-- card1 主たる監護（最重要） -->
-  <rect x="36" y="66" width="306" height="120" rx="14" fill="#e9f3ec" stroke="#bfe0cc"/>
-  <text x="56" y="96" font-size="16.5" font-weight="700" fill="#3a9b6e">① 主たる監護の実績</text>
-  <text x="56" y="122" font-size="13.5" fill="#33433a">食事・送り迎え・通院・寝かしつけ</text>
-  <text x="56" y="144" font-size="13.5" fill="#33433a">など日々の積み重ね。</text>
-  <text x="56" y="164" font-size="13" font-weight="700" fill="#3a9b6e">＝ここがいちばん重い</text>
+  <rect x="36" y="68" width="306" height="128" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 112 V82 Q36 68 50 68 H328 Q342 68 342 82 V112 Z" fill="#0F6E56"/>
+  <text x="189" y="96" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">① 主たる監護の実績</text>
+  <text x="56" y="134" font-size="13.5" fill="#2C2A26">食事・送り迎え・通院・寝かしつけ</text>
+  <text x="56" y="154" font-size="13.5" fill="#2C2A26">など日々の積み重ね。</text>
+  <text x="56" y="180" font-size="13" font-weight="700" fill="#0F6E56">＝ここがいちばん重い</text>
 
   <!-- card2 継続性 -->
-  <rect x="358" y="66" width="306" height="120" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
-  <text x="378" y="96" font-size="16.5" font-weight="700" fill="#2b3a5b">② 継続性</text>
-  <text x="378" y="122" font-size="13.5" fill="#33433a">今の生活・学校・友人関係を</text>
-  <text x="378" y="144" font-size="13.5" fill="#33433a">維持できるか。環境を変えない</text>
-  <text x="378" y="164" font-size="13.5" fill="#33433a">方が子に良い、という見方。</text>
+  <rect x="358" y="68" width="306" height="128" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 112 V82 Q358 68 372 68 H650 Q664 68 664 82 V112 Z" fill="#1B3A57"/>
+  <text x="511" y="96" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">② 継続性</text>
+  <text x="378" y="134" font-size="13.5" fill="#2C2A26">今の生活・学校・友人関係を</text>
+  <text x="378" y="154" font-size="13.5" fill="#2C2A26">維持できるか。環境を変えない</text>
+  <text x="378" y="174" font-size="13.5" fill="#2C2A26">方が子に良い、という見方。</text>
 
   <!-- card3 子の意思 -->
-  <rect x="36" y="202" width="306" height="120" rx="14" fill="#eef1f6" stroke="#c9d2e0"/>
-  <text x="56" y="232" font-size="16.5" font-weight="700" fill="#2b3a5b">③ 子の意思</text>
-  <text x="56" y="258" font-size="13.5" fill="#33433a">年齢が上がるほど尊重される</text>
-  <text x="56" y="280" font-size="13.5" fill="#33433a">（特に15歳以上は手続きで</text>
-  <text x="56" y="300" font-size="13.5" fill="#33433a">意見が聴かれる）。</text>
+  <rect x="36" y="212" width="306" height="128" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 256 V226 Q36 212 50 212 H328 Q342 212 342 226 V256 Z" fill="#1B3A57"/>
+  <text x="189" y="240" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">③ 子の意思</text>
+  <text x="56" y="278" font-size="13.5" fill="#2C2A26">年齢が上がるほど尊重される</text>
+  <text x="56" y="298" font-size="13.5" fill="#2C2A26">（特に15歳以上は手続きで</text>
+  <text x="56" y="318" font-size="13.5" fill="#2C2A26">意見が聴かれる）。</text>
 
   <!-- card4 生活の安定 -->
-  <rect x="358" y="202" width="306" height="120" rx="14" fill="#fdf3e9" stroke="#f0d2b0"/>
-  <text x="378" y="232" font-size="16.5" font-weight="700" fill="#d98a3d">④ 生活の安定</text>
-  <text x="378" y="258" font-size="13.5" fill="#7a5a2e">住まい・収入・子と過ごせる</text>
-  <text x="378" y="280" font-size="13.5" fill="#7a5a2e">時間・サポート。収入は多さ</text>
-  <text x="378" y="300" font-size="13.5" fill="#7a5a2e">より「安定して育てられるか」。</text>
+  <rect x="358" y="212" width="306" height="128" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 256 V226 Q358 212 372 212 H650 Q664 212 664 226 V256 Z" fill="#1B3A57"/>
+  <text x="511" y="240" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">④ 生活の安定</text>
+  <text x="378" y="278" font-size="13.5" fill="#2C2A26">住まい・収入・子と過ごせる</text>
+  <text x="378" y="298" font-size="13.5" fill="#2C2A26">時間・サポート。収入は多さ</text>
+  <text x="378" y="318" font-size="13.5" fill="#2C2A26">より「安定して育てられるか」。</text>
 </svg>

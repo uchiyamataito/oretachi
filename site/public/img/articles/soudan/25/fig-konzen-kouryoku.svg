@@ -1,26 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 308" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">婚前契約の効力パターン。下へ行くほど、色が濃く・バーが長くなり、効力が強くなる。1 口約束だけは立証困難でほぼ効力なし。2 書面に署名して保管するだけは当事者間で有効だが対抗力も執行力もなし。3 公証役場で認証を受けると証拠力が高い。4 金銭部分を公正証書にすると証拠力が非常に高く強制執行力もつく。5 婚姻届の前に登記すると第三者に対抗できる。対抗力と強制執行力は別物で両方欲しければ公正証書と登記の併用</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="36" font-size="19" font-weight="700" fill="#2b3a5b">効力パターン：作り方で、ここまで変わる</text>
-  <text x="36" y="57" font-size="12" fill="#6b7280">下ほど“お守り”が強くなる（色が濃いほど効力が強い）。ただし手間とお金が増える。</text>
+  <rect x="0.5" y="0.5" width="699" height="307" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">効力パターン：作り方で、ここまで変わる</text>
+  <text x="52" y="66" font-size="12.5" fill="#6E6354">下ほど“お守り”が強くなる（色が濃いほど効力が強い）。ただし手間とお金が増える。</text>
 
-  <rect x="36" y="72" width="360" height="40" rx="8" fill="#f2f2f4" stroke="#d3d3da"/>
-  <text x="52" y="97" font-size="13" font-weight="700" fill="#6b7280">① 口約束だけ</text>
-  <text x="240" y="97" font-size="12" fill="#8a8f98">ほぼ効力なし（立証困難）</text>
+  <rect x="36" y="80" width="360" height="40" rx="8" fill="#F7F4ED" stroke="#E4DACB"/>
+  <text x="52" y="105" font-size="13" font-weight="700" fill="#8C8270">① 口約束だけ</text>
+  <text x="240" y="105" font-size="12" fill="#8C8270">ほぼ効力なし（立証困難）</text>
 
-  <rect x="36" y="118" width="440" height="40" rx="8" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="52" y="143" font-size="13" font-weight="700" fill="#2f6b43">② 書面に署名・保管</text>
-  <text x="270" y="143" font-size="12" fill="#26402e">当事者間で有効（対抗・執行はなし）</text>
+  <rect x="36" y="124" width="440" height="40" rx="8" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="52" y="149" font-size="13" font-weight="700" fill="#0F6E56">② 書面に署名・保管</text>
+  <text x="270" y="149" font-size="12" fill="#2C2A26">当事者間で有効（対抗・執行はなし）</text>
 
-  <rect x="36" y="164" width="510" height="40" rx="8" fill="#dcecdf" stroke="#93c3a1"/>
-  <text x="52" y="189" font-size="13" font-weight="700" fill="#2f6b43">③ ＋公証役場で認証</text>
-  <text x="270" y="189" font-size="12" fill="#264532">証拠力が高い</text>
+  <rect x="36" y="168" width="510" height="40" rx="8" fill="#DFEFE7" stroke="#AFD9C2"/>
+  <text x="52" y="193" font-size="13" font-weight="700" fill="#0F6E56">③ ＋公証役場で認証</text>
+  <text x="270" y="193" font-size="12" fill="#2C2A26">証拠力が高い</text>
 
-  <rect x="36" y="210" width="590" height="40" rx="8" fill="#c9e2cf" stroke="#5da177"/>
-  <text x="52" y="235" font-size="13" font-weight="700" fill="#1e5238">④ ＋金銭部分を公正証書に</text>
-  <text x="300" y="235" font-size="12" fill="#234a32">証拠力が非常に高い＋強制執行力</text>
+  <rect x="36" y="212" width="590" height="40" rx="8" fill="#C7E4D5" stroke="#8CC5A8"/>
+  <text x="52" y="237" font-size="13" font-weight="700" fill="#0B5240">④ ＋金銭部分を公正証書に</text>
+  <text x="300" y="237" font-size="12" fill="#123F33">証拠力が非常に高い＋強制執行力</text>
 
-  <rect x="36" y="256" width="628" height="40" rx="8" fill="#b3d7bc" stroke="#3f7d54"/>
-  <text x="52" y="281" font-size="13" font-weight="700" fill="#173d29">⑤ ＋婚姻届の前に登記</text>
-  <text x="290" y="281" font-size="12" fill="#173d29">第三者に対抗（対抗力と執行力は別物）</text>
+  <rect x="36" y="256" width="628" height="40" rx="8" fill="#0F6E56" stroke="#0C5945"/>
+  <text x="52" y="281" font-size="13" font-weight="700" fill="#FFFFFF">⑤ ＋婚姻届の前に登記</text>
+  <text x="290" y="281" font-size="12" fill="#EFF7F2">第三者に対抗（対抗力と執行力は別物）</text>
 </svg>

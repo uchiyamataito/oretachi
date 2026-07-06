@@ -1,25 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 312" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">共同親権で何が変わったか。2026年3月までは離婚後は父母どちらか一方だけの単独親権が原則。2026年4月以降は単独親権と共同親権のどちらかを選べるようになった。ただし選べるだけで、共同が義務になったわけではない</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">何が変わった？ 「選べる」ようになった</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">2026年4月1日から、離婚後の親権のかたちが増えた。</text>
+  <rect x="0.5" y="0.5" width="699" height="311" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">何が変わった？ 「選べる」ようになった</text>
+  <text x="36" y="68" font-size="12.5" fill="#6E6354">2026年4月1日から、離婚後の親権のかたちが増えた。</text>
 
-  <rect x="36" y="84" width="290" height="150" rx="12" fill="#f2f2f4" stroke="#d3d3da"/>
-  <text x="56" y="112" font-size="13" font-weight="700" fill="#6b7280">〜2026年3月</text>
-  <text x="56" y="146" font-size="16" font-weight="700" fill="#4b5563">単独親権が原則</text>
-  <text x="56" y="176" font-size="12.5" fill="#57606a">離婚後は父母のどちらか</text>
-  <text x="56" y="196" font-size="12.5" fill="#57606a">一方だけが親権者。</text>
-  <text x="56" y="220" font-size="12" fill="#8a8f98">（実際は母親が大半）</text>
+  <!-- before -->
+  <rect x="36" y="84" width="290" height="160" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H312 Q326 84 326 98 V128 Z" fill="#1B3A57"/>
+  <text x="181" y="112" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">〜2026年3月</text>
+  <text x="56" y="156" font-size="16" font-weight="700" fill="#1B3A57">単独親権が原則</text>
+  <text x="56" y="182" font-size="12.5" fill="#2C2A26">離婚後は父母のどちらか</text>
+  <text x="56" y="200" font-size="12.5" fill="#2C2A26">一方だけが親権者。</text>
+  <text x="56" y="224" font-size="12" fill="#6E6354">（実際は母親が大半）</text>
 
-  <path d="M336 159 h28 m-10 -8 l10 8 l-10 8" fill="none" stroke="#9aa1ab" stroke-width="2.5"/>
+  <path d="M336 164 h28 m-10 -8 l10 8 l-10 8" fill="none" stroke="#C9C0B0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <rect x="374" y="84" width="290" height="150" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="394" y="112" font-size="13" font-weight="700" fill="#3f7d54">2026年4月〜</text>
-  <text x="394" y="146" font-size="16" font-weight="700" fill="#2f6b43">単独 or 共同を選べる</text>
-  <text x="394" y="176" font-size="12.5" fill="#26402e">父母の話し合いで決める。</text>
-  <text x="394" y="196" font-size="12.5" fill="#26402e">決まらなければ家庭裁判所が</text>
-  <text x="394" y="216" font-size="12.5" fill="#26402e">「子の利益」で判断。</text>
+  <!-- after -->
+  <rect x="374" y="84" width="290" height="160" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M374 128 V98 Q374 84 388 84 H636 Q650 84 650 98 V128 Z" fill="#0F6E56"/>
+  <text x="519" y="112" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">2026年4月〜</text>
+  <text x="394" y="156" font-size="16" font-weight="700" fill="#0F6E56">単独 or 共同を選べる</text>
+  <text x="394" y="182" font-size="12.5" fill="#2C2A26">父母の話し合いで決める。</text>
+  <text x="394" y="200" font-size="12.5" fill="#2C2A26">決まらなければ家庭裁判所が</text>
+  <text x="394" y="218" font-size="12.5" fill="#2C2A26">「子の利益」で判断。</text>
 
-  <rect x="36" y="248" width="628" height="40" rx="10" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <text x="52" y="273" font-size="12.5" fill="#5b4a33">※「選べる」だけで、共同親権が義務になったわけではない。DV・虐待がある場合は必ず単独。</text>
+  <!-- note -->
+  <rect x="36" y="258" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="52" y="283" font-size="12.5" fill="#6E6354">※「選べる」だけで、共同親権が義務になったわけではない。DV・虐待がある場合は必ず単独。</text>
 </svg>

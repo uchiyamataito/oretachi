@@ -1,29 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">今の家を出るとき：賃貸と持ち家でやることが違う</title>
-  <rect width="700" height="360" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">今の家、賃貸か持ち家かで全然違う</text>
+  <rect x="0.5" y="0.5" width="699" height="371" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">今の家、賃貸か持ち家かで全然違う</text>
 
   <!-- 賃貸 -->
-  <rect x="36" y="64" width="306" height="272" rx="16" fill="#eef1f6" stroke="#c9d2e0"/>
-  <text x="58" y="98" font-size="17" font-weight="700" fill="#2b3a5b">賃貸の場合</text>
-  <g font-size="14.5" fill="#33433a">
-    <text x="58" y="138">・解約予告（一般に1か月前）</text>
-    <text x="74" y="164">まず契約書で予告期間を確認</text>
-    <text x="58" y="200">・連絡は記録が残る方法で</text>
-    <text x="58" y="236">・敷金は精算して返金</text>
-    <text x="74" y="262">通常損耗・経年劣化は貸主負担</text>
-    <text x="58" y="298">・特約（敷引き等）に注意</text>
+  <rect x="36" y="72" width="306" height="268" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 116 V86 Q36 72 50 72 H328 Q342 72 342 86 V116 Z" fill="#1B3A57"/>
+  <text x="189" y="100" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">賃貸の場合</text>
+  <g font-size="14" fill="#2C2A26">
+    <circle cx="62" cy="147" r="3" fill="#0F6E56"/>
+    <text x="76" y="152">解約予告（一般に1か月前）</text>
+    <text x="76" y="174" font-size="12.5" fill="#6E6354">まず契約書で予告期間を確認</text>
+    <circle cx="62" cy="203" r="3" fill="#0F6E56"/>
+    <text x="76" y="208">連絡は記録が残る方法で</text>
+    <circle cx="62" cy="237" r="3" fill="#0F6E56"/>
+    <text x="76" y="242">敷金は精算して返金</text>
+    <text x="76" y="264" font-size="12.5" fill="#6E6354">通常損耗・経年劣化は貸主負担</text>
+    <circle cx="62" cy="293" r="3" fill="#0F6E56"/>
+    <text x="76" y="298">特約（敷引き等）に注意</text>
   </g>
 
   <!-- 持ち家 -->
-  <rect x="358" y="64" width="306" height="272" rx="16" fill="#fdeeea" stroke="#eebbb0"/>
-  <text x="380" y="98" font-size="17" font-weight="700" fill="#9a4634">持ち家（自分が出る）</text>
-  <g font-size="14.5" fill="#5b3a32">
-    <text x="380" y="138">・ローンは名義人が払い続ける</text>
-    <text x="396" y="164">家を出ても義務は消えない</text>
-    <text x="380" y="200">・名義変更は原則むずかしい</text>
-    <text x="380" y="236">・売るなら残債と売値を確認</text>
-    <text x="396" y="262">アンダー／オーバーローン</text>
-    <text x="380" y="298">・売却は数か月〜。逆算して動く</text>
+  <rect x="358" y="72" width="306" height="268" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 116 V86 Q358 72 372 72 H650 Q664 72 664 86 V116 Z" fill="#B5481F"/>
+  <text x="511" y="100" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">持ち家（自分が出る）</text>
+  <g font-size="14" fill="#2C2A26">
+    <circle cx="384" cy="147" r="3" fill="#B5481F"/>
+    <text x="398" y="152">ローンは名義人が払い続ける</text>
+    <text x="398" y="174" font-size="12.5" fill="#6E6354">家を出ても義務は消えない</text>
+    <circle cx="384" cy="203" r="3" fill="#B5481F"/>
+    <text x="398" y="208">名義変更は原則むずかしい</text>
+    <circle cx="384" cy="237" r="3" fill="#B5481F"/>
+    <text x="398" y="242">売るなら残債と売値を確認</text>
+    <text x="398" y="264" font-size="12.5" fill="#6E6354">アンダー／オーバーローン</text>
+    <circle cx="384" cy="293" r="3" fill="#B5481F"/>
+    <text x="398" y="298">売却は数か月〜。逆算して動く</text>
   </g>
 </svg>

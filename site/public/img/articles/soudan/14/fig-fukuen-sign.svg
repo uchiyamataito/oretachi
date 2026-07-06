@@ -1,23 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 328" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">少し動いていいサイン：3つのチェック</title>
-  <rect width="600" height="320" fill="#ffffff"/>
-  <text x="36" y="48" font-size="19" font-weight="700" fill="#2b3a5b">この3つがそろえば、少し動いていいサイン</text>
+  <rect x="0.5" y="0.5" width="699" height="327" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">この3つがそろえば、少し動いていいサイン</text>
 
+  <rect x="36" y="76" width="628" height="180" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
   <g>
-    <rect x="36" y="80" width="28" height="28" rx="6" fill="#3a9b6e"/>
-    <path d="M43 94 L49 100 L58 87" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="80" y="100" font-size="16.5" fill="#33433a">相手が、身構えなくなった</text>
+    <rect x="64" y="96" width="26" height="26" rx="6" fill="#0F6E56"/>
+    <path d="M70.5 109 L76.5 115 L84.5 103" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="106" y="115" font-size="15.5" fill="#2C2A26">相手が、身構えなくなった</text>
   </g>
   <g>
-    <rect x="36" y="138" width="28" height="28" rx="6" fill="#3a9b6e"/>
-    <path d="M43 152 L49 158 L58 145" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="80" y="158" font-size="16.5" fill="#33433a">事務連絡が、普通に返ってくる</text>
+    <rect x="64" y="152" width="26" height="26" rx="6" fill="#0F6E56"/>
+    <path d="M70.5 165 L76.5 171 L84.5 159" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="106" y="171" font-size="15.5" fill="#2C2A26">事務連絡が、普通に返ってくる</text>
   </g>
   <g>
-    <rect x="36" y="196" width="28" height="28" rx="6" fill="#3a9b6e"/>
-    <path d="M43 210 L49 216 L58 203" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="80" y="216" font-size="16.5" fill="#33433a">自分が、感情をぶつけず話せる</text>
+    <rect x="64" y="208" width="26" height="26" rx="6" fill="#0F6E56"/>
+    <path d="M70.5 221 L76.5 227 L84.5 215" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="106" y="227" font-size="15.5" fill="#2C2A26">自分が、感情をぶつけず話せる</text>
   </g>
 
-  <text x="36" y="282" font-size="14" fill="#9ca3af">※日数ではなく「相手の状態」で見るのがコツ</text>
+  <text x="36" y="296" font-size="12.5" fill="#6E6354">※日数ではなく「相手の状態」で見るのがコツ</text>
 </svg>

@@ -1,26 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 312" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">熟年離婚後の生活で直面しやすい4つの現実。家事などの生活力・話し相手のいない孤独・崩れがちな生活リズム・財産分与や年金などお金の不安。どれも今から準備できる課題</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">その後の生活で待つ、4つの現実</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">正体が分かれば、闇雲な不安は「対処できる課題」に変わる。</text>
+  <rect x="0.5" y="0.5" width="699" height="311" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">その後の生活で待つ、4つの現実</text>
+  <text x="36" y="68" font-size="12.5" fill="#6E6354">正体が分かれば、闇雲な不安は「対処できる課題」に変わる。</text>
 
-  <rect x="36" y="82" width="312" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="54" y="112" font-size="14" font-weight="700" fill="#2b3a5b">1. 家事（生活力）</text>
-  <text x="54" y="138" font-size="12.5" fill="#33433a">全部を自分で回すのは、最初は手こずる。</text>
-  <text x="54" y="156" font-size="12.5" fill="#33433a">外食続きはお金も健康も削る。</text>
+  <!-- card1 -->
+  <rect x="36" y="84" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H328 Q342 84 342 98 V128 Z" fill="#1B3A57"/>
+  <text x="189" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">1. 家事（生活力）</text>
+  <text x="58" y="152" font-size="12.5" fill="#2C2A26">全部を自分で回すのは、最初は手こずる。</text>
+  <text x="58" y="172" font-size="12.5" fill="#2C2A26">外食続きはお金も健康も削る。</text>
 
-  <rect x="360" y="82" width="304" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="378" y="112" font-size="14" font-weight="700" fill="#2b3a5b">2. 話し相手のいない孤独</text>
-  <text x="378" y="138" font-size="12.5" fill="#33433a">男は頼れる相手が少ない傾向。</text>
-  <text x="378" y="156" font-size="12.5" fill="#33433a">50代以降でその傾向が強まる。</text>
+  <!-- card2 -->
+  <rect x="358" y="84" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 128 V98 Q358 84 372 84 H650 Q664 84 664 98 V128 Z" fill="#1B3A57"/>
+  <text x="511" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">2. 話し相手のいない孤独</text>
+  <text x="380" y="152" font-size="12.5" fill="#2C2A26">男は頼れる相手が少ない傾向。</text>
+  <text x="380" y="172" font-size="12.5" fill="#2C2A26">50代以降でその傾向が強まる。</text>
 
-  <rect x="36" y="182" width="312" height="88" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="54" y="212" font-size="14" font-weight="700" fill="#2b3a5b">3. 崩れがちな生活リズム</text>
-  <text x="54" y="238" font-size="12.5" fill="#33433a">律してくれる相手がいなくなる。</text>
-  <text x="54" y="256" font-size="12.5" fill="#33433a">型を作れば、生活は安定する。</text>
+  <!-- card3 -->
+  <rect x="36" y="192" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 236 V206 Q36 192 50 192 H328 Q342 192 342 206 V236 Z" fill="#1B3A57"/>
+  <text x="189" y="220" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">3. 崩れがちな生活リズム</text>
+  <text x="58" y="260" font-size="12.5" fill="#2C2A26">律してくれる相手がいなくなる。</text>
+  <text x="58" y="280" font-size="12.5" fill="#2C2A26">型を作れば、生活は安定する。</text>
 
-  <rect x="360" y="182" width="304" height="88" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <text x="378" y="212" font-size="14" font-weight="700" fill="#c0793a">4. お金の不安</text>
-  <text x="378" y="238" font-size="12.5" fill="#5b4a33">退職金・年金・財産分与。金額の想像で</text>
-  <text x="378" y="256" font-size="12.5" fill="#5b4a33">ふくらませず、棚卸しと専門家確認を。</text>
+  <!-- card4 caution -->
+  <rect x="358" y="192" width="306" height="96" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 236 V206 Q358 192 372 192 H650 Q664 192 664 206 V236 Z" fill="#B5481F"/>
+  <text x="511" y="220" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">4. お金の不安</text>
+  <text x="380" y="260" font-size="12.5" fill="#2C2A26">退職金・年金・財産分与。金額の想像で</text>
+  <text x="380" y="280" font-size="12.5" fill="#2C2A26">ふくらませず、棚卸しと専門家確認を。</text>
 </svg>

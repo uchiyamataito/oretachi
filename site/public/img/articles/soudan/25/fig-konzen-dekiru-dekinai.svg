@@ -1,22 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 268" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">婚前契約で決められることと、決めても弱い・無効なことの対比。決められる＝財産の帰属（どちらのものか）・財産の管理方法・生活費（婚姻費用）の分担のルール。決められない・弱い＝将来生まれる子の親権や監護・面会交流・養育費の額の事前確定（子の利益で判断され拘束されない）、公序良俗に反する過大な違約金など、離婚そのものを著しく制約する条項</title>
-  <rect width="700" height="260" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">決められること・決めても弱い/無効なこと</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">「書けば何でも思いどおり」ではない。</text>
+  <rect x="0.5" y="0.5" width="699" height="267" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">決められること・決めても弱い/無効なこと</text>
+  <text x="52" y="66" font-size="12.5" fill="#6E6354">「書けば何でも思いどおり」ではない。</text>
 
-  <rect x="36" y="82" width="312" height="158" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="54" y="110" font-size="15" font-weight="700" fill="#2f6b43">決められる（財産・生活）</text>
-  <text x="54" y="140" font-size="12.5" fill="#26402e">・財産の帰属（どちらのものか）</text>
-  <text x="54" y="162" font-size="12.5" fill="#26402e">・財産の管理の方法</text>
-  <text x="54" y="184" font-size="12.5" fill="#26402e">・生活費（婚姻費用）の分担</text>
-  <text x="54" y="214" font-size="11.5" fill="#4a5a4f">曖昧なまま結婚して揉めるより、</text>
-  <text x="54" y="230" font-size="11.5" fill="#4a5a4f">先に言葉にしておく発想。</text>
+  <!-- 決められる -->
+  <rect x="36" y="84" width="312" height="164" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H334 Q348 84 348 98 V128 Z" fill="#0F6E56"/>
+  <text x="192" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">決められる（財産・生活）</text>
+  <circle cx="60" cy="142" r="3" fill="#0F6E56"/>
+  <text x="70" y="146" font-size="12.5" fill="#2C2A26">財産の帰属（どちらのものか）</text>
+  <circle cx="60" cy="164" r="3" fill="#0F6E56"/>
+  <text x="70" y="168" font-size="12.5" fill="#2C2A26">財産の管理の方法</text>
+  <circle cx="60" cy="186" r="3" fill="#0F6E56"/>
+  <text x="70" y="190" font-size="12.5" fill="#2C2A26">生活費（婚姻費用）の分担</text>
+  <text x="54" y="216" font-size="12.5" fill="#6E6354">曖昧なまま結婚して揉めるより、</text>
+  <text x="54" y="232" font-size="12.5" fill="#6E6354">先に言葉にしておく発想。</text>
 
-  <rect x="360" y="82" width="304" height="158" rx="12" fill="#fbeeee" stroke="#e0b8b8"/>
-  <text x="378" y="110" font-size="15" font-weight="700" fill="#b5453b">決められない・弱い</text>
-  <text x="378" y="140" font-size="12.5" fill="#6b3a35">・将来の子の親権/監護/面会/</text>
-  <text x="378" y="158" font-size="12.5" fill="#6b3a35">　養育費の額の事前確定</text>
-  <text x="378" y="176" font-size="11.5" fill="#8a5a52">　（子の利益で判断＝拘束されない）</text>
-  <text x="378" y="200" font-size="12.5" fill="#6b3a35">・公序良俗違反（過大な違約金等）</text>
-  <text x="378" y="222" font-size="12.5" fill="#6b3a35">・離婚を著しく制約する条項</text>
+  <!-- 決められない・弱い -->
+  <rect x="360" y="84" width="304" height="164" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M360 128 V98 Q360 84 374 84 H650 Q664 84 664 98 V128 Z" fill="#B5481F"/>
+  <text x="512" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">決められない・弱い</text>
+  <circle cx="384" cy="142" r="3" fill="#B5481F"/>
+  <text x="394" y="146" font-size="12.5" fill="#2C2A26">将来の子の親権/監護/面会/</text>
+  <text x="394" y="164" font-size="12.5" fill="#2C2A26">　養育費の額の事前確定</text>
+  <text x="394" y="182" font-size="12" fill="#6E6354">　（子の利益で判断＝拘束されない）</text>
+  <circle cx="384" cy="204" r="3" fill="#B5481F"/>
+  <text x="394" y="208" font-size="12.5" fill="#2C2A26">公序良俗違反（過大な違約金等）</text>
+  <circle cx="384" cy="226" r="3" fill="#B5481F"/>
+  <text x="394" y="230" font-size="12.5" fill="#2C2A26">離婚を著しく制約する条項</text>
 </svg>

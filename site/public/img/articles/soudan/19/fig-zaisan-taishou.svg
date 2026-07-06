@@ -1,37 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 432" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">財産分与の対象（共有財産）と対象外（特有財産）の対比。対象は結婚後に二人で築いた財産で名義は不問、対象外は結婚前の財産・相続や贈与・別居後の財産</title>
-  <rect width="700" height="430" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">財産分与で「分けるもの」と「分けないもの」</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">分けるのは、結婚後に二人で築いた分だけ。名義がどちらでも関係ない。</text>
+  <rect x="0.5" y="0.5" width="699" height="431" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">財産分与で「分けるもの」と「分けないもの」</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">分けるのは、結婚後に二人で築いた分だけ。名義がどちらでも関係ない。</text>
 
   <!-- 対象（共有財産） -->
-  <rect x="36" y="80" width="306" height="312" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <rect x="36" y="80" width="306" height="44" rx="12" fill="#3f7d54"/>
-  <rect x="36" y="104" width="306" height="20" fill="#3f7d54"/>
-  <text x="60" y="108" font-size="16" font-weight="700" fill="#ffffff">○ 対象になる（共有財産）</text>
-  <text x="60" y="152" font-size="13.5" fill="#26402e">・ 預貯金（給与口座・定期など）</text>
-  <text x="60" y="180" font-size="13.5" fill="#26402e">・ 持ち家などの不動産</text>
-  <text x="60" y="208" font-size="13.5" fill="#26402e">・ 自動車</text>
-  <text x="60" y="236" font-size="13.5" fill="#26402e">・ 株式・投資信託</text>
-  <text x="60" y="264" font-size="13.5" fill="#26402e">・ 保険の解約返戻金</text>
-  <text x="60" y="292" font-size="13.5" fill="#26402e">・ 退職金（条件あり）</text>
-  <text x="60" y="320" font-size="13.5" fill="#26402e">・ 高価な家財道具</text>
-  <text x="60" y="360" font-size="12" font-weight="700" fill="#3f7d54">＝結婚後に二人で築いたもの</text>
-  <text x="60" y="380" font-size="12" fill="#3f7d54">　名義はどちらでも対象</text>
+  <rect x="36" y="84" width="306" height="312" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H328 Q342 84 342 98 V128 Z" fill="#0F6E56"/>
+  <text x="189" y="112" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">○ 対象になる（共有財産）</text>
+  <g font-size="13.5" fill="#2C2A26">
+    <circle cx="62" cy="153" r="3" fill="#0F6E56"/><text x="76" y="158">預貯金（給与口座・定期など）</text>
+    <circle cx="62" cy="181" r="3" fill="#0F6E56"/><text x="76" y="186">持ち家などの不動産</text>
+    <circle cx="62" cy="209" r="3" fill="#0F6E56"/><text x="76" y="214">自動車</text>
+    <circle cx="62" cy="237" r="3" fill="#0F6E56"/><text x="76" y="242">株式・投資信託</text>
+    <circle cx="62" cy="265" r="3" fill="#0F6E56"/><text x="76" y="270">保険の解約返戻金</text>
+    <circle cx="62" cy="293" r="3" fill="#0F6E56"/><text x="76" y="298">退職金（条件あり）</text>
+    <circle cx="62" cy="321" r="3" fill="#0F6E56"/><text x="76" y="326">高価な家財道具</text>
+  </g>
+  <line x1="60" y1="346" x2="318" y2="346" stroke="#ECE3D5"/>
+  <text x="60" y="368" font-size="12" font-weight="700" fill="#0F6E56">＝結婚後に二人で築いたもの</text>
+  <text x="60" y="386" font-size="12" fill="#0F6E56">　名義はどちらでも対象</text>
 
   <!-- 対象外（特有財産） -->
-  <rect x="358" y="80" width="306" height="312" rx="12" fill="#f1f1f3" stroke="#d3d3d8"/>
-  <rect x="358" y="80" width="306" height="44" rx="12" fill="#6b7280"/>
-  <rect x="358" y="104" width="306" height="20" fill="#6b7280"/>
-  <text x="382" y="108" font-size="16" font-weight="700" fill="#ffffff">× 対象にならない（特有財産）</text>
-  <text x="382" y="156" font-size="13.5" fill="#3b3b40">・ 結婚前から持っていた財産</text>
-  <text x="400" y="178" font-size="12" fill="#6b7280">（独身時代の貯金・持ち物）</text>
-  <text x="382" y="212" font-size="13.5" fill="#3b3b40">・ 相続・贈与で得た財産</text>
-  <text x="400" y="234" font-size="12" fill="#6b7280">（遺産・親からの援助など）</text>
-  <text x="382" y="268" font-size="13.5" fill="#3b3b40">・ 別居した後に築いた財産</text>
-  <text x="382" y="360" font-size="12" font-weight="700" fill="#6b7280">＝二人の協力で築いたとは</text>
-  <text x="382" y="380" font-size="12" fill="#6b7280">　いえない、一方だけのもの</text>
+  <rect x="358" y="84" width="306" height="312" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 128 V98 Q358 84 372 84 H650 Q664 84 664 98 V128 Z" fill="#B5481F"/>
+  <text x="511" y="112" font-size="15.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">× 対象にならない（特有財産）</text>
+  <g font-size="13.5" fill="#2C2A26">
+    <circle cx="384" cy="155" r="3" fill="#B5481F"/><text x="398" y="160">結婚前から持っていた財産</text>
+    <text x="398" y="182" font-size="12" fill="#6E6354">（独身時代の貯金・持ち物）</text>
+    <circle cx="384" cy="211" r="3" fill="#B5481F"/><text x="398" y="216">相続・贈与で得た財産</text>
+    <text x="398" y="238" font-size="12" fill="#6E6354">（遺産・親からの援助など）</text>
+    <circle cx="384" cy="267" r="3" fill="#B5481F"/><text x="398" y="272">別居した後に築いた財産</text>
+  </g>
+  <line x1="382" y1="346" x2="640" y2="346" stroke="#ECE3D5"/>
+  <text x="382" y="368" font-size="12" font-weight="700" fill="#6E6354">＝二人の協力で築いたとは</text>
+  <text x="382" y="386" font-size="12" fill="#6E6354">　いえない、一方だけのもの</text>
 
   <!-- note -->
-  <text x="36" y="416" font-size="11.5" fill="#8a6d3b">※ 独身時代の貯金が生活費と混ざると、特有財産だと示しにくくなる。記録を残しておくと安心。</text>
+  <text x="36" y="418" font-size="11.5" fill="#6E6354">※ 独身時代の貯金が生活費と混ざると、特有財産だと示しにくくなる。記録を残しておくと安心。</text>
 </svg>

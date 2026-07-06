@@ -1,26 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 336" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">熟年離婚を切り出された夫が、その後にやること4つ。生活力(家事)を身につける・お金の全体像を棚卸し・人とのつながりを確保・財産分与や年金は公的入口と専門家へ。まずは衝撃を受け止めることから</title>
-  <rect width="700" height="330" fill="#ffffff"/>
-  <text x="36" y="40" font-size="19" font-weight="700" fill="#2b3a5b">受け止めて、生活を立て直す。今やること</text>
-  <text x="36" y="62" font-size="12.5" fill="#6b7280">まずは衝撃を受け止めることから。あとは、できるところから一つずつ。</text>
+  <rect x="0.5" y="0.5" width="699" height="335" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">受け止めて、生活を立て直す。今やること</text>
+  <text x="36" y="68" font-size="12.5" fill="#6E6354">まずは衝撃を受け止めることから。あとは、できるところから一つずつ。</text>
 
-  <rect x="36" y="82" width="312" height="80" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="54" y="112" font-size="14" font-weight="700" fill="#3f7d54">① 生活力（家事）を身につける</text>
-  <text x="54" y="138" font-size="12.5" fill="#26402e">食事・洗濯・掃除。気合でなく慣れ。</text>
+  <!-- card1 -->
+  <rect x="36" y="84" width="306" height="82" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V98 Q36 84 50 84 H328 Q342 84 342 98 V128 Z" fill="#0F6E56"/>
+  <text x="189" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">① 生活力（家事）を身につける</text>
+  <text x="58" y="152" font-size="12.5" fill="#2C2A26">食事・洗濯・掃除。気合でなく慣れ。</text>
 
-  <rect x="360" y="82" width="304" height="80" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="378" y="112" font-size="14" font-weight="700" fill="#3f7d54">② お金の全体像を棚卸し</text>
-  <text x="378" y="138" font-size="12.5" fill="#26402e">預貯金・退職金・年金・保険・住まい。</text>
+  <!-- card2 -->
+  <rect x="358" y="84" width="306" height="82" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 128 V98 Q358 84 372 84 H650 Q664 84 664 98 V128 Z" fill="#0F6E56"/>
+  <text x="511" y="112" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">② お金の全体像を棚卸し</text>
+  <text x="380" y="152" font-size="12.5" fill="#2C2A26">預貯金・退職金・年金・保険・住まい。</text>
 
-  <rect x="36" y="174" width="312" height="80" rx="12" fill="#eef3ee" stroke="#bcd3bf"/>
-  <text x="54" y="204" font-size="14" font-weight="700" fill="#3f7d54">③ 人とのつながりを確保</text>
-  <text x="54" y="230" font-size="12.5" fill="#26402e">一人でいい。弱音を吐ける相手を。</text>
+  <!-- card3 -->
+  <rect x="36" y="178" width="306" height="82" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 222 V192 Q36 178 50 178 H328 Q342 178 342 192 V222 Z" fill="#0F6E56"/>
+  <text x="189" y="206" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">③ 人とのつながりを確保</text>
+  <text x="58" y="246" font-size="12.5" fill="#2C2A26">一人でいい。弱音を吐ける相手を。</text>
 
-  <rect x="360" y="174" width="304" height="80" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="378" y="204" font-size="14" font-weight="700" fill="#2b3a5b">④ 財産分与・年金は専門家へ</text>
-  <text x="378" y="230" font-size="12.5" fill="#33433a">金額・取り分は自分で断定しない。</text>
+  <!-- card4 -->
+  <rect x="358" y="178" width="306" height="82" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 222 V192 Q358 178 372 178 H650 Q664 178 664 192 V222 Z" fill="#1B3A57"/>
+  <text x="511" y="206" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">④ 財産分与・年金は専門家へ</text>
+  <text x="380" y="246" font-size="12.5" fill="#2C2A26">金額・取り分は自分で断定しない。</text>
 
-  <rect x="36" y="266" width="628" height="48" rx="12" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <text x="52" y="290" font-size="12.5" fill="#5b4a33">※ 財産分与・年金分割の取り分や金額は、裁判所・年金事務所・弁護士・法テラスで確認する。</text>
-  <text x="52" y="308" font-size="12.5" fill="#5b4a33">　噂やネットの「相場」を自分に当てはめて、一人で怖がらないこと。</text>
+  <!-- note -->
+  <rect x="36" y="274" width="628" height="50" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="52" y="296" font-size="12.5" fill="#6E6354">※ 財産分与・年金分割の取り分や金額は、裁判所・年金事務所・弁護士・法テラスで確認する。</text>
+  <text x="52" y="314" font-size="12.5" fill="#6E6354">　噂やネットの「相場」を自分に当てはめて、一人で怖がらないこと。</text>
 </svg>

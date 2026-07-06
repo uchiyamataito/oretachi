@@ -1,31 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 250" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">2026年4月施行の改正民法・養育費の3つの強化。1 法定養育費＝取り決めがなくても暫定的に請求できる法務省令の定額で、子1人あたり月2万円。2 先取特権＝公正証書がなくても取り決め文書で差押えを申し立て可能に、付与の上限は子1人あたり月8万円。3 執行の一本化＝地裁への1回の申立てで財産開示・情報提供命令・差押えを一連で進められる。通常の養育費の額は年収や子の人数で変わり算定表・専門家で確認。法定養育費と先取特権の上限は法務省が定める定額</title>
-  <rect width="700" height="250" fill="#ffffff"/>
-  <text x="36" y="36" font-size="19" font-weight="700" fill="#2b3a5b">2026年4月施行の改正：養育費の3つの強化</text>
-  <text x="36" y="57" font-size="12" fill="#6b7280">履行確保（きちんと払われる仕組み）が強くなった。</text>
+  <rect x="0.5" y="0.5" width="699" height="259" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">2026年4月施行の改正：養育費の3つの強化</text>
+  <text x="52" y="66" font-size="12.5" fill="#6E6354">履行確保（きちんと払われる仕組み）が強くなった。</text>
 
-  <rect x="36" y="74" width="200" height="122" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="54" y="100" font-size="14" font-weight="700" fill="#2b3a5b">① 法定養育費</text>
-  <text x="54" y="124" font-size="12" fill="#33433a">取り決めがなくても</text>
-  <text x="54" y="142" font-size="12" fill="#33433a">暫定的に請求できる</text>
-  <text x="54" y="160" font-size="12" fill="#33433a">（法務省令の定額）</text>
-  <text x="54" y="184" font-size="12.5" font-weight="700" fill="#2b3a5b">子1人 月2万円</text>
+  <rect x="36" y="78" width="200" height="122" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="54" y="104" font-size="14" font-weight="700" fill="#1B3A57">① 法定養育費</text>
+  <text x="54" y="128" font-size="12" fill="#2C2A26">取り決めがなくても</text>
+  <text x="54" y="146" font-size="12" fill="#2C2A26">暫定的に請求できる</text>
+  <text x="54" y="164" font-size="12" fill="#2C2A26">（法務省令の定額）</text>
+  <text x="54" y="188" font-size="12.5" font-weight="700" fill="#1B3A57">子1人 月2万円</text>
 
-  <rect x="250" y="74" width="200" height="122" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="268" y="100" font-size="14" font-weight="700" fill="#2b3a5b">② 先取特権</text>
-  <text x="268" y="124" font-size="12" fill="#33433a">公正証書がなくても</text>
-  <text x="268" y="142" font-size="12" fill="#33433a">取り決め文書で</text>
-  <text x="268" y="160" font-size="12" fill="#33433a">差押え申立て可</text>
-  <text x="268" y="184" font-size="12.5" font-weight="700" fill="#2b3a5b">上限 子1人 月8万円</text>
+  <rect x="250" y="78" width="200" height="122" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="268" y="104" font-size="14" font-weight="700" fill="#1B3A57">② 先取特権</text>
+  <text x="268" y="128" font-size="12" fill="#2C2A26">公正証書がなくても</text>
+  <text x="268" y="146" font-size="12" fill="#2C2A26">取り決め文書で</text>
+  <text x="268" y="164" font-size="12" fill="#2C2A26">差押え申立て可</text>
+  <text x="268" y="188" font-size="12.5" font-weight="700" fill="#1B3A57">上限 子1人 月8万円</text>
 
-  <rect x="464" y="74" width="200" height="122" rx="12" fill="#eef1f6" stroke="#cdd8ea"/>
-  <text x="482" y="100" font-size="14" font-weight="700" fill="#2b3a5b">③ 執行の一本化</text>
-  <text x="482" y="124" font-size="12" fill="#33433a">地裁への1回の申立で</text>
-  <text x="482" y="142" font-size="12" fill="#33433a">財産開示→情報提供</text>
-  <text x="482" y="160" font-size="12" fill="#33433a">命令→差押えを</text>
-  <text x="482" y="178" font-size="12" fill="#33433a">一連で進められる</text>
+  <rect x="464" y="78" width="200" height="122" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="482" y="104" font-size="14" font-weight="700" fill="#1B3A57">③ 執行の一本化</text>
+  <text x="482" y="128" font-size="12" fill="#2C2A26">地裁への1回の申立で</text>
+  <text x="482" y="146" font-size="12" fill="#2C2A26">財産開示→情報提供</text>
+  <text x="482" y="164" font-size="12" fill="#2C2A26">命令→差押えを</text>
+  <text x="482" y="182" font-size="12" fill="#2C2A26">一連で進められる</text>
 
-  <rect x="36" y="206" width="628" height="40" rx="9" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <text x="52" y="224" font-size="11.5" fill="#5b4a33">※通常の養育費の額は、年収や子の人数で変わる（裁判所の算定表・専門家で確認）。</text>
-  <text x="52" y="240" font-size="11.5" fill="#5b4a33">　法定養育費・先取特権の上限は、法務省が定める定額（公表値）。</text>
+  <rect x="36" y="210" width="628" height="42" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="52" y="228" font-size="11.5" fill="#6E6354">※通常の養育費の額は、年収や子の人数で変わる（裁判所の算定表・専門家で確認）。</text>
+  <text x="52" y="244" font-size="11.5" fill="#6E6354">　法定養育費・先取特権の上限は、法務省が定める定額（公表値）。</text>
 </svg>

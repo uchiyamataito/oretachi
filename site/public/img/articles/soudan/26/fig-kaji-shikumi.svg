@@ -1,42 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 258" role="img" aria-labelledby="t d" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 268" role="img" aria-labelledby="t d" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">頼っていい3つ：宅食・家事代行・時短家電（ラクになることと費用の目安）</title>
   <desc id="d">宅食は献立・買い物・調理・片付けが消え、1食500〜800円台。家事代行は掃除・洗濯・作り置きを2〜3時間でまとめて、1時間3,000〜4,500円。時短家電は皿洗い・干す・床掃除を毎日肩代わりし、食洗機は4万円前後から。金額は2026年時点の目安。</desc>
-  <rect width="700" height="258" fill="#ffffff"/>
-  <text x="24" y="30" font-size="18" font-weight="700" fill="#2b3a5b">頼っていい3つ（怠けじゃなく「回す仕組み」）</text>
-  <g font-size="12" >
-    <rect x="24" y="42" width="12" height="12" rx="3" fill="#e9f3ec" stroke="#bfe0cc"/><text x="42" y="52" fill="#8a8270">ラクになること</text>
-    <rect x="150" y="42" width="12" height="12" rx="3" fill="#fdf3e9" stroke="#f0d2b0"/><text x="168" y="52" fill="#8a8270">費用の目安</text>
+  <rect x="0.5" y="0.5" width="699" height="267" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">頼っていい3つ（怠けじゃなく「回す仕組み」）</text>
+  <g font-size="12">
+    <rect x="36" y="58" width="12" height="12" rx="3" fill="#EFF7F2" stroke="#CBE5D6"/><text x="54" y="68" fill="#6E6354">ラクになること</text>
+    <rect x="162" y="58" width="12" height="12" rx="3" fill="#FFFFFF" stroke="#E4DACB"/><text x="180" y="68" fill="#6E6354">費用の目安</text>
   </g>
 
-  <g>
-    <rect x="24" y="64" width="206" height="158" rx="14" fill="#ffffff" stroke="#e9dfce"/>
-    <text x="127" y="90" font-size="15" font-weight="700" fill="#2b3a5b" text-anchor="middle">宅食</text>
-    <text x="127" y="108" font-size="11" fill="#8a8270" text-anchor="middle">冷凍宅配弁当</text>
-    <rect x="40" y="120" width="174" height="46" rx="9" fill="#e9f3ec"/>
-    <text x="127" y="139" font-size="11.5" fill="#2b6b4a" text-anchor="middle">献立・買い物・調理・</text>
-    <text x="127" y="156" font-size="11.5" fill="#2b6b4a" text-anchor="middle">片付けが消える</text>
-    <rect x="40" y="176" width="174" height="30" rx="9" fill="#fdf3e9"/>
-    <text x="127" y="196" font-size="12" font-weight="700" fill="#7a5a2e" text-anchor="middle">1食 500〜800円台</text>
-  </g>
-  <g>
-    <rect x="246" y="64" width="206" height="158" rx="14" fill="#ffffff" stroke="#e9dfce"/>
-    <text x="349" y="90" font-size="15" font-weight="700" fill="#2b3a5b" text-anchor="middle">家事代行</text>
-    <text x="349" y="108" font-size="11" fill="#8a8270" text-anchor="middle">プロが数時間で</text>
-    <rect x="262" y="120" width="174" height="46" rx="9" fill="#e9f3ec"/>
-    <text x="349" y="139" font-size="11.5" fill="#2b6b4a" text-anchor="middle">掃除・洗濯・作り置き</text>
-    <text x="349" y="156" font-size="11.5" fill="#2b6b4a" text-anchor="middle">を2〜3hまとめて</text>
-    <rect x="262" y="176" width="174" height="30" rx="9" fill="#fdf3e9"/>
-    <text x="349" y="196" font-size="12" font-weight="700" fill="#7a5a2e" text-anchor="middle">1時間 3,000〜4,500円</text>
-  </g>
-  <g>
-    <rect x="468" y="64" width="208" height="158" rx="14" fill="#ffffff" stroke="#e9dfce"/>
-    <text x="572" y="90" font-size="15" font-weight="700" fill="#2b3a5b" text-anchor="middle">時短家電</text>
-    <text x="572" y="108" font-size="11" fill="#8a8270" text-anchor="middle">一度の投資で毎日</text>
-    <rect x="484" y="120" width="176" height="46" rx="9" fill="#e9f3ec"/>
-    <text x="572" y="139" font-size="11.5" fill="#2b6b4a" text-anchor="middle">皿洗い・干す・床掃除</text>
-    <text x="572" y="156" font-size="11.5" fill="#2b6b4a" text-anchor="middle">を毎日肩代わり</text>
-    <rect x="484" y="176" width="176" height="30" rx="9" fill="#fdf3e9"/>
-    <text x="572" y="196" font-size="12" font-weight="700" fill="#7a5a2e" text-anchor="middle">食洗機 4万円〜 ほか</text>
-  </g>
-  <text x="24" y="244" font-size="11.5" fill="#8a8270">※金額は2026年時点の目安。サービス・製品により幅がある（送料・最低利用時間なども別途）。</text>
+  <!-- 宅食 -->
+  <rect x="36" y="80" width="200" height="158" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="136" y="106" font-size="15" font-weight="700" fill="#1B3A57" text-anchor="middle">宅食</text>
+  <text x="136" y="124" font-size="11" fill="#6E6354" text-anchor="middle">冷凍宅配弁当</text>
+  <rect x="52" y="134" width="168" height="46" rx="9" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="136" y="153" font-size="11.5" fill="#0F6E56" text-anchor="middle">献立・買い物・調理・</text>
+  <text x="136" y="170" font-size="11.5" fill="#0F6E56" text-anchor="middle">片付けが消える</text>
+  <rect x="52" y="188" width="168" height="30" rx="9" fill="#FFFFFF" stroke="#E4DACB"/>
+  <text x="136" y="208" font-size="12" font-weight="700" fill="#2C2A26" text-anchor="middle">1食 500〜800円台</text>
+
+  <!-- 家事代行 -->
+  <rect x="250" y="80" width="200" height="158" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="350" y="106" font-size="15" font-weight="700" fill="#1B3A57" text-anchor="middle">家事代行</text>
+  <text x="350" y="124" font-size="11" fill="#6E6354" text-anchor="middle">プロが数時間で</text>
+  <rect x="266" y="134" width="168" height="46" rx="9" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="350" y="153" font-size="11.5" fill="#0F6E56" text-anchor="middle">掃除・洗濯・作り置き</text>
+  <text x="350" y="170" font-size="11.5" fill="#0F6E56" text-anchor="middle">を2〜3hまとめて</text>
+  <rect x="266" y="188" width="168" height="30" rx="9" fill="#FFFFFF" stroke="#E4DACB"/>
+  <text x="350" y="208" font-size="12" font-weight="700" fill="#2C2A26" text-anchor="middle">1時間 3,000〜4,500円</text>
+
+  <!-- 時短家電 -->
+  <rect x="464" y="80" width="200" height="158" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="564" y="106" font-size="15" font-weight="700" fill="#1B3A57" text-anchor="middle">時短家電</text>
+  <text x="564" y="124" font-size="11" fill="#6E6354" text-anchor="middle">一度の投資で毎日</text>
+  <rect x="480" y="134" width="168" height="46" rx="9" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="564" y="153" font-size="11.5" fill="#0F6E56" text-anchor="middle">皿洗い・干す・床掃除</text>
+  <text x="564" y="170" font-size="11.5" fill="#0F6E56" text-anchor="middle">を毎日肩代わり</text>
+  <rect x="480" y="188" width="168" height="30" rx="9" fill="#FFFFFF" stroke="#E4DACB"/>
+  <text x="564" y="208" font-size="12" font-weight="700" fill="#2C2A26" text-anchor="middle">食洗機 4万円〜 ほか</text>
+
+  <text x="36" y="258" font-size="11.5" fill="#6E6354">※金額は2026年時点の目安。サービス・製品により幅がある（送料・最低利用時間なども別途）。</text>
 </svg>

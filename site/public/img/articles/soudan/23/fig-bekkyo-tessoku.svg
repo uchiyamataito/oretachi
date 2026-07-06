@@ -1,36 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">別居直後に押さえる6つの鉄則。1 連絡は業務連絡だけ（長文の謝罪・反論は証拠になる）、2 婚姻費用は払う義務（不払いは差押え・悪意の遺棄で自滅）、3 子は力ずくで連れ戻さない（未成年者略取罪のリスク／会うなら面会交流調停）、4 元の家・実家に勝手に入らない、5 復縁を望むなら追わない、6 早めに弁護士でルールを知る。別居した時点で、感情だけでなくお金や子どものルールも動き始める</title>
-  <rect width="700" height="360" fill="#ffffff"/>
-  <text x="36" y="38" font-size="19" font-weight="700" fill="#2b3a5b">別居直後に押さえる、6つの鉄則</text>
-  <text x="36" y="60" font-size="12.5" fill="#6b7280">共通するのは「感情で動くと損をする」。別居で、お金や子どものルールも動き始める。</text>
+  <rect x="0.5" y="0.5" width="699" height="371" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">別居直後に押さえる、6つの鉄則</text>
+  <text x="52" y="66" font-size="12.5" fill="#6E6354">共通するのは「感情で動くと損をする」。別居で、お金や子どものルールも動き始める。</text>
 
-  <rect x="36" y="76" width="628" height="40" rx="9" fill="#eef1f6" stroke="#cdd8ea"/>
-  <circle cx="60" cy="96" r="12" fill="#2b3a5b"/><text x="60" y="100" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-  <text x="84" y="101" font-size="13" font-weight="700" fill="#2b3a5b">連絡は業務連絡だけ</text>
-  <text x="270" y="101" font-size="12" fill="#33433a">長文の謝罪・反論・追及は送らない（証拠になる）</text>
+  <rect x="36" y="82" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="102" r="12" fill="#1B3A57"/><text x="60" y="106" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="84" y="107" font-size="13" font-weight="700" fill="#1B3A57">連絡は業務連絡だけ</text>
+  <text x="270" y="107" font-size="12" fill="#2C2A26">長文の謝罪・反論・追及は送らない（証拠になる）</text>
 
-  <rect x="36" y="122" width="628" height="40" rx="9" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <circle cx="60" cy="142" r="12" fill="#c0793a"/><text x="60" y="146" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">2</text>
-  <text x="84" y="147" font-size="13" font-weight="700" fill="#c0793a">婚姻費用は払う義務</text>
-  <text x="270" y="147" font-size="12" fill="#5b4a33">不払い・兵糧攻めは差押え・悪意の遺棄で自滅</text>
+  <rect x="36" y="129" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="149" r="12" fill="#B5481F"/><text x="60" y="153" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="84" y="154" font-size="13" font-weight="700" fill="#B5481F">婚姻費用は払う義務</text>
+  <text x="270" y="154" font-size="12" fill="#2C2A26">不払い・兵糧攻めは差押え・悪意の遺棄で自滅</text>
 
-  <rect x="36" y="168" width="628" height="40" rx="9" fill="#fbeeee" stroke="#e0b8b8"/>
-  <circle cx="60" cy="188" r="12" fill="#b5453b"/><text x="60" y="192" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">3</text>
-  <text x="84" y="193" font-size="13" font-weight="700" fill="#b5453b">子は連れ戻さない</text>
-  <text x="270" y="193" font-size="12" fill="#6b3a35">未成年者略取罪のリスク。会うなら面会交流調停</text>
+  <rect x="36" y="176" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="196" r="12" fill="#B5481F"/><text x="60" y="200" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="84" y="201" font-size="13" font-weight="700" fill="#B5481F">子は連れ戻さない</text>
+  <text x="270" y="201" font-size="12" fill="#2C2A26">未成年者略取罪のリスク。会うなら面会交流調停</text>
 
-  <rect x="36" y="214" width="628" height="40" rx="9" fill="#fbeeee" stroke="#e0b8b8"/>
-  <circle cx="60" cy="234" r="12" fill="#b5453b"/><text x="60" y="238" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">4</text>
-  <text x="84" y="239" font-size="13" font-weight="700" fill="#b5453b">家に押しかけない</text>
-  <text x="270" y="239" font-size="12" fill="#6b3a35">保護命令・DV主張の材料にされることがある</text>
+  <rect x="36" y="223" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="243" r="12" fill="#B5481F"/><text x="60" y="247" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+  <text x="84" y="248" font-size="13" font-weight="700" fill="#B5481F">家に押しかけない</text>
+  <text x="270" y="248" font-size="12" fill="#2C2A26">保護命令・DV主張の材料にされることがある</text>
 
-  <rect x="36" y="260" width="628" height="40" rx="9" fill="#eef1f6" stroke="#cdd8ea"/>
-  <circle cx="60" cy="280" r="12" fill="#2b3a5b"/><text x="60" y="284" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">5</text>
-  <text x="84" y="285" font-size="13" font-weight="700" fill="#2b3a5b">復縁は追わない</text>
-  <text x="270" y="285" font-size="12" fill="#33433a">妻は熟慮の末のことが多い。追うほど遠ざかる</text>
+  <rect x="36" y="270" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="290" r="12" fill="#1B3A57"/><text x="60" y="294" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text>
+  <text x="84" y="295" font-size="13" font-weight="700" fill="#1B3A57">復縁は追わない</text>
+  <text x="270" y="295" font-size="12" fill="#2C2A26">妻は熟慮の末のことが多い。追うほど遠ざかる</text>
 
-  <rect x="36" y="306" width="628" height="40" rx="9" fill="#eef1f6" stroke="#cdd8ea"/>
-  <circle cx="60" cy="326" r="12" fill="#2b3a5b"/><text x="60" y="330" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">6</text>
-  <text x="84" y="331" font-size="13" font-weight="700" fill="#2b3a5b">早めに弁護士</text>
-  <text x="270" y="331" font-size="12" fill="#33433a">ルールを知っている側が、圧倒的に有利</text>
+  <rect x="36" y="317" width="628" height="40" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="337" r="12" fill="#0F6E56"/><text x="60" y="341" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">6</text>
+  <text x="84" y="342" font-size="13" font-weight="700" fill="#0F6E56">早めに弁護士</text>
+  <text x="270" y="342" font-size="12" fill="#2C2A26">ルールを知っている側が、圧倒的に有利</text>
 </svg>

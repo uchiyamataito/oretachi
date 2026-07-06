@@ -1,34 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 428" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">切り出された時の返し方：やりがちなNG返しと、こう返す</title>
-  <rect width="700" height="420" fill="#ffffff"/>
-  <text x="36" y="44" font-size="20" font-weight="700" fill="#2b3a5b">その一言で、先が変わる</text>
+  <rect x="0.5" y="0.5" width="699" height="427" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">その一言で、先が変わる</text>
 
   <!-- NG -->
-  <rect x="36" y="64" width="306" height="324" rx="16" fill="#fdeeea" stroke="#eebbb0"/>
-  <circle cx="70" cy="102" r="17" fill="#e0664c"/>
-  <text x="70" y="109" font-size="19" font-weight="700" fill="#ffffff" text-anchor="middle">✕</text>
-  <text x="98" y="109" font-size="18" font-weight="700" fill="#9a4634">やりがちな返し</text>
-  <g font-size="14.5" fill="#5b3a32">
-    <text x="56" y="156">・「考え直してくれ」と説得・懇願</text>
-    <text x="56" y="192">・逆ギレ・人格否定・大声</text>
-    <text x="56" y="228">・理由を問い詰める</text>
-    <text x="56" y="264">・投げやりに「分かった、離婚」</text>
-    <text x="56" y="300">・その場の口約束</text>
-    <text x="56" y="336">・感情的な長文LINE</text>
+  <rect x="36" y="72" width="306" height="328" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 116 V86 Q36 72 50 72 H328 Q342 72 342 86 V116 Z" fill="#B5481F"/>
+  <text x="126" y="101" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">✕</text>
+  <text x="146" y="101" font-size="15.5" font-weight="700" fill="#FFFFFF">やりがちな返し</text>
+  <g font-size="14.5" fill="#2C2A26">
+    <circle cx="60" cy="149" r="3" fill="#B5481F"/>
+    <text x="74" y="154">「考え直してくれ」と説得・懇願</text>
+    <circle cx="60" cy="189" r="3" fill="#B5481F"/>
+    <text x="74" y="194">逆ギレ・人格否定・大声</text>
+    <circle cx="60" cy="229" r="3" fill="#B5481F"/>
+    <text x="74" y="234">理由を問い詰める</text>
+    <circle cx="60" cy="269" r="3" fill="#B5481F"/>
+    <text x="74" y="274">投げやりに「分かった、離婚」</text>
+    <circle cx="60" cy="309" r="3" fill="#B5481F"/>
+    <text x="74" y="314">その場の口約束</text>
+    <circle cx="60" cy="349" r="3" fill="#B5481F"/>
+    <text x="74" y="354">感情的な長文LINE</text>
   </g>
 
   <!-- OK -->
-  <rect x="358" y="64" width="306" height="324" rx="16" fill="#eef7f1" stroke="#bfe0cc"/>
-  <circle cx="392" cy="102" r="17" fill="#3a9b6e"/>
-  <text x="392" y="109" font-size="19" font-weight="700" fill="#ffffff" text-anchor="middle">◎</text>
-  <text x="420" y="109" font-size="18" font-weight="700" fill="#2b6b4a">こう返す</text>
-  <g font-size="14.5" fill="#33433a">
-    <text x="378" y="156">・「まだ受け止めきれない、</text>
-    <text x="394" y="180">　少し時間がほしい」</text>
-    <text x="378" y="224">・「理由は聞きたい。でも</text>
-    <text x="394" y="248">　落ち着いてから話したい」</text>
-    <text x="378" y="292">・LINEは短く「落ち着いて</text>
-    <text x="394" y="316">　話したい」だけ</text>
-    <text x="378" y="360" font-size="13" fill="#5f7a6b">結論を言わない・責めない・短い</text>
+  <rect x="358" y="72" width="306" height="328" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M358 116 V86 Q358 72 372 72 H650 Q664 72 664 86 V116 Z" fill="#0F6E56"/>
+  <text x="466" y="101" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">◎</text>
+  <text x="486" y="101" font-size="15.5" font-weight="700" fill="#FFFFFF">こう返す</text>
+  <g font-size="14.5" fill="#2C2A26">
+    <circle cx="382" cy="149" r="3" fill="#0F6E56"/>
+    <text x="396" y="154">「まだ受け止めきれない、</text>
+    <text x="396" y="178">　少し時間がほしい」</text>
+    <circle cx="382" cy="215" r="3" fill="#0F6E56"/>
+    <text x="396" y="220">「理由は聞きたい。でも</text>
+    <text x="396" y="244">　落ち着いてから話したい」</text>
+    <circle cx="382" cy="281" r="3" fill="#0F6E56"/>
+    <text x="396" y="286">LINEは短く「落ち着いて</text>
+    <text x="396" y="310">　話したい」だけ</text>
   </g>
+  <line x1="382" y1="340" x2="640" y2="340" stroke="#ECE3D5"/>
+  <text x="396" y="368" font-size="12.5" fill="#6E6354">結論を言わない・責めない・短い</text>
 </svg>

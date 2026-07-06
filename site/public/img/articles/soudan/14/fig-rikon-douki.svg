@@ -1,63 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 624" role="img" aria-labelledby="t d" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 628" role="img" aria-labelledby="t d" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">妻と夫で違う「離婚を申し立てた理由」</title>
   <desc id="d">令和6年司法統計。妻は「生活費を渡さない」「暴力をふるう」「精神的に虐待する」を夫より高く挙げる。</desc>
-  <rect x="0" y="0" width="720" height="624" fill="#ffffff"/>
-  <text x="24" y="36" font-size="20" font-weight="700" fill="#2b3a5b">妻と夫で違う「離婚を申し立てた理由」</text>
-  <text x="24" y="60" font-size="13" fill="#6b7280">家庭裁判所に離婚調停を申し立てた人の動機（令和6年・司法統計／複数回答）</text>
+  <rect x="0.5" y="0.5" width="699" height="627" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">妻と夫で違う「離婚を申し立てた理由」</text>
+  <text x="36" y="72" font-size="12.5" fill="#6E6354">家庭裁判所に離婚調停を申し立てた人の動機（令和6年・司法統計／複数回答）</text>
 
   <!-- legend -->
-  <rect x="24" y="76" width="16" height="16" rx="3" fill="#e0664c"/>
-  <text x="46" y="89" font-size="14" fill="#2b3a5b">妻が申し立て</text>
-  <rect x="170" y="76" width="16" height="16" rx="3" fill="#2b3a5b"/>
-  <text x="192" y="89" font-size="14" fill="#2b3a5b">夫が申し立て</text>
+  <rect x="36" y="86" width="14" height="14" rx="3" fill="#0F6E56"/>
+  <text x="58" y="97.5" font-size="13" fill="#2C2A26">妻が申し立て</text>
+  <rect x="170" y="86" width="14" height="14" rx="3" fill="#1B3A57"/>
+  <text x="192" y="97.5" font-size="13" fill="#2C2A26">夫が申し立て</text>
 
-  <!-- gridlines: 0,20,40,60 (%). x = 230 + %*5 -->
-  <g stroke="#e5e7eb" stroke-width="1">
-    <line x1="230" y1="108" x2="230" y2="586"/>
-    <line x1="330" y1="108" x2="330" y2="586"/>
-    <line x1="430" y1="108" x2="430" y2="586"/>
-    <line x1="530" y1="108" x2="530" y2="586"/>
+  <!-- gridlines: 0,20,40,60 (%). x = 224 + %*4.8 -->
+  <g stroke="#ECE3D5" stroke-width="1">
+    <line x1="224" y1="116" x2="224" y2="580"/>
+    <line x1="320" y1="116" x2="320" y2="580"/>
+    <line x1="416" y1="116" x2="416" y2="580"/>
+    <line x1="512" y1="116" x2="512" y2="580"/>
   </g>
-  <g font-size="12" fill="#9ca3af" text-anchor="middle">
-    <text x="230" y="604">0</text>
-    <text x="330" y="604">20</text>
-    <text x="430" y="604">40</text>
-    <text x="530" y="604">60(%)</text>
+  <g font-size="12" fill="#8C8270" text-anchor="middle">
+    <text x="224" y="600">0</text>
+    <text x="320" y="600">20</text>
+    <text x="416" y="600">40</text>
+    <text x="512" y="600">60(%)</text>
   </g>
 
   <!-- rows -->
-  <g font-size="14.5" fill="#2b3a5b" text-anchor="end">
-    <text x="216" y="139">性格が合わない</text>
-    <text x="216" y="235">生活費を渡さない</text>
-    <text x="216" y="331">精神的に虐待する</text>
-    <text x="216" y="427">暴力をふるう</text>
-    <text x="216" y="523">異性関係</text>
+  <g font-size="14" fill="#2C2A26" text-anchor="end">
+    <text x="210" y="155">性格が合わない</text>
+    <text x="210" y="251">生活費を渡さない</text>
+    <text x="210" y="347">精神的に虐待する</text>
+    <text x="210" y="443">暴力をふるう</text>
+    <text x="210" y="539">異性関係</text>
   </g>
 
-  <!-- bars: 妻 (coral, top) / 夫 (navy, bottom). width = %*5 -->
+  <!-- bars: 妻 (teal, top) / 夫 (navy, bottom). width = %*4.8 -->
   <!-- 性格 -->
-  <rect x="230" y="112" width="192" height="24" rx="3" fill="#e0664c"/>
-  <text x="428" y="130" font-size="13" font-weight="700" fill="#e0664c">38%</text>
-  <rect x="230" y="142" width="300" height="24" rx="3" fill="#2b3a5b"/>
-  <text x="536" y="160" font-size="13" font-weight="700" fill="#2b3a5b">60%</text>
+  <rect x="224" y="128" width="182" height="24" rx="3" fill="#0F6E56"/>
+  <text x="414" y="145" font-size="13" font-weight="700" fill="#0F6E56">38%</text>
+  <rect x="224" y="158" width="288" height="24" rx="3" fill="#1B3A57"/>
+  <text x="520" y="175" font-size="13" font-weight="700" fill="#1B3A57">60%</text>
   <!-- 生活費 -->
-  <rect x="230" y="208" width="145" height="24" rx="3" fill="#e0664c"/>
-  <text x="381" y="226" font-size="13" font-weight="700" fill="#e0664c">29%</text>
-  <rect x="230" y="238" width="29" height="24" rx="3" fill="#2b3a5b"/>
-  <text x="265" y="256" font-size="13" font-weight="700" fill="#2b3a5b">5.7%</text>
+  <rect x="224" y="224" width="139" height="24" rx="3" fill="#0F6E56"/>
+  <text x="371" y="241" font-size="13" font-weight="700" fill="#0F6E56">29%</text>
+  <rect x="224" y="254" width="27" height="24" rx="3" fill="#1B3A57"/>
+  <text x="259" y="271" font-size="13" font-weight="700" fill="#1B3A57">5.7%</text>
   <!-- 精神的虐待 -->
-  <rect x="230" y="304" width="131" height="24" rx="3" fill="#e0664c"/>
-  <text x="367" y="322" font-size="13" font-weight="700" fill="#e0664c">26%</text>
-  <rect x="230" y="334" width="109" height="24" rx="3" fill="#2b3a5b"/>
-  <text x="345" y="352" font-size="13" font-weight="700" fill="#2b3a5b">22%</text>
+  <rect x="224" y="320" width="125" height="24" rx="3" fill="#0F6E56"/>
+  <text x="357" y="337" font-size="13" font-weight="700" fill="#0F6E56">26%</text>
+  <rect x="224" y="350" width="106" height="24" rx="3" fill="#1B3A57"/>
+  <text x="338" y="367" font-size="13" font-weight="700" fill="#1B3A57">22%</text>
   <!-- 暴力 -->
-  <rect x="230" y="400" width="90" height="24" rx="3" fill="#e0664c"/>
-  <text x="326" y="418" font-size="13" font-weight="700" fill="#e0664c">18%</text>
-  <rect x="230" y="430" width="47" height="24" rx="3" fill="#2b3a5b"/>
-  <text x="283" y="448" font-size="13" font-weight="700" fill="#2b3a5b">9.4%</text>
+  <rect x="224" y="416" width="86" height="24" rx="3" fill="#0F6E56"/>
+  <text x="318" y="433" font-size="13" font-weight="700" fill="#0F6E56">18%</text>
+  <rect x="224" y="446" width="45" height="24" rx="3" fill="#1B3A57"/>
+  <text x="277" y="463" font-size="13" font-weight="700" fill="#1B3A57">9.4%</text>
   <!-- 異性関係 -->
-  <rect x="230" y="496" width="67" height="24" rx="3" fill="#e0664c"/>
-  <text x="303" y="514" font-size="13" font-weight="700" fill="#e0664c">13%</text>
-  <rect x="230" y="526" width="59" height="24" rx="3" fill="#2b3a5b"/>
-  <text x="295" y="544" font-size="13" font-weight="700" fill="#2b3a5b">12%</text>
+  <rect x="224" y="512" width="62" height="24" rx="3" fill="#0F6E56"/>
+  <text x="294" y="529" font-size="13" font-weight="700" fill="#0F6E56">13%</text>
+  <rect x="224" y="542" width="58" height="24" rx="3" fill="#1B3A57"/>
+  <text x="290" y="559" font-size="13" font-weight="700" fill="#1B3A57">12%</text>
 </svg>

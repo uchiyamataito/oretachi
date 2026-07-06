@@ -1,34 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" role="img" aria-labelledby="t" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 308" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="t">婚前契約書の作り方4ステップと、専門家の要否・費用。ステップ1 話し合う（財産や生活費のルールを二人で決める・専門家不要・0円）。ステップ2 書面にする（無料テンプレやWebサービスでも作れる・専門家不要・0円から）。ステップ3は任意で公証役場（証拠力を上げる認証11,000円、金銭に執行力をつける公正証書は数千円から数万円・公証人が必須）。ステップ4は任意で婚姻届の前に登記（第三者に対抗・登録免許税18,000円・自分でも可、実務は司法書士）</title>
-  <rect width="700" height="300" fill="#ffffff"/>
-  <text x="36" y="36" font-size="19" font-weight="700" fill="#2b3a5b">作り方の4ステップ（どこは自分で・どこにお金）</text>
-  <text x="36" y="57" font-size="12" fill="#6b7280">1〜2が最低ライン（0円）。3・4は“お守りの強さ”を上げる任意オプション。</text>
+  <rect x="0.5" y="0.5" width="699" height="307" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">作り方の4ステップ（どこは自分で・どこにお金）</text>
+  <text x="52" y="66" font-size="12.5" fill="#6E6354">1〜2が最低ライン（0円）。3・4は“お守りの強さ”を上げる任意オプション。</text>
 
-  <rect x="36" y="72" width="628" height="48" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
-  <circle cx="60" cy="96" r="13" fill="#3f7d54"/><text x="60" y="101" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">1</text>
-  <text x="84" y="92" font-size="13.5" font-weight="700" fill="#3f7d54">話し合う</text>
-  <text x="84" y="110" font-size="11.5" fill="#26402e">財産・生活費のルールを二人で決める</text>
-  <text x="470" y="92" font-size="11.5" fill="#2f6b43">専門家：不要</text>
-  <text x="470" y="110" font-size="12.5" font-weight="700" fill="#2f6b43">0円</text>
+  <rect x="36" y="80" width="628" height="48" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="104" r="13" fill="#0F6E56"/><text x="60" y="109" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="84" y="100" font-size="13.5" font-weight="700" fill="#0F6E56">話し合う</text>
+  <text x="84" y="118" font-size="12" fill="#2C2A26">財産・生活費のルールを二人で決める</text>
+  <text x="470" y="100" font-size="11.5" fill="#6E6354">専門家：不要</text>
+  <text x="470" y="118" font-size="12.5" font-weight="700" fill="#0F6E56">0円</text>
 
-  <rect x="36" y="126" width="628" height="48" rx="10" fill="#eef3ee" stroke="#bcd3bf"/>
-  <circle cx="60" cy="150" r="13" fill="#3f7d54"/><text x="60" y="155" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">2</text>
-  <text x="84" y="146" font-size="13.5" font-weight="700" fill="#3f7d54">書面にする</text>
-  <text x="84" y="164" font-size="11.5" fill="#26402e">無料テンプレ・Webサービスでも作れる</text>
-  <text x="470" y="146" font-size="11.5" fill="#2f6b43">専門家：任意</text>
-  <text x="470" y="164" font-size="12.5" font-weight="700" fill="#2f6b43">0円〜</text>
+  <rect x="36" y="134" width="628" height="48" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="158" r="13" fill="#0F6E56"/><text x="60" y="163" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="84" y="154" font-size="13.5" font-weight="700" fill="#0F6E56">書面にする</text>
+  <text x="84" y="172" font-size="12" fill="#2C2A26">無料テンプレ・Webサービスでも作れる</text>
+  <text x="470" y="154" font-size="11.5" fill="#6E6354">専門家：任意</text>
+  <text x="470" y="172" font-size="12.5" font-weight="700" fill="#0F6E56">0円〜</text>
 
-  <rect x="36" y="180" width="628" height="48" rx="10" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <circle cx="60" cy="204" r="13" fill="#c0793a"/><text x="60" y="209" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">3</text>
-  <text x="84" y="200" font-size="13.5" font-weight="700" fill="#c0793a">（任意）公証役場</text>
-  <text x="84" y="218" font-size="11.5" fill="#5b4a33">認証＝証拠力／公正証書＝お金の執行力</text>
-  <text x="440" y="200" font-size="11.5" fill="#a05a2a">公証人が必須</text>
-  <text x="440" y="218" font-size="12.5" font-weight="700" fill="#a05a2a">認証11,000円／公正証書 数千〜数万円</text>
+  <rect x="36" y="188" width="628" height="48" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="212" r="13" fill="#1B3A57"/><text x="60" y="217" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="84" y="208" font-size="13.5" font-weight="700" fill="#1B3A57">（任意）公証役場</text>
+  <text x="84" y="226" font-size="12" fill="#2C2A26">認証＝証拠力／公正証書＝お金の執行力</text>
+  <text x="440" y="208" font-size="11.5" fill="#6E6354">公証人が必須</text>
+  <text x="440" y="226" font-size="12.5" font-weight="700" fill="#1B3A57">認証11,000円／公正証書 数千〜数万円</text>
 
-  <rect x="36" y="234" width="628" height="48" rx="10" fill="#fbf6ee" stroke="#e0cdb2"/>
-  <circle cx="60" cy="258" r="13" fill="#c0793a"/><text x="60" y="263" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">4</text>
-  <text x="84" y="254" font-size="13.5" font-weight="700" fill="#c0793a">（任意）登記</text>
-  <text x="84" y="272" font-size="11.5" fill="#5b4a33">第三者に対抗（婚姻届の“前”に法務局へ）</text>
-  <text x="440" y="254" font-size="11.5" fill="#a05a2a">自分でも可・実務は司法書士</text>
-  <text x="440" y="272" font-size="12.5" font-weight="700" fill="#a05a2a">登録免許税18,000円</text>
+  <rect x="36" y="242" width="628" height="48" rx="10" fill="#FBF9F4" stroke="#E4DACB"/>
+  <circle cx="60" cy="266" r="13" fill="#1B3A57"/><text x="60" y="271" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+  <text x="84" y="262" font-size="13.5" font-weight="700" fill="#1B3A57">（任意）登記</text>
+  <text x="84" y="280" font-size="12" fill="#2C2A26">第三者に対抗（婚姻届の“前”に法務局へ）</text>
+  <text x="440" y="262" font-size="11.5" fill="#6E6354">自分でも可・実務は司法書士</text>
+  <text x="440" y="280" font-size="12.5" font-weight="700" fill="#1B3A57">登録免許税18,000円</text>
 </svg>
