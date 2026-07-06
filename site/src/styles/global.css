@@ -185,6 +185,11 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .reco-item:hover .reco-go,.reco-item:focus-visible .reco-go{color:var(--coral);transform:translateX(2px)}
 
 /* ===========================================================
+   タイプスケール（doc22§2-1）：本文16／許可値 12・13・14・16・20・26・34px。
+   これ以外を新規で使わない。<12px（10.5/11等）はタグ・キャプション・
+   オーバーライン等の"ラベル"に限った意図的例外（本文には使わない）。
+   =========================================================== */
+/* ===========================================================
    トップ（.home）：静かなヒーロー → オンボ主役 → TODAY → 記事
    =========================================================== */
 .home{max-width:1040px;margin:0 auto}
@@ -193,7 +198,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 /* 記事セクション */
 .home .sh{display:flex;align-items:baseline;justify-content:space-between;margin:38px 0 16px}
 .home .sh h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:19px;margin:0;color:var(--ink);border:none;padding:0}
-.home .sh a{font-size:12.5px;color:var(--coral-deep);font-weight:700}
+.home .sh a{font-size:13px;color:var(--coral-deep);font-weight:700}
 .home .cards{display:flex;flex-direction:column;gap:18px}
 .home .card{display:flex;gap:14px;align-items:center}
 .home .card .thumb{flex:none;width:112px;height:84px;border-radius:14px;overflow:hidden;box-shadow:0 8px 16px -12px rgba(21,35,58,.5)}
@@ -201,7 +206,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .thumb-ph{display:block;width:100%;height:100%;background:linear-gradient(135deg,#eceef3,#dfe3ec)}
 .home .card .cbody{min-width:0}
 .home .tag1{font-size:10.5px;font-weight:700;border-radius:6px;padding:3px 9px;display:inline-block;background:var(--tag-bg);color:var(--tag-fg)}
-.home .card h3{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14.5px;line-height:1.5;margin:8px 0 0;color:var(--ink)}
+.home .card h3{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;line-height:1.5;margin:8px 0 0;color:var(--ink)}
 
 /* つらい時（安全網） */
 .home .safety{margin-top:34px;background:#F1F6F3;border:1px solid #CFE6DC;border-radius:14px;padding:16px 18px;font-size:.86rem;color:var(--teal)}
@@ -217,7 +222,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .nav-card:hover,.home .nav-card:focus-visible{border-color:var(--coral);transform:translateY(-2px)}
 .home .nav-card i{font-size:26px;color:var(--coral);flex:none}
 .home .nav-card .nc-body{flex:1;min-width:0}
-.home .nav-card .nc-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15.5px;color:var(--navy)}
+.home .nav-card .nc-t{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;color:var(--navy)}
 .home .nav-card .nc-d{font-size:12px;color:var(--muted);margin-top:2px}
 .home .nav-card .nc-go{flex:none;color:var(--faint);font-size:18px}
 @media(min-width:760px){.home .nav-cards{grid-template-columns:repeat(2,1fr)}.home .nav-card{flex-direction:column;align-items:flex-start;gap:8px}.home .nav-card .nc-go{display:none}}
@@ -250,8 +255,8 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .greet{margin:18px 0 4px}
 .home .greet .greet-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .home .greet .gt{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:18px;color:var(--navy)}
-.home .greet .gs{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.6}
-.home .greet .reset{flex:none;white-space:nowrap;font-size:11.5px;color:var(--faint);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer;min-height:34px;line-height:1}
+.home .greet .gs{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.6}
+.home .greet .reset{flex:none;white-space:nowrap;font-size:12px;color:var(--faint);border:1px solid var(--line2);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer;min-height:44px;line-height:1}
 
 /* 現在地マップ＝時系列ジャーニー（3フェーズ） */
 .home .journey{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 18px 20px;margin-top:12px;box-shadow:0 10px 28px -22px rgba(21,35,58,.55)}
@@ -260,7 +265,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .rail{margin-top:30px}
 .home .rail-head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .home .rail-head h2{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:18px;margin:0;color:var(--ink);border:none;padding:0;white-space:nowrap;flex:none}
-.home .rail-head .rh-note{font-size:11.5px;color:var(--faint)}
+.home .rail-head .rh-note{font-size:12px;color:var(--faint)}
 .home .rail-scroller{display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;-webkit-overflow-scrolling:touch}
 .home .rail-scroller::-webkit-scrollbar{height:0}
 .home .rcard{scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
@@ -268,7 +273,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .rcard .rthumb img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;border-radius:0}
 .home .rcard .rb{padding:11px 13px 14px}
 .home .rcard .rtag{font-size:10px;font-weight:700;color:var(--tag-fg);background:var(--tag-bg);border-radius:6px;padding:2px 8px}
-.home .rcard .rt{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:13.5px;line-height:1.5;color:var(--ink);margin-top:8px}
+.home .rcard .rt{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;line-height:1.5;color:var(--ink);margin-top:8px}
 .home .rank-ol{counter-reset:rk;display:flex;flex-direction:column;gap:10px}
 .home .rank-item{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px}
 .home .rank-item::before{counter-increment:rk;content:counter(rk);flex:none;width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;font-family:'Zen Kaku Gothic New';font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
@@ -299,11 +304,11 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
    filter:blur(2px)}
 .home .emptyhero .eh-k{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700}
 .home .emptyhero .eh-t{font-family:'Zen Kaku Gothic New';font-weight:900;font-size:21px;color:var(--navy);margin:10px 0 0;line-height:1.5;position:relative;z-index:1}
-.home .emptyhero .eh-s{font-size:13.5px;color:var(--muted);margin:12px 0 0;line-height:1.85;position:relative;z-index:1}
+.home .emptyhero .eh-s{font-size:14px;color:var(--muted);margin:12px 0 0;line-height:1.85;position:relative;z-index:1}
 /* 主CTA＝共通ボタン部品.btn .btn-primaryを採用。ここではヒーロー内の配置（全幅・光の上に載せる）だけ上書き */
 .home .emptyhero .eh-cta{position:relative;z-index:1;margin-top:18px;width:100%;font-size:16px}
 .home .emptyhero .eh-mini{font-size:11px;color:var(--faint);text-align:center;margin-top:9px;position:relative;z-index:1}
-.home .emptyhero .eh-about{display:block;text-align:center;position:relative;z-index:1;margin-top:14px;font-size:12.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.home .emptyhero .eh-about{display:block;text-align:center;position:relative;z-index:1;margin-top:14px;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
 .home .emptyhero .eh-about:hover{color:var(--coral-deep)}
 
 /* ========== オンボ・モーダル ========== */
@@ -320,7 +325,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .onbm .dots span.on{background:var(--coral)}
 .onbm .close{margin-left:auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--faint);font-size:22px;cursor:pointer;line-height:1}
 .onbm .qh{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:19px;color:var(--navy);line-height:1.5}
-.onbm .qs{font-size:12.5px;color:var(--muted);margin:6px 0 16px}
+.onbm .qs{font-size:13px;color:var(--muted);margin:6px 0 16px}
 .onbm .opts{display:flex;flex-direction:column;gap:10px;margin-top:16px}
 .onbm .opt{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line2);border-radius:14px;
   padding:15px 16px;font-size:15px;color:var(--ink);text-align:left;cursor:pointer;min-height:54px;transition:.14s}
@@ -350,7 +355,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .jph.current .jdot{background:var(--coral);box-shadow:0 0 0 5px rgba(226,112,58,.18)}
 .home .jph-main{flex:1;min-width:0;padding-bottom:18px}
 .home .jph-head{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;padding:0;cursor:pointer;text-align:left}
-.home .jph-nm{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:15.5px;color:var(--navy)}
+.home .jph-nm{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;color:var(--navy)}
 .home .jph.future .jph-nm{color:var(--faint);font-weight:500}
 .home .jph-now{font-size:10px;font-weight:700;background:var(--coral);color:#fff;border-radius:6px;padding:1px 8px}
 .home .jph-cv{margin-left:auto;color:var(--faint);font-size:18px;line-height:1;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transition:.2s}
@@ -370,7 +375,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .todo.done2 .tk{background:var(--teal);border-color:var(--teal)}
 .home .todo.done2 .tk::after{content:'';width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
 .home .todo .tlink{flex:1;min-width:0;display:flex;align-items:center;gap:9px;text-decoration:none}
-.home .todo .tt{flex:1;min-width:0;font-size:13.5px;color:var(--ink);font-weight:700;line-height:1.5}
+.home .todo .tt{flex:1;min-width:0;font-size:14px;color:var(--ink);font-weight:700;line-height:1.5}
 .home .todo.done2 .tt{color:var(--muted)}
 .home .todo .tg{flex:none;color:var(--coral);font-size:16px}
 .home .todo.safe{background:#F1F6F3;border-color:#CFE6DC}.home .todo.safe .tt{color:var(--teal)}
@@ -485,7 +490,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .qcard{position:relative;scroll-snap-align:start;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-left:3px solid var(--cat,var(--line2));border-radius:14px;padding:14px 36px 16px 14px;text-decoration:none;box-shadow:0 8px 18px -16px rgba(21,35,58,.5);transition:.15s}
 .home .qcard:hover,.home .qcard:focus-visible{border-color:var(--coral);transform:translateY(-2px);box-shadow:0 12px 22px -16px rgba(21,35,58,.55)}
 .home .qcard .qcat{align-self:flex-start;font-size:10px;font-weight:800;border-radius:6px;padding:2px 9px;background:var(--cat-bg,var(--tag-bg));color:var(--cat-fg,var(--tag-fg));margin-bottom:8px}
-.home .qcard .qq{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:13.5px;color:var(--navy);line-height:1.5}
-.home .qcard .qa{display:block;margin-top:7px;font-size:11.5px;color:var(--muted);line-height:1.6}
+.home .qcard .qq{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:14px;color:var(--navy);line-height:1.5}
+.home .qcard .qa{display:block;margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6}
 .home .qcard .qgo{position:absolute;right:12px;bottom:11px;color:var(--faint);font-size:17px;transition:.15s}
 .home .qcard:hover .qgo,.home .qcard:focus-visible .qgo{color:var(--coral);transform:translateX(2px)}
