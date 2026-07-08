@@ -25,6 +25,7 @@ const articles = defineCollection({
     faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
     cta: z.string().optional(),
     disclaimer: z.string().optional(),
+    rag: z.boolean().optional(), // false でこの記事をRAG（AIチャットの根拠）対象外にする
   }),
 });
 
@@ -44,6 +45,7 @@ const qa = defineCollection({
     updated: z.string(),
     canonical: z.string().optional(),
     disclaimer: z.string().optional(),
+    rag: z.boolean().optional(), // false でこのQ&AをRAG対象外にする
   }),
 });
 

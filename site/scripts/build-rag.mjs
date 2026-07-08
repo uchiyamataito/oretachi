@@ -19,6 +19,7 @@ function run(dir, kind) {
     const slug = basename(f, '.md');
     const { data, body } = parseFrontmatter(readFileSync(join(full, f), 'utf8'));
     if (data.published && data.published > today) continue; // 未来日＝未公開は除外
+    if (data.rag === 'false') continue;                     // frontmatter rag:false はRAG対象外（センシティブ等）
     const chunks = kind === 'article' ? chunkArticle({ data, body, slug }) : chunkQa({ data, body, slug });
     out.push(...chunks);
     files++;
