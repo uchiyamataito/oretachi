@@ -90,6 +90,54 @@ async function main() {
     await expectAction('通常', t, 'proceed');
   }
 
+  // ══════════ アーキテクトレビュー(doc44) 対応の対抗テスト ══════════
+
+  // ── C-1 対抗：表記ゆれ（ひらがな/カタカナ/半角カナ/全角/空白/伏せ字/中黒）でも危機を取りこぼさない ──
+  for (const t of [
+    'しにたい',              // ひらがな
+    'シニタイ',              // カタカナ
+    'ｼﾆﾀｲ',                // 半角カナ
+    '死 に た い',           // 空白挿入
+    '死*に*た*い',           // 伏せ字(記号)
+    '死・に・た・い',         // 中黒
+    'じさつ を考えてしまう',  // ひらがな＋空白
+    'くびつり',              // 首吊り（かな）
+  ]) {
+    await expectAction('C-1 危機の表記ゆれ', t, 'crisis');
+  }
+
+  // ── H-1 対抗：慣用句を添えても、他者への攻撃はブロックする（バイパス封鎖） ──
+  await expectAction('H-1 慣用句バイパス封鎖', '死ぬほど疲れた。あいつを殺す', 'blocked_abuse');
+  await expectAction('H-1 慣用句バイパス封鎖2', '殺すほどムカつく、お前を刺す', 'blocked_abuse');
+  await expectAction('H-1 慣用句のみ(対象なし)は通す', '死ぬほど疲れた', 'proceed');
+  await expectAction('H-1 慣用句のみ(対象なし)は通す2', '殺すほど腹が立つ日だった', 'proceed');
+
+  // ── H-2 対抗：金額を含む生活費相談を口座PIIで誤爆しない（弾かず通す） ──
+  for (const t of [
+    '普通に月々150000円かかります',
+    '生活費は普通いくら？月200000円で足りる？',
+    '婚姻費用は普通どのくらい、月180000円くらい？',
+  ]) {
+    await expectAction('H-2 金額を口座と誤爆しない', t, 'proceed');
+  }
+  // 本物の口座（複合語）は従来どおり拒否
+  await expectAction('H-2 普通預金は拒否', '振込先は普通預金1234567', 'pii_refuse');
+
+  // ── H-3 対抗：全角数字・区切り表記のPIIも検知する ──
+  await expectAction('H-3 全角マイナンバー', 'マイナンバーは１２３４５６７８９０１２', 'pii_refuse');
+  await expectAction('H-3 区切りマイナンバー', '番号は1234-5678-9012', 'pii_refuse');
+  await expectAction('H-3 全角カード', 'カードは４１１１１１１１１１１１１１１１', 'pii_refuse');
+  {
+    // 全角＋長音区切りの電話番号：マスキングして proceed（safeTextに数字列が残らない）
+    const r = await screenInput('電話は０９０ー１２３４ー５６７８です');
+    if (r.action === 'proceed' && r.safeText && !/\d{4}/.test(r.safeText)) {
+      pass++;
+    } else {
+      fail++;
+      fails.push(`✗ H-3 全角電話マスキング\n   action=${r.action} safeText=${r.safeText}`);
+    }
+  }
+
   // ── 出力 ──
   console.log(`\n===== ガード ユニットテスト =====`);
   if (fails.length) console.log(fails.join('\n'));

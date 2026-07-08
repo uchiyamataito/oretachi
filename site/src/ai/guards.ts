@@ -39,15 +39,33 @@ export type SealedTopic =
 
 export type PiiType = 'mynumber' | 'credit_card' | 'bank_account' | 'phone' | 'email';
 
+// ───────────────────────── 表記ゆれ正規化（C-1・命綱の前処理） ─────────────────────────
+// 危機・攻撃・封印の"辞書照合"の前段でだけ使う。ひらがな/全角/空白/伏せ字での素通りを防ぐ。
+//   ①NFKC（全角英数→半角・記号統一） ②カタカナ→ひらがな折り畳み ③空白・中黒・伏せ字記号の除去。
+// 文末記号（、。！？）は短い語の誤爆を招くため"あえて残す"。LLMへ渡す本文にはこの正規化を使わない。
+function toHiragana(s: string): string {
+  return s.replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+}
+export function normalizeForMatch(text: string): string {
+  const base = toHiragana(text.normalize('NFKC').toLowerCase());
+  // 空白（半角/全角）・中黒・アスタリスク・各種ハイフン/長音・アンダースコア・ピリオドを除去。
+  return base.replace(/[\s　・*.\-‐―ー−_]/g, '');
+}
+
 // ───────────────────────── 危機検知（二段の一段目＝辞書） ─────────────────────────
 // 危機＝"自分に向く"（死にたい等）。ここは弾かず、AIに渡さず窓口へ繋ぐ（寄り添い）。
 
 // 強：単独で危機と判定して良い、ほぼ一義的な表現。
+// かな読みも併記（C-1）。漢字表記の語をユーザーが全ひらがなで打つ場合（「しにたい」等）を拾う。
+// カタカナ入力は normalizeForMatch でひらがなへ折り畳むため別掲不要。
 const CRISIS_STRONG: string[] = [
   '死にたい', '死のう', '死ぬしかない', '死んだ方がいい', '死なせて',
   '殺してほしい', '殺してくれ', '私を殺', '俺を殺', '僕を殺',
   '自殺', '首を吊', '首吊り', '飛び降り', '飛び込み', 'リストカット', 'リスカ',
   '過量服薬', 'オーバードーズ', '練炭', '遺書', '楽に死ね', 'この世から消え',
+  // ↓ かな読み（C-1）
+  'しにたい', 'しのう', 'しぬしかない', 'しんだほうがいい', 'しなせて',
+  'ころしてほしい', 'ころしてくれ', 'じさつ', 'くびつり', 'らくにしね', 'このよからきえ',
 ];
 
 // 弱：文脈依存で危機の可能性。二段目（Haiku）で精緻化する前提。
@@ -59,12 +77,20 @@ const CRISIS_WEAK: string[] = [
   '生きる意味がない', '生きる価値がない', '生きている意味', '存在価値がない',
   '楽になりたい', '終わりにしたい', '終わらせたい', '全部投げ出したい',
   '目が覚めなければ', '目覚めたくない', 'どうなってもいい', '生きていたくない',
+  // ↓ かな読み（C-1）
+  'もうげんかい', 'いきるのにつかれた', 'つかれはてた', 'いきるいみがない',
+  'いきるかちがない', 'いきているいみ', 'そんざいかちがない', 'めがさめなければ', 'いきていたくない',
 ];
 
+// 照合はすべて normalizeForMatch 後のテキストで行う（辞書側も事前正規化）。
+const CRISIS_STRONG_N = CRISIS_STRONG.map((k) => normalizeForMatch(k));
+const CRISIS_WEAK_N = CRISIS_WEAK.map((k) => normalizeForMatch(k));
+
 function detectCrisis(text: string): { level: 'strong' | 'weak' | 'none'; matched: string[] } {
-  const strong = CRISIS_STRONG.filter((k) => text.includes(k));
+  const n = normalizeForMatch(text);
+  const strong = CRISIS_STRONG.filter((_, i) => CRISIS_STRONG_N[i] && n.includes(CRISIS_STRONG_N[i]));
   if (strong.length) return { level: 'strong', matched: strong };
-  const weak = CRISIS_WEAK.filter((k) => text.includes(k));
+  const weak = CRISIS_WEAK.filter((_, i) => CRISIS_WEAK_N[i] && n.includes(CRISIS_WEAK_N[i]));
   if (weak.length) return { level: 'weak', matched: weak };
   return { level: 'none', matched: [] };
 }
@@ -82,25 +108,32 @@ const stage2Stub: CrisisStage2 = async () => null;
 // ここは"他者に向く攻撃"や侮蔑・差別を、単語＋組み合わせで弾く。辞書はデータ＝内山さんが編集可。
 // 注：単純一致だけだと誤爆（「殺すほど腹が立つ」等の慣用）が出るため、組み合わせと慣用除外で精度を上げる。
 
-// 単独で成立する直接攻撃語（命令形＝他者に向く）
-const ABUSE_DIRECT: string[] = ['死ね', 'しね', 'タヒね', '殺してやる', 'ぶっ殺', 'ぶっころ', '殺すぞ'];
+// 単独で成立する直接攻撃語（命令形＝他者に向く）。かな読み併記（C-1正規化と併用）
+const ABUSE_DIRECT: string[] = ['死ね', 'しね', 'タヒね', '殺してやる', 'ころしてやる', 'ぶっ殺', 'ぶっころ', '殺すぞ', 'ころすぞ'];
 // 侮蔑・差別スラー（内山さんが運用で追加。ここは最小の叩き台）
 const ABUSE_SLUR: string[] = ['きもい死ね', 'くたばれ'];
-// 対象語と組み合わさると攻撃になる暴力語
-const VIOLENCE_COND: string[] = ['殺す', '殺し', '殺したい', '刺す', '殴る', '襲う'];
+// 対象語と組み合わさると攻撃になる暴力語（かな読み併記）
+const VIOLENCE_COND: string[] = ['殺す', '殺し', '殺したい', 'ころす', 'ころし', 'ころしたい', '刺す', '殴る', 'なぐる', '襲う', 'おそう'];
 // 攻撃の向け先（対象）
 const ABUSE_TARGET: string[] = ['お前', 'おまえ', 'てめえ', 'てめー', 'あいつ', 'こいつ', '妻', '嫁', '奥さん', '運営', '管理人', 'お前ら'];
 
+// 事前正規化済みの辞書（照合は normalizeForMatch 後のテキストで）
+const ABUSE_DIRECT_N = ABUSE_DIRECT.map((w) => normalizeForMatch(w));
+const ABUSE_SLUR_N = ABUSE_SLUR.map((w) => normalizeForMatch(w));
+const VIOLENCE_COND_N = VIOLENCE_COND.map((w) => normalizeForMatch(w));
+const ABUSE_TARGET_N = ABUSE_TARGET.map((w) => normalizeForMatch(w));
+// 慣用（「殺すほど」「死ぬほど」等）は"その一致部分だけ"を除去し、残りで攻撃を判定する（H-1）
+const IDIOM_RE = /(殺す|殺し|殺したい|ころす|ころし|ころしたい|死ぬ|死に|しぬ|しに)(ほど|くらい|ぐらい|そう)/g;
+
 function detectAbuse(text: string): AbuseReason | null {
-  for (const w of ABUSE_SLUR) if (text.includes(w)) return 'slur';
-  for (const w of ABUSE_DIRECT) if (text.includes(w)) return 'threat_direct';
-  // 慣用（「殺すほど」「死ぬほど」等）は攻撃から除外
-  const idiom = /(殺す|殺し|殺したい|死ぬ|死に)(ほど|くらい|そう)/.test(text);
-  if (!idiom) {
-    const hasViolence = VIOLENCE_COND.some((w) => text.includes(w));
-    const hasTarget = ABUSE_TARGET.some((w) => text.includes(w));
-    if (hasViolence && hasTarget) return 'threat_targeted';
-  }
+  const n = normalizeForMatch(text);
+  if (ABUSE_SLUR_N.some((w) => w && n.includes(w))) return 'slur';
+  if (ABUSE_DIRECT_N.some((w) => w && n.includes(w))) return 'threat_direct';
+  // 慣用句の一致部分のみ除去（メッセージ全体の判定はスキップしない＝H-1バイパス封鎖）
+  const residue = n.replace(IDIOM_RE, '');
+  const hasViolence = VIOLENCE_COND_N.some((w) => w && residue.includes(w));
+  const hasTarget = ABUSE_TARGET_N.some((w) => w && residue.includes(w));
+  if (hasViolence && hasTarget) return 'threat_targeted';
   return null;
 }
 
@@ -136,9 +169,10 @@ const SEALED_RULES: { topic: SealedTopic; topicWords: string[]; intentWords: str
 ];
 
 function detectSealed(text: string): SealedTopic | null {
+  const n = normalizeForMatch(text);
   for (const rule of SEALED_RULES) {
-    const hasTopic = rule.topicWords.some((w) => text.includes(w));
-    const hasIntent = rule.intentWords.some((w) => text.includes(w));
+    const hasTopic = rule.topicWords.some((w) => n.includes(normalizeForMatch(w)));
+    const hasIntent = rule.intentWords.some((w) => n.includes(normalizeForMatch(w)));
     if (hasTopic && hasIntent) return rule.topic;
   }
   return null;
@@ -150,18 +184,25 @@ function detectSealed(text: string): SealedTopic | null {
 // 中リスク（マスキングして続行可）：電話・メール。
 const PII_PATTERNS: { type: PiiType; risk: 'refuse' | 'mask'; re: RegExp }[] = [
   { type: 'credit_card', risk: 'refuse', re: /\b(?:\d[ -]?){15,16}\b/g },
+  // マイナンバー：4-4-4 区切り、または 12桁連続（H-3・区切り表記も拾う）
+  { type: 'mynumber', risk: 'refuse', re: /\b\d{4}[ -]\d{4}[ -]\d{4}\b/g },
   { type: 'mynumber', risk: 'refuse', re: /\b\d{12}\b/g },
-  { type: 'bank_account', risk: 'refuse', re: /(口座|口座番号|普通|当座)\D{0,6}\d{6,8}/g },
+  // 口座：金額文脈での誤爆回避のため複合語に限定（H-2）。「普通」「当座」単独では発火させない
+  { type: 'bank_account', risk: 'refuse', re: /(口座番号|普通預金|普通口座|当座預金|当座口座|口座)[^\d]{0,6}\d{6,8}/g },
   { type: 'email', risk: 'mask', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g },
-  { type: 'phone', risk: 'mask', re: /\b0\d{1,3}[-‐(]?\d{2,4}[-‐)]?\d{3,4}\b/g },
+  // 電話：長音「ー」・マイナス「−」・全角括弧起因の区切りも許容（H-3。前段NFKCで全角数字は半角化済み）
+  { type: 'phone', risk: 'mask', re: /\b0\d{1,3}[-‐ー−(]?\d{2,4}[-‐ー−)]?\d{3,4}\b/g },
 ];
 
 function detectPii(text: string): { types: PiiType[]; refuse: boolean; masked: string } {
+  // NFKC で全角英数字・全角ハイフンを半角へ寄せてから検知（H-3）。
+  // LLMへ渡す safeText もこの正規形（幅の統一のみ＝意味は保存。危機用の折り畳みは使わない）。
+  const norm = text.normalize('NFKC');
   const types = new Set<PiiType>();
   let refuse = false;
-  let masked = text;
+  let masked = norm;
   for (const p of PII_PATTERNS) {
-    if (p.re.test(text)) {
+    if (p.re.test(norm)) {
       types.add(p.type);
       if (p.risk === 'refuse') refuse = true;
       masked = masked.replace(p.re, '［個人情報］');
@@ -183,7 +224,9 @@ const INJECTION_PATTERNS: RegExp[] = [
 ];
 
 function detectInjection(text: string): boolean {
-  return INJECTION_PATTERNS.some((re) => re.test(text));
+  // 全角での回避に備えNFKCで幅を寄せる（空白は残すため \s+ を要するパターンは維持される）。
+  const t = text.normalize('NFKC');
+  return INJECTION_PATTERNS.some((re) => re.test(t));
 }
 
 // ───────────────────────── 静的テンプレ（生成の代わりに出す） ─────────────────────────

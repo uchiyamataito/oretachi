@@ -1,9 +1,17 @@
 ---
 // AiChat.astro — F1.5⑥ 対話ナビUI（Phase A・スタブ）。doc43 準拠。
 // 検証済みロジック src/ai/chatFlow.ts（＋guards.ts）を包む薄いUIシェル。
-// この段階では API を呼ばない＝コスト¥0（回答はダミー）。KILL_SWITCH で入口を隠せる。
+// この段階では API を呼ばない＝コスト¥0（回答はダミー）。
 // 色はブランド配色（doc22）。将来 global.css のトークンへ寄せる余地あり。
+//
+// ▼ キルスイッチ（H-4）＝ビルド時 環境変数 PUBLIC_AICHAT_OFF で入口ごと消す。
+//   Cloudflare Pages の「環境変数」に PUBLIC_AICHAT_OFF=1 を足して再デプロイするだけで、
+//   FAB（相談ボタン）を含むUIをHTMLごと出力しない＝押せる要素が残らず、API呼び出しも発生しない。
+//   コード編集・再ビルドは不要（非エンジニアがダッシュボードのみで操作可能）。手順は doc40 参照。
+const AICHAT_OFF =
+  import.meta.env.PUBLIC_AICHAT_OFF === '1' || import.meta.env.PUBLIC_AICHAT_OFF === 'true';
 ---
+{!AICHAT_OFF && (
 <div id="aichat" data-aichat>
   <button class="ac-fab" aria-label="AIで悩みを整理する">
     <i class="ti ti-message-circle" aria-hidden="true"></i><span>AIで悩みを整理する</span>
@@ -30,6 +38,7 @@
     </div>
   </div>
 </div>
+)}
 
 <style is:global>
   #aichat .ac-fab{position:fixed;right:16px;bottom:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;
@@ -107,8 +116,11 @@
 <script>
   import { startFlow, onChip, onText, TOPIC_TO_KANSHIN, type BotMessage, type FlowState } from '../ai/chatFlow';
 
-  // 入口オフ＝コスト¥0（既存の静的オンボ/窓口へフォールバック）。true にすると相談ボタンを出さない。
-  const KILL_SWITCH = false;
+  // 入口オフ＝コスト¥0（既存の静的オンボ/窓口へフォールバック）。
+  // H-4：ビルド時 環境変数 PUBLIC_AICHAT_OFF=1/true でオフ。フロントマター側でUIごと出力しないため
+  // 通常 root は null になるが、二重の安全網としてスクリプト側でも入口処理を止める。
+  const KILL_SWITCH =
+    import.meta.env.PUBLIC_AICHAT_OFF === '1' || import.meta.env.PUBLIC_AICHAT_OFF === 'true';
 
   const root = document.getElementById('aichat');
   if (root && !KILL_SWITCH) {
