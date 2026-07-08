@@ -1,0 +1,233 @@
+---
+// AiChat.astro — F1.5⑥ 対話ナビUI（Phase A・スタブ）。doc43 準拠。
+// 検証済みロジック src/ai/chatFlow.ts（＋guards.ts）を包む薄いUIシェル。
+// この段階では API を呼ばない＝コスト¥0（回答はダミー）。KILL_SWITCH で入口を隠せる。
+// 色はブランド配色（doc22）。将来 global.css のトークンへ寄せる余地あり。
+---
+<div id="aichat" data-aichat>
+  <button class="ac-fab" aria-label="AIで悩みを整理する">
+    <i class="ti ti-message-circle" aria-hidden="true"></i><span>AIで悩みを整理する</span>
+  </button>
+
+  <div class="ac-modal" hidden role="dialog" aria-modal="true" aria-label="AIで悩みを整理する">
+    <div class="ac-ov"></div>
+    <div class="ac-sheet">
+      <div class="ac-head">
+        <span class="ac-grab" aria-hidden="true"></span>
+        <div class="ac-head-row">
+          <span class="ac-head-t">AIで悩みを整理する</span>
+          <button class="ac-close" aria-label="閉じる"><i class="ti ti-x" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="ac-msgs" aria-live="polite"></div>
+      <div class="ac-foot">
+        <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
+        <div class="ac-inrow">
+          <input class="ac-input" type="text" autocomplete="off" placeholder="気になることを聞いてくれ" aria-label="メッセージを入力" />
+          <button class="ac-send" aria-label="送信"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  #aichat .ac-fab{position:fixed;right:16px;bottom:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;
+    background:#1B3A57;color:#FCFAF6;border:none;border-radius:999px;padding:12px 18px;cursor:pointer;
+    font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:700;font-size:14px;
+    box-shadow:0 12px 26px -12px rgba(21,35,58,.6)}
+  #aichat .ac-fab i{font-size:19px}
+  #aichat .ac-fab:hover{filter:brightness(1.06)}
+  @media(max-width:520px){#aichat .ac-fab span{display:none}#aichat .ac-fab{padding:14px;width:56px;height:56px;justify-content:center}}
+
+  #aichat .ac-modal{position:fixed;inset:0;z-index:100;pointer-events:none}
+  #aichat .ac-modal[hidden]{display:none}
+  #aichat .ac-ov{position:absolute;inset:0;background:rgba(27,42,38,.55);pointer-events:auto}
+  #aichat .ac-sheet{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;pointer-events:auto;
+    background:#FBF7F1;border-radius:22px 22px 0 0;box-shadow:0 -16px 40px -20px rgba(0,0,0,.45);
+    display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+
+  /* PC＝右下ドッキング型（サイトを使いながらチャット）。dim無し・角に浮かせる。 */
+  @media (min-width:721px){
+    #aichat .ac-ov{display:none}
+    #aichat .ac-sheet{left:auto;right:16px;bottom:16px;margin:0;width:392px;max-width:calc(100vw - 32px);
+      border-radius:18px;max-height:min(660px,84vh);box-shadow:0 20px 48px -20px rgba(21,35,58,.55)}
+  }
+  #aichat .ac-head{background:#1B3A57;padding:9px 16px 13px;display:flex;flex-direction:column;gap:9px;flex:none}
+  #aichat .ac-grab{width:40px;height:4px;border-radius:3px;background:rgba(255,255,255,.32);align-self:center}
+  #aichat .ac-head-row{display:flex;align-items:center;gap:10px}
+  #aichat .ac-head-t{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;color:#FCFAF6;font-size:15px}
+  #aichat .ac-close{margin-left:auto;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+    background:none;border:none;color:#9BB0C2;font-size:20px;cursor:pointer}
+
+  #aichat .ac-msgs{flex:1;overflow-y:auto;padding:14px 14px 4px;display:flex;flex-direction:column;gap:12px}
+  #aichat .ac-b{max-width:88%;font-size:13.5px;line-height:1.8;color:#2C2A26}
+  #aichat .ac-bot{background:#fff;border:1px solid #EFE7DA;border-radius:4px 15px 15px 15px;padding:12px 14px;align-self:flex-start}
+  #aichat .ac-user{background:#FBEADF;border:1px solid #F3D6C4;border-radius:15px 4px 15px 15px;padding:10px 14px;align-self:flex-end}
+  #aichat .ac-safe{border-color:#CFE6DC;background:#F1F6F3}
+  #aichat .ac-b .ac-t{white-space:pre-wrap}
+  #aichat .ac-src{display:flex;align-items:center;gap:5px;margin-top:10px;padding-top:9px;border-top:1px solid #F0E9DC;color:#0F6E56;font-size:11px}
+  #aichat .ac-src i{font-size:14px}
+
+  #aichat .ac-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  #aichat .ac-chip{border:1px solid #D8CEBE;background:#fff;color:#1B3A57;border-radius:999px;padding:8px 14px;
+    font-size:12px;font-weight:700;cursor:pointer;min-height:38px}
+  #aichat .ac-chip:hover{border-color:#1B3A57}
+
+  #aichat .ac-cards-wrap{align-self:flex-start;max-width:100%;width:100%}
+  #aichat .ac-cards{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 6px}
+  #aichat .ac-card{flex:none;width:150px;background:#fff;border:1px solid #EFE7DA;border-radius:14px;overflow:hidden;
+    text-decoration:none;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
+  #aichat .ac-card-img{height:84px;background:#E7E1D5;display:flex;align-items:center;justify-content:center;color:#B4A793;font-size:22px}
+  #aichat .ac-card-b{padding:9px 10px 11px}
+  #aichat .ac-cat{display:inline-block;font-size:10px;font-weight:700;background:#EDE7DD;color:#6E6354;border-radius:6px;padding:2px 8px}
+  #aichat .ac-card-t{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:12.5px;color:#1B3A57;line-height:1.5;margin-top:7px}
+  #aichat .ac-more{display:flex;align-items:center;justify-content:center;gap:6px;margin:6px 2px 0;padding:10px;
+    border:1px solid #D8CEBE;border-radius:999px;text-decoration:none;color:#1B3A57;font-size:12px;font-weight:700;background:#fff}
+  #aichat .ac-more i{font-size:15px}
+
+  #aichat .ac-foot{flex:none;padding:11px 14px 16px;border-top:1px solid #EFE7DA;background:#FBF7F1}
+  #aichat .ac-note{display:flex;align-items:center;gap:5px;color:#8C8270;font-size:11px;margin:0 2px 9px}
+  #aichat .ac-note i{font-size:14px}
+  #aichat .ac-inrow{display:flex;align-items:flex-end;gap:9px}
+  #aichat .ac-input{flex:1;box-sizing:border-box;background:#fff;border:1px solid #E2D9C9;border-radius:22px;
+    padding:13px 17px;font-size:15px;line-height:1.5;color:#2C2A26;min-height:50px;resize:none;
+    font-family:'Noto Sans JP',sans-serif;max-height:120px;overflow-y:auto}
+  #aichat .ac-input::placeholder{color:#A79D8C}
+  #aichat .ac-send{width:50px;height:50px;flex:none;border:none;border-radius:50%;background:#E2703A;color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:21px;cursor:pointer;box-shadow:0 8px 16px -8px rgba(226,112,58,.7)}
+  #aichat .ac-send:hover{filter:brightness(.97)}
+
+  @media (prefers-reduced-motion: no-preference){
+    #aichat .ac-sheet{animation:ac-up .28s ease}
+    @keyframes ac-up{from{transform:translateY(18px);opacity:.7}to{transform:none;opacity:1}}
+  }
+</style>
+
+<script>
+  import { startFlow, onChip, onText, TOPIC_TO_KANSHIN, type BotMessage, type FlowState } from '../ai/chatFlow';
+
+  // 入口オフ＝コスト¥0（既存の静的オンボ/窓口へフォールバック）。true にすると相談ボタンを出さない。
+  const KILL_SWITCH = false;
+
+  const root = document.getElementById('aichat');
+  if (root && !KILL_SWITCH) {
+    const fab = root.querySelector('.ac-fab') as HTMLButtonElement;
+    const modal = root.querySelector('.ac-modal') as HTMLElement;
+    const ov = root.querySelector('.ac-ov') as HTMLElement;
+    const closeBtn = root.querySelector('.ac-close') as HTMLButtonElement;
+    const msgs = root.querySelector('.ac-msgs') as HTMLElement;
+    const input = root.querySelector('.ac-input') as HTMLInputElement;
+    const sendBtn = root.querySelector('.ac-send') as HTMLButtonElement;
+    let state: FlowState | null = null;
+
+    const esc = (s: unknown) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+    const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:|\/|#)/.test(s) ? s : '#'; };
+    const down = () => { msgs.scrollTop = msgs.scrollHeight; };
+
+    function addUser(text: string) {
+      const d = document.createElement('div');
+      d.className = 'ac-b ac-user';
+      d.textContent = text;
+      msgs.appendChild(d); down();
+    }
+
+    function addBot(m: BotMessage) {
+      const wrap = document.createElement('div');
+      wrap.className = 'ac-b ac-bot' + (m.kind === 'safe' ? ' ac-safe' : '');
+      let html = `<div class="ac-t">${esc(m.text)}</div>`;
+      if (m.kind === 'answer' && m.source) html += `<div class="ac-src"><i class="ti ti-book-2" aria-hidden="true"></i>出典:${esc(m.source)}</div>`;
+      wrap.innerHTML = html;
+      if (m.kind === 'chips' && m.chips) {
+        const cw = document.createElement('div');
+        cw.className = 'ac-chips';
+        m.chips.forEach((ch) => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'ac-chip'; b.textContent = ch.label;
+          b.addEventListener('click', () => handleChip(ch.value, ch.label));
+          cw.appendChild(b);
+        });
+        wrap.appendChild(cw);
+      }
+      msgs.appendChild(wrap);
+
+      if (m.kind === 'cards' && m.cards) {
+        const cw = document.createElement('div');
+        cw.className = 'ac-cards-wrap';
+        const sc = document.createElement('div');
+        sc.className = 'ac-cards';
+        m.cards.forEach((c) => {
+          const a = document.createElement('a');
+          a.className = 'ac-card'; a.href = safeUrl(c.href);
+          a.innerHTML = `<div class="ac-card-img"><i class="ti ti-photo" aria-hidden="true"></i></div><div class="ac-card-b"><span class="ac-cat">${esc(c.category)}</span><div class="ac-card-t">${esc(c.title)}</div></div>`;
+          sc.appendChild(a);
+        });
+        cw.appendChild(sc);
+        if (m.moreHref) {
+          const more = document.createElement('a');
+          more.className = 'ac-more'; more.href = safeUrl(m.moreHref);
+          more.innerHTML = `<i class="ti ti-layout-grid" aria-hidden="true"></i>${esc(m.moreLabel || 'もっと見る')}`;
+          cw.appendChild(more);
+        }
+        msgs.appendChild(cw);
+      }
+      down();
+    }
+
+    const render = (list: BotMessage[]) => list.forEach(addBot);
+
+    function reflectKanshin(topic: string) {
+      try {
+        const k = TOPIC_TO_KANSHIN[topic]; if (!k) return;
+        const KEY = 'oretachi_state';
+        const st = JSON.parse(localStorage.getItem(KEY) || 'null') || {};
+        const set = new Set<string>(st.kanshin || []); set.add(k);
+        st.kanshin = [...set]; st.ts = Date.now();
+        localStorage.setItem(KEY, JSON.stringify(st));
+      } catch (e) { /* localStorage 不可でも会話は続行 */ }
+    }
+
+    function handleChip(value: string, label: string) {
+      addUser(label);
+      reflectKanshin(value);
+      if (!state) return;
+      const res = onChip(state, value);
+      state = res.state; render(res.messages);
+    }
+
+    async function handleSend() {
+      const text = (input.value || '').trim(); if (!text) return;
+      input.value = ''; addUser(text);
+      if (!state) state = startFlow().state;
+      const res = await onText(state, text);
+      state = res.state; render(res.messages);
+    }
+
+    const isMobile = () => window.matchMedia('(max-width:720px)').matches;
+
+    function open() {
+      modal.hidden = false; fab.hidden = true;
+      if (isMobile()) document.body.style.overflow = 'hidden'; // PCはサイトを使えるようロックしない
+      if (!state) { const s = startFlow(); state = s.state; render(s.messages); }
+      setTimeout(() => input && input.focus(), 60);
+    }
+    function close() { modal.hidden = true; fab.hidden = false; document.body.style.overflow = ''; }
+
+    // IME（日本語変換）中フラグ。変換確定のEnterで送信しないために使う。
+    let composing = false;
+    input.addEventListener('compositionstart', () => { composing = true; });
+    input.addEventListener('compositionend', () => { composing = false; });
+
+    fab.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    ov.addEventListener('click', close);
+    sendBtn.addEventListener('click', handleSend);
+    input.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      if (composing || (e as any).isComposing || (e as any).keyCode === 229) return; // 変換確定のEnterは無視
+      e.preventDefault();
+      handleSend();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+  }
+</script>

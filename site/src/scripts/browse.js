@@ -97,5 +97,21 @@ export function initBrowse(cardSelector) {
     themes.clear(); phase = ''; kw.value = '';
     syncChips(); apply();
   });
+
+  // URLパラメータ（?theme=お金,気持ち&phase=別居）で初期絞り込みを適用。
+  // AIチャットの「もっと見る」など、絞り込み適用済みで一覧へ送客する導線から使う。
+  // 値は既存チップに存在するものだけ採用（不正値は無視）。
+  try {
+    var params = new URLSearchParams(location.search);
+    var validThemes = {};
+    document.querySelectorAll('#browse .chips[data-group="theme"] .ch').forEach(function (x) { validThemes[x.getAttribute('data-v')] = 1; });
+    var tParam = params.get('theme');
+    if (tParam) tParam.split(',').forEach(function (v) { v = v.trim(); if (validThemes[v]) themes.add(v); });
+    var validPhases = {};
+    document.querySelectorAll('#browse .chips[data-group="phase"] .ch').forEach(function (x) { validPhases[x.getAttribute('data-v')] = 1; });
+    var pParam = (params.get('phase') || '').trim();
+    if (pParam && validPhases[pParam]) phase = pParam;
+  } catch (e) { /* パラメータ無し/不正でも通常表示 */ }
+
   syncChips(); apply();
 }

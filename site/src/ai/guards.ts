@@ -1,0 +1,276 @@
+// オレタチ AI 入力ガード（F1.5⑤・命綱）
+// doc42§4 / doc16§3-3 / specs/02§10 / doc43（会話仕様・入力ポリシー）準拠。
+// 設計原則：見逃し < 誤検知（迷えば窓口へ）。生成の前段で危ういものを遮断する。
+//
+// このモジュールは Cloudflare Worker とブラウザの両方から使える純粋関数。
+// API を呼ばない＝この層だけならコスト¥0でテスト可能。
+// 危機検知の二段目（Haiku 意図分類）は CrisisStage2 フックで後付けする（今はスタブ）。
+//
+// テスト実行： node --experimental-strip-types src/ai/guards.test.ts
+
+/** ガードの総合判定。crisis=助けへ / blocked_abuse=送信拒否 / sealed=生成停止 / proceed=（PIIマスキング後）生成へ。 */
+export type GuardAction = 'crisis' | 'blocked_abuse' | 'sealed' | 'pii_refuse' | 'proceed';
+
+export type AbuseReason = 'slur' | 'threat_direct' | 'threat_targeted';
+
+export interface GuardResult {
+  action: GuardAction;
+  /** ユーザーに出す静的テンプレ（crisis / blocked_abuse / sealed / pii_refuse 時）。生成の代わりに表示する。 */
+  response?: string;
+  /** proceed 時に LLM へ渡す、PIIをマスキング済みの本文。 */
+  safeText?: string;
+  /** 検知の内訳（ログ・テスト・デバッグ用。PIIの中身は残さない＝種別のみ）。 */
+  detail: {
+    crisisLevel: 'strong' | 'weak' | 'none';
+    crisisMatched: string[];
+    abuseReason: AbuseReason | null;
+    sealedTopic: SealedTopic | null;
+    piiTypes: PiiType[];
+    injectionSuspected: boolean;
+  };
+}
+
+export type SealedTopic =
+  | 'money_zaisan' // 財産分与の金額算定
+  | 'money_isharyo' // 慰謝料の金額算定
+  | 'money_yoikuhi' // 養育費の金額算定
+  | 'nenkin_bunkatsu' // 年金分割の法判断
+  | 'shinken_outlook'; // 親権の見通し・確率
+
+export type PiiType = 'mynumber' | 'credit_card' | 'bank_account' | 'phone' | 'email';
+
+// ───────────────────────── 危機検知（二段の一段目＝辞書） ─────────────────────────
+// 危機＝"自分に向く"（死にたい等）。ここは弾かず、AIに渡さず窓口へ繋ぐ（寄り添い）。
+
+// 強：単独で危機と判定して良い、ほぼ一義的な表現。
+const CRISIS_STRONG: string[] = [
+  '死にたい', '死のう', '死ぬしかない', '死んだ方がいい', '死なせて',
+  '殺してほしい', '殺してくれ', '私を殺', '俺を殺', '僕を殺',
+  '自殺', '首を吊', '首吊り', '飛び降り', '飛び込み', 'リストカット', 'リスカ',
+  '過量服薬', 'オーバードーズ', '練炭', '遺書', '楽に死ね', 'この世から消え',
+];
+
+// 弱：文脈依存で危機の可能性。二段目（Haiku）で精緻化する前提。
+// 今はスタブのため、既定ポリシー＝弱でも安全側に倒して窓口を出す（見逃し<誤検知）。
+// 注：ありふれた語（単なる「疲れた」等）は誤検知が過大になるため入れない。
+const CRISIS_WEAK: string[] = [
+  '消えたい', '消えてしまいたい', 'いなくなりたい', 'いなくなった方がいい',
+  'もう限界', 'もう疲れた', '生きるのに疲れた', '疲れ果てた',
+  '生きる意味がない', '生きる価値がない', '生きている意味', '存在価値がない',
+  '楽になりたい', '終わりにしたい', '終わらせたい', '全部投げ出したい',
+  '目が覚めなければ', '目覚めたくない', 'どうなってもいい', '生きていたくない',
+];
+
+function detectCrisis(text: string): { level: 'strong' | 'weak' | 'none'; matched: string[] } {
+  const strong = CRISIS_STRONG.filter((k) => text.includes(k));
+  if (strong.length) return { level: 'strong', matched: strong };
+  const weak = CRISIS_WEAK.filter((k) => text.includes(k));
+  if (weak.length) return { level: 'weak', matched: weak };
+  return { level: 'none', matched: [] };
+}
+
+/**
+ * 危機検知の二段目（Haiku 意図分類）フック。
+ * 今はスタブで null（未判定）を返す。実運用では Worker が Haiku を呼び、
+ * true=危機 / false=非危機 を返して弱シグナルの誤検知を減らす。
+ */
+export type CrisisStage2 = (text: string) => Promise<boolean | null>;
+const stage2Stub: CrisisStage2 = async () => null;
+
+// ───────────────────────── 攻撃・脅迫・嫌がらせ（送信ブロック＝bucket2） ─────────────────────────
+// 危機（死にたい＝自分に向く）は上で"助け"に回すのでここには入れない。
+// ここは"他者に向く攻撃"や侮蔑・差別を、単語＋組み合わせで弾く。辞書はデータ＝内山さんが編集可。
+// 注：単純一致だけだと誤爆（「殺すほど腹が立つ」等の慣用）が出るため、組み合わせと慣用除外で精度を上げる。
+
+// 単独で成立する直接攻撃語（命令形＝他者に向く）
+const ABUSE_DIRECT: string[] = ['死ね', 'しね', 'タヒね', '殺してやる', 'ぶっ殺', 'ぶっころ', '殺すぞ'];
+// 侮蔑・差別スラー（内山さんが運用で追加。ここは最小の叩き台）
+const ABUSE_SLUR: string[] = ['きもい死ね', 'くたばれ'];
+// 対象語と組み合わさると攻撃になる暴力語
+const VIOLENCE_COND: string[] = ['殺す', '殺し', '殺したい', '刺す', '殴る', '襲う'];
+// 攻撃の向け先（対象）
+const ABUSE_TARGET: string[] = ['お前', 'おまえ', 'てめえ', 'てめー', 'あいつ', 'こいつ', '妻', '嫁', '奥さん', '運営', '管理人', 'お前ら'];
+
+function detectAbuse(text: string): AbuseReason | null {
+  for (const w of ABUSE_SLUR) if (text.includes(w)) return 'slur';
+  for (const w of ABUSE_DIRECT) if (text.includes(w)) return 'threat_direct';
+  // 慣用（「殺すほど」「死ぬほど」等）は攻撃から除外
+  const idiom = /(殺す|殺し|殺したい|死ぬ|死に)(ほど|くらい|そう)/.test(text);
+  if (!idiom) {
+    const hasViolence = VIOLENCE_COND.some((w) => text.includes(w));
+    const hasTarget = ABUSE_TARGET.some((w) => text.includes(w));
+    if (hasViolence && hasTarget) return 'threat_targeted';
+  }
+  return null;
+}
+
+// ───────────────────────── 封印テーマ（金額算定・法判断・親権見通し） ─────────────────────────
+
+// 「トピック語」×「個別の金額/見通しを求める意図語」が揃ったら封印。
+const SEALED_RULES: { topic: SealedTopic; topicWords: string[]; intentWords: string[] }[] = [
+  {
+    topic: 'money_zaisan',
+    topicWords: ['財産分与', '財産の分け', '退職金の分'],
+    intentWords: ['いくら', '金額', '計算', '相場', '試算', '割合', '取り分', '何割', 'もらえる', '請求できる'],
+  },
+  {
+    topic: 'money_isharyo',
+    topicWords: ['慰謝料'],
+    intentWords: ['いくら', '金額', '相場', '請求できる', '取れる', '払う', '計算', '払わない', '減らせ'],
+  },
+  {
+    topic: 'money_yoikuhi',
+    topicWords: ['養育費'],
+    intentWords: ['いくら', '金額', '相場', '計算', '算定', '妥当', '減額', '払う', '払わない'],
+  },
+  {
+    topic: 'nenkin_bunkatsu',
+    topicWords: ['年金分割'],
+    intentWords: ['いくら', '割合', '計算', '対象', '権利', 'できる', 'もらえる', '何割'],
+  },
+  {
+    topic: 'shinken_outlook',
+    topicWords: ['親権', '監護権'],
+    intentWords: ['取れる', '勝てる', '取られ', '可能性', '確率', 'どっち', '有利', '不利', 'もらえる'],
+  },
+];
+
+function detectSealed(text: string): SealedTopic | null {
+  for (const rule of SEALED_RULES) {
+    const hasTopic = rule.topicWords.some((w) => text.includes(w));
+    const hasIntent = rule.intentWords.some((w) => text.includes(w));
+    if (hasTopic && hasIntent) return rule.topic;
+  }
+  return null;
+}
+
+// ───────────────────────── PII 検知・マスキング ─────────────────────────
+
+// 高リスク（送信を拒否＝そもそもLLMへ渡さない）：マイナンバー・カード・口座番号。
+// 中リスク（マスキングして続行可）：電話・メール。
+const PII_PATTERNS: { type: PiiType; risk: 'refuse' | 'mask'; re: RegExp }[] = [
+  { type: 'credit_card', risk: 'refuse', re: /\b(?:\d[ -]?){15,16}\b/g },
+  { type: 'mynumber', risk: 'refuse', re: /\b\d{12}\b/g },
+  { type: 'bank_account', risk: 'refuse', re: /(口座|口座番号|普通|当座)\D{0,6}\d{6,8}/g },
+  { type: 'email', risk: 'mask', re: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g },
+  { type: 'phone', risk: 'mask', re: /\b0\d{1,3}[-‐(]?\d{2,4}[-‐)]?\d{3,4}\b/g },
+];
+
+function detectPii(text: string): { types: PiiType[]; refuse: boolean; masked: string } {
+  const types = new Set<PiiType>();
+  let refuse = false;
+  let masked = text;
+  for (const p of PII_PATTERNS) {
+    if (p.re.test(text)) {
+      types.add(p.type);
+      if (p.risk === 'refuse') refuse = true;
+      masked = masked.replace(p.re, '［個人情報］');
+    }
+    p.re.lastIndex = 0; // /g のステート初期化
+  }
+  return { types: [...types], refuse, masked };
+}
+
+// ───────────────────────── プロンプトインジェクション検知 ─────────────────────────
+
+const INJECTION_PATTERNS: RegExp[] = [
+  /(これまで|上記|さっき|以前)の?(指示|命令|ルール|設定|プロンプト)を?(無視|忘れ|破棄|上書き)/,
+  /(制約|ガード|規則)を?(解除|無視|外し|回避)/,
+  /ignore\s+(all\s+)?(previous|above|prior)\s+(instructions?|prompts?)/i,
+  /(system\s*prompt|システムプロンプト)/i,
+  /(あなたは今から|今からあなたは|これからは君は).{0,20}(として|になりきって|振る舞|演じ)/,
+  /developer\s*mode|開発者モード|脱獄|jailbreak|DAN/i,
+];
+
+function detectInjection(text: string): boolean {
+  return INJECTION_PATTERNS.some((re) => re.test(text));
+}
+
+// ───────────────────────── 静的テンプレ（生成の代わりに出す） ─────────────────────────
+
+export const CRISIS_TEMPLATE =
+  'つらい気持ちを話してくれてありがとう。いま、あなたの安全がいちばん大切だ。' +
+  '一人で抱えなくていい。声を出さなくても頼れる窓口がある。\n' +
+  '・よりそいホットライン 0120-279-338（24時間・無料）\n' +
+  '・いのちの電話 0570-783-556\n' +
+  '危険を感じるほどつらいときは、ためらわず上の窓口に連絡してくれ。';
+
+export const ABUSE_TEMPLATE =
+  'すまない、その内容は送れない。ここは離婚で悩む人が安心して使う場所だから、' +
+  '攻撃的な言葉や嫌がらせには使えないんだ。困りごとがあるなら、力になる。';
+
+const SEALED_TEMPLATES: Record<SealedTopic, string> = {
+  money_zaisan:
+    '財産分与の具体的な金額は、個別事情で大きく変わるためこのチャットでは算定できない。' +
+    '考え方は「財産分与の対象・対象外」の記事にまとめてある。正確な金額は弁護士・公的窓口へ。',
+  money_isharyo:
+    '慰謝料の金額はケースごとの事情で決まるため、このチャットでは算定できない。' +
+    '一般的な考え方は関連記事を、具体的な金額は専門家・公的窓口を頼ってくれ。',
+  money_yoikuhi:
+    '養育費の金額は算定表と個別事情で決まるため、このチャットでは算定しない。' +
+    '「養育費」の記事に相場の考え方と算定ツールがある。最終的な金額は専門家・公的窓口へ。',
+  nenkin_bunkatsu:
+    '年金分割の対象や割合の法的な判断は、このチャットではできない。' +
+    '手続きの流れは関連記事に、個別の可否は日本年金機構・専門家に確認してくれ。',
+  shinken_outlook:
+    '親権が取れるかどうかの見通しは、個別事情で変わるためこのチャットでは断定できない。' +
+    '「父親の親権」の記事に条件と今からできることをまとめてある。個別の相談は専門家へ。',
+};
+
+const PII_REFUSE_TEMPLATE =
+  '安全のため、口座番号・カード番号・マイナンバーなどの個人情報は入力しないでくれ。' +
+  'それらが無くても相談できる。番号を消して、もう一度送ってくれると助かる。';
+
+// ───────────────────────── 総合判定（優先度：危機 > 攻撃 > 封印 > PII拒否 > 続行） ─────────────────────────
+
+/**
+ * 入力を評価して、生成前にどう扱うかを返す。
+ * @param text ユーザー入力（生テキスト。ここでは保存しない）
+ * @param stage2 危機の二段目分類（省略時はスタブ＝未判定）
+ */
+export async function screenInput(text: string, stage2: CrisisStage2 = stage2Stub): Promise<GuardResult> {
+  const crisis = detectCrisis(text);
+  const abuseReason = detectAbuse(text);
+  const sealedTopic = detectSealed(text);
+  const injectionSuspected = detectInjection(text);
+  const pii = detectPii(text);
+
+  const detail = {
+    crisisLevel: crisis.level,
+    crisisMatched: crisis.matched,
+    abuseReason,
+    sealedTopic,
+    piiTypes: pii.types,
+    injectionSuspected,
+  };
+
+  // 1) 危機：最優先（自分に向く＝助ける）。強は即・弱は二段目に諮り、未判定/陽性なら安全側で窓口へ。
+  if (crisis.level === 'strong') {
+    return { action: 'crisis', response: CRISIS_TEMPLATE, detail };
+  }
+  if (crisis.level === 'weak') {
+    const verdict = await stage2(text); // null=未判定, true=危機, false=非危機
+    if (verdict === true || verdict === null) {
+      return { action: 'crisis', response: CRISIS_TEMPLATE, detail };
+    }
+    // verdict===false のときだけ通常フローへ落とす（誤検知を二段目で救済）
+  }
+
+  // 2) 攻撃・脅迫・嫌がらせ（他者に向く）：送信を拒否。
+  if (abuseReason) {
+    return { action: 'blocked_abuse', response: ABUSE_TEMPLATE, detail };
+  }
+
+  // 3) 封印テーマ：生成させず記事＋窓口へ。
+  if (sealedTopic) {
+    return { action: 'sealed', response: SEALED_TEMPLATES[sealedTopic], detail };
+  }
+
+  // 4) 高リスクPII：送信を拒否して入れ直してもらう。
+  if (pii.refuse) {
+    return { action: 'pii_refuse', response: PII_REFUSE_TEMPLATE, detail };
+  }
+
+  // 5) 続行：中リスクPIIはマスキング済みの本文を渡す。インジェクション疑いはフラグで伝える。
+  return { action: 'proceed', safeText: pii.masked, detail };
+}
