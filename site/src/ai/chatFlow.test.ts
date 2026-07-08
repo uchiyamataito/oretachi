@@ -76,6 +76,12 @@ async function main() {
   ok(re.event === 'degraded', 'event=縮退');
   ok(rt.event === 'turn_limit', 'event=往復上限');
 
+  // ── 封印→該当記事リンク／範囲外→記事一覧リンク（フィードバック対応） ──
+  ok(ts.messages[1] && ts.messages[1].kind === 'cards' && (ts.messages[1].cards || [])[0]?.href === '/rikon-yoikuhi', '封印→養育費記事リンク');
+  const stubOOS: ChatApi = async () => ({ kind: 'answer', text: 'その話題は扱っていない', moreHref: '/articles', moreLabel: '記事一覧を見る', cards: [] });
+  const roos = await onText({ step: 'topic' } as FlowState, '天気について', stubOOS);
+  ok(roos.messages.some((m) => m.kind === 'cards' && m.moreHref === '/articles'), '範囲外→記事一覧リンク');
+
   console.log('\n===== chatFlow ユニットテスト =====');
   if (fails.length) console.log(fails.join('\n'));
   console.log(`\n合格 ${pass} / 失敗 ${fail}`);

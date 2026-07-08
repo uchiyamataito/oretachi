@@ -207,7 +207,8 @@ const AICHAT_OFF =
         });
         wrap.appendChild(cw);
       }
-      msgs.appendChild(wrap);
+      // 本文が空のカード専用メッセージ（範囲外リンク・封印の記事リンク等）は、空の吹き出しを出さない
+      if (!(m.kind === 'cards' && !m.text)) msgs.appendChild(wrap);
 
       if (m.kind === 'cards' && m.cards) {
         const cw = document.createElement('div');

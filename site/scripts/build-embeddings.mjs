@@ -19,7 +19,9 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA = join(__dirname, '..', 'src', 'data');
 const CHUNKS_PATH = join(DATA, 'rag_chunks.json');
-const OUT_PATH = join(DATA, 'rag_embeddings.json');
+// 出力は public/ 配下（静的アセットとして /rag_embeddings.json で配信し、Worker が実行時に読む）。
+// Worker へ同梱すると数MBでサイズ上限を超えるため。
+const OUT_PATH = join(__dirname, '..', 'public', 'rag_embeddings.json');
 
 const MODEL = process.env.EMBED_MODEL || '@cf/baai/bge-m3';
 const ACCOUNT = process.env.CF_ACCOUNT_ID;
@@ -83,7 +85,8 @@ for (let i = 0; i < chunks.length; i += BATCH) {
     else if (emb.length !== dim) throw new Error(`次元不一致: ${c.id} が ${emb.length}、他は ${dim}。同一モデルで生成してください。`);
     out.push({
       id: c.id, hash: c.hash, url: c.url, title: c.title,
-      category: c.category, heading: c.heading, text: c.text, embedding: emb,
+      category: c.category, heading: c.heading, text: c.text,
+      embedding: emb.map((v) => Number(v.toFixed(6))), // ファイルサイズ圧縮（精度は検索に十分）
     });
   }
   process.stdout.write(`\r  進捗 ${Math.min(i + BATCH, chunks.length)}/${chunks.length}`);

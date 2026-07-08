@@ -11,9 +11,6 @@ import { screenInput } from '../../src/ai/guards.ts';
 import { searchChunks, hitsToCards, isOutOfScope, type EmbeddedChunk } from '../../src/ai/ragSearch.ts';
 import { guardOutput, OUTPUT_FALLBACK } from '../../src/ai/outputGuard.ts';
 import { SYSTEM_GUARDS, buildUserContent } from '../../src/ai/systemPrompt.ts';
-// 埋め込み済みチャンク（scripts/build-embeddings.mjs が生成）。生成前は空配列 [] を置いてビルドを通す。
-// 空配列のときは全 query が isOutOfScope＝「扱っていない」で安全に縮退する（誤った回答は出ない）。
-import chunksData from '../../src/data/rag_embeddings.json';
 
 // Cloudflare のバインディング。ダッシュボード/wrangler.toml で設定する（デプロイ時）。
 interface Env {
@@ -22,6 +19,7 @@ interface Env {
   TURNSTILE_SECRET: string; // Turnstile 秘密鍵
   // バインディング
   AI: { run: (model: string, input: Record<string, unknown>) => Promise<any> }; // Workers AI（埋め込み生成・無料枠）
+  ASSETS: { fetch: (input: Request | string | URL) => Promise<Response> }; // 静的アセット（埋め込みJSONの読込。Pages既定）
   RATE_KV?: KVNamespace; // レート制限・予算カウンタ
   // 設定（通常の環境変数・任意。未設定なら既定値）
   AICHAT_OFF?: string; // '1'/'true' でキルスイッチ（=このAPIの生成を止める。ただし危機等の安全応答は返す）
@@ -36,7 +34,21 @@ interface KVNamespace {
   put(key: string, value: string, opts?: { expirationTtl?: number }): Promise<void>;
 }
 
-const CHUNKS = chunksData as unknown as EmbeddedChunk[];
+// 埋め込み済みチャンクは静的ファイル（/rag_embeddings.json）として置き、実行時に読み込む。
+// 理由：数MBあるため Worker スクリプトへ同梱するとサイズ上限（無料枠1MB）を超える。
+// isolate 内でメモリキャッシュし、2回目以降は再取得しない。未生成/失敗時は空配列＝安全に「扱っていない」。
+let CHUNKS_CACHE: EmbeddedChunk[] | null = null;
+async function getChunks(env: Env, request: Request): Promise<EmbeddedChunk[]> {
+  if (CHUNKS_CACHE) return CHUNKS_CACHE;
+  try {
+    const res = await env.ASSETS.fetch(new URL('/rag_embeddings.json', request.url));
+    if (!res.ok) return (CHUNKS_CACHE = []);
+    const data = (await res.json()) as EmbeddedChunk[];
+    return (CHUNKS_CACHE = Array.isArray(data) ? data : []);
+  } catch {
+    return (CHUNKS_CACHE = []);
+  }
+}
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8' } });
@@ -60,7 +72,7 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
   //    長文でも正規表現は軽いので、先頭 4000 字だけ見て判定コストを抑える。
   const g = await screenInput(message.slice(0, 4000));
   if (g.action !== 'proceed') {
-    return json({ kind: 'safe', text: g.response || DEGRADED.text, guard: g.action });
+    return json({ kind: 'safe', text: g.response || DEGRADED.text, guard: g.action, article: g.article });
   }
   // ここから先は「通常生成（proceed）」＝有料APIを呼ぶ経路。以降でコスト系のゲートをかける。
   const safeText = (g.safeText || message).slice(0, 1000); // 入力長上限（M-4）＝APIへ渡す本文を制限
@@ -86,9 +98,10 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
   if (!budget.ok) return json(DEGRADED);
 
   try {
-    // 7) クエリを埋め込み → RAG検索（Workers AI・無料枠）
+    // 7) クエリを埋め込み → RAG検索（Workers AI・無料枠。索引は静的ファイルから読込＋キャッシュ）
     const queryVec = await embed(env, safeText);
-    const hits = searchChunks(queryVec, CHUNKS, {});
+    const chunks = await getChunks(env, request);
+    const hits = searchChunks(queryVec, chunks, {});
     if (isOutOfScope(hits)) {
       // 範囲外＝扱っていない（作話しない・回遊へ逃がす）
       return json({

@@ -19,6 +19,8 @@ export interface GuardResult {
   response?: string;
   /** proceed 時に LLM へ渡す、PIIをマスキング済みの本文。 */
   safeText?: string;
+  /** 封印テーマ時に案内する該当記事（クリックで飛べるカード。UIが表示）。 */
+  article?: { href: string; title: string; category: string };
   /** 検知の内訳（ログ・テスト・デバッグ用。PIIの中身は残さない＝種別のみ）。 */
   detail: {
     crisisLevel: 'strong' | 'weak' | 'none';
@@ -260,6 +262,15 @@ const SEALED_TEMPLATES: Record<SealedTopic, string> = {
     '「父親の親権」の記事に条件と今からできることをまとめてある。個別の相談は専門家へ。',
 };
 
+// 封印テーマ→該当記事（金額算定はしないが、考え方・算定ツールのある記事へ誘導＝doc43§7）。
+export const SEALED_LINKS: Record<SealedTopic, { href: string; title: string; category: string }> = {
+  money_zaisan: { href: '/rikon-zaisan-bunyo-taishou', title: '財産分与の対象・対象外', category: 'お金' },
+  money_isharyo: { href: '/qa/rikon-bekkyo-futei-isharyo', title: '不貞の慰謝料の考え方', category: 'お金' },
+  money_yoikuhi: { href: '/rikon-yoikuhi', title: '養育費の相場と計算ツール', category: 'お金' },
+  nenkin_bunkatsu: { href: '/rikon-nenkin-tetsuzuki', title: '年金分割の手続き', category: 'お金' },
+  shinken_outlook: { href: '/rikon-shinken-chichioya', title: '父親の親権｜条件と今できること', category: '子ども' },
+};
+
 const PII_REFUSE_TEMPLATE =
   '安全のため、口座番号・カード番号・マイナンバーなどの個人情報は入力しないでくれ。' +
   'それらが無くても相談できる。番号を消して、もう一度送ってくれると助かる。';
@@ -304,9 +315,9 @@ export async function screenInput(text: string, stage2: CrisisStage2 = stage2Stu
     return { action: 'blocked_abuse', response: ABUSE_TEMPLATE, detail };
   }
 
-  // 3) 封印テーマ：生成させず記事＋窓口へ。
+  // 3) 封印テーマ：生成させず記事＋窓口へ。該当記事リンクも付ける。
   if (sealedTopic) {
-    return { action: 'sealed', response: SEALED_TEMPLATES[sealedTopic], detail };
+    return { action: 'sealed', response: SEALED_TEMPLATES[sealedTopic], article: SEALED_LINKS[sealedTopic], detail };
   }
 
   // 4) 高リスクPII：送信を拒否して入れ直してもらう。

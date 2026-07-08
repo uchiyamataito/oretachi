@@ -181,7 +181,10 @@ export async function onText(
   const g = await screenInput(text);
   if (g.action !== 'proceed') {
     // 危機・攻撃・封印・PII拒否 → 生成せず定型（安全応答は常に返す・往復にカウントしない）
-    return { state, messages: [{ kind: 'safe', text: g.response || '' }], event: `guard_${g.action}` as FlowEvent };
+    const messages: BotMessage[] = [{ kind: 'safe', text: g.response || '' }];
+    // 封印テーマは該当記事カードも付ける（例：養育費→算定ツールのある記事へ）
+    if (g.article) messages.push({ kind: 'cards', text: '', cards: [g.article] });
+    return { state, messages, event: `guard_${g.action}` as FlowEvent };
   }
   // proceed＝有料の生成経路。ここだけ往復をカウントし、上限で打ち切る（M-3）。
   const turns = (state.turns || 0) + 1;
@@ -205,6 +208,9 @@ export async function onText(
     const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
     if (r.cards && r.cards.length) {
       messages.push({ kind: 'cards', text: '関係する記事はこの辺だ。近いか教えてくれ。', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
+    } else if (r.moreHref) {
+      // カードが無い（範囲外など）でも、記事一覧への導線は必ず出す
+      messages.push({ kind: 'cards', text: '', cards: [], moreHref: r.moreHref, moreLabel: r.moreLabel || '記事一覧を見る' });
     }
     messages.push({ kind: 'chips', text: 'ほかに気になるところは？', chips: [{ label: '別のことを聞く', value: '__other' }] });
     return { state: next, messages, event: 'answer' };
