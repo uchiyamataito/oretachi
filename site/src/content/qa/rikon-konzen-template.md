@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["婚前契約", "テンプレート", "夫婦財産契約", "公正証書", "お金"]
 related_articles: ["rikon-konzen-keiyaku", "rikon-bengoshi-erabikata"]
 related_qa: []
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-konzen-template"

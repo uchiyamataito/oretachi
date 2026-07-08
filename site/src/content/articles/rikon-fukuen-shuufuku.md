@@ -12,8 +12,8 @@ secondary_keywords:
 category: "初動・心構え"
 module: ["M1_気持ち・初動", "M2_やってはいけないこと"]
 tags: ["復縁", "修復", "冷却期間", "夫婦", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（関係修復の心構え・コミュニケーションの一般情報。親権・財産分与など個別の法的判断は弁護士へ、心身の不調は医療機関へ）"
 published: "2026-06-27"

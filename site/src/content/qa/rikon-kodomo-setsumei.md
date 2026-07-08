@@ -4,7 +4,7 @@ description: "離婚が未確定なら今すぐ詳しく話さなくていい。
 category: "子ども"
 tags: ["子ども", "気持ち", "コミュニケーション"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kodomo-setsumei"

@@ -5,7 +5,7 @@ category: "子ども・親権"
 tags: ["面会交流", "養育費", "子ども", "親権"]
 related_articles: ["rikon-yoikuhi", "rikon-bengoshi-erabikata"]
 related_qa: ["rikon-kyodoshinken-menkai-chigai", "rikon-yoikuhi-harawarenai"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-yoikuhi-menkai-tomeru"

@@ -14,8 +14,8 @@ secondary_keywords:
 category: "別居・生活"
 module: ["M4_お金と手続き", "M2_心のケア"]
 tags: ["別居", "離婚", "やってはいけない", "婚姻費用", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（別居中の過ごし方に関する一般情報。婚姻費用の金額・親権・面会交流・刑事責任など個別の法的判断は弁護士へ）"
 published: "2026-07-02"

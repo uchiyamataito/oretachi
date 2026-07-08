@@ -12,8 +12,8 @@ secondary_keywords:
 category: "子ども・親権"
 module: ["M2_子どものこと", "M4_お金と手続き"]
 tags: ["親権", "共同親権", "子ども", "面会交流", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（親権の一般的な仕組み・考え方の情報。確率の見通しや個別の親権判断は弁護士へ）"
 published: "2026-06-28"

@@ -5,7 +5,7 @@ category: "気持ち・整理"
 tags: ["気持ち", "メンタル", "相談"]
 related_articles: ["rikon-koukai", "rikon-dansei-soudansaki", "rikon-saishuppatsu"]
 related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-nemurenai-byoin"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-jibun-ga-warui"

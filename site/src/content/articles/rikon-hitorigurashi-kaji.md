@@ -13,8 +13,8 @@ secondary_keywords:
 category: "別居・生活"
 module: ["M5_再出発", "M2_心のケア"]
 tags: ["再出発", "生活", "家事", "一人暮らし", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（離婚後の生活・家事の一般的な情報。手当・税など個別の制度判断は自治体・国税庁へ、心身の不調は医療機関へ）"
 published: "2026-07-04"

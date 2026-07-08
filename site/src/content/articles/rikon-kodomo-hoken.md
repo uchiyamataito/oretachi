@@ -12,8 +12,8 @@ secondary_keywords:
 category: "子ども・手続き"
 module: ["M5_子ども"]
 tags: ["子ども", "健康保険", "児童手当", "共同親権", "手続き", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（手続きの一般的な整理。親権・監護・共同親権など法的判断は弁護士へ）"
 published: "2026-06-25"

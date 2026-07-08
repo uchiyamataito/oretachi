@@ -12,8 +12,8 @@ secondary_keywords:
 category: "別居・生活"
 module: ["M3_生活の立て直し", "M4_お金と手続き"]
 tags: ["別居", "婚姻費用", "生活費", "初動", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（別居の準備・判断の一般情報。別居期間の評価・婚姻費用の金額・親権など個別の法的判断は弁護士へ）"
 published: "2026-06-26"

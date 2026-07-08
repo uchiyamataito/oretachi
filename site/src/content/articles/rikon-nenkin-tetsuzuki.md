@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き"]
 tags: ["年金", "種別変更", "扶養", "手続き", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報・手続きの整理。年金分割など個別判断は専門家・年金事務所へ）"
 published: "2026-06-25"

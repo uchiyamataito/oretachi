@@ -5,7 +5,7 @@ category: "子ども・気持ち"
 tags: ["子ども", "気持ち"]
 related_articles: ["rikon-dansei-soudansaki"]
 related_qa: ["rikon-kodomo-setsumei", "rikon-chichioya-shinken"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kodomo-eikyou"

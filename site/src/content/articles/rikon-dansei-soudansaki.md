@@ -12,8 +12,8 @@ secondary_keywords:
 category: "気持ち・相談"
 module: ["M1_心と体の応急処置"]
 tags: ["相談先", "気持ち", "孤独", "男性", "初動"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報・相談窓口の整理。個別の法的判断は弁護士へ、心身の不調は医療機関へ）"
 published: "2026-06-25"

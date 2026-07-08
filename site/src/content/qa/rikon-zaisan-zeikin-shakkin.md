@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["財産分与", "お金", "税金"]
 related_articles: ["rikon-zaisan-bunyo-taishou", "rikon-okane-checklist", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-bekkyo-seikatsuhi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-zaisan-zeikin-shakkin"

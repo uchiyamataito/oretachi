@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き"]
 tags: ["お金", "財産分与", "住宅ローン", "退職金", "借金", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（財産分与の対象範囲に関する一般的な情報。取り分の割合・具体的な金額・個別の法的判断は弁護士・家庭裁判所へ）"
 published: "2026-07-01"

@@ -4,7 +4,7 @@ description: "無断で動かす・隠すのは避けろ。共有財産を勝手
 category: "お金と手続き"
 tags: ["お金と手続き", "やってはいけない", "財産"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kyouyu-kouza-ugokasu"

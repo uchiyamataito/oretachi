@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["熟年離婚", "年金分割", "退職金", "お金", "手続き"]
 related_articles: ["rikon-jukunen-otto", "rikon-nenkin-tetsuzuki", "rikon-zaisan-bunyo-taishou"]
 related_qa: ["rikon-zaisan-zeikin-shakkin"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-jukunen-nenkin-taishokukin"

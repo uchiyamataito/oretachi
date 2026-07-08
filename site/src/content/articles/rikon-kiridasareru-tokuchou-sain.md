@@ -12,8 +12,8 @@ secondary_keywords:
 category: "気持ち・整理"
 module: ["M1_心の整理", "M2_やってはいけないこと"]
 tags: ["気持ち", "復縁", "サイン", "夫婦"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（夫婦関係・気持ちの整理に関する一般的な情報。本文中の「心の整理のヒント」は一般的な考え方であり、個別の診断・治療ではありません）"
 published: "2026-06-30"

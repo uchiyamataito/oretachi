@@ -5,7 +5,7 @@ category: "気持ち"
 tags: ["気持ち", "心のケア", "相談窓口"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi"]
 related_qa: ["rikon-kiridasareta-atama-masshiro"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-nemurenai-byoin"

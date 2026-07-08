@@ -5,7 +5,7 @@ category: "子ども・手続き"
 tags: ["親権", "子ども", "手続き"]
 related_articles: ["rikon-shinken-chichioya", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-kodomo-eikyou", "rikon-kodomo-setsumei"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-chichioya-shinken"

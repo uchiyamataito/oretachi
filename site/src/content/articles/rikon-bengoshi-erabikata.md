@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き", "M2_やってはいけないこと"]
 tags: ["相談", "弁護士", "お金", "手続き", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（弁護士の選び方・探し方に関する一般的な情報。個別の法的判断や具体的な費用・見通しは、弁護士・法テラス等でご確認ください）"
 published: "2026-07-01"

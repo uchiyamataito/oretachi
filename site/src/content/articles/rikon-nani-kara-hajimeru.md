@@ -12,8 +12,8 @@ secondary_keywords:
 category: "手続き全体・ハブ"
 module: ["M3_生活の立て直し", "M4_お金と手続き"]
 tags: ["手続き", "全体マップ", "初動", "男性", "ハブ"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報・手続きの整理。個別の法的判断は弁護士へ）"
 published: "2026-06-25"

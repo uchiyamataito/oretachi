@@ -5,7 +5,7 @@ category: "別居・生活"
 tags: ["別居", "住民票", "手続き", "生活"]
 related_articles: ["rikon-bekkyo-sugoshikata", "rikon-kodomo-hoken", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-bekkyo-seikatsuhi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-bekkyo-juminhyo"

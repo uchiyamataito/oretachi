@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M3_生活の立て直し", "M4_お金と手続き"]
 tags: ["お金", "家計", "棚卸し", "財産分与", "初動", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（家計整理・行動面の一般情報。財産分与・慰謝料・養育費等の金額や個別の法的判断は弁護士へ）"
 published: "2026-06-25"

@@ -5,7 +5,7 @@ category: "別居・生活"
 tags: ["一人暮らし", "食事", "生活", "再出発"]
 related_articles: ["rikon-hitorigurashi-kaji", "rikon-saishuppatsu"]
 related_qa: ["rikon-hitorigurashi-sonaeru", "rikon-kajidaikou-hajimete"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 supervised_by: "監修なし（食事・栄養の一般的な情報。持病や体調管理の個別判断は医療機関へ）"
 published: "2026-07-04"
 updated: "2026-07-04"

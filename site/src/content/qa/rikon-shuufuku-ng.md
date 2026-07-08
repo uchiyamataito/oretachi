@@ -5,7 +5,7 @@ category: "やってはいけない"
 tags: ["修復", "やってはいけない", "復縁"]
 related_articles: ["rikon-fukuen-shuufuku", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-riyuu-toitsumeru", "rikon-yori-modosu-kakuritsu"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-shuufuku-ng"

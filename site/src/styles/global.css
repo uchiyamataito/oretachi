@@ -106,6 +106,10 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .crumbs a{color:var(--muted);text-decoration:none}
 .crumbs a:hover{color:var(--coral-deep);text-decoration:underline}
 .crumbs span{color:var(--faint)}
+.byline{font-size:.78rem;color:var(--muted);margin:.1em 0 .7em;line-height:1.6}
+.byline a{color:var(--muted);text-decoration:none}
+.byline a:hover{color:var(--coral-deep);text-decoration:underline}
+.byline-date{color:var(--faint);margin-left:.5em;white-space:nowrap}
 /* 記事・Q&A本文の可読性（落ち着いた階層・オレンジ強調を抑制・余白広め） */
 .content{font-size:1.04rem;line-height:1.95;overflow-wrap:break-word;color:#33302B}
 .content > p{margin:1.15em 0}

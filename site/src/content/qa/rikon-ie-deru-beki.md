@@ -4,7 +4,7 @@ description: "勢いで出るのは待て。別居は生活費・財産・子ど
 category: "生活"
 tags: ["生活", "別居", "初動"]
 related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-ie-deru-beki"

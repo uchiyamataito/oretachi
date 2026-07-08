@@ -12,8 +12,8 @@ secondary_keywords:
 category: "初動・心構え"
 module: ["M1_心と体の応急処置", "M2_やってはいけないこと"]
 tags: ["初動", "心のケア", "やってはいけないこと", "手続き", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報。個別の法的判断は弁護士へ）"
 published: "2026-06-25"

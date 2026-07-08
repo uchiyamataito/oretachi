@@ -5,7 +5,7 @@ category: "気持ち・整理"
 tags: ["後悔", "気持ち", "復縁"]
 related_articles: ["rikon-fukuen-shuufuku", "rikon-saishuppatsu"]
 related_qa: ["rikon-yori-modosu-kakuritsu"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kiridashita-gawa-koukai"

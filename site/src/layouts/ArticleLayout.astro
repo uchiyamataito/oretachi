@@ -22,6 +22,7 @@ const crumbs = [
   published={d.published}
   updated={d.updated}
   author={d.author}
+  authorProfile={d.author_profile}
   breadcrumb={crumbs}
   faq={d.faq}
 >
@@ -30,6 +31,7 @@ const crumbs = [
   </nav>
   <article>
     <h1>{d.title}</h1>
+    <p class="byline">文・編集：<a href={d.author_profile ?? '/about/editor'} rel="author">{d.author}</a>（編集責任者）<span class="byline-date">更新：{d.updated}</span></p>
     {d.hero_image && (
       <figure>
         <img src={d.hero_image.src} alt={d.hero_image.alt} />

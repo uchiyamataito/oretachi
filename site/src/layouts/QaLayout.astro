@@ -33,6 +33,7 @@ const crumbs = [
   <article class="qa">
     <h1 class="qa-question">{d.question}</h1>
     <p class="qa-cats"><span class="chip">{d.category}</span>{tags.map((t) => <span class="chip ghost">{t}</span>)}</p>
+    <p class="byline">文・編集：<a href="/about/editor" rel="author">{d.author}</a>（編集責任者）<span class="byline-date">更新：{d.updated}</span></p>
     <hr class="qa-div" />
 
     <div class="qa-answer-box"><p class="qa-answer">{d.description}</p></div>

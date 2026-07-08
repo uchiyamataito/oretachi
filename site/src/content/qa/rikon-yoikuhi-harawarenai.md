@@ -5,7 +5,7 @@ category: "子ども・お金"
 tags: ["養育費", "お金", "手続き"]
 related_articles: ["rikon-dansei-soudansaki"]
 related_qa: ["rikon-yoikuhi-itsumade"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-yoikuhi-harawarenai"

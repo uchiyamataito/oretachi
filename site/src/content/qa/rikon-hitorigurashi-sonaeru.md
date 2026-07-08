@@ -5,7 +5,7 @@ category: "別居・生活"
 tags: ["一人暮らし", "生活", "家電", "再出発"]
 related_articles: ["rikon-hitorigurashi-kaji", "rikon-bekkyo", "rikon-okane-checklist"]
 related_qa: ["rikon-jisui-shinai-eiyou", "rikon-kajidaikou-hajimete"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 supervised_by: "監修なし（一人暮らしの準備に関する一般的な情報）"
 published: "2026-07-04"
 updated: "2026-07-04"

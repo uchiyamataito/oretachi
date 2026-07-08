@@ -5,7 +5,7 @@ category: "別居・お金"
 tags: ["別居", "お金", "婚姻費用"]
 related_articles: ["rikon-bekkyo", "rikon-okane-checklist"]
 related_qa: ["rikon-bekkyo-nannen"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-bekkyo-seikatsuhi"

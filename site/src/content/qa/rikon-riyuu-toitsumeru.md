@@ -5,7 +5,7 @@ category: "やってはいけない"
 tags: ["やってはいけない", "初動", "コミュニケーション"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-kiridasareta-atama-masshiro"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-riyuu-toitsumeru"

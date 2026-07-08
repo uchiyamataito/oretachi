@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き"]
 tags: ["扶養", "税金", "配偶者控除", "年末調整", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報・手続きの整理。個別の税務判断は税務署・税理士へ）"
 published: "2026-06-25"

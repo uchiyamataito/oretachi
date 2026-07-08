@@ -5,7 +5,7 @@ category: "気持ち・相談"
 tags: ["熟年離婚", "子ども", "気持ち", "男性"]
 related_articles: ["rikon-jukunen-otto", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-kodomo-eikyou"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-jukunen-kodomo-mago"

@@ -5,7 +5,7 @@ category: "初動・心構え"
 tags: ["初動", "気持ち", "まず何を"]
 related_articles: ["rikon-kaesu-kotoba", "rikon-kiridasareta-saisho-14nichi", "rikon-nani-kara-hajimeru"]
 related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-shuufuku-ng"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kiridasareta-mazu-nani"

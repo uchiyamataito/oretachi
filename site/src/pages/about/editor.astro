@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// 編集責任者プロフィール（E-E-A-T用）。
+// ProfilePage + Person 構造化データを出力し、記事/Q&AのPerson著者からここへリンクさせる。
+const profileUrl = 'https://oretachi.me/about/editor/';
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: '片瀬 海斗',
+    alternateName: 'かたせ かいと',
+    jobTitle: '編集責任者',
+    description:
+      '「オレタチ」編集責任者。妻から離婚を切り出された当事者として、同じ状況にある男性へ、制度・手続き・お金・心の立て直しの情報を届けている。Web/インターネット業界で20年以上、メディアとプロダクトの企画・開発に携わってきた。',
+    worksFor: { '@type': 'Organization', name: 'オレタチ' },
+    knowsAbout: ['離婚', '別居', '離婚後の生活再建', '公的手続き', 'メディア編集'],
+    url: profileUrl,
+    // sameAs: ['https://x.com/（片瀬海斗名義のアカウント）'] ← Xアカウント開設後に追加する
+  },
+};
+---
+<BaseLayout
+  title="編集責任者について｜オレタチ"
+  description="「オレタチ」編集責任者・片瀬海斗のプロフィール。妻から離婚を切り出された当事者として、男性の再出発に必要な情報を編集しています。"
+  canonical="https://oretachi.me/about/editor"
+  jsonld={[personLd]}
+>
+  <h1>編集責任者について</h1>
+
+  <div class="editor-card">
+    <p class="editor-name">片瀬 海斗<span class="editor-yomi">かたせ かいと</span></p>
+    <p class="editor-role">オレタチ 編集責任者</p>
+  </div>
+
+  <h2>このサイトを書いている理由</h2>
+  <p>
+    私自身、妻から離婚を切り出された当事者です。何から手をつければいいのか分からず、
+    調べても出てくるのは法律事務所の手続き解説か、匿名掲示板の断片ばかり。
+    「今の自分が、次に何を読んで、どう動けばいいのか」をまとめて教えてくれる場所が、どこにもありませんでした。
+  </p>
+  <p>
+    同じ状況にいる男性が、ひとりで抱え込まずにすむように。制度・手続き・お金・心の立て直しまでを、
+    当事者の目線で、順番に追える形に整えているのが「オレタチ」です。
+  </p>
+
+  <h2>経歴</h2>
+  <p>
+    Web/インターネット業界で20年以上、メディアやプロダクトの企画・開発に携わってきました。
+    情報を、必要な人に、正確に、わかりやすく届けることを仕事にしてきた経験を、このサイトの編集に活かしています。
+    神奈川県藤沢市在住。休日はサーフィンをして過ごしています。
+  </p>
+
+  <h2>編集責任者としてやっていること</h2>
+  <ul>
+    <li>記事・Q&Aは、公的機関の一次ソース（法務省・厚生労働省・日本年金機構・協会けんぽ・各自治体など）にあたって編集し、事実関係・表現・トーンを人の目で確認したうえで公開しています。</li>
+    <li>手続き・制度・数値は取得日とともに出典を明示し、未確認の数値は載せません。</li>
+    <li>調べもの・事実確認・情報整理には、AI等のツールも補助的に活用しています（公開の責任は編集責任者が負います）。</li>
+  </ul>
+
+  <p class="disclaimer">
+    ※私は弁護士などの法律専門資格を持つ者ではありません。本サイトは一般的な情報提供とセルフチェックの目安を行うものであり、
+    個別の法律判断は行いません。必要に応じて弁護士・法テラス等の専門家・公的窓口をご案内します。
+    くわしくは<a href="/about/editorial">編集方針</a>と<a href="/about/operator">運営者情報</a>をご覧ください。
+  </p>
+
+  <style>
+    .editor-card{border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:8px 0 28px;background:#fff}
+    .editor-name{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-weight:900;font-size:1.5rem;margin:0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+    .editor-yomi{font-size:.9rem;font-weight:500;color:var(--muted,#6b7280)}
+    .editor-role{margin:6px 0 0;color:var(--muted,#6b7280);font-weight:700}
+  </style>
+</BaseLayout>

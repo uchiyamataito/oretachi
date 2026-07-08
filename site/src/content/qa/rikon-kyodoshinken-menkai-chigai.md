@@ -5,7 +5,7 @@ category: "子ども・親権"
 tags: ["共同親権", "面会交流", "子ども", "気持ち"]
 related_articles: ["rikon-kyodo-shinken", "rikon-shinken-chichioya"]
 related_qa: ["rikon-kyodoshinken-docchi-sumu", "rikon-kodomo-eikyou"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-kyodoshinken-menkai-chigai"

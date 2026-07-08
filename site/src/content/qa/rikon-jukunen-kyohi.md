@@ -5,7 +5,7 @@ category: "気持ち・相談"
 tags: ["熟年離婚", "気持ち", "手続き", "男性"]
 related_articles: ["rikon-jukunen-otto", "rikon-fukuen-shuufuku", "rikon-mada-wakaretakunai"]
 related_qa: ["rikon-riyuu-toitsumeru", "rikon-yori-modosu-kakuritsu"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-jukunen-kyohi"

@@ -13,8 +13,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き", "M5_再出発"]
 tags: ["婚前契約", "再婚", "再出発", "お金", "夫婦財産契約", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（婚前契約書・夫婦財産契約の制度に関する一般的な情報。個別の契約内容の有効性・具体的な費用・法的判断は行政書士・弁護士・司法書士・公証役場へ）"
 published: "2026-07-02"

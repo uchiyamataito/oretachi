@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["養育費", "公正証書", "手続き", "強制執行", "お金"]
 related_articles: ["rikon-yoikuhi", "rikon-bengoshi-erabikata"]
 related_qa: ["rikon-yoikuhi-harawarenai"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-yoikuhi-kouseishousho"

@@ -5,7 +5,7 @@ category: "子ども・親権"
 tags: ["共同親権", "養育費", "子ども", "お金"]
 related_articles: ["rikon-kyodo-shinken", "rikon-shinken-chichioya"]
 related_qa: ["rikon-yoikuhi-itsumade", "rikon-yoikuhi-harawarenai"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-kyodoshinken-yoikuhi"

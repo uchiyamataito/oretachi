@@ -12,8 +12,8 @@ secondary_keywords:
 category: "初動・心構え"
 module: ["M1_気持ち・初動", "M5_再出発"]
 tags: ["再出発", "立ち直り", "メンタル", "生活", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（生活・心の立て直しの一般情報。手当・税・年金など個別の制度判断は自治体・国税庁・年金事務所へ、心身の不調は医療機関へ）"
 published: "2026-06-27"

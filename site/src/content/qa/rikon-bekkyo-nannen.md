@@ -5,7 +5,7 @@ category: "別居・手続き"
 tags: ["別居", "手続き", "期間"]
 related_articles: ["rikon-bekkyo", "rikon-fukuen-shuufuku", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-bekkyo-seikatsuhi", "rikon-ie-deru-beki"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-bekkyo-nannen"

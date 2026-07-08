@@ -11,8 +11,8 @@ secondary_keywords:
 category: "お金と手続き"
 module: ["M4_お金と手続きの初動"]
 tags: ["健康保険", "手続き", "国民健康保険", "任意継続", "扶養"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（公的手続きの一般的な情報。個別の判断は各窓口・専門家へ）"
 published: "2026-06-25"

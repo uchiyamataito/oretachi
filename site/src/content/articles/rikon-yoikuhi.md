@@ -13,8 +13,8 @@ secondary_keywords:
 category: "お金・手続き"
 module: ["M4_お金と手続き"]
 tags: ["お金", "養育費", "相場", "子ども", "父親", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（養育費の制度に関する一般的な情報。金額はあくまで裁判所の算定表の目安であり、個別の額・法的判断は弁護士・法テラス・家庭裁判所へ）"
 published: "2026-07-02"

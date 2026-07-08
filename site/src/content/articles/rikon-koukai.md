@@ -12,8 +12,8 @@ secondary_keywords:
 category: "気持ち・整理"
 module: ["M1_心の整理", "M5_再出発"]
 tags: ["後悔", "気持ち", "再出発", "データ"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（気持ちの整理に関する一般的な情報。つらさが強いときは相談窓口・専門家へ）"
 published: "2026-06-28"

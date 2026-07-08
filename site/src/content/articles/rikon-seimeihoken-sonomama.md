@@ -12,8 +12,8 @@ secondary_keywords:
 category: "お金・保険"
 module: ["M4_お金と手続き"]
 tags: ["生命保険", "見直し", "受取人", "保険の洗い出し", "お金", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（一般的な情報・編集部の実体験。特定の保険商品の推奨・勧誘はしません。個別判断は専門家へ）"
 published: "2026-06-25"

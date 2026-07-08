@@ -12,8 +12,8 @@ secondary_keywords:
 category: "気持ち・整理"
 module: ["M1_心の整理", "M5_再出発", "M4_お金と手続き"]
 tags: ["熟年離婚", "気持ち", "再出発", "生活", "お金", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（熟年離婚を切り出された男性の気持ちの整理と、その後の生活・準備に関する一般的な情報。財産分与・年金分割など個別の法的判断や金額は、弁護士・裁判所・年金事務所等でご確認ください）"
 published: "2026-07-01"

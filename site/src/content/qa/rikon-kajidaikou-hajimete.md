@@ -5,7 +5,7 @@ category: "別居・生活"
 tags: ["一人暮らし", "家事代行", "生活", "再出発"]
 related_articles: ["rikon-hitorigurashi-kaji"]
 related_qa: ["rikon-hitorigurashi-sonaeru", "rikon-jisui-shinai-eiyou"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 supervised_by: "監修なし（家事代行サービス利用に関する一般的な情報。料金・条件は各社で異なる）"
 published: "2026-07-04"
 updated: "2026-07-04"

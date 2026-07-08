@@ -12,8 +12,8 @@ secondary_keywords:
 category: "気持ち・相談"
 module: ["M1_気持ち・初動"]
 tags: ["初動", "コミュニケーション", "やってはいけない", "気持ち", "男性"]
-author: "オレタチ編集部"
-author_profile: "/about/editorial"
+author: "片瀬 海斗"
+author_profile: "/about/editor"
 operator_info: "/about/operator"
 supervised_by: "監修なし（初動の対応・コミュニケーションの一般情報。個別の法的判断は弁護士へ）"
 published: "2026-06-26"

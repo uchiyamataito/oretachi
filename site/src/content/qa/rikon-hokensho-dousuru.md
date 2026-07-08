@@ -4,7 +4,7 @@ description: "立場で変わる。会社員本人なら資格は基本そのま
 category: "お金と手続き"
 tags: ["健康保険", "手続き"]
 related_articles: ["rikon-kenkohoken-tetsuzuki"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-hokensho-dousuru"

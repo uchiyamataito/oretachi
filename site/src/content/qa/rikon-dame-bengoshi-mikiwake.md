@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["弁護士", "相談", "お金"]
 related_articles: ["rikon-bengoshi-erabikata", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-bengoshi-sagashikata", "rikon-bengoshi-hiyou-harenai"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"
 canonical: "https://oretachi.me/qa/rikon-dame-bengoshi-mikiwake"

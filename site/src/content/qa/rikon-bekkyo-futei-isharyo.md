@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["別居", "不貞", "慰謝料", "お金"]
 related_articles: ["rikon-bekkyo-sugoshikata", "rikon-bengoshi-erabikata", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-bekkyo-seikatsuhi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-bekkyo-futei-isharyo"

@@ -5,7 +5,7 @@ category: "お金・手続き"
 tags: ["養育費", "学費", "特別費用", "子ども", "お金"]
 related_articles: ["rikon-yoikuhi", "rikon-bengoshi-erabikata"]
 related_qa: ["rikon-yoikuhi-itsumade"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"
 canonical: "https://oretachi.me/qa/rikon-yoikuhi-gakuhi"

@@ -4,7 +4,7 @@ description: "まったく普通だ。頭が真っ白になるのは強い衝撃
 category: "気持ち"
 tags: ["ショック", "初動"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi"]
-author: "オレタチ編集部"
+author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
 canonical: "https://oretachi.me/qa/rikon-kiridasareta-atama-masshiro"
