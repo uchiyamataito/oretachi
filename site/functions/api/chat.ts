@@ -1,0 +1,193 @@
+// オレタチ AI 中継 Worker（Cloudflare Pages Function・Phase C／doc42§2・§3・§6・§7）
+// 役割＝APIキーを隠し、入力ガードをサーバ側で再実行（doc44 H-5）し、RAG検索→Claude→出力ガード→出典付与。
+//
+// ⚠️ この層はブラウザに出さない。APIキー等の秘密は Cloudflare の暗号化環境変数から読む（コードに書かない）。
+// ⚠️ サンドボックスでは実行できない（Cloudflare ランタイム前提）。デプロイ時に wrangler/Pages で動作確認する。
+//
+// 実際に課金が発生するのは「Claude 呼び出し」と「Workers AI 埋め込み」だけ。
+// それ以外（ガード・検索・レート制限・予算カウンタ）は無料。予算超過・キル時は静的窓口へ縮退する。
+
+import { screenInput } from '../../src/ai/guards.ts';
+import { searchChunks, hitsToCards, isOutOfScope, type EmbeddedChunk } from '../../src/ai/ragSearch.ts';
+import { guardOutput, OUTPUT_FALLBACK } from '../../src/ai/outputGuard.ts';
+import { SYSTEM_GUARDS, buildUserContent } from '../../src/ai/systemPrompt.ts';
+// 埋め込み済みチャンク（scripts/build-embeddings.mjs が生成）。生成前は空配列 [] を置いてビルドを通す。
+// 空配列のときは全 query が isOutOfScope＝「扱っていない」で安全に縮退する（誤った回答は出ない）。
+import chunksData from '../../src/data/rag_embeddings.json';
+
+// Cloudflare のバインディング。ダッシュボード/wrangler.toml で設定する（デプロイ時）。
+interface Env {
+  // 秘密（暗号化環境変数）
+  ANTHROPIC_API_KEY: string; // sk-ant-… ※クライアントに絶対出さない。これが有る=本番課金モード
+  TURNSTILE_SECRET: string; // Turnstile 秘密鍵
+  // バインディング
+  AI: { run: (model: string, input: Record<string, unknown>) => Promise<any> }; // Workers AI（埋め込み生成・無料枠）
+  RATE_KV?: KVNamespace; // レート制限・予算カウンタ
+  // 設定（通常の環境変数・任意。未設定なら既定値）
+  AICHAT_OFF?: string; // '1'/'true' でキルスイッチ（=このAPIの生成を止める。ただし危機等の安全応答は返す）
+  MODEL_ANSWER?: string; // 回答モデル（既定 claude-sonnet-5）
+  EMBED_MODEL?: string; // 埋め込みモデル（既定 @cf/baai/bge-m3＝多言語・日本語対応・1024次元）
+  MONTHLY_REQUEST_CAP?: string; // 月次リクエスト上限（既定 300）
+  RATE_PER_MIN?: string; // 1IPあたり毎分上限（既定 8）
+}
+
+interface KVNamespace {
+  get(key: string): Promise<string | null>;
+  put(key: string, value: string, opts?: { expirationTtl?: number }): Promise<void>;
+}
+
+const CHUNKS = chunksData as unknown as EmbeddedChunk[];
+
+const json = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8' } });
+
+// フォールバック応答（AI不調・予算超過・キル時）。記事サイトは通常稼働のまま。
+const DEGRADED = {
+  kind: 'safe',
+  text: 'いま相談が混み合っているみたいだ。少し時間をおいて試してくれ。急ぎのときは、記事一覧や公的な相談窓口も頼ってほしい。',
+};
+
+export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Response> = async ({ request, env }) => {
+  // 1) 入力の受け取り＋基本バリデーション
+  let body: { message?: string; turnstileToken?: string };
+  try { body = await request.json(); } catch { return json({ error: 'bad_request' }, 400); }
+  const message = (body.message || '').toString();
+  if (!message.trim()) return json({ error: 'empty' }, 400);
+
+  // 2) 【安全最優先・H-2】入力ガードをサーバ側で"先に"実行する。
+  //    危機・攻撃・封印・PII は Claude を呼ばない＝課金ゼロ。よって Turnstile/予算/キルより前に走らせ、
+  //    混雑時・停止時・ボット判定時でも「危機なら必ず窓口に落ちる」ことを保証する（doc44 H-5＋命綱）。
+  //    長文でも正規表現は軽いので、先頭 4000 字だけ見て判定コストを抑える。
+  const g = await screenInput(message.slice(0, 4000));
+  if (g.action !== 'proceed') {
+    return json({ kind: 'safe', text: g.response || DEGRADED.text, guard: g.action });
+  }
+  // ここから先は「通常生成（proceed）」＝有料APIを呼ぶ経路。以降でコスト系のゲートをかける。
+  const safeText = (g.safeText || message).slice(0, 1000); // 入力長上限（M-4）＝APIへ渡す本文を制限
+
+  // 3) キルスイッチ（生成だけ止める。安全応答は上で既に処理済み）
+  if (env.AICHAT_OFF === '1' || env.AICHAT_OFF === 'true') return json(DEGRADED);
+
+  // 4) 【フェイルクローズ・H-3】本番課金モード（APIキー有り）なのに保護（Turnstile秘密鍵・KV）が未設定なら、
+  //    無防備に課金させず縮退する。設定漏れで"静かに無防備"になるのを防ぐ。
+  const charging = !!env.ANTHROPIC_API_KEY;
+  if (charging && (!env.TURNSTILE_SECRET || !env.RATE_KV)) {
+    console.error('[chat] 本番課金モードだが TURNSTILE_SECRET / RATE_KV が未設定。フェイルクローズで縮退。');
+    return json(DEGRADED);
+  }
+
+  // 5) Turnstile 検証（ボット/連投対策）
+  const okHuman = await verifyTurnstile(env.TURNSTILE_SECRET, body.turnstileToken, request);
+  if (!okHuman) return json({ error: 'turnstile' }, 403);
+
+  // 6) レート制限＋予算カウンタ（KV。超過でグレースフルに縮退＝課金を止める）
+  const ip = request.headers.get('cf-connecting-ip') || 'anon';
+  const budget = await checkBudget(env, ip);
+  if (!budget.ok) return json(DEGRADED);
+
+  try {
+    // 7) クエリを埋め込み → RAG検索（Workers AI・無料枠）
+    const queryVec = await embed(env, safeText);
+    const hits = searchChunks(queryVec, CHUNKS, {});
+    if (isOutOfScope(hits)) {
+      // 範囲外＝扱っていない（作話しない・回遊へ逃がす）
+      return json({
+        kind: 'answer',
+        text: 'その話題は、まだこのサイトでは扱えていないんだ。近いテーマの記事なら一覧から探せる。力になれることがあれば、離婚まわりのことを聞いてくれ。',
+        cards: [],
+        moreHref: '/articles',
+        moreLabel: '記事一覧を見る',
+      });
+    }
+
+    // 8) Claude で回答生成（RAGの範囲に限定・出典必須）＝ここで課金（数円）
+    const answer = await callClaude(env, safeText, hits);
+
+    // 9) 出力ガード（断定/金額/法判断/出典なし を差し止め＝doc42§6）
+    const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
+
+    // 10) 出典付き回答＋カード（最大3・同一記事は畳む）
+    const cards = hitsToCards(hits, 3);
+    const top = hits[0].chunk;
+    await incrBudget(env, ip); // 成功時のみ月次カウント
+    return json({
+      kind: 'answer',
+      text: guarded.text,
+      source: guarded.ok ? `${top.title}` : undefined,
+      sourceHref: guarded.ok ? top.url : undefined,
+      cards,
+      moreHref: '/articles',
+      moreLabel: 'もっと見る',
+      flagged: guarded.ok ? undefined : guarded.reasons,
+    });
+  } catch (e) {
+    // AI/ネットワーク不調 → 静的縮退（記事サイトは通常稼働）
+    return json(DEGRADED);
+  }
+};
+
+// ───────── Turnstile ─────────
+async function verifyTurnstile(secret: string, token: string | undefined, request: Request): Promise<boolean> {
+  if (!secret) return true; // 開発中（未設定）のみ素通り。本番はH-3のフェイルクローズで手前で止まる
+  if (!token) return false;
+  const form = new FormData();
+  form.append('secret', secret);
+  form.append('response', token);
+  const ip = request.headers.get('cf-connecting-ip');
+  if (ip) form.append('remoteip', ip);
+  const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: form });
+  const data = (await r.json()) as { success: boolean };
+  return !!data.success;
+}
+
+// ───────── 予算カウンタ＋レート制限（KV。厳密上限は Anthropic スペンドリミット。ここは近似・M-4） ─────────
+async function checkBudget(env: Env, ip: string): Promise<{ ok: boolean }> {
+  if (!env.RATE_KV) return { ok: true }; // 本番では H-3 で手前に到達しない。開発時のみ通す
+  const perMin = Number(env.RATE_PER_MIN || '8');
+  const monthlyCap = Number(env.MONTHLY_REQUEST_CAP || '300');
+  const minKey = `rl:${ip}:${Math.floor(Date.now() / 60000)}`;
+  const monKey = `mo:${new Date().toISOString().slice(0, 7)}`;
+  const [minRaw, monRaw] = await Promise.all([env.RATE_KV.get(minKey), env.RATE_KV.get(monKey)]);
+  if (Number(minRaw || '0') >= perMin) return { ok: false };
+  if (Number(monRaw || '0') >= monthlyCap) return { ok: false };
+  await env.RATE_KV.put(minKey, String(Number(minRaw || '0') + 1), { expirationTtl: 120 });
+  return { ok: true };
+}
+async function incrBudget(env: Env, _ip: string): Promise<void> {
+  if (!env.RATE_KV) return;
+  const monKey = `mo:${new Date().toISOString().slice(0, 7)}`;
+  const cur = Number((await env.RATE_KV.get(monKey)) || '0');
+  await env.RATE_KV.put(monKey, String(cur + 1), { expirationTtl: 60 * 60 * 24 * 40 });
+}
+
+// ───────── 埋め込み（Workers AI・無料枠。既定は多言語モデル bge-m3＝日本語対応・H-1） ─────────
+async function embed(env: Env, text: string): Promise<number[]> {
+  const model = env.EMBED_MODEL || '@cf/baai/bge-m3';
+  const out = await env.AI.run(model, { text: [text] });
+  // Workers AI の埋め込みは { shape, data: [[...]] } 形式。モデルにより差があるためデプロイ時に実レスポンスで確認（L-2）。
+  const vec = out?.data?.[0];
+  if (!Array.isArray(vec)) throw new Error('embed_failed');
+  return vec as number[];
+}
+
+// ───────── Claude 呼び出し（Messages API・プロンプトキャッシュ） ─────────
+async function callClaude(env: Env, userText: string, hits: ReturnType<typeof searchChunks>): Promise<string> {
+  const model = env.MODEL_ANSWER || 'claude-sonnet-5';
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': env.ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model,
+      max_tokens: 400, // 出力上限でコストを抑える
+      system: [{ type: 'text', text: SYSTEM_GUARDS, cache_control: { type: 'ephemeral' } }], // system固定部をキャッシュ
+      messages: [{ role: 'user', content: buildUserContent(userText, hits) }],
+    }),
+  });
+  if (!res.ok) throw new Error('claude_' + res.status);
+  const data = (await res.json()) as { content?: { type: string; text?: string }[] };
+  return (data.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('').trim();
+}

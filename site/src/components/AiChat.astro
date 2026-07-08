@@ -30,6 +30,7 @@ const AICHAT_OFF =
       <div class="ac-msgs" aria-live="polite"></div>
       <div class="ac-foot">
         <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
+        <div class="ac-ts"></div>
         <div class="ac-inrow">
           <input class="ac-input" type="text" autocomplete="off" placeholder="気になることを聞いてくれ" aria-label="メッセージを入力" />
           <button class="ac-send" aria-label="送信"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
@@ -98,6 +99,8 @@ const AICHAT_OFF =
   #aichat .ac-foot{flex:none;padding:11px 14px 16px;border-top:1px solid #EFE7DA;background:#FBF7F1}
   #aichat .ac-note{display:flex;align-items:center;gap:5px;color:#8C8270;font-size:11px;margin:0 2px 9px}
   #aichat .ac-note i{font-size:14px}
+  #aichat .ac-ts:empty{display:none}
+  #aichat .ac-ts{margin:2px 2px 8px}
   #aichat .ac-inrow{display:flex;align-items:flex-end;gap:9px}
   #aichat .ac-input{flex:1;box-sizing:border-box;background:#fff;border:1px solid #E2D9C9;border-radius:22px;
     padding:13px 17px;font-size:15px;line-height:1.5;color:#2C2A26;min-height:50px;resize:none;
@@ -133,9 +136,52 @@ const AICHAT_OFF =
     const sendBtn = root.querySelector('.ac-send') as HTMLButtonElement;
     let state: FlowState | null = null;
 
+    // ── Turnstile（ボット対策）。サイトキーが有るときだけウィジェットを出しトークンを得る。 ──
+    // 無い（開発中/未設定）ときはトークン無しで送る＝Workerの開発モードが受ける（本番はH-3で保護）。
+    const TS_SITEKEY = import.meta.env.PUBLIC_TURNSTILE_SITEKEY || '';
+    const tsBox = root.querySelector('.ac-ts') as HTMLElement;
+    let tsToken = '';
+    let tsWidgetId: string | null = null;
+    function ensureTurnstile() {
+      if (!TS_SITEKEY || !tsBox) return;
+      const w = (window as any).turnstile;
+      if (w && tsWidgetId === null) {
+        tsWidgetId = w.render(tsBox, {
+          sitekey: TS_SITEKEY, size: 'flexible',
+          callback: (t: string) => { tsToken = t; },
+          'error-callback': () => { tsToken = ''; },
+          'expired-callback': () => { tsToken = ''; },
+        });
+        return;
+      }
+      if (!w && !document.getElementById('cf-ts-api')) {
+        const s = document.createElement('script');
+        s.id = 'cf-ts-api'; s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true; s.defer = true; s.onload = () => ensureTurnstile();
+        document.head.appendChild(s);
+      }
+    }
+
+    // 本番のAI呼び出し（/api/chat）。応答はサーバの出力ガード済み。失敗時は onText 側で安全に縮退。
+    const realApi = async (message: string) => {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ message, turnstileToken: tsToken }),
+      });
+      const data = await res.json().catch(() => ({ kind: 'safe', text: '' }));
+      const w = (window as any).turnstile; // 使い切りトークンをリセット
+      if (w && tsWidgetId !== null) w.reset(tsWidgetId);
+      tsToken = '';
+      return data;
+    };
+
     const esc = (s: unknown) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
-    const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:|\/|#)/.test(s) ? s : '#'; };
+    // 内部相対(/path)・https:// ・# のみ許可。プロトコル相対(//evil) は弾く（doc44 L-1）。
+    const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:\/\/|\/(?!\/)|#)/.test(s) ? s : '#'; };
     const down = () => { msgs.scrollTop = msgs.scrollHeight; };
+    // GA4計測（M-8）：種別だけ送る。会話本文・PII・入力内容は絶対に載せない。
+    const track = (name: string) => { try { (window as any).gtag?.('event', 'aichat_' + name); } catch (e) { /* 計測失敗は無視 */ } };
 
     function addUser(text: string) {
       const d = document.createElement('div');
@@ -171,6 +217,7 @@ const AICHAT_OFF =
         m.cards.forEach((c) => {
           const a = document.createElement('a');
           a.className = 'ac-card'; a.href = safeUrl(c.href);
+          a.addEventListener('click', () => track('card'));
           a.innerHTML = `<div class="ac-card-img"><i class="ti ti-photo" aria-hidden="true"></i></div><div class="ac-card-b"><span class="ac-cat">${esc(c.category)}</span><div class="ac-card-t">${esc(c.title)}</div></div>`;
           sc.appendChild(a);
         });
@@ -201,6 +248,7 @@ const AICHAT_OFF =
 
     function handleChip(value: string, label: string) {
       addUser(label);
+      track('chip');
       reflectKanshin(value);
       if (!state) return;
       const res = onChip(state, value);
@@ -211,8 +259,14 @@ const AICHAT_OFF =
       const text = (input.value || '').trim(); if (!text) return;
       input.value = ''; addUser(text);
       if (!state) state = startFlow().state;
-      const res = await onText(state, text);
-      state = res.state; render(res.messages);
+      sendBtn.disabled = true;
+      try {
+        const res = await onText(state, text, realApi);
+        state = res.state; render(res.messages);
+        if (res.event) track(res.event); // 発火種別のみ計測（本文なし）
+      } finally {
+        sendBtn.disabled = false;
+      }
     }
 
     const isMobile = () => window.matchMedia('(max-width:720px)').matches;
@@ -221,6 +275,8 @@ const AICHAT_OFF =
       modal.hidden = false; fab.hidden = true;
       if (isMobile()) document.body.style.overflow = 'hidden'; // PCはサイトを使えるようロックしない
       if (!state) { const s = startFlow(); state = s.state; render(s.messages); }
+      ensureTurnstile();
+      track('open');
       setTimeout(() => input && input.focus(), 60);
     }
     function close() { modal.hidden = true; fab.hidden = false; document.body.style.overflow = ''; }

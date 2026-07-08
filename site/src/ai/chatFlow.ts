@@ -23,6 +23,7 @@ export interface FlowState {
   step: 'topic' | 'subtopic' | 'propose';
   topic?: string;
   subtopic?: string;
+  turns?: number; // 自由入力(調べる)の往復数。往復上限(M-3)のカウンタ。
 }
 
 // ── 会話の選択肢とデモ用コンテンツ（実データは後でRAG/コンテンツから差し替え） ──
@@ -140,29 +141,77 @@ export function onChip(state: FlowState, value: string): { state: FlowState; mes
   return { state, messages: [] };
 }
 
-/** 自由入力を処理。ガードを通し、通常なら「調べる（ダミー回答）」を返す。 */
-export async function onText(state: FlowState, text: string): Promise<{ state: FlowState; messages: BotMessage[] }> {
+// ── AI回答API（Phase C）：UIが /api/chat を叩く関数を注入する。既定はプレビュー用のダミー。 ──
+export interface ChatApiResponse {
+  kind: 'answer' | 'safe';
+  text: string;
+  source?: string;
+  sourceHref?: string;
+  cards?: Card[];
+  moreHref?: string;
+  moreLabel?: string;
+  error?: string;
+}
+export type ChatApi = (message: string) => Promise<ChatApiResponse>;
+
+// 既定＝サーバ未接続のプレビュー用ダミー（/styleguide 用）。デプロイ時は AiChat.astro が実APIを注入する。
+const dummyApi: ChatApi = async () => ({
+  kind: 'answer',
+  text: '（デモ回答）ここに、記事の中身をもとにした短い答えが入る。金額算定や個別の法的判断はしない。範囲外は「扱っていない」と返す。',
+  source: '（出典の記事名）',
+});
+
+// 往復上限（M-3・doc43§6「目安10往復」）。超えたら一覧・窓口へ案内してコスト暴走を防ぐ。
+export const MAX_TURNS = 12;
+
+/**
+ * 自由入力を処理。①入力ガード（client側の即ブロック）②proceedなら往復をカウントし上限判定
+ * ③api（既定=ダミー／本番=/api/chat）を叩いて回答を組み立て。危機等の安全応答は往復にカウントしない。
+ */
+// 計測イベント種別（M-8・GA4へ"件数だけ"送る。本文・PIIは絶対に載せない）。
+export type FlowEvent =
+  | 'guard_crisis' | 'guard_blocked_abuse' | 'guard_sealed' | 'guard_pii_refuse'
+  | 'turn_limit' | 'degraded' | 'answer';
+
+export async function onText(
+  state: FlowState,
+  text: string,
+  api: ChatApi = dummyApi,
+): Promise<{ state: FlowState; messages: BotMessage[]; event?: FlowEvent }> {
   const g = await screenInput(text);
   if (g.action !== 'proceed') {
-    // 危機・攻撃・封印・PII拒否 → 生成せず定型を返す
-    return { state, messages: [{ kind: 'safe', text: g.response || '' }] };
+    // 危機・攻撃・封印・PII拒否 → 生成せず定型（安全応答は常に返す・往復にカウントしない）
+    return { state, messages: [{ kind: 'safe', text: g.response || '' }], event: `guard_${g.action}` as FlowEvent };
   }
-  // 調べる（Phase A はダミー。Phase C で RAG＋Claude に差し替え）
-  return {
-    state,
-    messages: [
-      {
-        kind: 'answer',
-        text: '（デモ回答）ここに、記事の中身をもとにした短い答えが入る。金額算定や個別の法的判断はしない。範囲外は「扱っていない」と返す。',
-        source: '（出典の記事名）',
-      },
-      {
+  // proceed＝有料の生成経路。ここだけ往復をカウントし、上限で打ち切る（M-3）。
+  const turns = (state.turns || 0) + 1;
+  const next: FlowState = { ...state, turns };
+  if (turns > MAX_TURNS) {
+    return {
+      state: next,
+      messages: [{
         kind: 'chips',
-        text: 'この記事で詳しく読める。ほかに気になるところは？',
-        chips: [{ label: '別のことを聞く', value: '__other' }],
-      },
-    ],
-  };
+        text: 'だいぶ一緒に整理できたな。ここからは記事一覧や相談窓口も覗いてみてくれ。続けたいテーマがあれば選んで。',
+        chips: TOPICS,
+      }],
+      event: 'turn_limit',
+    };
+  }
+  try {
+    const r = await api(g.safeText || text);
+    if (r.kind === 'safe' || r.error) {
+      return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているみたいだ。少し時間をおいて試してくれ。' }], event: 'degraded' };
+    }
+    const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
+    if (r.cards && r.cards.length) {
+      messages.push({ kind: 'cards', text: '関係する記事はこの辺だ。近いか教えてくれ。', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
+    }
+    messages.push({ kind: 'chips', text: 'ほかに気になるところは？', chips: [{ label: '別のことを聞く', value: '__other' }] });
+    return { state: next, messages, event: 'answer' };
+  } catch (e) {
+    // 通信不調 → 静的縮退（記事サイト・窓口は生きている）
+    return { state: next, messages: [{ kind: 'safe', text: 'うまく繋がらなかった。少し時間をおいて試してくれ。急ぎなら記事一覧や相談窓口も頼ってほしい。' }], event: 'degraded' };
+  }
 }
 
 // トピック→関心タグ（現在地=oretachi_state へ反映するための対応）
