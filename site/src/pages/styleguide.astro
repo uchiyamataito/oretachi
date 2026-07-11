@@ -4,7 +4,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ServiceCompareTable from '../components/ServiceCompareTable.astro';
-import AiChat from '../components/AiChat.astro';
 ---
 <BaseLayout
   title="スタイルガイド（内部用）｜オレタチ"
@@ -66,7 +65,6 @@ import AiChat from '../components/AiChat.astro';
   <p style="color:var(--muted);font-size:.9rem;">チップ・Q&Aカード・回遊モジュール・相談窓口box等は実ページ（トップ/記事/Q&A）で確認。</p>
   <p><span class="chip">別居</span><span class="chip ghost">お金</span></p>
 
-  <h2>AIチャット（F1.5⑥・Phase Aスタブ）</h2>
-  <p style="color:var(--muted);font-size:.9rem;">右下の「AIで悩みを整理する」から起動。回答はダミー（API未接続＝¥0）。危機・攻撃・封印・PIIのガードは実際に効く（例:「もう死にたい」「お前を殺す」「養育費いくら」を入力して確認）。</p>
-  <AiChat />
+  <h2>AIチャット（F1.5⑥）</h2>
+  <p style="color:var(--muted);font-size:.9rem;">右下の「AIで悩みを整理する」から起動（全ページ共通＝BaseLayoutで表示）。危機・攻撃・封印・PIIのガードは実際に効く（例:「もう死にたい」「お前を殺す」「養育費いくら」を入力して確認）。</p>
 </BaseLayout>

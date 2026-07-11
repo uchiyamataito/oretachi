@@ -2,6 +2,7 @@
 // 全ページ共通の枠。<head>のメタ・OGP・canonical・構造化データ（JSON-LD）を出力。
 import '../styles/global.css';
 import { withTrailingSlash } from '../utils/url';
+import AiChat from '../components/AiChat.astro'; // 全ページ共通のAIチャット導線（内蔵キルスイッチ PUBLIC_AICHAT_OFF で無効化可）
 const {
   title,
   description,
@@ -127,6 +128,7 @@ const faqLd = faq && faq.length
         <p>&copy; オレタチ</p>
       </div>
     </footer>
+    <AiChat />
     <script is:inline>
       // 記事内テーブルのうち「3列以上 かつ 長文セルあり」のものだけ、モバイルでカード型に積み替える。
       // 簡易なテーブル（2列・短文）は従来どおりテーブル表示のまま。
