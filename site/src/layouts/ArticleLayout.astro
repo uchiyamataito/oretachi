@@ -127,4 +127,54 @@ const crumbs = [
       renderKids();
     }
   </script>
+  <script>
+    const kpEl = document.getElementById('konpi-keisan');
+    if (kpEl) {
+      const emp = [[75,.54],[100,.50],[125,.46],[175,.44],[275,.43],[525,.42],[725,.41],[1325,.40],[1475,.39],[2000,.38]];
+      const slf = [[66,.61],[82,.60],[98,.59],[256,.58],[349,.57],[392,.56],[496,.55],[563,.54],[784,.53],[942,.52],[1046,.51],[1179,.50],[1482,.49],[1567,.48]];
+      const ratio = (m,t)=>{const tb=t==='self'?slf:emp;for(const x of tb){if(m<=x[0])return x[1];}return tb[tb.length-1][1];};
+      kpEl.innerHTML = `
+        <div class="yk-hd"><p class="t"><i class="ti ti-calculator" aria-hidden="true"></i>婚姻費用 かんたん計算</p><p class="s">年収と子どもを入れるだけ。裁判所の標準算定方式で、別居中に支払う月額の目安（レンジ）が出ます。</p></div>
+        <div class="yk-bd">
+          <div class="yk-r"><span class="l">あなた（払う側）の年収</span><input class="n" id="kp-ob" type="number" value="500" min="0" step="10"><span class="u">万円</span><select id="kp-obt"><option value="emp">給与</option><option value="self">自営</option></select></div>
+          <div class="yk-r"><span class="l">相手（受け取る側）の年収</span><input class="n" id="kp-or" type="number" value="100" min="0" step="10"><span class="u">万円</span><select id="kp-ort"><option value="emp">給与</option><option value="self">自営</option></select></div>
+          <div class="yk-r"><span class="l">相手と暮らす子どもの人数</span><select id="kp-cnt"><option value="0">0人（夫婦のみ）</option><option value="1">1人</option><option value="2">2人</option><option value="3">3人</option></select></div>
+          <div id="kp-kids"></div>
+          <div class="yk-res"><div class="c">婚姻費用の目安（月額）</div><div class="a" id="kp-amt">—</div><div class="p" id="kp-pt"></div></div>
+          <div class="yk-w" id="kp-warn"></div>
+          <p class="yk-n">※裁判所の標準算定方式（令和元年版）にもとづく<b>おおよその目安</b>です。子どもは相手（受け取る側）と暮らす前提で計算しています。年収は、給与は額面（源泉徴収票の支払金額）、自営は確定申告の課税される所得金額を入れてください。境界に近いと隣の帯になることや、私立の学費・特別な医療費・住居費の負担などの個別事情は反映しません。正確な額は<a href="https://www.courts.go.jp/toukei_siryou/siryo/H30shihou_houkoku/index.html" target="_blank" rel="noopener">裁判所の算定表</a>・弁護士・法テラス・家庭裁判所でご確認ください。</p>
+        </div>`;
+      const $ = (id)=>document.getElementById(id);
+      const kids = $('kp-kids');
+      function calc(){
+        const ob=+$('kp-ob').value||0, or=+$('kp-or').value||0;
+        const obt=$('kp-obt').value, ort=$('kp-ort').value;
+        let sum=0; kids.querySelectorAll('select').forEach(s=>{sum+=+s.value;});
+        const obB=ob*10000*ratio(ob,obt), orB=or*10000*ratio(or,ort);
+        const amt=$('kp-amt'), pt=$('kp-pt'), warn=$('kp-warn');
+        warn.textContent='';
+        if(obB+orB<=0){amt.textContent='—';pt.textContent='';return;}
+        const c=(obB+orB)*(100+sum)/(200+sum);
+        let m=(c-orB)/12/10000;
+        if(m<0)m=0;
+        let lo=Math.floor(m/2)*2; if(lo<0)lo=0; const hi=lo+2;
+        amt.textContent='月 '+lo+'〜'+hi+'万円';
+        pt.textContent='（標準算定方式の計算値：約'+(Math.round(m*10)/10)+'万円）';
+        const w=[];
+        if((obt==='emp'&&ob>2000)||(obt==='self'&&ob>1567)||(ort==='emp'&&or>2000)||(ort==='self'&&or>1567)) w.push('算定表の上限（給与2000万・自営約1567万）を超える部分は、より個別の算定が必要です。');
+        if(m<=0) w.push('相手の収入があなたと同程度以上の場合、婚姻費用は発生しない（0）と計算されることがあります。個別の事情で変わるため専門家にご確認を。');
+        warn.textContent=w.join(' ');
+      }
+      function renderKids(){
+        const n=+$('kp-cnt').value; let h='';
+        for(let i=1;i<=n;i++){h+=`<div class="yk-k"><span class="kl">子ども${i}の年齢</span><select data-age="${i}"><option value="62">0〜14歳</option><option value="85">15歳以上</option></select></div>`;}
+        kids.innerHTML=h;
+        kids.querySelectorAll('select').forEach(s=>s.addEventListener('change',calc));
+        calc();
+      }
+      ['kp-ob','kp-or','kp-obt','kp-ort'].forEach(id=>{const e=$(id);e.addEventListener('input',calc);e.addEventListener('change',calc);});
+      $('kp-cnt').addEventListener('change',renderKids);
+      renderKids();
+    }
+  </script>
 </BaseLayout>

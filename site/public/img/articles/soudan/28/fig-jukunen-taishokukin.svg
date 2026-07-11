@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">退職金の財産分与の一例。退職金1,000万円に婚姻10年を勤続20年で割った割合をかけて婚姻期間に対応する500万円を出し、その原則2分の1の250万円が分与の目安。すでに支給された退職金の一例で、将来の退職金や基準時などは個別に変わる</title>
+  <defs>
+    <marker id="tk" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#C9C0B0"/></marker>
+  </defs>
+  <rect x="0.5" y="0.5" width="699" height="359" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">退職金は、どれくらい分けることになるのか（一例）</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">例：退職金1,000万円・婚姻10年・勤続20年（すでに支給された場合）。</text>
+
+  <!-- box 1 -->
+  <rect x="40" y="118" width="170" height="98" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="125" y="148" font-size="12" fill="#6E6354" text-anchor="middle">退職金</text>
+  <text x="125" y="186" font-size="24" font-weight="800" fill="#1B3A57" text-anchor="middle">1,000万円</text>
+
+  <!-- op 1 -->
+  <text x="255" y="158" font-size="12" fill="#2C2A26" text-anchor="middle">×（婚姻10年</text>
+  <text x="255" y="176" font-size="12" fill="#2C2A26" text-anchor="middle">÷ 勤続20年）</text>
+  <path d="M214 200 L296 200" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#tk)"/>
+
+  <!-- box 2 -->
+  <rect x="300" y="118" width="160" height="98" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="380" y="148" font-size="12" fill="#6E6354" text-anchor="middle">婚姻期間の分</text>
+  <text x="380" y="186" font-size="24" font-weight="800" fill="#1B3A57" text-anchor="middle">500万円</text>
+
+  <!-- op 2 -->
+  <text x="500" y="158" font-size="12" fill="#2C2A26" text-anchor="middle">÷ 2</text>
+  <text x="500" y="176" font-size="12" fill="#2C2A26" text-anchor="middle">（原則）</text>
+  <path d="M462 200 L538 200" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#tk)"/>
+
+  <!-- box 3 -->
+  <rect x="540" y="118" width="120" height="98" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="2"/>
+  <text x="600" y="148" font-size="12" fill="#B5481F" text-anchor="middle">分与の目安</text>
+  <text x="600" y="186" font-size="24" font-weight="800" fill="#B5481F" text-anchor="middle">250万円</text>
+
+  <!-- note -->
+  <rect x="40" y="240" width="620" height="96" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="58" y="266" font-size="12.5" font-weight="700" fill="#B5481F">これは「すでに支給された退職金」の一例。目安であり、断定ではない。</text>
+  <text x="58" y="288" font-size="12" fill="#2C2A26">まだ退職していない将来の退職金や、婚姻期間を「別居時まで」で区切る点など、扱いは個別に変わる。</text>
+  <text x="58" y="308" font-size="12" fill="#2C2A26">年金分割の金額は各自の年金記録しだいで、養育費のような一律の早見表はない（情報通知書で確認）。</text>
+  <text x="58" y="328" font-size="12" font-weight="700" fill="#1B3A57">確定は、弁護士・家庭裁判所・年金事務所へ。</text>
+</svg>

@@ -233,9 +233,9 @@ const AICHAT_OFF =
           const a = document.createElement('a');
           a.className = 'ac-card'; a.href = safeUrl(c.href);
           a.addEventListener('click', () => track('card'));
-          const img = c.image
-            ? `<div class="ac-card-img" style="background-image:url('${esc(safeUrl(c.image))}')"></div>`
-            : `<div class="ac-card-img"><i class="ti ti-photo" aria-hidden="true"></i></div>`;
+          // 画像が無いカード（Q&A等）は共通画像を使う。実体は site/public/img/common/qa-card.jpg（= /img/common/qa-card.jpg）。
+          const imgSrc = c.image || '/img/common/qa-card.jpg';
+          const img = `<div class="ac-card-img" style="background-image:url('${esc(safeUrl(imgSrc))}')"></div>`;
           a.innerHTML = `${img}<div class="ac-card-b"><span class="ac-cat">${esc(c.category)}</span><div class="ac-card-t">${esc(c.title)}</div></div>`;
           sc.appendChild(a);
         });

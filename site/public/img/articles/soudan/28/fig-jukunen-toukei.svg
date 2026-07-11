@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">同居20年以上の夫婦の離婚が全離婚に占める割合の推移。1985年の約12%から、2020年の21.5%（公表値）、2024年の約23.8%へと右肩上がりで、熟年離婚が約2割超と珍しくなくなっている</title>
+  <rect x="0.5" y="0.5" width="699" height="399" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">熟年離婚は、めずらしくなくなった</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">同居20年以上の夫婦の離婚が、全体に占める割合の推移。</text>
+
+  <!-- gridlines -->
+  <line x1="90" y1="330" x2="640" y2="330" stroke="#D8CFC0"/>
+  <line x1="90" y1="238" x2="640" y2="238" stroke="#ECE3D5"/>
+  <line x1="90" y1="146" x2="640" y2="146" stroke="#ECE3D5"/>
+  <text x="82" y="334" font-size="11" fill="#9A8F7E" text-anchor="end">0%</text>
+  <text x="82" y="242" font-size="11" fill="#9A8F7E" text-anchor="end">10%</text>
+  <text x="82" y="150" font-size="11" fill="#9A8F7E" text-anchor="end">20%</text>
+
+  <!-- callout -->
+  <rect x="96" y="86" width="322" height="60" rx="10" fill="#FBF1EA" stroke="#E7B39F"/>
+  <text x="112" y="110" font-size="13" font-weight="700" fill="#B5481F">同居20年以上の離婚は、約2割超に。</text>
+  <text x="112" y="131" font-size="12" fill="#2C2A26">1985年 約12% → 2024年 約23.8%（およそ倍増）。</text>
+
+  <!-- line -->
+  <path d="M120 217 L218 179 L316 181 L414 163 L512 132 L610 111" fill="none" stroke="#E2703A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="120" cy="217" r="3.5" fill="#E2703A"/>
+  <circle cx="218" cy="179" r="3.5" fill="#E2703A"/>
+  <circle cx="316" cy="181" r="3.5" fill="#E2703A"/>
+  <circle cx="414" cy="163" r="3.5" fill="#E2703A"/>
+  <circle cx="512" cy="132" r="3.5" fill="#E2703A"/>
+  <circle cx="610" cy="111" r="4.5" fill="#E2703A"/>
+
+  <!-- endpoint labels -->
+  <text x="120" y="234" font-size="11" font-weight="700" fill="#B5481F" text-anchor="middle">約12%</text>
+  <text x="512" y="124" font-size="11" fill="#6E6354" text-anchor="middle">21.5%</text>
+  <text x="610" y="103" font-size="12" font-weight="800" fill="#B5481F" text-anchor="middle">約23.8%</text>
+
+  <!-- x labels -->
+  <text x="120" y="350" font-size="11" fill="#6E6354" text-anchor="middle">1985</text>
+  <text x="218" y="350" font-size="11" fill="#6E6354" text-anchor="middle">1995</text>
+  <text x="316" y="350" font-size="11" fill="#6E6354" text-anchor="middle">2005</text>
+  <text x="414" y="350" font-size="11" fill="#6E6354" text-anchor="middle">2015</text>
+  <text x="512" y="350" font-size="11" fill="#6E6354" text-anchor="middle">2020</text>
+  <text x="610" y="350" font-size="11" fill="#6E6354" text-anchor="middle">2024（年）</text>
+
+  <!-- source note -->
+  <text x="40" y="380" font-size="10.5" fill="#9A8F7E">出典：厚生労働省「人口動態統計」。割合は同居期間不詳を除く総数に対する値。2020年＝公表値21.5%、直近年は月報年計（概数）からの算出。</text>
+</svg>
