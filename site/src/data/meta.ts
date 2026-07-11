@@ -28,6 +28,9 @@ export const AMETA: Record<string, any> = {
   'rikon-yoikuhi':                     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '子ども', '手続き'], kids: true, pri: 3, tag: '養育費', route: 'rikon' },
   'rikon-konzen-keiyaku':              { phases: ['再出発', '成立後'], kanshin: ['お金', '相談'], kids: false, pri: 2, tag: '再出発', route: 'rikon' },
   'rikon-hitorigurashi-kaji':          { phases: ['別居', '成立後', '再出発'], kanshin: ['気持ち', '相談'], kids: false, tag: '再出発', route: 'rikon' },
+  'rikon-koninhiyou':                  { phases: ['別居', '協議・調停中'], kanshin: ['お金', '手続き'], kids: false, spouse_contact: true, pri: 3, tag: '婚姻費用', route: 'rikon' },
+  'rikon-jukunen-okane':               { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], kids: false, pri: 3, tag: '熟年離婚', route: 'rikon' },
+  'rikon-kodomo-eikyou-nenrei':        { phases: ['切り出された直後', '別居', '成立後'], kanshin: ['子ども', '気持ち'], kids: true, spouse_contact: true, pri: 3, tag: '子ども', route: 'rikon' },
 };
 export const QMETA: Record<string, any> = {
   'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], route: 'rikon' },

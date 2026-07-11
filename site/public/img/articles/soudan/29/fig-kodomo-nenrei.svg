@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">親の離婚に子どもが示しやすい反応は年齢で変わる傾向がある。どの年齢にも共通して自責感・見捨てられ不安・親どうしの板挟みがあり、心身の不調として出ることもある。乳幼児は愛着と分離不安、学童は他家庭との違いの意識と自責、思春期は自己形成への関わり。あくまで傾向で断定はしない</title>
+  <rect x="0.5" y="0.5" width="699" height="399" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">年齢で、出やすい反応は変わる（あくまで傾向）</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">どの年齢にも共通してみられやすいことが、土台にある。</text>
+
+  <!-- common band -->
+  <rect x="40" y="88" width="620" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="58" y="113" font-size="12.5" font-weight="700" fill="#B5481F">【どの年齢にも共通】自分のせいだと思う自責感・見捨てられ不安・親どうしの板挟み</text>
+  <text x="58" y="134" font-size="12" fill="#2C2A26">そうした気持ちが、からだや心の不調として出ることもある。</text>
+
+  <!-- columns -->
+  <rect x="40" y="156" width="188" height="176" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="58" y="184" font-size="14" font-weight="700" fill="#1B3A57">乳幼児</text>
+  <text x="58" y="208" font-size="12" fill="#2C2A26">愛着（あいちゃく）を</text>
+  <text x="58" y="228" font-size="12" fill="#2C2A26">育てる時期。長い分離で</text>
+  <text x="58" y="248" font-size="12" fill="#2C2A26">不安が出やすい。親の</text>
+  <text x="58" y="268" font-size="12" fill="#2C2A26">表情や声のトーンから、</text>
+  <text x="58" y="288" font-size="12" fill="#2C2A26">不穏を感じ取る。</text>
+
+  <rect x="256" y="156" width="188" height="176" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="274" y="184" font-size="14" font-weight="700" fill="#1B3A57">学童（小学生）</text>
+  <text x="274" y="208" font-size="12" fill="#2C2A26">他の家庭との違いを</text>
+  <text x="274" y="228" font-size="12" fill="#2C2A26">意識し始める。自分の</text>
+  <text x="274" y="248" font-size="12" fill="#2C2A26">せいだと感じたり、</text>
+  <text x="274" y="268" font-size="12" fill="#2C2A26">気持ちが生活や情緒に</text>
+  <text x="274" y="288" font-size="12" fill="#2C2A26">出たりしやすい。</text>
+
+  <rect x="472" y="156" width="188" height="176" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="490" y="184" font-size="14" font-weight="700" fill="#1B3A57">思春期（中〜高）</text>
+  <text x="490" y="208" font-size="12" fill="#2C2A26">自分をつくる時期。</text>
+  <text x="490" y="228" font-size="12" fill="#2C2A26">別居親と関わることが</text>
+  <text x="490" y="248" font-size="12" fill="#2C2A26">自己形成に関わる。</text>
+  <text x="490" y="268" font-size="12" fill="#2C2A26">一方で、親の離婚を</text>
+  <text x="490" y="288" font-size="12" fill="#2C2A26">冷静に受け止める面も。</text>
+
+  <!-- note -->
+  <rect x="40" y="344" width="620" height="46" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="58" y="372" font-size="12" fill="#2C2A26">「◯歳なら必ずこう」ではない。発達段階で出方が異なる傾向。強い不調が続くなら専門の窓口へ。</text>
+</svg>

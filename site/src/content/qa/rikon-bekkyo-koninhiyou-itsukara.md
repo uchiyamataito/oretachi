@@ -3,7 +3,7 @@ question: "別居中の婚姻費用は、いつから請求できる？さかの
 description: "実務では原則、請求した時（内容証明などで請求の意思を示した月）から認められる。別居開始まで大きくさかのぼるのは難しい。だから早めに請求するのが大事。"
 category: "お金・手続き"
 tags: ["別居", "婚姻費用", "お金", "手続き"]
-related_articles: ["rikon-bekkyo-sugoshikata", "rikon-bengoshi-erabikata"]
+related_articles: ["rikon-koninhiyou", "rikon-bekkyo-sugoshikata", "rikon-bengoshi-erabikata"]
 related_qa: ["rikon-bekkyo-seikatsuhi"]
 author: "片瀬 海斗"
 published: "2026-07-02"

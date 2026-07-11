@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">離れて暮らす父親でも子の安心につながる関わり方。相手の悪口を子の前で言わない、あなたのせいじゃないと伝える、約束を守り会い続ける。困ったときは自治体の家庭児童相談やこども家庭庁の相談窓口、家庭裁判所へ</title>
+  <rect x="0.5" y="0.5" width="699" height="359" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">離れて暮らす父親でも、できることがある</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">公的資料が挙げる、子の安心につながる関わり方。</text>
+
+  <!-- Card 1 -->
+  <rect x="40" y="96" width="188" height="184" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="58" y="124" font-size="13.5" font-weight="700" fill="#1B3A57">① 相手の悪口を</text>
+  <text x="58" y="142" font-size="13.5" font-weight="700" fill="#1B3A57">　 子の前で言わない</text>
+  <text x="58" y="170" font-size="12" fill="#2C2A26">片方の親の悪口は、</text>
+  <text x="58" y="190" font-size="12" fill="#2C2A26">子に「自分の一部を</text>
+  <text x="58" y="210" font-size="12" fill="#2C2A26">否定された」と感じさせ、</text>
+  <text x="58" y="230" font-size="12" fill="#2C2A26">自信を失わせる。</text>
+
+  <!-- Card 2 -->
+  <rect x="256" y="96" width="188" height="184" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="274" y="124" font-size="13.5" font-weight="700" fill="#1B3A57">②「あなたのせいじゃ</text>
+  <text x="274" y="142" font-size="13.5" font-weight="700" fill="#1B3A57">　 ない」と伝える</text>
+  <text x="274" y="170" font-size="12" fill="#2C2A26">離婚は子のせいでは</text>
+  <text x="274" y="190" font-size="12" fill="#2C2A26">ないと言葉にする。</text>
+  <text x="274" y="210" font-size="12" fill="#2C2A26">「離れても大切に</text>
+  <text x="274" y="230" font-size="12" fill="#2C2A26">思っている」も。</text>
+
+  <!-- Card 3 -->
+  <rect x="472" y="96" width="188" height="184" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="490" y="124" font-size="13.5" font-weight="700" fill="#0F6E56">③ 約束を守り、</text>
+  <text x="490" y="142" font-size="13.5" font-weight="700" fill="#0F6E56">　 会い続ける</text>
+  <text x="490" y="170" font-size="12" fill="#2C2A26">面会交流は子のための</text>
+  <text x="490" y="190" font-size="12" fill="#2C2A26">もの。定期的な関わりが</text>
+  <text x="490" y="210" font-size="12" fill="#2C2A26">子の心の安定に</text>
+  <text x="490" y="230" font-size="12" fill="#2C2A26">つながる。</text>
+
+  <!-- note -->
+  <rect x="40" y="296" width="620" height="44" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="58" y="323" font-size="12" fill="#2C2A26">強い不調が続く・面会でもめる・DVがあるなど困ったときは、自治体や家庭裁判所の相談窓口へ。</text>
+</svg>

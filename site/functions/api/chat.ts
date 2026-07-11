@@ -61,6 +61,16 @@ const DEGRADED = {
   text: 'いま相談が混み合っているようです。少し時間をおいてお試しください。お急ぎの場合は、記事一覧や公的な相談窓口もご利用ください。',
 };
 
+// カードのカテゴリ → 一覧の絞り込みテーマ（browse.js の theme＝お金/気持ち/子ども/相談）。合わなければ空。
+function deriveTheme(category?: string): string {
+  const c = category || '';
+  if (/お金|生活|費用|手続/.test(c)) return 'お金';
+  if (/子ども|親権|養育/.test(c)) return '子ども';
+  if (/気持ち|心構え|メンタル/.test(c)) return '気持ち';
+  if (/相手|妻|修復|復縁|相談/.test(c)) return '相談';
+  return '';
+}
+
 export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Response> = async ({ request, env }) => {
   // 1) 入力の受け取り＋基本バリデーション
   let body: { message?: string; turnstileToken?: string; deepen?: number };
@@ -126,24 +136,24 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
     // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
-    // 10) 記事カードを出す条件（曖昧な相談に無理やり結びつけない）：
-    //   ・最終ターン → 近い記事を必ず表示（top3・閾値無視で"近いもの"を出す）
-    //   ・深掘り中（選択肢あり）→ カードは出さない
-    //   ・それ以外（具体的な回答）→ 確度の高いヒットのみカード化
-    const cardMin = Number(env.CARD_MIN_SCORE || '0.5');
-    const cardHits = finalTurn ? hits : (suggestions.length ? [] : hits.filter((h) => h.score >= cardMin));
-    const cards = hitsToCards(cardHits, 3);
-    const top = cardHits[0]?.chunk;
+    // 10) 記事カード：関連性の高いヒットだけ（弱いものを無理に3枚並べない。1〜3枚。深掘り中は出さない）。
+    const cardMin = Number(env.CARD_MIN_SCORE || '0.6');
+    const relevant = suggestions.length ? [] : hits.filter((h) => h.score >= cardMin);
+    const cards = hitsToCards(relevant, 3);
+    const uniqueCount = new Set(relevant.map((h) => h.chunk.url)).size;
+    // 「もっと見る」：関連候補が4件以上ある時だけ表示（3件以下はトルツメ）。トップのカテゴリで絞った一覧へ。
+    const showMore = uniqueCount > 3;
+    const theme = deriveTheme(cards[0]?.category);
     await incrBudget(env, ip); // 成功時のみ月次カウント
     return json({
       kind: 'answer',
       text: guarded.text,
-      source: guarded.ok && top ? top.title : undefined,
-      sourceHref: guarded.ok && top ? top.url : undefined,
+      source: guarded.ok && cards.length ? cards[0].title : undefined,
+      sourceHref: guarded.ok && cards.length ? cards[0].href : undefined,
       cards, // 無い時は空＝カードを出さない
       suggestions, // 無い時は空＝追撃チップを出さない
-      moreHref: cards.length ? '/articles' : undefined,
-      moreLabel: cards.length ? 'もっと見る' : undefined,
+      moreHref: showMore ? '/articles' + (theme ? '?theme=' + encodeURIComponent(theme) : '') : undefined,
+      moreLabel: showMore ? 'もっと見る' : undefined,
       flagged: guarded.ok ? undefined : guarded.reasons,
     });
   } catch (e) {

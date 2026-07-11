@@ -3,7 +3,7 @@ question: "離婚するかもしれない。子どもにはどう説明すれば
 description: "離婚が未確定なら今すぐ詳しく話さなくていい。未確定の不安を子に背負わせず、普段どおり接するのが今いちばんの説明になる。"
 category: "子ども"
 tags: ["子ども", "気持ち", "コミュニケーション"]
-related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
+related_articles: ["rikon-kodomo-eikyou-nenrei", "rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"

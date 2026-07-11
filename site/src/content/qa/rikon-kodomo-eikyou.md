@@ -3,7 +3,7 @@ question: "離婚は子どもにどんな影響がある？年齢で違う？"
 description: "影響はあるが、効くのは“離婚”より“両親の対立・不安定さ”。年齢で反応が違う。親にできる守り方がある。"
 category: "子ども・気持ち"
 tags: ["子ども", "気持ち"]
-related_articles: ["rikon-dansei-soudansaki"]
+related_articles: ["rikon-kodomo-eikyou-nenrei", "rikon-dansei-soudansaki"]
 related_qa: ["rikon-kodomo-setsumei", "rikon-chichioya-shinken"]
 author: "片瀬 海斗"
 published: "2026-06-28"

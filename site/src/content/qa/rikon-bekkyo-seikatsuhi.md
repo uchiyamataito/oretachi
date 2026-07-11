@@ -3,7 +3,7 @@ question: "別居中の生活費（婚姻費用）は誰が払う？"
 description: "収入の多い側が少ない側に婚姻費用を払う義務がある（別居中も）。金額は裁判所の算定表が目安。請求は早いほど良い。"
 category: "別居・お金"
 tags: ["別居", "お金", "婚姻費用"]
-related_articles: ["rikon-bekkyo", "rikon-okane-checklist"]
+related_articles: ["rikon-koninhiyou", "rikon-bekkyo", "rikon-okane-checklist"]
 related_qa: ["rikon-bekkyo-nannen"]
 author: "片瀬 海斗"
 published: "2026-06-28"
