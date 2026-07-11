@@ -152,15 +152,19 @@ const AICHAT_OFF =
     const tsBox = root.querySelector('.ac-ts') as HTMLElement;
     let tsToken = '';
     let tsWidgetId: string | null = null;
+    let tsWaiters: ((t: string) => void)[] = [];
+    // トークン確定時：保存し、送信待ちがあれば解放する。
+    function tsSet(t: string) { tsToken = t; const ws = tsWaiters; tsWaiters = []; ws.forEach((r) => r(t)); }
     function ensureTurnstile() {
       if (!TS_SITEKEY || !tsBox) return;
       const w = (window as any).turnstile;
       if (w && tsWidgetId === null) {
         tsWidgetId = w.render(tsBox, {
           sitekey: TS_SITEKEY, size: 'flexible',
-          callback: (t: string) => { tsToken = t; },
+          callback: (t: string) => { tsSet(t); },
           'error-callback': () => { tsToken = ''; },
-          'expired-callback': () => { tsToken = ''; },
+          // 失効したら空にし、ウィジェットを作り直して新トークンを取り直す（放置後の初回送信対策）。
+          'expired-callback': () => { tsToken = ''; try { w.reset(tsWidgetId); } catch (e) {} },
         });
         return;
       }
@@ -171,17 +175,31 @@ const AICHAT_OFF =
         document.head.appendChild(s);
       }
     }
+    // 送信前に「有効なトークン」を必ず用意する（今なければ最大10秒だけ待つ）。
+    // これで“連続送信の2通目”“長時間開いた後（失効）”でも空トークン送信を防ぐ（＝サーバ403→縮退の回避）。
+    function getTurnstileToken(): Promise<string> {
+      if (!TS_SITEKEY) return Promise.resolve(''); // 未設定（開発）＝トークン不要
+      if (tsToken) return Promise.resolve(tsToken);
+      ensureTurnstile(); // 未描画なら描画／失効後は取り直しを促す
+      return new Promise((resolve) => {
+        let done = false;
+        const finish = (t: string) => { if (!done) { done = true; clearTimeout(timer); resolve(t); } };
+        const timer = setTimeout(() => finish(''), 10000);
+        tsWaiters.push(finish);
+      });
+    }
 
     // 本番のAI呼び出し（/api/chat）。応答はサーバの出力ガード済み。失敗時は onText 側で安全に縮退。
     const realApi = async (message: string, deepen: number) => {
+      const turnstileToken = await getTurnstileToken(); // ★ 有効なトークンを待ってから送る
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ message, turnstileToken: tsToken, deepen }),
+        body: JSON.stringify({ message, turnstileToken, deepen }),
       });
       const data = await res.json().catch(() => ({ kind: 'safe', text: '' }));
-      const w = (window as any).turnstile; // 使い切りトークンをリセット
-      if (w && tsWidgetId !== null) w.reset(tsWidgetId);
+      const w = (window as any).turnstile; // 使い切りトークンをリセット（次回は getTurnstileToken が新トークンを待つ）
+      if (w && tsWidgetId !== null) { try { w.reset(tsWidgetId); } catch (e) {} }
       tsToken = '';
       return data;
     };
