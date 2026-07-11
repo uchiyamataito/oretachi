@@ -71,10 +71,12 @@ const AICHAT_OFF =
      横方向のはみ出しはモーダルでクリップし、閉じた後の横幅ズレ（横スクロール残り）を防ぐ。 */
   @media (max-width:720px){
     #aichat .ac-modal{overflow:hidden}
-    #aichat .ac-sheet{position:fixed;left:0;right:0;top:0;bottom:0;width:100%;max-width:100%;margin:0;
-      height:100dvh;max-height:100dvh;border-radius:0}
+    /* 全画面固定パネル。inset:0＝キーボードで領域が縮む(interactive-widget)と自動で上に収まる。JSで高さを触らない。 */
+    #aichat .ac-sheet{position:fixed;inset:0;width:auto;max-width:none;height:auto;max-height:none;margin:0;border-radius:0}
     #aichat .ac-grab{display:none}
-    #aichat .ac-foot{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+    /* 入力欄(flex)が縮めるように＝送信ボタンが右にはみ出さない。 */
+    #aichat .ac-input{min-width:0}
+    #aichat .ac-foot{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
   }
   #aichat .ac-head{background:#1B3A57;padding:9px 16px 13px;display:flex;flex-direction:column;gap:9px;flex:none}
   #aichat .ac-grab{width:40px;height:4px;border-radius:3px;background:rgba(255,255,255,.32);align-self:center}
@@ -348,33 +350,16 @@ const AICHAT_OFF =
 
     const isMobile = () => window.matchMedia('(max-width:720px)').matches;
 
-    // iOS等でソフトキーボードが出るとfixed要素の位置がズレるため、可視領域(visualViewport)に
-    // シートの高さ・位置を合わせてキーボードへ追従させる（入力欄が隠れない・上部へ飛ばない）。
-    const sheet = root.querySelector('.ac-sheet') as HTMLElement | null;
-    const vv = (window as any).visualViewport as VisualViewport | undefined;
-    function syncSheet() {
-      if (!sheet) return;
-      if (!isMobile() || !vv) { sheet.style.height = ''; sheet.style.top = ''; sheet.style.bottom = ''; return; }
-      sheet.style.height = vv.height + 'px';
-      sheet.style.top = vv.offsetTop + 'px';
-      sheet.style.bottom = 'auto';
-    }
-
     function open() {
       modal.hidden = false; fab.hidden = true;
       if (isMobile()) document.body.style.overflow = 'hidden'; // PCはサイトを使えるようロックしない
       if (!state) { const s = startFlow(); state = s.state; render(s.messages); }
       ensureTurnstile();
       track('open');
-      if (vv) { vv.addEventListener('resize', syncSheet); vv.addEventListener('scroll', syncSheet); }
-      syncSheet();
-      setTimeout(() => input && input.focus(), 60);
+      // モバイルは自動フォーカスしない（開いた瞬間にキーボードが出て画面が跳ねるのを防ぐ）。
+      if (!isMobile()) setTimeout(() => input && input.focus(), 60);
     }
-    function close() {
-      modal.hidden = true; fab.hidden = false; document.body.style.overflow = '';
-      if (vv) { vv.removeEventListener('resize', syncSheet); vv.removeEventListener('scroll', syncSheet); }
-      if (sheet) { sheet.style.height = ''; sheet.style.top = ''; sheet.style.bottom = ''; }
-    }
+    function close() { modal.hidden = true; fab.hidden = false; document.body.style.overflow = ''; }
 
     // IME（日本語変換）中フラグ。変換確定のEnterで送信しないために使う。
     let composing = false;
