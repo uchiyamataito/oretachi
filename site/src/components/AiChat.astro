@@ -27,7 +27,14 @@ const AICHAT_OFF =
           <button class="ac-close" aria-label="閉じる"><i class="ti ti-x" aria-hidden="true"></i></button>
         </div>
       </div>
-      <p class="ac-disc">このチャットは一般的な情報のご案内で、法的な判断や医療・カウンセリングは行いません。つらい気持ちが強いときは、無理に入力せず相談窓口をご利用ください（緊急時は119／110）。入力内容は、応答を生成するため外部のAIに送信されます（<a href="/about/privacy">詳細</a>）。</p>
+      <div class="ac-disc-wrap">
+        <button type="button" class="ac-disc-toggle" aria-expanded="true" aria-controls="ac-disc-body">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <span class="ac-disc-title">ご利用にあたって（免責）</span>
+          <i class="ti ti-chevron-down ac-disc-cv" aria-hidden="true"></i>
+        </button>
+        <p class="ac-disc" id="ac-disc-body">このチャットは一般的な情報のご案内で、法的な判断や医療・カウンセリングは行いません。つらい気持ちが強いときは、無理に入力せず相談窓口をご利用ください（緊急時は119／110）。入力内容は、応答を生成するため外部のAIに送信されます（<a href="/about/privacy">詳細</a>）。</p>
+      </div>
       <div class="ac-msgs" aria-live="polite"></div>
       <div class="ac-foot">
         <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
@@ -51,14 +58,26 @@ const AICHAT_OFF =
   #aichat .ac-fab:hover{filter:brightness(1.06)}
   @media(max-width:520px){#aichat .ac-fab span{display:none}#aichat .ac-fab{padding:14px;width:56px;height:56px;justify-content:center}}
 
-  #aichat .ac-disc{margin:0;padding:8px 16px;background:#F5EFE4;color:#6B5E4A;font-size:11px;line-height:1.5;border-bottom:1px solid #ECE3D3}
+  /* 免責＝折りたたみ式（重要情報なので消さず、初回は開いた状態。会話開始で自動折りたたみ＋再開可） */
+  #aichat .ac-disc-wrap{flex:none;background:#F5EFE4;border-bottom:1px solid #ECE3D3}
+  #aichat .ac-disc-toggle{display:flex;align-items:center;gap:7px;width:100%;background:none;border:none;
+    padding:8px 14px;cursor:pointer;color:#6B5E4A;font-size:11.5px;font-weight:700;
+    font-family:'Noto Sans JP',sans-serif;text-align:left}
+  #aichat .ac-disc-toggle i{font-size:15px;flex:none}
+  #aichat .ac-disc-title{flex:1;min-width:0}
+  #aichat .ac-disc-cv{transition:transform .2s ease}
+  #aichat .ac-disc-wrap.is-collapsed .ac-disc-cv{transform:rotate(-90deg)}
+  #aichat .ac-disc{margin:0;padding:2px 16px 9px;color:#6B5E4A;font-size:11px;line-height:1.5;
+    max-height:280px;overflow:hidden;transition:max-height .28s ease,padding .28s ease,opacity .2s ease}
+  #aichat .ac-disc-wrap.is-collapsed .ac-disc{max-height:0;padding-top:0;padding-bottom:0;opacity:0}
   #aichat .ac-disc a{color:#0F6E56;text-decoration:underline}
+  @media (prefers-reduced-motion:reduce){#aichat .ac-disc,#aichat .ac-disc-cv{transition:none}}
   #aichat .ac-modal{position:fixed;inset:0;z-index:100;pointer-events:none}
   #aichat .ac-modal[hidden]{display:none}
   #aichat .ac-ov{position:absolute;inset:0;background:rgba(27,42,38,.55);pointer-events:auto}
   #aichat .ac-sheet{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;pointer-events:auto;
     background:#FBF7F1;border-radius:22px 22px 0 0;box-shadow:0 -16px 40px -20px rgba(0,0,0,.45);
-    display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+    display:flex;flex-direction:column;max-height:92vh;overflow:hidden;overscroll-behavior:none}
 
   /* PC＝右下ドッキング型（サイトを使いながらチャット）。dim無し・角に浮かせる。 */
   @media (min-width:721px){
@@ -75,6 +94,8 @@ const AICHAT_OFF =
        送信ボタンが切れる問題を防ぐ。横方向はモーダル/シートの overflow:hidden でもクリップ。 */
   @media (max-width:720px){
     #aichat .ac-modal{overflow:hidden}
+    /* dim領域のタッチでは背面を一切パンさせない（msgsのスクロールは各自のtouch-action:autoで有効なまま） */
+    #aichat .ac-ov{touch-action:none}
     #aichat .ac-sheet{position:fixed;top:0;left:0;right:auto;bottom:auto;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;border-radius:0}
     #aichat .ac-grab{display:none}
     /* 入力欄(flex)が縮めるように＝送信ボタンが右にはみ出さない。 */
@@ -88,7 +109,7 @@ const AICHAT_OFF =
   #aichat .ac-close{margin-left:auto;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
     background:none;border:none;color:#9BB0C2;font-size:20px;cursor:pointer}
 
-  #aichat .ac-msgs{flex:1;overflow-y:auto;padding:14px 14px 4px;display:flex;flex-direction:column;gap:12px}
+  #aichat .ac-msgs{flex:1;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:14px 14px 4px;display:flex;flex-direction:column;gap:12px}
   #aichat .ac-b{max-width:88%;font-size:13.5px;line-height:1.8;color:#2C2A26}
   #aichat .ac-bot{background:#fff;border:1px solid #EFE7DA;border-radius:4px 15px 15px 15px;padding:12px 14px;align-self:flex-start}
   #aichat .ac-typing{display:flex;gap:5px;align-items:center;padding:14px 16px}
@@ -162,6 +183,23 @@ const AICHAT_OFF =
     const sendBtn = root.querySelector('.ac-send') as HTMLButtonElement;
     let state: FlowState | null = null;
 
+    // ── 免責（.ac-disc）の折りたたみ（#5）──
+    // 重要情報なので消さず、初回は開いた状態で表示。会話が始まったら（最初のユーザー送信後）
+    // 自動で畳んでチャット領域を確保し、いつでもⓘ見出しから再度開ける。aria-expanded で開閉を伝える。
+    const discWrap = root.querySelector('.ac-disc-wrap') as HTMLElement | null;
+    const discToggle = root.querySelector('.ac-disc-toggle') as HTMLButtonElement | null;
+    let discAutoCollapsed = false;
+    function setDisc(collapsed: boolean) {
+      if (!discWrap || !discToggle) return;
+      discWrap.classList.toggle('is-collapsed', collapsed);
+      discToggle.setAttribute('aria-expanded', String(!collapsed));
+    }
+    if (discToggle && discWrap) {
+      discToggle.addEventListener('click', () => setDisc(!discWrap.classList.contains('is-collapsed')));
+    }
+    // 会話開始（最初のユーザー送信）で一度だけ自動折りたたみ。
+    function autoCollapseDiscOnce() { if (!discAutoCollapsed) { discAutoCollapsed = true; setDisc(true); } }
+
     // ── Turnstile（ボット対策）。サイトキーが有るときだけウィジェットを出しトークンを得る。 ──
     // 無い（開発中/未設定）ときはトークン無しで送る＝Workerの開発モードが受ける（本番はH-3で保護）。
     const TS_SITEKEY = import.meta.env.PUBLIC_TURNSTILE_SITEKEY || '';
@@ -224,8 +262,19 @@ const AICHAT_OFF =
     // 内部相対(/path)・https:// ・# のみ許可。プロトコル相対(//evil) は弾く（doc44 L-1）。
     const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:\/\/|\/(?!\/)|#)/.test(s) ? s : '#'; };
     const down = () => { msgs.scrollTop = msgs.scrollHeight; };
+    // 直近（最後）の回答メッセージの「先頭要素」。キーボード開閉で vv がリサイズされた時、
+    // この要素を .ac-msgs の上端へ再アライメントし、表示位置が中途半端に飛ぶのを防ぐ（#3）。
+    let lastAnswerAnchor: HTMLElement | null = null;
+    // el の先頭が .ac-msgs の上端に来るよう、msgs 内だけをスクロール（ウィンドウは動かさない）。
+    const alignToMsgsTop = (el: Element | null | undefined, smooth = false) => {
+      if (!el || !(el as HTMLElement).isConnected) return;
+      const delta = el.getBoundingClientRect().top - msgs.getBoundingClientRect().top;
+      const top = Math.max(0, Math.min(msgs.scrollTop + delta, msgs.scrollHeight));
+      try { msgs.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' }); } catch (e) { msgs.scrollTop = top; }
+    };
     // 新しい応答は「先頭」に視線を移す（下端ではなく上端へ＝読み始めやすく）。
-    const scrollToEl = (el: Element | null | undefined) => { if (el) (el as HTMLElement).scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+    // window.scrollIntoView はページ自体を動かし得るため、msgs 内アライメントに一本化する。
+    const scrollToEl = (el: Element | null | undefined) => { lastAnswerAnchor = (el as HTMLElement) || lastAnswerAnchor; alignToMsgsTop(el, true); };
     // GA4計測（M-8）：種別だけ送る。会話本文・PII・入力内容は絶対に載せない。
     const track = (name: string) => { try { (window as any).gtag?.('event', 'aichat_' + name); } catch (e) { /* 計測失敗は無視 */ } };
 
@@ -234,6 +283,7 @@ const AICHAT_OFF =
       d.className = 'ac-b ac-user';
       d.textContent = text;
       msgs.appendChild(d); down();
+      autoCollapseDiscOnce(); // 会話が始まったら免責を自動で畳む（初回のみ）
     }
 
     function makeChips(chips: { label: string; value: string }[]) {
@@ -362,13 +412,21 @@ const AICHAT_OFF =
     // ビューポート幅で fixed 幅が広がる問題）」をまとめて解消する。毎イベント再計算＝「縮んだまま戻らない」も起きない。
     // Chrome Android は meta interactive-widget=resizes-content で layout が縮むため、この式でも整合する。
     const vv = (window as any).visualViewport as VisualViewport | undefined;
+    let lastVvHeight: number | null = null;
     function layoutSheet() {
       const st = sheet.style;
-      if (!isMobile() || !vv) { st.top = ''; st.left = ''; st.width = ''; st.height = ''; return; } // PCはCSSのドッキング表示に戻す
+      if (!isMobile() || !vv) { st.top = ''; st.left = ''; st.width = ''; st.height = ''; lastVvHeight = null; return; } // PCはCSSのドッキング表示に戻す
+      const prevH = lastVvHeight;
+      lastVvHeight = vv.height;
       st.top = vv.offsetTop + 'px';
       st.left = vv.offsetLeft + 'px';
       st.width = vv.width + 'px';
       st.height = vv.height + 'px';
+      // 可視高さが大きく縮んだ＝ソフトキーボードが立ち上がった時だけ、最後の回答の先頭を上端へ寄せ直す。
+      // （scroll イベントでは vv.height は不変＝発火しない。閉じる方向の拡大時も強制しない＝位置が飛ばない）
+      if (prevH != null && vv.height < prevH - 120 && lastAnswerAnchor) {
+        requestAnimationFrame(() => alignToMsgsTop(lastAnswerAnchor, false));
+      }
     }
 
     // ── 背面ページのスクロールロック（開いている間、縦横とも1pxも動かさない）──
@@ -381,13 +439,21 @@ const AICHAT_OFF =
       savedScrollY = window.scrollY || window.pageYOffset || 0;
       const b = document.body.style;
       b.position = 'fixed'; b.top = -savedScrollY + 'px'; b.left = '0'; b.right = '0'; b.width = '100%'; b.overflow = 'hidden';
+      // html にも overflow:hidden／overscroll-behavior:none を当て、縦横どちらのオーバースクロールも殺す。
+      // （body:fixed だけだと、ページ側に横オーバーフローが残っている時に visual viewport が横パンして背面が覗く）
+      const h = document.documentElement.style;
+      h.overflow = 'hidden'; h.overscrollBehavior = 'none';
       scrollLocked = true;
     }
     function unlockScroll() {
       const b = document.body.style;
       b.position = ''; b.top = ''; b.left = ''; b.right = ''; b.width = ''; b.overflow = '';
+      const h = document.documentElement.style;
+      h.overflow = ''; h.overscrollBehavior = '';
       scrollLocked = false;
-      window.scrollTo(0, savedScrollY); // 縦位置を復元しつつ横(x)は0へ＝閉じた後の横ズレを消す
+      // 縦位置を復元しつつ横(x)は必ず0へ＝閉じた後の横ズレを消す（2重に念押し）
+      window.scrollTo(0, savedScrollY);
+      document.documentElement.scrollLeft = 0; document.body.scrollLeft = 0;
     }
 
     function open() {

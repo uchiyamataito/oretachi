@@ -18,7 +18,12 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* 水平方向のはみ出しを恒常的にクリップ＝ページ側の横オーバーフローが原因で、
+   AIチャットを body:fixed でロック中でも visual viewport が横パンして背面が見える問題を根本から断つ。
+   overflow-x:clip はスクロールコンテナを作らないため position:sticky（ヘッダー）を壊さない。
+   （overflow-x:hidden/auto/scroll は sticky を壊すので使わない） */
+html{scroll-behavior:smooth;overflow-x:clip}
+html,body{overscroll-behavior:none}
 /* ページが短くてもフッターを最下部に（スティッキーフッター） */
 body{min-height:100vh;display:flex;flex-direction:column}
 body>*{min-width:0}  /* flex子要素が縮まずに横はみ出しする不具合の対策 */
