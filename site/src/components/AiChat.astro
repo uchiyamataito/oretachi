@@ -66,13 +66,16 @@ const AICHAT_OFF =
     #aichat .ac-sheet{left:auto;right:16px;bottom:16px;margin:0;width:410px;max-width:calc(100vw - 32px);
       height:min(780px,90vh);max-height:min(780px,90vh);border-radius:18px;box-shadow:0 20px 48px -20px rgba(21,35,58,.55)}
   }
-  /* スマホ＝全画面パネル。iOSのソフトキーボードでfixed要素の位置がズレる問題を避けるため、
-     bottomシートではなく全高fixedにし、JS(visualViewport)で可視領域に高さ・位置を合わせる。
-     横方向のはみ出しはモーダルでクリップし、閉じた後の横幅ズレ（横スクロール残り）を防ぐ。 */
+  /* スマホ＝全画面パネル。#aichat は <body> 直下（transform/filter/contain 等を持つ祖先なし）なので、
+     position:fixed はビューポート基準で正しく効く。ここでは全画面の“素の”ボックスだけを定義し、
+     実寸(top/left/width/height)は JS が visualViewport（実際に見えている領域）に合わせて毎回セットする。
+     ・右辺/下辺は auto にして、JS の width/height だけで寸法が決まるようにする（over-constrained を避ける）。
+     ・fallback は 100dvh（ツールバーを除いた可視高さ。JS 実行前の初期表示でも全画面になる）。
+     ・幅はレイアウトビューポート幅ではなく JS が vv.width を入れる＝横はみ出しで fixed が広がり
+       送信ボタンが切れる問題を防ぐ。横方向はモーダル/シートの overflow:hidden でもクリップ。 */
   @media (max-width:720px){
     #aichat .ac-modal{overflow:hidden}
-    /* 全画面固定パネル。inset:0＝キーボードで領域が縮む(interactive-widget)と自動で上に収まる。JSで高さを触らない。 */
-    #aichat .ac-sheet{position:fixed;inset:0;width:auto;max-width:none;height:auto;max-height:none;margin:0;border-radius:0}
+    #aichat .ac-sheet{position:fixed;top:0;left:0;right:auto;bottom:auto;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;border-radius:0}
     #aichat .ac-grab{display:none}
     /* 入力欄(flex)が縮めるように＝送信ボタンが右にはみ出さない。 */
     #aichat .ac-input{min-width:0}
@@ -149,6 +152,7 @@ const AICHAT_OFF =
   if (root && !KILL_SWITCH) {
     const fab = root.querySelector('.ac-fab') as HTMLButtonElement;
     const modal = root.querySelector('.ac-modal') as HTMLElement;
+    const sheet = root.querySelector('.ac-sheet') as HTMLElement;
     const ov = root.querySelector('.ac-ov') as HTMLElement;
     const closeBtn = root.querySelector('.ac-close') as HTMLButtonElement;
     const msgs = root.querySelector('.ac-msgs') as HTMLElement;
@@ -350,16 +354,62 @@ const AICHAT_OFF =
 
     const isMobile = () => window.matchMedia('(max-width:720px)').matches;
 
+    // ── モバイル全画面パネルの実寸合わせ（iOSソフトキーボード対策の要）──
+    // iOS Safari は interactive-widget 未対応で、キーボードが出てもレイアウトビューポートは縮まず“重なる”。
+    // さらにフォーカス時にウィンドウ自体をスクロールさせるため、fixed パネルが上へ飛ぶ／閉じた後に
+    // ズレが残る。そこで visualViewport（実際に見えている領域）に合わせて top/left/width/height を毎回セットし、
+    // 常に可視領域ぴったりに描く。これで「全画面にならない」「キーボードで飛ぶ」「送信ボタン切れ（=レイアウト
+    // ビューポート幅で fixed 幅が広がる問題）」をまとめて解消する。毎イベント再計算＝「縮んだまま戻らない」も起きない。
+    // Chrome Android は meta interactive-widget=resizes-content で layout が縮むため、この式でも整合する。
+    const vv = (window as any).visualViewport as VisualViewport | undefined;
+    function layoutSheet() {
+      const st = sheet.style;
+      if (!isMobile() || !vv) { st.top = ''; st.left = ''; st.width = ''; st.height = ''; return; } // PCはCSSのドッキング表示に戻す
+      st.top = vv.offsetTop + 'px';
+      st.left = vv.offsetLeft + 'px';
+      st.width = vv.width + 'px';
+      st.height = vv.height + 'px';
+    }
+
+    // ── 背面ページのスクロールロック（開いている間、縦横とも1pxも動かさない）──
+    // iOS はキーボード表示や入力フォーカスでウィンドウを勝手にスクロールさせ、閉じた後に縦横のズレが残る
+    // （＝ロゴが見切れる横スクロール残り）。body を position:fixed で完全固定し、閉じるとき元の位置へ厳密に戻す。
+    // scrollTo の x=0 で、フォーカス中に生じた横スクロールも確実に打ち消す。（PCはロックしない＝サイト併用可）
+    let scrollLocked = false;
+    let savedScrollY = 0;
+    function lockScroll() {
+      savedScrollY = window.scrollY || window.pageYOffset || 0;
+      const b = document.body.style;
+      b.position = 'fixed'; b.top = -savedScrollY + 'px'; b.left = '0'; b.right = '0'; b.width = '100%'; b.overflow = 'hidden';
+      scrollLocked = true;
+    }
+    function unlockScroll() {
+      const b = document.body.style;
+      b.position = ''; b.top = ''; b.left = ''; b.right = ''; b.width = ''; b.overflow = '';
+      scrollLocked = false;
+      window.scrollTo(0, savedScrollY); // 縦位置を復元しつつ横(x)は0へ＝閉じた後の横ズレを消す
+    }
+
     function open() {
       modal.hidden = false; fab.hidden = true;
-      if (isMobile()) document.body.style.overflow = 'hidden'; // PCはサイトを使えるようロックしない
+      if (isMobile()) lockScroll(); // PCはサイトを使えるようロックしない
       if (!state) { const s = startFlow(); state = s.state; render(s.messages); }
       ensureTurnstile();
       track('open');
+      if (vv) { vv.addEventListener('resize', layoutSheet); vv.addEventListener('scroll', layoutSheet); }
+      window.addEventListener('resize', layoutSheet); // 回転・PC↔モバイル切替に追従
+      layoutSheet();
       // モバイルは自動フォーカスしない（開いた瞬間にキーボードが出て画面が跳ねるのを防ぐ）。
       if (!isMobile()) setTimeout(() => input && input.focus(), 60);
     }
-    function close() { modal.hidden = true; fab.hidden = false; document.body.style.overflow = ''; }
+    function close() {
+      modal.hidden = true; fab.hidden = false;
+      if (vv) { vv.removeEventListener('resize', layoutSheet); vv.removeEventListener('scroll', layoutSheet); }
+      window.removeEventListener('resize', layoutSheet);
+      // インラインで付けた実寸を消す（次回PC表示時の右下ドッキングを壊さない）
+      sheet.style.top = ''; sheet.style.left = ''; sheet.style.width = ''; sheet.style.height = '';
+      if (scrollLocked) unlockScroll();
+    }
 
     // IME（日本語変換）中フラグ。変換確定のEnterで送信しないために使う。
     let composing = false;
