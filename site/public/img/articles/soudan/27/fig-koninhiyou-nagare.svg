@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">婚姻費用の決まり方。まず夫婦の協議、まとまらなければ家庭裁判所の婚姻費用分担請求調停、それも不成立なら審判で裁判官が判断する</title>
+  <defs>
+    <marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#C9C0B0"/></marker>
+  </defs>
+  <rect x="0.5" y="0.5" width="699" height="359" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">婚姻費用は、どうやって決まるか</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">話し合いがまとまらなければ、家庭裁判所へ段階的に進む。</text>
+
+  <!-- Card 1: 協議 -->
+  <rect x="40" y="100" width="188" height="150" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="58" y="128" font-size="14" font-weight="700" fill="#1B3A57">① まず協議</text>
+  <text x="58" y="154" font-size="12" fill="#2C2A26">夫婦の話し合いで</text>
+  <text x="58" y="174" font-size="12" fill="#2C2A26">決める。決めた内容は</text>
+  <text x="58" y="194" font-size="12" fill="#2C2A26">公正証書などの書面に</text>
+  <text x="58" y="214" font-size="12" fill="#2C2A26">残すのが安全。</text>
+
+  <!-- Card 2: 調停 -->
+  <rect x="248" y="100" width="188" height="150" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="266" y="128" font-size="14" font-weight="700" fill="#0F6E56">② 家裁の調停</text>
+  <text x="266" y="154" font-size="12" fill="#2C2A26">まとまらなければ</text>
+  <text x="266" y="174" font-size="12" fill="#2C2A26">婚姻費用分担請求調停。</text>
+  <text x="266" y="194" font-size="12" fill="#2C2A26">調停委員が間に入り、</text>
+  <text x="266" y="214" font-size="12" fill="#2C2A26">相手と会わず進められる。</text>
+
+  <!-- Card 3: 審判 -->
+  <rect x="456" y="100" width="188" height="150" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="474" y="128" font-size="14" font-weight="700" fill="#1B3A57">③ 審判</text>
+  <text x="474" y="154" font-size="12" fill="#2C2A26">調停も不成立なら、</text>
+  <text x="474" y="174" font-size="12" fill="#2C2A26">裁判官が一切の事情を</text>
+  <text x="474" y="194" font-size="12" fill="#2C2A26">考慮して判断する。</text>
+
+  <!-- arrows -->
+  <path d="M231 175 L245 175" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#ar1)"/>
+  <path d="M439 175 L453 175" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#ar1)"/>
+
+  <!-- note -->
+  <rect x="40" y="270" width="620" height="66" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="58" y="296" font-size="13" font-weight="700" fill="#B5481F">金額の目安は家庭裁判所の「算定表」がある。ただし、</text>
+  <text x="58" y="318" font-size="12" fill="#2C2A26">年収の当てはめや具体額の計算は、専門家・裁判所の領域。この記事では金額は扱わない。</text>
+</svg>

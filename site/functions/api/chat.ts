@@ -26,6 +26,7 @@ interface Env {
   MODEL_ANSWER?: string; // 回答モデル（既定 claude-sonnet-5）
   EMBED_MODEL?: string; // 埋め込みモデル（既定 @cf/baai/bge-m3＝多言語・日本語対応・1024次元）
   CARD_MIN_SCORE?: string; // 記事カードを出す最小類似度（既定 0.5。実クエリで要調整）
+  MAX_DEEPEN?: string; // 深掘りの最大ターン数（既定 3。この数で打ち切り記事を出す）
   MONTHLY_REQUEST_CAP?: string; // 月次リクエスト上限（既定 300）
   RATE_PER_MIN?: string; // 1IPあたり毎分上限（既定 8）
 }
@@ -62,7 +63,7 @@ const DEGRADED = {
 
 export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Response> = async ({ request, env }) => {
   // 1) 入力の受け取り＋基本バリデーション
-  let body: { message?: string; turnstileToken?: string };
+  let body: { message?: string; turnstileToken?: string; deepen?: number };
   try { body = await request.json(); } catch { return json({ error: 'bad_request' }, 400); }
   const message = (body.message || '').toString();
   if (!message.trim()) return json({ error: 'empty' }, 400);
@@ -104,8 +105,13 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
     const chunks = await getChunks(env, request);
     const hits = searchChunks(queryVec, chunks, {});
 
+    // 深掘りの上限。クライアントが「これまでの深掘り回数」を deepen で送る。上限に達したら質問を打ち切り記事へ。
+    const maxDeepen = Number(env.MAX_DEEPEN || '3');
+    const deepen = Math.max(0, Number(body.deepen || 0));
+    const finalTurn = deepen >= maxDeepen - 1; // 例：max=3 なら deepen=2（=3ターン目）で打ち切り
+
     // 8) Claude で回答生成（二層：共感は自由に温かく／事実は参考記事の範囲）＝ここで課金（数円）
-    const raw = await callClaude(env, safeText, hits);
+    const raw = await callClaude(env, safeText, hits, finalTurn);
 
     // 8-2) 末尾の [[NEXT]] 選択肢を分離（あれば。タップで次を送れるチップにする）
     let answer = raw;
@@ -115,15 +121,17 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
       answer = parts[0].trim();
       suggestions = parts[1].split('|').map((s) => s.trim()).filter(Boolean).slice(0, 3);
     }
+    if (finalTurn) suggestions = []; // 最終ターンは選択肢を出さない（記事へ）
 
     // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
     // 10) 記事カードを出す条件（曖昧な相談に無理やり結びつけない）：
-    //   ① AIが選択肢([[NEXT]])を出している＝まだ深掘り中 → カードは出さない（深掘りを優先）
-    //   ② 選択肢が無い（＝具体的な回答）かつ 確度の高いヒットがある時だけカード
+    //   ・最終ターン → 近い記事を必ず表示（top3・閾値無視で"近いもの"を出す）
+    //   ・深掘り中（選択肢あり）→ カードは出さない
+    //   ・それ以外（具体的な回答）→ 確度の高いヒットのみカード化
     const cardMin = Number(env.CARD_MIN_SCORE || '0.5');
-    const cardHits = suggestions.length ? [] : hits.filter((h) => h.score >= cardMin);
+    const cardHits = finalTurn ? hits : (suggestions.length ? [] : hits.filter((h) => h.score >= cardMin));
     const cards = hitsToCards(cardHits, 3);
     const top = cardHits[0]?.chunk;
     await incrBudget(env, ip); // 成功時のみ月次カウント
@@ -189,7 +197,7 @@ async function embed(env: Env, text: string): Promise<number[]> {
 }
 
 // ───────── Claude 呼び出し（Messages API・プロンプトキャッシュ） ─────────
-async function callClaude(env: Env, userText: string, hits: ReturnType<typeof searchChunks>): Promise<string> {
+async function callClaude(env: Env, userText: string, hits: ReturnType<typeof searchChunks>, finalTurn = false): Promise<string> {
   const model = env.MODEL_ANSWER || 'claude-sonnet-5';
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -202,7 +210,7 @@ async function callClaude(env: Env, userText: string, hits: ReturnType<typeof se
       model,
       max_tokens: 400, // 出力上限でコストを抑える
       system: [{ type: 'text', text: SYSTEM_GUARDS, cache_control: { type: 'ephemeral' } }], // system固定部をキャッシュ
-      messages: [{ role: 'user', content: buildUserContent(userText, hits) }],
+      messages: [{ role: 'user', content: buildUserContent(userText, hits, finalTurn) }],
     }),
   });
   if (!res.ok) throw new Error('claude_' + res.status);

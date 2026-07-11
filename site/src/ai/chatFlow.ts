@@ -24,6 +24,7 @@ export interface FlowState {
   topic?: string;
   subtopic?: string;
   turns?: number; // 自由入力(調べる)の往復数。往復上限(M-3)のカウンタ。
+  deepen?: number; // 連続した深掘り(選択肢)ターン数。上限(既定3)でサーバが記事を出す。
 }
 
 // ── 会話の選択肢とデモ用コンテンツ（実データは後でRAG/コンテンツから差し替え） ──
@@ -86,9 +87,9 @@ export function startFlow(): { state: FlowState; messages: BotMessage[] } {
     state: { step: 'topic' },
     messages: [
       {
-        kind: 'chips',
-        text: 'ここは、離婚まわりの悩みを整理する場所です。無理に全部話さなくて大丈夫です。まずは、今いちばん気になっていることを教えてください。どれに近いですか？',
-        chips: TOPICS,
+        // 冒頭は選択肢を出さず、まず自由に書いてもらう入口にする（2026-07-09 フィードバック）
+        kind: 'answer',
+        text: 'ここは、離婚まわりの悩みを整理する場所です。無理に全部話さなくて大丈夫です。今、気になっていることを、お気軽に書いてみてください。',
       },
     ],
   };
@@ -153,7 +154,7 @@ export interface ChatApiResponse {
   moreLabel?: string;
   error?: string;
 }
-export type ChatApi = (message: string) => Promise<ChatApiResponse>;
+export type ChatApi = (message: string, deepen: number) => Promise<ChatApiResponse>;
 
 // 既定＝サーバ未接続のプレビュー用ダミー（/styleguide 用）。デプロイ時は AiChat.astro が実APIを注入する。
 const dummyApi: ChatApi = async () => ({
@@ -189,6 +190,7 @@ export async function onText(
   }
   // proceed＝有料の生成経路。ここだけ往復をカウントし、上限で打ち切る（M-3）。
   const turns = (state.turns || 0) + 1;
+  const deepen = state.deepen || 0; // これまでの深掘りターン数（サーバへ渡す）
   const next: FlowState = { ...state, turns };
   if (turns > MAX_TURNS) {
     return {
@@ -202,24 +204,26 @@ export async function onText(
     };
   }
   try {
-    const r = await api(g.safeText || text);
+    const r = await api(g.safeText || text, deepen);
     if (r.kind === 'safe' || r.error) {
       return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているようです。少し時間をおいてお試しください。' }], event: 'degraded' };
     }
     const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
-    // 記事カードは「確度の高いヒットがある時だけ」サーバが返す。無理に結びつけない。
+    // 記事カードはサーバが「出す時だけ」返す（深掘り中は空／最終ターンや具体的な回答で入る）。
     if (r.cards && r.cards.length) {
       messages.push({ kind: 'cards', text: '', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
     }
     // 追撃チップは常設せず、AIが提案した選択肢がある時だけ（タップで次を送れる＝深掘りが続く）。
-    if (r.suggestions && r.suggestions.length) {
+    const hasSug = !!(r.suggestions && r.suggestions.length);
+    if (hasSug) {
       messages.push({
         kind: 'chips',
         text: '近いものがあれば、タップで教えてください（そのまま入力でも大丈夫です）。',
-        chips: r.suggestions.slice(0, 3).map((s) => ({ label: s, value: '__say' })),
+        chips: r.suggestions!.slice(0, 3).map((s) => ({ label: s, value: '__say' })),
       });
     }
-    return { state: next, messages, event: 'answer' };
+    // 深掘り継続（選択肢あり）なら +1、記事を出した（選択肢なし）ならリセット。
+    return { state: { ...next, deepen: hasSug ? deepen + 1 : 0 }, messages, event: 'answer' };
   } catch (e) {
     // 通信不調 → 静的縮退（記事サイト・窓口は生きている）
     return { state: next, messages: [{ kind: 'safe', text: 'うまく繋がりませんでした。少し時間をおいてお試しください。お急ぎの場合は記事一覧や相談窓口もご利用ください。' }], event: 'degraded' };

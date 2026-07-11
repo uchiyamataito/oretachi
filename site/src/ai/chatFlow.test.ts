@@ -10,8 +10,7 @@ function ok(cond: boolean, label: string, extra = '') {
 async function main() {
   const s0 = startFlow();
   ok(s0.state.step === 'topic', '開始=topic');
-  ok(s0.messages.length === 1 && s0.messages[0].kind === 'chips', '開始=chips');
-  ok((s0.messages[0].chips || []).length === 5, 'トピック5件');
+  ok(s0.messages.length === 1 && s0.messages[0].kind === 'answer' && !s0.messages[0].chips, '開始=テキスト入口(選択肢なし)');
 
   const s1 = onChip(s0.state, 'money');
   ok(s1.state.step === 'subtopic' && s1.state.topic === 'money', 'money→subtopic', JSON.stringify(s1.state));
@@ -59,6 +58,12 @@ async function main() {
   ok(!rsug.messages.some((m) => m.kind === 'cards'), '提案のみ＝カードなし');
   const sugChip = rsug.messages.find((m) => m.kind === 'chips');
   ok(!!sugChip && (sugChip.chips || [])[0].value === '__say' && (sugChip.chips || [])[0].label === 'もう決めたと言われた', '選択肢チップ(__say)を出す');
+  ok(rsug.state.deepen === 1, '選択肢あり→deepen+1');
+  ok(ra.state.deepen === 0, '選択肢なし→deepenリセット');
+  let capturedDeepen = -1;
+  const stubCap: ChatApi = async (_m, d) => { capturedDeepen = d; return { kind: 'answer', text: 'x' }; };
+  await onText({ step: 'topic', deepen: 2 } as FlowState, 'x', stubCap);
+  ok(capturedDeepen === 2, 'deepenをAPIへ渡す');
 
   const stubSafe: ChatApi = async () => ({ kind: 'safe', text: 'いま混み合っている' });
   const rs = await onText({ step: 'topic' } as FlowState, '生活費について', stubSafe);

@@ -73,6 +73,11 @@ const AICHAT_OFF =
   #aichat .ac-msgs{flex:1;overflow-y:auto;padding:14px 14px 4px;display:flex;flex-direction:column;gap:12px}
   #aichat .ac-b{max-width:88%;font-size:13.5px;line-height:1.8;color:#2C2A26}
   #aichat .ac-bot{background:#fff;border:1px solid #EFE7DA;border-radius:4px 15px 15px 15px;padding:12px 14px;align-self:flex-start}
+  #aichat .ac-typing{display:flex;gap:5px;align-items:center;padding:14px 16px}
+  #aichat .ac-dot{width:7px;height:7px;border-radius:50%;background:#B4A793;animation:ac-blink 1.2s infinite ease-in-out}
+  #aichat .ac-dot:nth-child(2){animation-delay:.2s}
+  #aichat .ac-dot:nth-child(3){animation-delay:.4s}
+  @keyframes ac-blink{0%,70%,100%{opacity:.25;transform:translateY(0)}35%{opacity:1;transform:translateY(-2px)}}
   #aichat .ac-user{background:#FBEADF;border:1px solid #F3D6C4;border-radius:15px 4px 15px 15px;padding:10px 14px;align-self:flex-end}
   #aichat .ac-safe{border-color:#CFE6DC;background:#F1F6F3}
   #aichat .ac-b .ac-t{white-space:pre-wrap}
@@ -165,11 +170,11 @@ const AICHAT_OFF =
     }
 
     // 本番のAI呼び出し（/api/chat）。応答はサーバの出力ガード済み。失敗時は onText 側で安全に縮退。
-    const realApi = async (message: string) => {
+    const realApi = async (message: string, deepen: number) => {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ message, turnstileToken: tsToken }),
+        body: JSON.stringify({ message, turnstileToken: tsToken, deepen }),
       });
       const data = await res.json().catch(() => ({ kind: 'safe', text: '' }));
       const w = (window as any).turnstile; // 使い切りトークンをリセット
@@ -275,18 +280,31 @@ const AICHAT_OFF =
       state = res.state; renderResponse(res.messages);
     }
 
+    // 「回答を作成中」のローディング吹き出し（3つの点がアニメ）
+    function showTyping() {
+      const d = document.createElement('div');
+      d.className = 'ac-b ac-bot ac-typing';
+      d.setAttribute('aria-label', '回答を作成中');
+      d.innerHTML = '<span class="ac-dot"></span><span class="ac-dot"></span><span class="ac-dot"></span>';
+      msgs.appendChild(d); down();
+      return d;
+    }
+
     async function sendText(text: string) {
       if (!text) return;
       if (!state) state = startFlow().state;
       sendBtn.disabled = true;
-      const firstIdx = msgs.children.length;
+      const typing = showTyping();
       try {
         const res = await onText(state, text, realApi);
+        typing.remove();
         state = res.state;
+        const firstIdx = msgs.children.length;
         res.messages.forEach(addBot);
         if (res.event) track(res.event); // 発火種別のみ計測（本文なし）
         requestAnimationFrame(() => scrollToEl(msgs.children[firstIdx]));
       } finally {
+        if (typing.parentNode) typing.remove();
         sendBtn.disabled = false;
       }
     }

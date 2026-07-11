@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" role="img" aria-labelledby="t" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">取り決めた婚姻費用が滞ったときの段階。まず家庭裁判所の履行勧告、次に履行命令で従わなければ10万円以下の過料、最終的に給与などの強制執行。いずれも書面での取り決めが前提</title>
+  <defs>
+    <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#C9C0B0"/></marker>
+  </defs>
+  <rect x="0.5" y="0.5" width="699" height="359" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">取り決めた後に、支払いが滞ると</text>
+  <text x="36" y="70" font-size="12.5" fill="#6E6354">決めた約束を守らない相手には、段階的な手段がある。</text>
+
+  <!-- Card 1: 履行勧告 -->
+  <rect x="40" y="100" width="188" height="150" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="58" y="128" font-size="14" font-weight="700" fill="#1B3A57">① 履行勧告</text>
+  <text x="58" y="154" font-size="12" fill="#2C2A26">家裁が「守るように」</text>
+  <text x="58" y="174" font-size="12" fill="#2C2A26">勧告する。費用は無料。</text>
+  <text x="58" y="194" font-size="12" fill="#2C2A26">ただし、強制する力は</text>
+  <text x="58" y="214" font-size="12" fill="#2C2A26">ない。</text>
+
+  <!-- Card 2: 履行命令 -->
+  <rect x="248" y="100" width="188" height="150" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="266" y="128" font-size="14" font-weight="700" fill="#1B3A57">② 履行命令</text>
+  <text x="266" y="154" font-size="12" fill="#2C2A26">家裁が支払いを命じる。</text>
+  <text x="266" y="174" font-size="12" fill="#2C2A26">正当な理由なく従わ</text>
+  <text x="266" y="194" font-size="12" fill="#2C2A26">ないと、</text>
+  <text x="266" y="214" font-size="12" font-weight="700" fill="#B5481F">10万円以下の過料。</text>
+
+  <!-- Card 3: 強制執行 -->
+  <rect x="456" y="100" width="188" height="150" rx="12" fill="#FBF1EA" stroke="#E7B39F"/>
+  <text x="474" y="128" font-size="14" font-weight="700" fill="#B5481F">③ 強制執行</text>
+  <text x="474" y="154" font-size="12" fill="#2C2A26">給与などの財産を</text>
+  <text x="474" y="174" font-size="12" fill="#2C2A26">差し押さえて回収。</text>
+  <text x="474" y="194" font-size="12" fill="#2C2A26">調停調書・公正証書</text>
+  <text x="474" y="214" font-size="12" fill="#2C2A26">などの書面が要る。</text>
+
+  <!-- arrows -->
+  <path d="M231 175 L245 175" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#ar2)"/>
+  <path d="M439 175 L453 175" stroke="#C9C0B0" stroke-width="2" fill="none" marker-end="url(#ar2)"/>
+
+  <!-- note -->
+  <rect x="40" y="270" width="620" height="66" rx="12" fill="#EFF7F2" stroke="#CBE5D6"/>
+  <text x="58" y="296" font-size="13" font-weight="700" fill="#0F6E56">だからこそ、取り決めは口約束で終わらせない。</text>
+  <text x="58" y="318" font-size="12" fill="#2C2A26">公正証書や調停調書など「書面」に残しておくことが、支払いを確保する後ろ盾になる。</text>
+</svg>
