@@ -131,16 +131,18 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
       answer = parts[0].trim();
       suggestions = parts[1].split('|').map((s) => s.trim()).filter(Boolean).slice(0, 3);
     }
-    if (finalTurn) suggestions = []; // 最終ターンは選択肢を出さない（記事へ）
+    // 関連性の高いヒット。これがあれば「深掘りせず記事を出す」＝追加質問（選択肢）は曖昧で記事が無い時だけ。
+    const cardMin = Number(env.CARD_MIN_SCORE || '0.6');
+    const relevant = hits.filter((h) => h.score >= cardMin);
+    // 記事が見つかった or 深掘り上限 なら、選択肢（追加質問）を出さない＝そのまま記事へ案内。
+    if (relevant.length > 0 || finalTurn) suggestions = [];
 
     // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
-    // 10) 記事カード：関連性の高いヒットだけ（弱いものを無理に3枚並べない。1〜3枚。深掘り中は出さない）。
-    const cardMin = Number(env.CARD_MIN_SCORE || '0.6');
-    const relevant = suggestions.length ? [] : hits.filter((h) => h.score >= cardMin);
-    const cards = hitsToCards(relevant, 3);
-    const uniqueCount = new Set(relevant.map((h) => h.chunk.url)).size;
+    // 10) 記事カード：深掘り中（選択肢あり）は出さない／それ以外は関連性の高いヒットを最大3枚。
+    const cards = suggestions.length ? [] : hitsToCards(relevant, 3);
+    const uniqueCount = suggestions.length ? 0 : new Set(relevant.map((h) => h.chunk.url)).size;
     // 「もっと見る」：関連候補が4件以上ある時だけ表示（3件以下はトルツメ）。トップのカテゴリで絞った一覧へ。
     const showMore = uniqueCount > 3;
     const theme = deriveTheme(cards[0]?.category);

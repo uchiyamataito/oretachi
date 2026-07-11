@@ -15,10 +15,13 @@ export interface OutputGuardResult {
   reasons: string[]; // 差し止め理由（ログ用・内容は残さず種別のみ）
 }
 
-// ② 封印テーマ×具体的な金額。封印語と金額が"同じ段落内"で共起したら発火（M-2＝文（。）を跨いでも拾う）。
-// 段落境界（空行 \n\n）は跨がない＝無関係な別段落の金額は誤爆させない。封印語が無ければ発火しないので生活費の「月5万円」は安全。
-const SEALED_AMOUNT_A = /(財産分与|慰謝料|養育費|年金分割)(?:(?!\n\n)[\s\S]){0,60}?\d{1,5}\s*[万億]?円/;
-const SEALED_AMOUNT_B = /\d{1,5}\s*[万億]?円(?:(?!\n\n)[\s\S]){0,40}?(財産分与|慰謝料|養育費|年金分割)/;
+// ② 封印テーマ×具体的な金額。**同じ段落内に封印語と金額が共起**したら封印金額の漏れとみなす。
+// 段落（空行 \n\n 区切り）単位で判定＝距離に依存せず拾う（長文でも見逃さない）／別段落の無関係な金額は誤爆させない。
+const SEALED_TOPIC_RE = /(財産分与|慰謝料|養育費|年金分割)/;
+const AMOUNT_RE = /\d{1,5}\s*[万億]?円/;
+function hasSealedAmount(t: string): boolean {
+  return t.split(/\n{2,}/).some((p) => SEALED_TOPIC_RE.test(p) && AMOUNT_RE.test(p));
+}
 // ③ 個別の法的判断の断定
 const LEGAL_JUDGE = /(あなた|今回|この(ケース|場合)|お客様)[^。\n]{0,16}?(勝て(ます|る)|負け(ます|る)|違法です|合法です|認められます|通ります|取れます)/;
 // ④ 過度な確約（成功・獲得を確約する断定）
@@ -42,7 +45,7 @@ export function guardOutput(text: string, hasSource: boolean, fallback: string):
   const reasons: string[] = [];
 
   if (t.trim().length === 0) reasons.push('empty');
-  if (SEALED_AMOUNT_A.test(t) || SEALED_AMOUNT_B.test(t)) reasons.push('sealed_amount');
+  if (hasSealedAmount(t)) reasons.push('sealed_amount');
   if (LEGAL_JUDGE.test(t)) reasons.push('legal_judgement');
   if (OVER_ASSERT.test(t)) reasons.push('over_assertion');
   // ⑤ 商品推奨：推奨表現があり、かつ一般的な相談先の案内でない場合のみ差し止め

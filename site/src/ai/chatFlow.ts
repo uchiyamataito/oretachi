@@ -209,9 +209,10 @@ export async function onText(
       return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているようです。少し時間をおいてお試しください。' }], event: 'degraded' };
     }
     const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
-    // 記事カードはサーバが「出す時だけ」返す（深掘り中は空／最終ターンや具体的な回答で入る）。
+    // 記事カードはサーバが「出す時だけ」返す（深掘り中は空／具体的な回答で入る）。
+    // いきなりカードが出ると唐突なので、接続の一言を添える。
     if (r.cards && r.cards.length) {
-      messages.push({ kind: 'cards', text: '', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
+      messages.push({ kind: 'cards', text: '詳しくは、こちらの記事も参考になるかもしれません。', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
     }
     // 追撃チップは常設せず、AIが提案した選択肢がある時だけ（タップで次を送れる＝深掘りが続く）。
     const hasSug = !!(r.suggestions && r.suggestions.length);
