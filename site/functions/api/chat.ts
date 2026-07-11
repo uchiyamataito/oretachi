@@ -119,9 +119,11 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
     // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
-    // 10) 記事カードは「確度の高いヒットがある時だけ」（曖昧な相談に無理やり結びつけない）
+    // 10) 記事カードを出す条件（曖昧な相談に無理やり結びつけない）：
+    //   ① AIが選択肢([[NEXT]])を出している＝まだ深掘り中 → カードは出さない（深掘りを優先）
+    //   ② 選択肢が無い（＝具体的な回答）かつ 確度の高いヒットがある時だけカード
     const cardMin = Number(env.CARD_MIN_SCORE || '0.5');
-    const cardHits = hits.filter((h) => h.score >= cardMin);
+    const cardHits = suggestions.length ? [] : hits.filter((h) => h.score >= cardMin);
     const cards = hitsToCards(cardHits, 3);
     const top = cardHits[0]?.chunk;
     await incrBudget(env, ip); // 成功時のみ月次カウント

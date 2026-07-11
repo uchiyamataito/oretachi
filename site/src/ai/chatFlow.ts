@@ -211,9 +211,13 @@ export async function onText(
     if (r.cards && r.cards.length) {
       messages.push({ kind: 'cards', text: '', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
     }
-    // 追撃チップは常設せず、AIが提案した選択肢がある時だけ（タップで次を送れる）。
+    // 追撃チップは常設せず、AIが提案した選択肢がある時だけ（タップで次を送れる＝深掘りが続く）。
     if (r.suggestions && r.suggestions.length) {
-      messages.push({ kind: 'chips', text: '', chips: r.suggestions.slice(0, 3).map((s) => ({ label: s, value: '__say' })) });
+      messages.push({
+        kind: 'chips',
+        text: '近いものがあれば、タップで教えてください（そのまま入力でも大丈夫です）。',
+        chips: r.suggestions.slice(0, 3).map((s) => ({ label: s, value: '__say' })),
+      });
     }
     return { state: next, messages, event: 'answer' };
   } catch (e) {
