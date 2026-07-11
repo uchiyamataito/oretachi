@@ -32,7 +32,7 @@ const AICHAT_OFF =
         <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
         <div class="ac-ts"></div>
         <div class="ac-inrow">
-          <input class="ac-input" type="text" autocomplete="off" placeholder="気になることを聞いてくれ" aria-label="メッセージを入力" />
+          <input class="ac-input" type="text" autocomplete="off" placeholder="気になることを、お気軽にどうぞ" aria-label="メッセージを入力" />
           <button class="ac-send" aria-label="送信"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
         </div>
       </div>
@@ -88,7 +88,7 @@ const AICHAT_OFF =
   #aichat .ac-cards{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 6px}
   #aichat .ac-card{flex:none;width:150px;background:#fff;border:1px solid #EFE7DA;border-radius:14px;overflow:hidden;
     text-decoration:none;box-shadow:0 8px 18px -16px rgba(21,35,58,.5)}
-  #aichat .ac-card-img{height:84px;background:#E7E1D5;display:flex;align-items:center;justify-content:center;color:#B4A793;font-size:22px}
+  #aichat .ac-card-img{height:84px;background:#E7E1D5;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;color:#B4A793;font-size:22px}
   #aichat .ac-card-b{padding:9px 10px 11px}
   #aichat .ac-cat{display:inline-block;font-size:10px;font-weight:700;background:#EDE7DD;color:#6E6354;border-radius:6px;padding:2px 8px}
   #aichat .ac-card-t{font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:12.5px;color:#1B3A57;line-height:1.5;margin-top:7px}
@@ -219,7 +219,10 @@ const AICHAT_OFF =
           const a = document.createElement('a');
           a.className = 'ac-card'; a.href = safeUrl(c.href);
           a.addEventListener('click', () => track('card'));
-          a.innerHTML = `<div class="ac-card-img"><i class="ti ti-photo" aria-hidden="true"></i></div><div class="ac-card-b"><span class="ac-cat">${esc(c.category)}</span><div class="ac-card-t">${esc(c.title)}</div></div>`;
+          const img = c.image
+            ? `<div class="ac-card-img" style="background-image:url('${esc(safeUrl(c.image))}')"></div>`
+            : `<div class="ac-card-img"><i class="ti ti-photo" aria-hidden="true"></i></div>`;
+          a.innerHTML = `${img}<div class="ac-card-b"><span class="ac-cat">${esc(c.category)}</span><div class="ac-card-t">${esc(c.title)}</div></div>`;
           sc.appendChild(a);
         });
         cw.appendChild(sc);

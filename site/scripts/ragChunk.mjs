@@ -37,6 +37,7 @@ export function parseFrontmatter(md) {
     published: get('published'),
     updated: get('updated'),
     rag: get('rag'), // 'false' なら build-rag 側で除外
+    image: (fm.match(/hero_image:\s*\n\s*src:\s*"([^"]*)"/) || [])[1] || '', // ヒーロー画像（カード表示用）
   };
   const faq = [];
   const block = fm.match(/faq:\n([\s\S]*?)(?=\n[a-zA-Z_]+:|$)/);
@@ -120,6 +121,7 @@ function makeRecord(sourceType, slug, url, data, heading, text, idSuffix) {
     category: data.category || '',
     heading,
     text,
+    image: data.image || '',
     published: data.published || '',
     updated: data.updated || '',
   };

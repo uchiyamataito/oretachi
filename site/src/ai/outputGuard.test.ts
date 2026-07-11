@@ -15,8 +15,8 @@ function expect(label: string, text: string, hasSource: boolean, wantOk: boolean
 expect('通常回答は通す', '別居中の生活費は、収入や子どもの有無で変わります。まずは家計の棚卸しから始めましょう。', true, true);
 
 // 出典なし → 差し止め（作話防止）
-expect('出典なしは差し止め', '一般的にはこう言われています。', false, false, 'no_source');
-expect('空文字は差し止め', '', true, false, 'no_source');
+expect('出典なしでも共感応答は通す（二層設計）', 'それはおつらいですね。まずは気持ちの整理を優先して大丈夫です。', false, true);
+expect('空文字は差し止め', '', true, false, 'empty');
 
 // 封印テーマ×具体額 → 差し止め
 expect('慰謝料+金額は差し止め', '慰謝料は300万円もらえます。', true, false, 'sealed_amount');

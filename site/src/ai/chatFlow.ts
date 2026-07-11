@@ -8,7 +8,7 @@
 import { screenInput } from './guards.ts';
 
 export interface Chip { label: string; value: string; }
-export interface Card { category: string; title: string; href: string; }
+export interface Card { category: string; title: string; href: string; image?: string; }
 export type BotKind = 'chips' | 'cards' | 'answer' | 'safe';
 export interface BotMessage {
   kind: BotKind;
@@ -87,7 +87,7 @@ export function startFlow(): { state: FlowState; messages: BotMessage[] } {
     messages: [
       {
         kind: 'chips',
-        text: 'ここは、離婚まわりの悩みを整理する場所だ。無理に全部話さなくていい。まずは、今いちばん気になっていることを教えてくれ。どれに近い？',
+        text: 'ここは、離婚まわりの悩みを整理する場所です。無理に全部話さなくて大丈夫です。まずは、今いちばん気になっていることを教えてください。どれに近いですか？',
         chips: TOPICS,
       },
     ],
@@ -102,14 +102,14 @@ function propose(topic: string, subtopic?: string): { state: FlowState; messages
     messages: [
       {
         kind: 'cards',
-        text: '今すぐ全部やらなくていい。まずこの辺が助けになるかもしれない。読んでみて、近いか教えてくれ。',
+        text: '今すぐ全部やらなくて大丈夫です。まずはこの辺が助けになるかもしれません。読んでみて、近いか教えてください。',
         cards,
         moreHref: more.href,
         moreLabel: more.label,
       },
       {
         kind: 'chips',
-        text: 'もし、どれもピンとこなかったら教えてくれ。今の状況をもう少し聞ければ、別の切り口で探すよ。',
+        text: 'もし、どれもピンとこなかったら教えてください。今の状況をもう少し伺えれば、別の切り口で探します。',
         chips: FITCHECK,
       },
     ],
@@ -122,7 +122,7 @@ export function onChip(state: FlowState, value: string): { state: FlowState; mes
   if (value === '__diff') {
     return {
       state: { step: 'topic' },
-      messages: [{ kind: 'chips', text: 'そうか、ずれてたな。もう少し教えてくれ。今の状況に近いのは？', chips: TOPICS }],
+      messages: [{ kind: 'chips', text: '失礼しました。もう少し教えてください。今の状況に近いのは、どれでしょうか？', chips: TOPICS }],
     };
   }
   if (state.step === 'topic') {
@@ -130,7 +130,7 @@ export function onChip(state: FlowState, value: string): { state: FlowState; mes
     if (subs) {
       return {
         state: { step: 'subtopic', topic: value },
-        messages: [{ kind: 'chips', text: 'わかった、そこは大事だな。もう少しだけ絞らせてくれ。今いちばん頭にあるのは？', chips: subs }],
+        messages: [{ kind: 'chips', text: 'そこは大事ですね。もう少しだけ絞らせてください。今いちばん頭にあるのは、どれでしょうか？', chips: subs }],
       };
     }
     return propose(value);
@@ -194,7 +194,7 @@ export async function onText(
       state: next,
       messages: [{
         kind: 'chips',
-        text: 'だいぶ一緒に整理できたな。ここからは記事一覧や相談窓口も覗いてみてくれ。続けたいテーマがあれば選んで。',
+        text: 'だいぶ一緒に整理できましたね。ここからは記事一覧や相談窓口も覗いてみてください。続けたいテーマがあれば選んでください。',
         chips: TOPICS,
       }],
       event: 'turn_limit',
@@ -203,11 +203,11 @@ export async function onText(
   try {
     const r = await api(g.safeText || text);
     if (r.kind === 'safe' || r.error) {
-      return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているみたいだ。少し時間をおいて試してくれ。' }], event: 'degraded' };
+      return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているようです。少し時間をおいてお試しください。' }], event: 'degraded' };
     }
     const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
     if (r.cards && r.cards.length) {
-      messages.push({ kind: 'cards', text: '関係する記事はこの辺だ。近いか教えてくれ。', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
+      messages.push({ kind: 'cards', text: '関係しそうな記事です。近いものはありますか？', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
     } else if (r.moreHref) {
       // カードが無い（範囲外など）でも、記事一覧への導線は必ず出す
       messages.push({ kind: 'cards', text: '', cards: [], moreHref: r.moreHref, moreLabel: r.moreLabel || '記事一覧を見る' });
@@ -216,7 +216,7 @@ export async function onText(
     return { state: next, messages, event: 'answer' };
   } catch (e) {
     // 通信不調 → 静的縮退（記事サイト・窓口は生きている）
-    return { state: next, messages: [{ kind: 'safe', text: 'うまく繋がらなかった。少し時間をおいて試してくれ。急ぎなら記事一覧や相談窓口も頼ってほしい。' }], event: 'degraded' };
+    return { state: next, messages: [{ kind: 'safe', text: 'うまく繋がりませんでした。少し時間をおいてお試しください。お急ぎの場合は記事一覧や相談窓口もご利用ください。' }], event: 'degraded' };
   }
 }
 

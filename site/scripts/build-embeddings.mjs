@@ -85,7 +85,7 @@ for (let i = 0; i < chunks.length; i += BATCH) {
     else if (emb.length !== dim) throw new Error(`次元不一致: ${c.id} が ${emb.length}、他は ${dim}。同一モデルで生成してください。`);
     out.push({
       id: c.id, hash: c.hash, url: c.url, title: c.title,
-      category: c.category, heading: c.heading, text: c.text,
+      category: c.category, heading: c.heading, text: c.text, image: c.image || '',
       embedding: emb.map((v) => Number(v.toFixed(6))), // ファイルサイズ圧縮（精度は検索に十分）
     });
   }

@@ -14,6 +14,7 @@ export interface EmbeddedChunk {
   category: string;
   heading: string;
   text: string;
+  image?: string; // 記事のヒーロー画像（カード表示用）
   embedding: number[];
 }
 
@@ -93,13 +94,13 @@ export function isOutOfScope(hits: SearchHit[]): boolean {
 }
 
 /** ヒットを記事カード（最大 max 枚）へ。同一記事(url)は1枚に畳む＝doc43§7「最大3カード」。 */
-export function hitsToCards(hits: SearchHit[], max = 3): { category: string; title: string; href: string }[] {
+export function hitsToCards(hits: SearchHit[], max = 3): { category: string; title: string; href: string; image?: string }[] {
   const seen = new Set<string>();
-  const cards: { category: string; title: string; href: string }[] = [];
+  const cards: { category: string; title: string; href: string; image?: string }[] = [];
   for (const h of hits) {
     if (seen.has(h.chunk.url)) continue;
     seen.add(h.chunk.url);
-    cards.push({ category: h.chunk.category, title: h.chunk.title, href: h.chunk.url });
+    cards.push({ category: h.chunk.category, title: h.chunk.title, href: h.chunk.url, image: h.chunk.image });
     if (cards.length >= max) break;
   }
   return cards;

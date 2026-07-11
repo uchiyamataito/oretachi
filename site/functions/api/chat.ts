@@ -8,7 +8,7 @@
 // それ以外（ガード・検索・レート制限・予算カウンタ）は無料。予算超過・キル時は静的窓口へ縮退する。
 
 import { screenInput } from '../../src/ai/guards.ts';
-import { searchChunks, hitsToCards, isOutOfScope, type EmbeddedChunk } from '../../src/ai/ragSearch.ts';
+import { searchChunks, hitsToCards, type EmbeddedChunk } from '../../src/ai/ragSearch.ts';
 import { guardOutput, OUTPUT_FALLBACK } from '../../src/ai/outputGuard.ts';
 import { SYSTEM_GUARDS, buildUserContent } from '../../src/ai/systemPrompt.ts';
 
@@ -56,7 +56,7 @@ const json = (body: unknown, status = 200) =>
 // フォールバック応答（AI不調・予算超過・キル時）。記事サイトは通常稼働のまま。
 const DEGRADED = {
   kind: 'safe',
-  text: 'いま相談が混み合っているみたいだ。少し時間をおいて試してくれ。急ぎのときは、記事一覧や公的な相談窓口も頼ってほしい。',
+  text: 'いま相談が混み合っているようです。少し時間をおいてお試しください。お急ぎの場合は、記事一覧や公的な相談窓口もご利用ください。',
 };
 
 export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Response> = async ({ request, env }) => {
@@ -98,39 +98,29 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
   if (!budget.ok) return json(DEGRADED);
 
   try {
-    // 7) クエリを埋め込み → RAG検索（Workers AI・無料枠。索引は静的ファイルから読込＋キャッシュ）
+    // 7) クエリを埋め込み → RAG検索（ヒットが無くてもよい＝共感・心構え層は根拠不要。事実は参考記事の範囲で）
     const queryVec = await embed(env, safeText);
     const chunks = await getChunks(env, request);
     const hits = searchChunks(queryVec, chunks, {});
-    if (isOutOfScope(hits)) {
-      // 範囲外＝扱っていない（作話しない・回遊へ逃がす）
-      return json({
-        kind: 'answer',
-        text: 'その話題は、まだこのサイトでは扱えていないんだ。近いテーマの記事なら一覧から探せる。力になれることがあれば、離婚まわりのことを聞いてくれ。',
-        cards: [],
-        moreHref: '/articles',
-        moreLabel: '記事一覧を見る',
-      });
-    }
 
-    // 8) Claude で回答生成（RAGの範囲に限定・出典必須）＝ここで課金（数円）
+    // 8) Claude で回答生成（二層：共感は自由に温かく／事実は参考記事の範囲）＝ここで課金（数円）
     const answer = await callClaude(env, safeText, hits);
 
-    // 9) 出力ガード（断定/金額/法判断/出典なし を差し止め＝doc42§6）
+    // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
-    // 10) 出典付き回答＋カード（最大3・同一記事は畳む）
+    // 10) 回答＋関係する記事カード（あれば。同一記事は畳む）
     const cards = hitsToCards(hits, 3);
-    const top = hits[0].chunk;
+    const top = hits[0]?.chunk;
     await incrBudget(env, ip); // 成功時のみ月次カウント
     return json({
       kind: 'answer',
       text: guarded.text,
-      source: guarded.ok ? `${top.title}` : undefined,
-      sourceHref: guarded.ok ? top.url : undefined,
+      source: guarded.ok && top ? top.title : undefined,
+      sourceHref: guarded.ok && top ? top.url : undefined,
       cards,
       moreHref: '/articles',
-      moreLabel: 'もっと見る',
+      moreLabel: cards.length ? 'もっと見る' : '記事一覧を見る',
       flagged: guarded.ok ? undefined : guarded.reasons,
     });
   } catch (e) {

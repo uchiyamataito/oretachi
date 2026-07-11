@@ -37,7 +37,7 @@ async function main() {
   ok(tc.messages[0].kind === 'safe' && tc.messages[0].text.includes('よりそい'), '危機→窓口', tc.messages[0].text.slice(0, 20));
 
   const ta = await onText({ step: 'topic' } as FlowState, 'お前を殺す');
-  ok(ta.messages[0].kind === 'safe' && ta.messages[0].text.includes('送れない'), '攻撃→ブロック');
+  ok(ta.messages[0].kind === 'safe' && ta.messages[0].text.includes('送れ'), '攻撃→ブロック');
 
   const ts = await onText({ step: 'topic' } as FlowState, '養育費はいくらもらえる');
   ok(ts.messages[0].kind === 'safe' && ts.messages[0].text.includes('養育費'), '封印→定型');

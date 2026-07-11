@@ -152,7 +152,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 [data-cat="相談"]{--cat:#9B8FB8;--cat-bg:#ECE7F2;--cat-fg:#5E5080}
 /* Q&A詳細：質問（見出し）→タグ→区切り→回答ボックス→くわしく（サブ） */
 .qa-question{font-family:'Zen Kaku Gothic New';font-size:22px;line-height:1.55;margin:14px 0 18px;color:var(--navy)}
-.qa-cats{margin:0}
+.qa-cats{margin:0 0 8px}
 .qa-div{border:none;border-top:1px solid var(--line);margin:16px 0}
 .qa-answer-box{background:#F1F6F3;border:1px solid #CFE6DC;border-radius:14px;padding:16px 17px}
 .qa-answer{margin:0;font-size:1.06rem;line-height:1.8;color:var(--ink);font-weight:500}
