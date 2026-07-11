@@ -4,7 +4,7 @@ description: "退職金は財産分与の対象になり得る、年金は年金
 category: "お金・手続き"
 tags: ["熟年離婚", "年金分割", "退職金", "お金", "手続き"]
 related_articles: ["rikon-jukunen-okane", "rikon-jukunen-otto", "rikon-nenkin-tetsuzuki", "rikon-zaisan-bunyo-taishou"]
-related_qa: ["rikon-zaisan-zeikin-shakkin"]
+related_qa: ["rikon-nenkin-bunkatsu-morau", "rikon-3gou-bunkatsu-goui", "rikon-zaisan-zeikin-shakkin"]
 author: "片瀬 海斗"
 published: "2026-07-01"
 updated: "2026-07-01"

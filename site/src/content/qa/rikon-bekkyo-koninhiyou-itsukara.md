@@ -4,7 +4,7 @@ description: "実務では原則、請求した時（内容証明などで請求
 category: "お金・手続き"
 tags: ["別居", "婚姻費用", "お金", "手続き"]
 related_articles: ["rikon-koninhiyou", "rikon-bekkyo-sugoshikata", "rikon-bengoshi-erabikata"]
-related_qa: ["rikon-bekkyo-seikatsuhi"]
+related_qa: ["rikon-koninhiyou-gengaku", "rikon-koninhiyou-tsuma-futei", "rikon-bekkyo-seikatsuhi"]
 author: "片瀬 海斗"
 published: "2026-07-02"
 updated: "2026-07-02"

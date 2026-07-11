@@ -4,7 +4,7 @@ description: "影響はあるが、効くのは“離婚”より“両親の対
 category: "子ども・気持ち"
 tags: ["子ども", "気持ち"]
 related_articles: ["rikon-kodomo-eikyou-nenrei", "rikon-dansei-soudansaki"]
-related_qa: ["rikon-kodomo-setsumei", "rikon-chichioya-shinken"]
+related_qa: ["rikon-menkai-sukunai-sugoshikata", "rikon-kodomo-menkai-iyagaru", "rikon-kodomo-setsumei", "rikon-chichioya-shinken"]
 author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"

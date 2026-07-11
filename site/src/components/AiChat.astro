@@ -27,6 +27,7 @@ const AICHAT_OFF =
           <button class="ac-close" aria-label="閉じる"><i class="ti ti-x" aria-hidden="true"></i></button>
         </div>
       </div>
+      <p class="ac-disc">このチャットは一般的な情報のご案内で、法的な判断や医療・カウンセリングは行いません。つらい気持ちが強いときは、無理に入力せず相談窓口をご利用ください（緊急時は119／110）。入力内容は、応答を生成するため外部のAIに送信されます（<a href="/about/privacy">詳細</a>）。</p>
       <div class="ac-msgs" aria-live="polite"></div>
       <div class="ac-foot">
         <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
@@ -50,6 +51,8 @@ const AICHAT_OFF =
   #aichat .ac-fab:hover{filter:brightness(1.06)}
   @media(max-width:520px){#aichat .ac-fab span{display:none}#aichat .ac-fab{padding:14px;width:56px;height:56px;justify-content:center}}
 
+  #aichat .ac-disc{margin:0;padding:8px 16px;background:#F5EFE4;color:#6B5E4A;font-size:11px;line-height:1.5;border-bottom:1px solid #ECE3D3}
+  #aichat .ac-disc a{color:#0F6E56;text-decoration:underline}
   #aichat .ac-modal{position:fixed;inset:0;z-index:100;pointer-events:none}
   #aichat .ac-modal[hidden]{display:none}
   #aichat .ac-ov{position:absolute;inset:0;background:rgba(27,42,38,.55);pointer-events:auto}

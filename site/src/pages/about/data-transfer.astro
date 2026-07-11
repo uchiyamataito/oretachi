@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="外部送信先一覧｜オレタチ" description="オレタチが利用者の端末から外部事業者へ送信する情報の一覧（電気通信事業法の外部送信規律に基づく公表／個人情報保護法28条の越境移転に関する情報提供）。" canonical="https://oretachi.me/about/data-transfer">
+  <h1>外部送信先一覧</h1>
+  <p>本ページは、当サイトが利用者の端末から外部の事業者へ送信する情報についての、<strong>電気通信事業法の外部送信規律に基づく公表</strong>、および<strong>個人情報保護法28条の越境移転に関する情報提供</strong>を兼ねます。当サイトは、氏名・連絡先などの個人を特定する情報を入力しないようご案内しています。</p>
+
+  <h2>送信先の一覧</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>送信先事業者</th>
+        <th>送信される情報</th>
+        <th>当方の利用目的</th>
+        <th>送信先の利用目的</th>
+        <th>所在（越境）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Google（Google アナリティクス）</td>
+        <td>Cookie・閲覧ページ・端末／ブラウザ情報・イベント（AIチャットの起動や発火の<strong>種別など、内容を含まない件数のみ</strong>）</td>
+        <td>アクセス解析・品質改善</td>
+        <td>解析サービスの提供</td>
+        <td>米国</td>
+      </tr>
+      <tr>
+        <td>Cloudflare（Web Analytics／Turnstile／Workers・Workers AI）</td>
+        <td>アクセス情報、ボット対策のトークン、AIチャットの入力（応答生成の補助処理）</td>
+        <td>表示・配信、ボット／不正対策、AI応答の補助（埋め込み検索）</td>
+        <td>各サービスの提供・セキュリティ</td>
+        <td>米国（可用性のため一部他国のデータセンターを経由する場合があります）</td>
+      </tr>
+      <tr>
+        <td>Anthropic</td>
+        <td>AIチャットに入力されたテキスト（個人情報は入力しないよう案内・検知除去します）</td>
+        <td>AIによる一般情報の回答生成</td>
+        <td>APIによる応答生成（<strong>学習には使用せず・会話内容は既定では保持しない</strong>。不正利用の検知等で一定期間保持する場合あり）</td>
+        <td>米国</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>補足</h2>
+  <p><strong>①外部送信規律について</strong>：上記のうち、サービスの提供に真に必要な情報（セキュリティ対策等）は、法令上の通知・公表義務の対象外の場合がありますが、透明性のため併せて記載しています。各サービスのオプトアウト／設定により送信を停止できるものがあります。</p>
+  <p><strong>②越境移転について（個人情報保護法28条・情報提供方式）</strong></p>
+  <ul>
+    <li><strong>移転先の外国</strong>：主に<strong>米国</strong>（Anthropic・Google・Cloudflare）。Cloudflareは可用性のため、米国以外のデータセンターを経由する場合があります。</li>
+    <li><strong>米国の個人情報保護制度の概要</strong>：米国には、日本の個人情報保護法のような分野横断的な一般法はなく、分野ごとの法規制と事業者の自主的な枠組みによって保護されます（詳細は、個人情報保護委員会が公表する外国制度の参考情報をご確認ください）。</li>
+    <li><strong>移転先が講じる措置</strong>：各社は、データ処理契約（DPA）等の契約上の措置および技術的・組織的な安全管理措置を講じています。各社のポリシーもあわせてご確認ください：<a href="https://www.anthropic.com/legal/commercial-terms" target="_blank" rel="noopener">Anthropic 商用利用規約</a>・<a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">Anthropic データ保持ポリシー</a>／<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google プライバシーポリシー</a>・<a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener">Google アナリティクスのデータ保護</a>／<a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank" rel="noopener">Cloudflare データ処理契約（DPA）</a>。</li>
+  </ul>
+
+  <p>本ページの内容は、<a href="/about/privacy">プライバシーポリシー</a>および<a href="/about/terms">利用規約</a>とあわせてご確認ください。</p>
+  <p class="disclaimer">最終改定：2026-07-11／運営者：オレタチ運営事務局／連絡先：oretachi.pages@gmail.com</p>
+</BaseLayout>

@@ -75,6 +75,12 @@ export const QMETA: Record<string, any> = {
   'rikon-hitorigurashi-sonaeru':     { phases: ['別居', '成立後', '再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-jisui-shinai-eiyou':        { phases: ['別居', '成立後', '再出発'], kanshin: ['相談'], route: 'rikon' },
   'rikon-kajidaikou-hajimete':       { phases: ['別居', '成立後', '再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
+  'rikon-koninhiyou-tsuma-futei':    { phases: ['別居', '協議・調停中'], kanshin: ['お金', '相談'], spouse_contact: true, route: 'rikon' },
+  'rikon-koninhiyou-gengaku':        { phases: ['別居', '協議・調停中'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-nenkin-bunkatsu-morau':     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-3gou-bunkatsu-goui':        { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-menkai-sukunai-sugoshikata':{ phases: ['成立後', '別居'], kanshin: ['子ども', '気持ち'], route: 'rikon' },
+  'rikon-kodomo-menkai-iyagaru':     { phases: ['協議・調停中', '成立後'], kanshin: ['子ども', '気持ち'], route: 'rikon' },
 };
 
 // 絞り込み用の軸（ラベルは表示名、value はメタ内の値と一致させる）

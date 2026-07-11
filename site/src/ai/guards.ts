@@ -146,12 +146,13 @@ const SEALED_RULES: { topic: SealedTopic; topicWords: string[]; intentWords: str
   {
     topic: 'money_zaisan',
     topicWords: ['財産分与', '財産の分け', '退職金の分'],
-    intentWords: ['いくら', '金額', '計算', '相場', '試算', '割合', '取り分', '何割', 'もらえる', '請求できる'],
+    // 意図語は「語幹」で持つ＝丁寧形(もらえます/請求できます)も辞書形(もらえる/請求できる)も両方拾う。
+    intentWords: ['いくら', '金額', '計算', '相場', '試算', '割合', '取り分', '何割', 'もらえ', '請求でき'],
   },
   {
     topic: 'money_isharyo',
     topicWords: ['慰謝料'],
-    intentWords: ['いくら', '金額', '相場', '請求できる', '取れる', '払う', '計算', '払わない', '減らせ'],
+    intentWords: ['いくら', '金額', '相場', '請求でき', '取れ', '払う', '計算', '払わない', '減らせ'],
   },
   {
     topic: 'money_yoikuhi',
@@ -161,12 +162,12 @@ const SEALED_RULES: { topic: SealedTopic; topicWords: string[]; intentWords: str
   {
     topic: 'nenkin_bunkatsu',
     topicWords: ['年金分割'],
-    intentWords: ['いくら', '割合', '計算', '対象', '権利', 'できる', 'もらえる', '何割'],
+    intentWords: ['いくら', '割合', '計算', '対象', '権利', 'でき', 'もらえ', '何割'],
   },
   {
     topic: 'shinken_outlook',
     topicWords: ['親権', '監護権'],
-    intentWords: ['取れる', '勝てる', '取られ', '可能性', '確率', 'どっち', '有利', '不利', 'もらえる'],
+    intentWords: ['取れ', '勝て', '取られ', '可能性', '確率', 'どっち', '有利', '不利', 'もらえ'],
   },
 ];
 
@@ -238,6 +239,7 @@ export const CRISIS_TEMPLATE =
   '一人で抱えなくて大丈夫です。声を出さなくても頼れる窓口があります。\n' +
   '・よりそいホットライン 0120-279-338（24時間・無料）\n' +
   '・いのちの電話 0570-783-556\n' +
+  '・18歳までの方は、チャイルドライン 0120-99-7777（毎日16〜21時・無料）\n' +
   '危険を感じるほどつらいときは、ためらわず上の窓口にご連絡ください。';
 
 export const ABUSE_TEMPLATE =
