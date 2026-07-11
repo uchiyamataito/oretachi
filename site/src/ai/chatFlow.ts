@@ -148,6 +148,7 @@ export interface ChatApiResponse {
   source?: string;
   sourceHref?: string;
   cards?: Card[];
+  suggestions?: string[]; // タップして次を送れる選択肢（AIが必要時のみ提案）
   moreHref?: string;
   moreLabel?: string;
   error?: string;
@@ -206,13 +207,14 @@ export async function onText(
       return { state: next, messages: [{ kind: 'safe', text: r.text || 'いま混み合っているようです。少し時間をおいてお試しください。' }], event: 'degraded' };
     }
     const messages: BotMessage[] = [{ kind: 'answer', text: r.text, source: r.source }];
+    // 記事カードは「確度の高いヒットがある時だけ」サーバが返す。無理に結びつけない。
     if (r.cards && r.cards.length) {
-      messages.push({ kind: 'cards', text: '関係しそうな記事です。近いものはありますか？', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
-    } else if (r.moreHref) {
-      // カードが無い（範囲外など）でも、記事一覧への導線は必ず出す
-      messages.push({ kind: 'cards', text: '', cards: [], moreHref: r.moreHref, moreLabel: r.moreLabel || '記事一覧を見る' });
+      messages.push({ kind: 'cards', text: '', cards: r.cards.slice(0, 3), moreHref: r.moreHref, moreLabel: r.moreLabel });
     }
-    messages.push({ kind: 'chips', text: 'ほかに気になるところは？', chips: [{ label: '別のことを聞く', value: '__other' }] });
+    // 追撃チップは常設せず、AIが提案した選択肢がある時だけ（タップで次を送れる）。
+    if (r.suggestions && r.suggestions.length) {
+      messages.push({ kind: 'chips', text: '', chips: r.suggestions.slice(0, 3).map((s) => ({ label: s, value: '__say' })) });
+    }
     return { state: next, messages, event: 'answer' };
   } catch (e) {
     // 通信不調 → 静的縮退（記事サイト・窓口は生きている）

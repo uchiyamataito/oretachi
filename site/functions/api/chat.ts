@@ -25,6 +25,7 @@ interface Env {
   AICHAT_OFF?: string; // '1'/'true' でキルスイッチ（=このAPIの生成を止める。ただし危機等の安全応答は返す）
   MODEL_ANSWER?: string; // 回答モデル（既定 claude-sonnet-5）
   EMBED_MODEL?: string; // 埋め込みモデル（既定 @cf/baai/bge-m3＝多言語・日本語対応・1024次元）
+  CARD_MIN_SCORE?: string; // 記事カードを出す最小類似度（既定 0.5。実クエリで要調整）
   MONTHLY_REQUEST_CAP?: string; // 月次リクエスト上限（既定 300）
   RATE_PER_MIN?: string; // 1IPあたり毎分上限（既定 8）
 }
@@ -104,23 +105,35 @@ export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Res
     const hits = searchChunks(queryVec, chunks, {});
 
     // 8) Claude で回答生成（二層：共感は自由に温かく／事実は参考記事の範囲）＝ここで課金（数円）
-    const answer = await callClaude(env, safeText, hits);
+    const raw = await callClaude(env, safeText, hits);
+
+    // 8-2) 末尾の [[NEXT]] 選択肢を分離（あれば。タップで次を送れるチップにする）
+    let answer = raw;
+    let suggestions: string[] = [];
+    const parts = raw.split(/\[\[NEXT\]\]/);
+    if (parts.length > 1) {
+      answer = parts[0].trim();
+      suggestions = parts[1].split('|').map((s) => s.trim()).filter(Boolean).slice(0, 3);
+    }
 
     // 9) 出力ガード（金額算定/個別法判断/過度な確約/商品推奨 を差し止め。共感応答は出典が無くても通す）
     const guarded = guardOutput(answer, hits.length > 0, OUTPUT_FALLBACK);
 
-    // 10) 回答＋関係する記事カード（あれば。同一記事は畳む）
-    const cards = hitsToCards(hits, 3);
-    const top = hits[0]?.chunk;
+    // 10) 記事カードは「確度の高いヒットがある時だけ」（曖昧な相談に無理やり結びつけない）
+    const cardMin = Number(env.CARD_MIN_SCORE || '0.5');
+    const cardHits = hits.filter((h) => h.score >= cardMin);
+    const cards = hitsToCards(cardHits, 3);
+    const top = cardHits[0]?.chunk;
     await incrBudget(env, ip); // 成功時のみ月次カウント
     return json({
       kind: 'answer',
       text: guarded.text,
       source: guarded.ok && top ? top.title : undefined,
       sourceHref: guarded.ok && top ? top.url : undefined,
-      cards,
-      moreHref: '/articles',
-      moreLabel: cards.length ? 'もっと見る' : '記事一覧を見る',
+      cards, // 無い時は空＝カードを出さない
+      suggestions, // 無い時は空＝追撃チップを出さない
+      moreHref: cards.length ? '/articles' : undefined,
+      moreLabel: cards.length ? 'もっと見る' : undefined,
       flagged: guarded.ok ? undefined : guarded.reasons,
     });
   } catch (e) {

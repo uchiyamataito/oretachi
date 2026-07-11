@@ -46,12 +46,19 @@ async function main() {
   ok(tn.messages[0].kind === 'answer' && !!tn.messages[0].source, '通常→回答＋出典(既定ダミー)');
 
   // ── Phase C 追加：API注入・往復上限・エラー縮退（doc45 M-3対応） ──
-  const stubAnswer: ChatApi = async () => ({ kind: 'answer', text: '記事によればこうだ。', source: 'テスト記事', cards: [{ category: 'お金', title: 'A', href: '/a' }], moreHref: '/articles', moreLabel: 'もっと見る' });
+  const stubAnswer: ChatApi = async () => ({ kind: 'answer', text: '記事によればこうです。', source: 'テスト記事', cards: [{ category: 'お金', title: 'A', href: '/a' }] });
   const ra = await onText({ step: 'topic' } as FlowState, '生活費について', stubAnswer);
   ok(ra.messages[0].kind === 'answer' && ra.messages[0].text.includes('記事によれば') && ra.messages[0].source === 'テスト記事', 'API注入→回答＋出典');
   ok(ra.messages[1].kind === 'cards' && (ra.messages[1].cards || []).length === 1, 'API注入→カード');
-  ok(ra.messages[2].kind === 'chips', 'API注入→続けるchips');
+  ok(!ra.messages.some((m) => m.kind === 'chips'), '追撃チップは常設しない');
   ok(ra.state.turns === 1, '往復カウント=1');
+
+  // 提案(suggestions)がある時だけ選択肢チップ(__say)を出す（カードは無い）
+  const stubSug: ChatApi = async () => ({ kind: 'answer', text: 'もう少し教えてください。', suggestions: ['もう決めたと言われた', 'まだ話せそう'] });
+  const rsug = await onText({ step: 'topic' } as FlowState, 'つらいです', stubSug);
+  ok(!rsug.messages.some((m) => m.kind === 'cards'), '提案のみ＝カードなし');
+  const sugChip = rsug.messages.find((m) => m.kind === 'chips');
+  ok(!!sugChip && (sugChip.chips || [])[0].value === '__say' && (sugChip.chips || [])[0].label === 'もう決めたと言われた', '選択肢チップ(__say)を出す');
 
   const stubSafe: ChatApi = async () => ({ kind: 'safe', text: 'いま混み合っている' });
   const rs = await onText({ step: 'topic' } as FlowState, '生活費について', stubSafe);
@@ -78,9 +85,10 @@ async function main() {
 
   // ── 封印→該当記事リンク／範囲外→記事一覧リンク（フィードバック対応） ──
   ok(ts.messages[1] && ts.messages[1].kind === 'cards' && (ts.messages[1].cards || [])[0]?.href === '/rikon-yoikuhi', '封印→養育費記事リンク');
-  const stubOOS: ChatApi = async () => ({ kind: 'answer', text: 'その話題は扱っていない', moreHref: '/articles', moreLabel: '記事一覧を見る', cards: [] });
-  const roos = await onText({ step: 'topic' } as FlowState, '天気について', stubOOS);
-  ok(roos.messages.some((m) => m.kind === 'cards' && m.moreHref === '/articles'), '範囲外→記事一覧リンク');
+  // カードも提案も無い応答＝回答だけ（無理に記事へ結びつけない）
+  const stubPlain: ChatApi = async () => ({ kind: 'answer', text: 'それはおつらいですね。' });
+  const rplain = await onText({ step: 'topic' } as FlowState, '天気について', stubPlain);
+  ok(rplain.messages.length === 1 && rplain.messages[0].kind === 'answer', 'カードなし＝回答のみ');
 
   console.log('\n===== chatFlow ユニットテスト =====');
   if (fails.length) console.log(fails.join('\n'));

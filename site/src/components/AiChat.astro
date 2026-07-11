@@ -32,7 +32,7 @@ const AICHAT_OFF =
         <div class="ac-note"><i class="ti ti-shield-lock" aria-hidden="true"></i>氏名・口座番号・マイナンバーなどは入力しないでください</div>
         <div class="ac-ts"></div>
         <div class="ac-inrow">
-          <input class="ac-input" type="text" autocomplete="off" placeholder="気になることを、お気軽にどうぞ" aria-label="メッセージを入力" />
+          <textarea class="ac-input" rows="1" autocomplete="off" placeholder="気になることを、お気軽にどうぞ" aria-label="メッセージを入力"></textarea>
           <button class="ac-send" aria-label="送信"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
         </div>
       </div>
@@ -60,8 +60,8 @@ const AICHAT_OFF =
   /* PC＝右下ドッキング型（サイトを使いながらチャット）。dim無し・角に浮かせる。 */
   @media (min-width:721px){
     #aichat .ac-ov{display:none}
-    #aichat .ac-sheet{left:auto;right:16px;bottom:16px;margin:0;width:392px;max-width:calc(100vw - 32px);
-      border-radius:18px;max-height:min(660px,84vh);box-shadow:0 20px 48px -20px rgba(21,35,58,.55)}
+    #aichat .ac-sheet{left:auto;right:16px;bottom:16px;margin:0;width:410px;max-width:calc(100vw - 32px);
+      height:min(780px,90vh);max-height:min(780px,90vh);border-radius:18px;box-shadow:0 20px 48px -20px rgba(21,35,58,.55)}
   }
   #aichat .ac-head{background:#1B3A57;padding:9px 16px 13px;display:flex;flex-direction:column;gap:9px;flex:none}
   #aichat .ac-grab{width:40px;height:4px;border-radius:3px;background:rgba(255,255,255,.32);align-self:center}
@@ -102,9 +102,9 @@ const AICHAT_OFF =
   #aichat .ac-ts:empty{display:none}
   #aichat .ac-ts{margin:2px 2px 8px}
   #aichat .ac-inrow{display:flex;align-items:flex-end;gap:9px}
-  #aichat .ac-input{flex:1;box-sizing:border-box;background:#fff;border:1px solid #E2D9C9;border-radius:22px;
-    padding:13px 17px;font-size:15px;line-height:1.5;color:#2C2A26;min-height:50px;resize:none;
-    font-family:'Noto Sans JP',sans-serif;max-height:120px;overflow-y:auto}
+  #aichat .ac-input{flex:1;display:block;box-sizing:border-box;background:#fff;border:1px solid #E2D9C9;border-radius:20px;
+    padding:13px 17px;font-size:15px;line-height:1.5;color:#2C2A26;min-height:50px;height:50px;resize:none;
+    font-family:'Noto Sans JP',sans-serif;max-height:132px;overflow-y:auto}
   #aichat .ac-input::placeholder{color:#A79D8C}
   #aichat .ac-send{width:50px;height:50px;flex:none;border:none;border-radius:50%;background:#E2703A;color:#fff;
     display:flex;align-items:center;justify-content:center;font-size:21px;cursor:pointer;box-shadow:0 8px 16px -8px rgba(226,112,58,.7)}
@@ -132,7 +132,9 @@ const AICHAT_OFF =
     const ov = root.querySelector('.ac-ov') as HTMLElement;
     const closeBtn = root.querySelector('.ac-close') as HTMLButtonElement;
     const msgs = root.querySelector('.ac-msgs') as HTMLElement;
-    const input = root.querySelector('.ac-input') as HTMLInputElement;
+    const input = root.querySelector('.ac-input') as HTMLTextAreaElement;
+    // 入力量に応じて高さを自動で伸ばす（1行→最大約5行）。
+    const autoGrow = () => { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 132) + 'px'; };
     const sendBtn = root.querySelector('.ac-send') as HTMLButtonElement;
     let state: FlowState | null = null;
 
@@ -180,6 +182,8 @@ const AICHAT_OFF =
     // 内部相対(/path)・https:// ・# のみ許可。プロトコル相対(//evil) は弾く（doc44 L-1）。
     const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:\/\/|\/(?!\/)|#)/.test(s) ? s : '#'; };
     const down = () => { msgs.scrollTop = msgs.scrollHeight; };
+    // 新しい応答は「先頭」に視線を移す（下端ではなく上端へ＝読み始めやすく）。
+    const scrollToEl = (el: Element | null | undefined) => { if (el) (el as HTMLElement).scrollIntoView({ block: 'start', behavior: 'smooth' }); };
     // GA4計測（M-8）：種別だけ送る。会話本文・PII・入力内容は絶対に載せない。
     const track = (name: string) => { try { (window as any).gtag?.('event', 'aichat_' + name); } catch (e) { /* 計測失敗は無視 */ } };
 
@@ -190,27 +194,32 @@ const AICHAT_OFF =
       msgs.appendChild(d); down();
     }
 
-    function addBot(m: BotMessage) {
-      const wrap = document.createElement('div');
-      wrap.className = 'ac-b ac-bot' + (m.kind === 'safe' ? ' ac-safe' : '');
-      let html = `<div class="ac-t">${esc(m.text)}</div>`;
-      if (m.kind === 'answer' && m.source) html += `<div class="ac-src"><i class="ti ti-book-2" aria-hidden="true"></i>出典:${esc(m.source)}</div>`;
-      wrap.innerHTML = html;
-      if (m.kind === 'chips' && m.chips) {
-        const cw = document.createElement('div');
-        cw.className = 'ac-chips';
-        m.chips.forEach((ch) => {
-          const b = document.createElement('button');
-          b.type = 'button'; b.className = 'ac-chip'; b.textContent = ch.label;
-          b.addEventListener('click', () => handleChip(ch.value, ch.label));
-          cw.appendChild(b);
-        });
-        wrap.appendChild(cw);
-      }
-      // 本文が空のカード専用メッセージ（範囲外リンク・封印の記事リンク等）は、空の吹き出しを出さない
-      if (!(m.kind === 'cards' && !m.text)) msgs.appendChild(wrap);
+    function makeChips(chips: { label: string; value: string }[]) {
+      const cw = document.createElement('div');
+      cw.className = 'ac-chips';
+      chips.forEach((ch) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'ac-chip'; b.textContent = ch.label;
+        b.addEventListener('click', () => handleChip(ch.value, ch.label));
+        cw.appendChild(b);
+      });
+      return cw;
+    }
 
-      if (m.kind === 'cards' && m.cards) {
+    function addBot(m: BotMessage) {
+      // 本文の吹き出し（テキストがある時だけ＝空メッセージは吹き出しを出さない）
+      if (m.text) {
+        const wrap = document.createElement('div');
+        wrap.className = 'ac-b ac-bot' + (m.kind === 'safe' ? ' ac-safe' : '');
+        let html = `<div class="ac-t">${esc(m.text)}</div>`;
+        if (m.kind === 'answer' && m.source) html += `<div class="ac-src"><i class="ti ti-book-2" aria-hidden="true"></i>出典:${esc(m.source)}</div>`;
+        wrap.innerHTML = html;
+        msgs.appendChild(wrap);
+      }
+      // 選択肢チップ（吹き出しの外・独立行）
+      if (m.kind === 'chips' && m.chips && m.chips.length) msgs.appendChild(makeChips(m.chips));
+      // 記事カード（あるときだけ）
+      if (m.kind === 'cards' && m.cards && m.cards.length) {
         const cw = document.createElement('div');
         cw.className = 'ac-cards-wrap';
         const sc = document.createElement('div');
@@ -234,10 +243,16 @@ const AICHAT_OFF =
         }
         msgs.appendChild(cw);
       }
-      down();
     }
 
-    const render = (list: BotMessage[]) => list.forEach(addBot);
+    // 初期挨拶など（スクロール制御なし）
+    const render = (list: BotMessage[]) => { list.forEach(addBot); down(); };
+    // 応答を描画し、その「先頭」へスクロール（回答の頭から読める）
+    function renderResponse(list: BotMessage[]) {
+      const firstIdx = msgs.children.length;
+      list.forEach(addBot);
+      requestAnimationFrame(() => scrollToEl(msgs.children[firstIdx]));
+    }
 
     function reflectKanshin(topic: string) {
       try {
@@ -253,24 +268,33 @@ const AICHAT_OFF =
     function handleChip(value: string, label: string) {
       addUser(label);
       track('chip');
+      if (value === '__say') { sendText(label); return; } // AI提案の選択肢＝自由入力として送る
       reflectKanshin(value);
       if (!state) return;
       const res = onChip(state, value);
-      state = res.state; render(res.messages);
+      state = res.state; renderResponse(res.messages);
     }
 
-    async function handleSend() {
-      const text = (input.value || '').trim(); if (!text) return;
-      input.value = ''; addUser(text);
+    async function sendText(text: string) {
+      if (!text) return;
       if (!state) state = startFlow().state;
       sendBtn.disabled = true;
+      const firstIdx = msgs.children.length;
       try {
         const res = await onText(state, text, realApi);
-        state = res.state; render(res.messages);
+        state = res.state;
+        res.messages.forEach(addBot);
         if (res.event) track(res.event); // 発火種別のみ計測（本文なし）
+        requestAnimationFrame(() => scrollToEl(msgs.children[firstIdx]));
       } finally {
         sendBtn.disabled = false;
       }
+    }
+
+    function handleSend() {
+      const text = (input.value || '').trim(); if (!text) return;
+      input.value = ''; autoGrow(); addUser(text);
+      sendText(text);
     }
 
     const isMobile = () => window.matchMedia('(max-width:720px)').matches;
@@ -290,12 +314,14 @@ const AICHAT_OFF =
     input.addEventListener('compositionstart', () => { composing = true; });
     input.addEventListener('compositionend', () => { composing = false; });
 
+    input.addEventListener('input', autoGrow);
     fab.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
     ov.addEventListener('click', close);
     sendBtn.addEventListener('click', handleSend);
     input.addEventListener('keydown', (e) => {
       if (e.key !== 'Enter') return;
+      if (e.shiftKey) return; // Shift+Enter は改行（送信しない）
       if (composing || (e as any).isComposing || (e as any).keyCode === 229) return; // 変換確定のEnterは無視
       e.preventDefault();
       handleSend();
