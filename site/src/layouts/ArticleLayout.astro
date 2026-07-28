@@ -27,11 +27,11 @@ const crumbs = [
   faq={d.faq}
 >
   <nav class="crumbs" aria-label="パンくず">
-    <a href="/">ホーム</a><span aria-hidden="true">›</span><a href="/articles">記事</a>
+    <a href="/">ホーム</a><span aria-hidden="true">›</span><a href="/articles/">記事</a>
   </nav>
   <article>
     <h1>{d.title}</h1>
-    <p class="byline">文・編集：<a href={d.author_profile ?? '/about/editor'} rel="author">{d.author}</a>（編集責任者）<span class="byline-date">更新：{d.updated}</span></p>
+    <p class="byline">文・編集：<a href={withTrailingSlash(d.author_profile ?? '/about/editor')} rel="author">{d.author}</a>（編集責任者）<span class="byline-date">更新：{d.updated}</span></p>
     {d.hero_image && (
       <figure>
         <img src={d.hero_image.src} alt={d.hero_image.alt} />

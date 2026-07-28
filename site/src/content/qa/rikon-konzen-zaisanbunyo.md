@@ -22,7 +22,7 @@ disclaimer: "一般的な情報であり、個別の契約内容の有効性や�
 
 つまり、財産の帰属や分与のルールは「取り決められる」が、その内容が有効かどうかは別問題。込み入った財産があるなら、専門家のチェックを受けるのが安全だ。
 
-制度の全体像は → [婚前契約書とは？](/rikon-konzen-keiyaku)／財産分与で何が対象になるかは → [財産分与で何が分けられる？](/rikon-zaisan-bunyo-taishou)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata)。
+制度の全体像は → [婚前契約書とは？](/rikon-konzen-keiyaku/)／財産分与で何が対象になるかは → [財産分与で何が分けられる？](/rikon-zaisan-bunyo-taishou/)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata/)。
 
 ---
 

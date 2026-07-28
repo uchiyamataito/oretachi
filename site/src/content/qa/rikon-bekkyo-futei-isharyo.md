@@ -21,7 +21,7 @@ disclaimer: "一般的な情報であり、個別のケースの見通しや金�
 
 どちらの立場でも、破綻の評価は微妙で、証拠しだいで結論が変わる。感情的に動く前に、まず弁護士に事実関係を整理してもらうのが安全だ。金額はこのサイトでは断定しない。
 
-別居直後の動き方は → [別居中の過ごし方：NG行動と法的ロードマップ](/rikon-bekkyo-sugoshikata)。相談先を探すなら → [弁護士の選び方・費用の見方](/rikon-bengoshi-erabikata)／[男性の相談先・窓口](/rikon-dansei-soudansaki)。
+別居直後の動き方は → [別居中の過ごし方：NG行動と法的ロードマップ](/rikon-bekkyo-sugoshikata/)。相談先を探すなら → [弁護士の選び方・費用の見方](/rikon-bengoshi-erabikata/)／[男性の相談先・窓口](/rikon-dansei-soudansaki/)。
 
 ---
 

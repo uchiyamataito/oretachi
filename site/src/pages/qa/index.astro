@@ -73,7 +73,7 @@ const sidx = items.map((q) => ({
   <ul class="qa-grid" id="cards">
     {cards.map((i) => (
       <li class="qa-card" data-slug={i.slug} data-kanshin={i.kanshin.join('|')} data-phases={i.phases.join('|')} data-cat={i.cat}>
-        <a href={`/qa/${i.slug}`}>
+        <a href={`/qa/${i.slug}/`}>
           <span class="qa-cat">{i.cat}</span>
           <span class="qa-q">Q. {i.question}</span>
           <span class="qa-ex">{i.description}</span>

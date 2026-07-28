@@ -23,5 +23,5 @@ disclaimer: "一般的な情報です。復縁や結果を保証するもので�
 
 冷却期間の取り方・連絡の頻度・行動で信頼を取り戻す具体的な手順は、記事にまとめてある。
 
-→ [妻と復縁・関係を修復したい｜冷却期間と連絡](/rikon-fukuen-shuufuku)
-（つらくて抱えきれない時は → [男性の相談先・窓口](/rikon-dansei-soudansaki)）
+→ [妻と復縁・関係を修復したい｜冷却期間と連絡](/rikon-fukuen-shuufuku/)
+（つらくて抱えきれない時は → [男性の相談先・窓口](/rikon-dansei-soudansaki/)）

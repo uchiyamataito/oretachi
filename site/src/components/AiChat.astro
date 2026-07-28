@@ -33,7 +33,7 @@ const AICHAT_OFF =
           <span class="ac-disc-title">ご利用にあたって（免責）</span>
           <i class="ti ti-chevron-down ac-disc-cv" aria-hidden="true"></i>
         </button>
-        <p class="ac-disc" id="ac-disc-body">このチャットは一般的な情報のご案内で、法的な判断や医療・カウンセリングは行いません。つらい気持ちが強いときは、無理に入力せず相談窓口をご利用ください（緊急時は119／110）。入力内容は、応答を生成するため外部のAIに送信されます（<a href="/about/privacy">詳細</a>）。</p>
+        <p class="ac-disc" id="ac-disc-body">このチャットは一般的な情報のご案内で、法的な判断や医療・カウンセリングは行いません。つらい気持ちが強いときは、無理に入力せず相談窓口をご利用ください（緊急時は119／110）。入力内容は、応答を生成するため外部のAIに送信されます（<a href="/about/privacy/">詳細</a>）。</p>
       </div>
       <div class="ac-msgs" aria-live="polite"></div>
       <div class="ac-foot">
@@ -266,7 +266,19 @@ const AICHAT_OFF =
 
     const esc = (s: unknown) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
     // 内部相対(/path)・https:// ・# のみ許可。プロトコル相対(//evil) は弾く（doc44 L-1）。
-    const safeUrl = (u: unknown) => { const s = String(u == null ? '' : u); return /^(https?:\/\/|\/(?!\/)|#)/.test(s) ? s : '#'; };
+    const safeUrl = (u: unknown) => {
+      const s = String(u == null ? '' : u);
+      if (!/^(https?:\/\/|\/(?!\/)|#)/.test(s)) return '#';
+      // 内部パス（/始まり）は配信URL（末尾スラッシュ付き）へ正規化し、リンク遷移時の308を避ける。
+      // 画像等の拡張子付き・既にスラッシュ付きは対象外。アンカー/クエリはその前にスラッシュを付ける。
+      if (s[0] === '/') {
+        const i = s.search(/[?#]/);
+        const path = i === -1 ? s : s.slice(0, i);
+        const rest = i === -1 ? '' : s.slice(i);
+        if (path && !path.endsWith('/') && !/\.[a-zA-Z0-9]+$/.test(path)) return path + '/' + rest;
+      }
+      return s;
+    };
     const down = () => { msgs.scrollTop = msgs.scrollHeight; };
     // 直近（最後）の回答メッセージの「先頭要素」。キーボード開閉で vv がリサイズされた時、
     // この要素を .ac-msgs の上端へ再アライメントし、表示位置が中途半端に飛ぶのを防ぐ（#3）。

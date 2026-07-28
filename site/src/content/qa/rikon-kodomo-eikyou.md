@@ -28,5 +28,5 @@ disclaimer: "一般的な情報です。子の様子が心配な時は、スク�
 
 つらい変化が長く続く・気になる時は、スクールカウンセラーや専門機関を頼っていい。
 
-- 子への伝え方 → [子どもにどう説明すればいい？](/qa/rikon-kodomo-setsumei)
-- 親権について → [父親が親権を取れる確率・条件は？](/qa/rikon-chichioya-shinken)
+- 子への伝え方 → [子どもにどう説明すればいい？](/qa/rikon-kodomo-setsumei/)
+- 親権について → [父親が親権を取れる確率・条件は？](/qa/rikon-chichioya-shinken/)

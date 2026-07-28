@@ -15,7 +15,7 @@ export function buildPool(articles: any[], qas: any[]): PoolItem[] {
   const a = articles.map((e) => {
     const m = AMETA[e.slug] || {};
     return {
-      slug: e.slug, type: 'article' as const, url: `/${e.slug}`, title: e.data.title,
+      slug: e.slug, type: 'article' as const, url: `/${e.slug}/`, title: e.data.title,
       phases: m.phases || [], kanshin: m.kanshin || [], route: m.route, kids: !!m.kids,
       related: [...(e.data.related_articles || []), ...(e.data.related_qa || [])],
     };
@@ -23,7 +23,7 @@ export function buildPool(articles: any[], qas: any[]): PoolItem[] {
   const q = qas.map((e) => {
     const m = QMETA[e.slug] || {};
     return {
-      slug: e.slug, type: 'qa' as const, url: `/qa/${e.slug}`, title: e.data.question,
+      slug: e.slug, type: 'qa' as const, url: `/qa/${e.slug}/`, title: e.data.question,
       phases: m.phases || [], kanshin: m.kanshin || [], route: m.route, kids: false,
       related: [...(e.data.related_articles || []), ...(e.data.related_qa || [])],
     };

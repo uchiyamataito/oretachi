@@ -20,7 +20,7 @@ disclaimer: "一般的な情報であり、個別の契約内容の有効性を�
 
 再婚か事実婚か、財産の状況によって最適な形は変わる。個別は専門家に確認してほしい。
 
-制度の土台は → [婚前契約書とは？](/rikon-konzen-keiyaku)／再出発そのものの立て直しは → [離婚した男の再出発](/rikon-saishuppatsu)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata)。
+制度の土台は → [婚前契約書とは？](/rikon-konzen-keiyaku/)／再出発そのものの立て直しは → [離婚した男の再出発](/rikon-saishuppatsu/)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata/)。
 
 ---
 

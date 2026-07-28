@@ -28,14 +28,14 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       <div class="eh-s">何から考えればいいか分からなくて、当たり前だ。全部を一度に背負わなくていい。<strong>5つの質問（約30秒）</strong>に答えてくれりゃ、お前の状況に合わせた<strong>“やる順番（時系列）”</strong>と、次に読むべき記事・Q&Aが並ぶ。一緒にやろう。</div>
       <button class="btn btn-primary eh-cta" id="start-onb"><i class="ti ti-route" aria-hidden="true"></i>お前の現在地をつくる</button>
       <div class="eh-mini">名前も連絡先も聞かない。答えはこの端末の中だけに残る。</div>
-      <a class="eh-about" href="/about">「オレタチ」って、どんな場所？</a>
+      <a class="eh-about" href="/about/">「オレタチ」って、どんな場所？</a>
     </div>
 
     <div id="rails">
-      <div class="sh"><h2>記事</h2><a href="/articles">すべて見る →</a></div>
+      <div class="sh"><h2>記事</h2><a href="/articles/">すべて見る →</a></div>
       <div class="cards">
         {newest.map((a) => (
-          <a class="card" href={`/${a.slug}`}>
+          <a class="card" href={`/${a.slug}/`}>
             <div class="thumb">{a.data.hero_image?.src ? <img src={a.data.hero_image.src} alt={a.data.title} loading="lazy" /> : <span class="thumb-ph" aria-hidden="true"></span>}</div>
             <div class="cbody"><span class="tag1">{(AMETA[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
           </a>
@@ -44,13 +44,13 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     </div>
 
     <div class="nav-cards">
-      <a class="nav-card" href="/articles"><i class="ti ti-news" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">記事を読む</span><span class="nc-d">お金・手続き・気持ち・子ども</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
-      <a class="nav-card" href="/qa"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">同じ状況の疑問に、一問即答</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
+      <a class="nav-card" href="/articles/"><i class="ti ti-news" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">記事を読む</span><span class="nc-d">お金・手続き・気持ち・子ども</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
+      <a class="nav-card" href="/qa/"><i class="ti ti-help-circle" aria-hidden="true"></i><span class="nc-body"><span class="nc-t">Q&amp;Aを見る</span><span class="nc-d">同じ状況の疑問に、一問即答</span></span><i class="ti ti-chevron-right nc-go" aria-hidden="true"></i></a>
     </div>
 
     <div class="safety">
       <b>つらくて動けない時は、無理しないでくれ。</b> 眠れない・消えてしまいたいと感じるほどなら、いのちより大切なものはない。よりそいホットライン <b>0120-279-338</b>（24時間・無料）など、声を出さなくても頼れる窓口がある。
-      <a class="safety-link" href="/rikon-dansei-soudansaki#危機のときは迷わずここへ命が最優先"><i class="ti ti-lifebuoy" aria-hidden="true"></i>相談先・窓口を見る</a>
+      <a class="safety-link" href="/rikon-dansei-soudansaki/#危機のときは迷わずここへ命が最優先"><i class="ti ti-lifebuoy" aria-hidden="true"></i>相談先・窓口を見る</a>
     </div>
   </div>
 
@@ -71,7 +71,19 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
     const A = JSON.parse(document.getElementById('adata')?.textContent || '[]');
     const Q = JSON.parse(document.getElementById('qdata')?.textContent || '[]');
     const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    const safeUrl = (u) => { const s = String(u == null ? '' : u); return /^(https?:|\/|#|mailto:)/i.test(s) ? s : '#'; };
+    const safeUrl = (u) => {
+      const s = String(u == null ? '' : u);
+      if (!/^(https?:|\/|#|mailto:)/i.test(s)) return '#';
+      // 内部パス（/始まり）は配信URL（末尾スラッシュ付き）に正規化し、308リダイレクトを防ぐ。
+      // 画像等の拡張子付き・既にスラッシュ付きは対象外。アンカーは # の前にスラッシュを付ける。
+      if (s[0] === '/') {
+        const i = s.indexOf('#');
+        const path = i === -1 ? s : s.slice(0, i);
+        const hash = i === -1 ? '' : s.slice(i);
+        if (path && !path.endsWith('/') && !/\.[a-zA-Z0-9]+$/.test(path)) return path + '/' + hash;
+      }
+      return s;
+    };
 
     // ===== オンボ設問（24§1） =====
     const QUESTIONS = [
