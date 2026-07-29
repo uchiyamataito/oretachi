@@ -1,0 +1,35 @@
+# Dependabot 設定（2026-07-29 セキュリティ体制づくりで追加）
+#
+# 何をするもの？
+#   使っている外部部品（Astro等）に脆弱性が見つかったとき、GitHubが自動で
+#   「直しました」というプルリクエスト(PR)を出してくれる。放置による劣化を防ぐ要。
+#
+# お金はかかる？
+#   かからない。Dependabot自体は全プラン・全リポジトリで無料。
+#   このリポジトリはPublicなので、仮にGitHub Actionsが動いても無料枠の対象外（＝無制限無料）。
+#   そもそもこのリポジトリに Actions のワークフローは無いため、実行時間の消費もゼロ。
+#
+# 運用ルール（重要）
+#   PRが来ても自動ではマージされない。**マージするのは内山さん**（Human-in-the-Loop）。
+#   マージ前に `npm run build` が通ることを必ず確認する（Cloudflareのビルドが緑になるか）。
+#   判断に迷うPRは、メインセッションで security-ops に見せて評価させる。
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/site" # package.json の場所
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    # 週10時間稼働なので、PRが溜まりすぎないよう上限を設ける
+    open-pull-requests-limit: 5
+    # 細かい更新は1本のPRにまとめる（通知疲れの防止）
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "deps"
