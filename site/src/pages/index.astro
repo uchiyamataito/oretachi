@@ -17,6 +17,9 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
   canonical="https://oretachi.me/"
 >
   <div class="home">
+    {/* トップの見えるヒーロー文言はオンボ状態で入れ替わる（未オンボ=emptyhero／オンボ済=JSで差し替え）ため、
+        常に存在するh1をここに置く。視覚レイアウトは変えない（.sr-only）。 */}
+    <h1 class="sr-only">オレタチ｜離婚を切り出された男のための初動ナビ</h1>
     <div id="greet-slot"></div>
     <div id="journey-slot"></div>
 

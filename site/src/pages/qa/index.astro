@@ -5,13 +5,6 @@ import { getCollection } from 'astro:content';
 import { QMETA, THEMES, PHASES } from '../../data/meta';
 
 const items = (await getCollection('qa')).sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
-const strip = (s = '') =>
-  s.replace(/```[\s\S]*?```/g, ' ')
-   .replace(/<!--[\s\S]*?-->/g, ' ')
-   .replace(/https?:\/\/\S+/g, ' ')
-   .replace(/[#>*`_\[\]()|~]/g, ' ')
-   .replace(/\s+/g, ' ')
-   .trim().toLowerCase().slice(0, 4000);
 
 const cards = items.map((q) => {
   const m = QMETA[q.slug] || { phases: [], kanshin: [] };
@@ -24,12 +17,7 @@ const cards = items.map((q) => {
     cat: (m.kanshin && m.kanshin[0]) || '相談', // 差し色用の代表テーマ
   };
 });
-const sidx = items.map((q) => ({
-  slug: q.slug,
-  t: (q.data.question || '').toLowerCase(),
-  s: `${(q.data.tags || []).join(' ')} ${q.data.description || ''}`.toLowerCase(),
-  b: strip(q.body || ''),
-}));
+// 検索インデックスは /search-index/qa.json に切り出し済み（src/pages/search-index/qa.json.ts）。
 ---
 <BaseLayout
   title="Q&A｜オレタチ"
@@ -84,9 +72,9 @@ const sidx = items.map((q) => ({
   </ul>
   <p class="empty-msg" id="empty" hidden>条件に合うQ&amp;Aがなかった。条件を少し緩めてみてくれ。</p>
 
-  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx).replace(/</g, '\\u003c')}></script>
   <script>
     import { initBrowse } from '../../scripts/browse.js';
-    initBrowse('.qa-card');
+    // 検索インデックスは /search-index/qa.json から遅延取得する（HTMLには埋めない）。
+    initBrowse('.qa-card', '/search-index/qa.json');
   </script>
 </BaseLayout>

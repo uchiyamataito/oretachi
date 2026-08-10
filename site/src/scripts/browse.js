@@ -1,11 +1,36 @@
 // 記事一覧・Q&A一覧で共有する絞り込み＋関連度検索。
 // テーマ（複数）×段階（時系列・単一）×キーワード（本文込み・関連度順）。
-// cardSelector: '.card'（記事）/ '.qa-card'（Q&A）。両ページとも #sidx/#cards/#kw/#browse/#count/#empty を持つ前提。
-export function initBrowse(cardSelector) {
+// cardSelector: '.card'（記事）/ '.qa-card'（Q&A）。両ページとも #cards/#kw/#browse/#count/#empty を持つ前提。
+//
+// 検索インデックス（本文込み・数百KB）は以前HTMLに直接埋めていたが、一覧ページが
+// 358KBまで肥大していたため indexUrl からの遅延取得に変更した。
+// テーマ／段階の絞り込みはカードの data属性だけで動くので、インデックスは
+// 「キーワード検索を実際に使うとき」にだけ要る。
+export function initBrowse(cardSelector, indexUrl) {
   var idx = {};
-  try {
-    JSON.parse((document.getElementById('sidx') || {}).textContent || '[]').forEach(function (r) { idx[r.slug] = r; });
-  } catch (e) {}
+  var idxState = 'none'; // none | loading | ready | failed
+  var idxPromise = null;
+
+  function loadIndex() {
+    if (idxState !== 'none') return idxPromise;
+    idxState = 'loading';
+    idxPromise = fetch(indexUrl)
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (rows) {
+        (rows || []).forEach(function (r) { idx[r.slug] = r; });
+        idxState = 'ready';
+      })
+      .catch(function () { idxState = 'failed'; });
+    return idxPromise;
+  }
+
+  // キーワードを伴う絞り込みは、インデックス到着を待ってから実行する。
+  // 空欄のとき（テーマ/段階だけ）は待たずに即反映する。
+  function applyWithIndex() {
+    if (!(kw.value || '').trim()) { apply(); return; }
+    if (idxState === 'ready' || idxState === 'failed') { apply(); return; }
+    loadIndex().then(apply);
+  }
 
   var container = document.getElementById('cards');
   if (!container) return;
@@ -76,22 +101,24 @@ export function initBrowse(cardSelector) {
         var v = b.getAttribute('data-v');
         if (g === 'theme') { themes.has(v) ? themes.delete(v) : themes.add(v); }
         else { phase = (phase === v) ? '' : v; }
-        syncChips(); apply();
+        syncChips(); applyWithIndex();
       });
     });
   });
   document.querySelectorAll('.facet-clear').forEach(function (fc) {
     fc.addEventListener('click', function () {
       if (fc.getAttribute('data-clear') === 'theme') { themes.clear(); } else { phase = ''; }
-      syncChips(); apply();
+      syncChips(); applyWithIndex();
     });
   });
   // キーワードは「検索実行（Enter）」または検索欄の×クリアで反映する。
   // スマホで1文字ごとに裏で絞り込まれる違和感を避け、Enterでキーボードも閉じる。
-  kw.addEventListener('search', apply);
+  kw.addEventListener('search', applyWithIndex);
   kw.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') { apply(); kw.blur(); }
+    if (e.key === 'Enter') { applyWithIndex(); kw.blur(); }
   });
+  // 検索欄に触れた時点で先読みしておく（Enterを押す頃には届いている）。
+  kw.addEventListener('focus', loadIndex, { once: true });
   var clearAll = document.getElementById('clear');
   if (clearAll) clearAll.addEventListener('click', function () {
     themes.clear(); phase = ''; kw.value = '';

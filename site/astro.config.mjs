@@ -9,8 +9,16 @@ import remarkCjkFriendly from 'remark-cjk-friendly';
 export default defineConfig({
   site: 'https://oretachi.me',
   integrations: [
-    // styleguide（内部確認用・noindex）はサイトマップに載せない
-    sitemap({ filter: (page) => !page.includes('/styleguide') }),
+    // サイトマップから外すもの：
+    //  - /styleguide  内部確認用・noindex
+    //  - /404         404ページそのもの
+    //  - /search-index/ 一覧の検索用JSON（ページではない）
+    sitemap({
+      filter: (page) =>
+        !page.includes('/styleguide') &&
+        !page.includes('/404') &&
+        !page.includes('/search-index/'),
+    }),
   ],
   markdown: {
     // コードブロック（プロンプト例など）はダークなシンタックスハイライトを使わず、

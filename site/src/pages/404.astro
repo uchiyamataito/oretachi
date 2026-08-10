@@ -1,0 +1,48 @@
+---
+// 404ページ。
+// これが無いと Cloudflare Pages は未知のパスに対して index.html を HTTP 200 で返す
+// （＝存在しないURLが全部トップページの複製になる「ソフト404」）。
+// dist/404.html が出力されていれば Pages はこれを 404 ステータスで配信する。
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { AMETA } from '../data/meta';
+
+// 迷い込んだ人を行き止まりにしない。主要記事へ逃がす。
+const arts = await getCollection('articles');
+const picks = arts
+  .filter((a) => (AMETA[a.slug] || {}).pick)
+  .slice(0, 6);
+const fallback = picks.length
+  ? picks
+  : [...arts].sort((a, b) => (a.data.published < b.data.published ? 1 : -1)).slice(0, 6);
+---
+<BaseLayout
+  title="ページが見つかりません｜オレタチ"
+  description="お探しのページは見つかりませんでした。記事一覧・Q&Aから探し直せます。"
+  canonical="https://oretachi.me/404"
+  noindex={true}
+>
+  <h1>このページは見つからなかった</h1>
+  <p>
+    URLが変わったか、消えたかのどちらかだ。お前のせいじゃない。
+    下から探し直してくれ。
+  </p>
+
+  <p>
+    <a class="btn btn-primary" href="/">トップへ戻る</a>
+  </p>
+
+  <h2>探し直す</h2>
+  <ul>
+    <li><a href="/articles/">記事一覧</a>（テーマ・段階・キーワードで絞り込める）</li>
+    <li><a href="/qa/">Q&amp;A一覧</a></li>
+    <li><a href="/about/">オレタチとは</a></li>
+  </ul>
+
+  <h2>よく読まれている記事</h2>
+  <ul>
+    {fallback.map((a) => (
+      <li><a href={`/${a.slug}/`}>{a.data.title}</a></li>
+    ))}
+  </ul>
+</BaseLayout>

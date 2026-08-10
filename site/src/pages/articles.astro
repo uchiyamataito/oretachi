@@ -8,15 +8,6 @@ import { AMETA, THEMES, PHASES } from '../data/meta';
 const all = (await getCollection('articles')).sort((a, b) =>
   a.data.published < b.data.published ? 1 : -1
 );
-// 本文も検索対象に。Markdown記号を軽く除去し小文字化（関連度づけ用）。
-const strip = (s = '') =>
-  s.replace(/```[\s\S]*?```/g, ' ')
-   .replace(/<!--[\s\S]*?-->/g, ' ')
-   .replace(/https?:\/\/\S+/g, ' ')
-   .replace(/[#>*`_\[\]()|~]/g, ' ')
-   .replace(/\s+/g, ' ')
-   .trim().toLowerCase().slice(0, 4000);
-
 const cards = all.map((a) => {
   const m = AMETA[a.slug] || { phases: [], kanshin: [], tag: '記事' };
   return {
@@ -28,13 +19,8 @@ const cards = all.map((a) => {
     phases: m.phases || [],
   };
 });
-// 検索インデックス（t=タイトル / s=タグ+説明 / b=本文。重み付けに使う）
-const sidx = all.map((a) => ({
-  slug: a.slug,
-  t: (a.data.title || '').toLowerCase(),
-  s: `${(a.data.tags || []).join(' ')} ${a.data.description || ''}`.toLowerCase(),
-  b: strip(a.body || ''),
-}));
+// 検索インデックス（t=タイトル / s=タグ+説明 / b=本文）は
+// /search-index/articles.json に切り出し済み（src/pages/search-index/articles.json.ts）。
 ---
 <BaseLayout
   title="記事一覧｜オレタチ"
@@ -87,9 +73,9 @@ const sidx = all.map((a) => ({
   <p class="empty-msg" id="empty" hidden>条件に合う記事がなかった。条件を少し緩めてみてくれ。</p>
   </div>
 
-  <script type="application/json" id="sidx" set:html={JSON.stringify(sidx).replace(/</g, '\\u003c')}></script>
   <script>
     import { initBrowse } from '../scripts/browse.js';
-    initBrowse('.card');
+    // 検索インデックスは /search-index/articles.json から遅延取得する（HTMLには埋めない）。
+    initBrowse('.card', '/search-index/articles.json');
   </script>
 </BaseLayout>

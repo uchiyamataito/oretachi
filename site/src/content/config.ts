@@ -33,7 +33,10 @@ const articles = defineCollection({
 const qa = defineCollection({
   type: 'content',
   schema: z.object({
-    question: z.string(),       // 質問（タイトル）
+    question: z.string(),       // 質問（タイトル）。H1・パンくず・FAQ構造化データに使う会話体
+    // <title>専用の短縮版。question が長く日本語SERPで切れる場合だけ指定する。
+    // 「｜オレタチ」suffixを足して全角32文字以内に収め、需要語を前方に置く（35_seo_review.md）。
+    seo_title: z.string().optional(),
     description: z.string(),    // 抜粋（カード・meta）
     category: z.string(),       // お悩み分類（5モジュール）
     tags: z.array(z.string()).optional(),
