@@ -6,7 +6,15 @@ import ShareButtons from '../components/ShareButtons.astro';
 import { withTrailingSlash } from '../utils/url';
 const { entry, headings = [], recos } = Astro.props;
 const d = entry.data;
-const toc = headings.filter((h) => h.depth === 2); // H2を目次に
+// 目次はH2＋H3。長い記事ほどH3の粒度が効く（H3を落とすと構造の大半が目次に出ない）ため、
+// H2の下にH3をネストし、H3群は既定で折りたたむ（一覧の見通しを保ちつつ、必要な人だけ開ける）。
+const toc = headings
+  .filter((h) => h.depth === 2 || h.depth === 3)
+  .reduce((acc, h) => {
+    if (h.depth === 2) acc.push({ ...h, children: [] });
+    else if (acc.length) acc[acc.length - 1].children.push(h);
+    return acc;
+  }, []);
 const site = 'https://oretachi.me';
 // パンくず（各 ListItem に item=URL を付与）。ホーム > 記事 > 当該記事。
 const crumbs = [
@@ -43,7 +51,19 @@ const crumbs = [
         <strong>目次</strong>
         <ul>
           {toc.map((h) => (
-            <li><a href={`#${h.slug}`}>{h.text}</a></li>
+            <li>
+              <a href={`#${h.slug}`}>{h.text}</a>
+              {h.children.length > 0 && (
+                <details class="toc-sub">
+                  <summary>{h.children.length}項目</summary>
+                  <ul>
+                    {h.children.map((c) => (
+                      <li><a href={`#${c.slug}`}>{c.text}</a></li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </li>
           ))}
         </ul>
       </nav>

@@ -509,3 +509,15 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .home .qcard .qa{display:block;margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6}
 .home .qcard .qgo{position:absolute;right:12px;bottom:11px;color:var(--faint);font-size:17px;transition:.15s}
 .home .qcard:hover .qgo,.home .qcard:focus-visible .qgo{color:var(--coral);transform:translateX(2px)}
+
+/* 目次のH3ネスト（2026-08-13）。長い記事はH2だけだと構造の大半が目次に出ないため、
+   H3をH2配下に折りたたみで持つ。既定は閉じ、必要な人だけ開く。 */
+.toc .toc-sub{margin:4px 0 2px}
+.toc .toc-sub>summary{cursor:pointer;font-size:.82rem;color:var(--faint);
+  list-style:none;padding:2px 0;display:inline-flex;align-items:center;gap:4px}
+.toc .toc-sub>summary::-webkit-details-marker{display:none}
+.toc .toc-sub>summary::before{content:"▸";transition:transform .15s}
+.toc .toc-sub[open]>summary::before{transform:rotate(90deg)}
+.toc .toc-sub>summary:hover{color:var(--accent)}
+.toc .toc-sub ul{margin:4px 0 6px;padding-left:1.1em}
+.toc .toc-sub li{font-size:.9rem;margin:3px 0}
