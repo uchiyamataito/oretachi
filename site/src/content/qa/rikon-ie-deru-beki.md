@@ -4,7 +4,7 @@ seo_title: "離婚を切り出されたら家を出るべきか（別居の判�
 description: "勢いで出るのは待て。別居は生活費・財産・子どもの話に影響しうる。ただし身の危険や限界が近いなら安全確保が最優先だ。"
 category: "生活"
 tags: ["生活", "別居", "初動"]
-related_articles: ["rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
+related_articles: ["rikon-tsuma-jikka-kaetta", "rikon-nani-kara-hajimeru", "rikon-kiridasareta-saisho-14nichi"]
 author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
