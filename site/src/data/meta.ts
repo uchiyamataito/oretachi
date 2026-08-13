@@ -6,7 +6,7 @@ export const AMETA: Record<string, any> = {
   'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 6, pri: 2, tag: '全体マップ' },
   'rikon-okane-checklist':             { phases: ['切り出された直後', '別居'], kanshin: ['お金'], kids: false, rank: 5, tag: 'お金' },
   'rikon-dansei-soudansaki':           { phases: ['切り出された直後', '協議・調停中'], kanshin: ['相談', '気持ち'], kids: false, pick: true, rank: 7, pri: 2, tag: '相談' },
-  'rikon-tsuma-jikka-kaetta':          { phases: ['切り出された直後', '別居'], kanshin: ['気持ち', '手続き'], kids: true, spouse_contact: true, pick: true, rank: 4, pri: 2, tag: '別居・初動', route: 'mitei' },
+  'rikon-tsuma-jikka-kaetta':          { phases: ['切り出された直後', '別居'], kanshin: ['気持ち'], kids: true, spouse_contact: true, pick: true, rank: 4, pri: 2, tag: '別居・初動', route: 'mitei' },
   'rikon-mada-wakaretakunai':          { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, spouse_contact: true, rank: 8, tag: '気持ち', route: 'fukuen' },
   'rikon-kenkohoken-tetsuzuki':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], kids: false, rank: 9, tag: '手続き', route: 'rikon' },
   'rikon-kodomo-hoken':                { phases: ['別居', '協議・調停中', '成立後'], kanshin: ['子ども', '手続き'], kids: true, tag: '子ども', route: 'rikon' },
@@ -36,7 +36,7 @@ export const AMETA: Record<string, any> = {
 export const QMETA: Record<string, any> = {
   'rikon-tsuma-dete-itta-renraku-itsu': { phases: ['切り出された直後', '別居'], kanshin: ['気持ち', '相談'] },
   'rikon-tsuma-jikka-gifubo-renraku':   { phases: ['切り出された直後', '別居'], kanshin: ['気持ち', '相談'] },
-  'rikon-tsuma-nimotsu-okuru':          { phases: ['別居'], kanshin: ['手続き', '気持ち'] },
+  'rikon-tsuma-nimotsu-okuru':          { phases: ['切り出された直後', '別居'], kanshin: ['気持ち'] },
   'rikon-hokensho-dousuru':        { phases: ['別居', '成立後'], kanshin: ['手続き', 'お金'], route: 'rikon' },
   'rikon-riyuu-toitsumeru':        { phases: ['切り出された直後'], kanshin: ['気持ち'], spouse_contact: true, route: 'fukuen' },
   'rikon-ie-deru-beki':            { phases: ['切り出された直後', '別居'], kanshin: ['手続き', 'お金'], spouse_contact: true },
