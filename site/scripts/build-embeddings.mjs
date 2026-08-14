@@ -27,6 +27,11 @@ const MODEL = process.env.EMBED_MODEL || '@cf/baai/bge-m3';
 const ACCOUNT = process.env.CF_ACCOUNT_ID;
 const TOKEN = process.env.CF_API_TOKEN;
 const BATCH = 50;
+// 1リクエストあたりの上限。件数ではなく「合計の文字量」で切る。
+// bge-m3 のコンテキスト上限は 60,000 トークン。日本語は概ね 1文字 ≒ 1トークン以上になるため、
+// 安全側に 20,000字 で頭打ちにする（2026-08-14に 50件=約67,500字 で 400 "Max context reached" が発生した）。
+const MAX_CHARS_PER_REQUEST = 20000;
+const MAX_ITEMS_PER_REQUEST = 20;
 
 if (!ACCOUNT || !TOKEN) {
   console.error('✗ CF_ACCOUNT_ID と CF_API_TOKEN が必要です（Cloudflare・無料枠）。設定して再実行してください。');
@@ -56,6 +61,27 @@ async function embedBatch(texts) {
   return data;
 }
 
+// 文字量と件数で分割して送る。それでも上限に当たったら半分に割って再試行する。
+async function embedSafely(texts) {
+  if (texts.length === 0) return [];
+  const total = texts.reduce((n, t) => n + t.length, 0);
+  const tooBig = texts.length > MAX_ITEMS_PER_REQUEST || total > MAX_CHARS_PER_REQUEST;
+  if (tooBig && texts.length > 1) {
+    const mid = Math.ceil(texts.length / 2);
+    return [...(await embedSafely(texts.slice(0, mid))), ...(await embedSafely(texts.slice(mid)))];
+  }
+  try {
+    return await embedBatch(texts);
+  } catch (e) {
+    // 見積もりを外して上限に当たった場合の保険（コード3030＝Max context reached）
+    if (texts.length > 1 && /Max context|3030/.test(String(e))) {
+      const mid = Math.ceil(texts.length / 2);
+      return [...(await embedSafely(texts.slice(0, mid))), ...(await embedSafely(texts.slice(mid)))];
+    }
+    throw e;
+  }
+}
+
 const out = [];
 let reused = 0;
 let embedded = 0;
@@ -74,7 +100,7 @@ for (let i = 0; i < chunks.length; i += BATCH) {
   }
   // 足りない分だけ生成
   if (need.length) {
-    const vecs = await embedBatch(need);
+    const vecs = await embedSafely(need);
     needIdx.forEach((k, n) => { slice[k]._emb = vecs[n]; embedded++; });
   }
   for (const c of slice) {
