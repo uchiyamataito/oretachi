@@ -13,7 +13,7 @@
     "stamp": "node scripts/prerelease-check.mjs --stamp"
   },
   "dependencies": {
-    "astro": "^4.15.0",
+    "astro": "^7.2.1",
     "@astrojs/sitemap": "3.1.6",
     "remark-cjk-friendly": "^2.3.1"
   }
