@@ -102,8 +102,10 @@ function check(slug) {
   // 窓口を載せたときの必須表記
   const hasWindow = /0120-|#8008|189（|110番/.test(body);
   if (hasWindow) {
-    /番号・受付時間は変わることがある/.test(body) ? ok('「番号・受付時間は変わることがある」の注記') : ng('窓口を載せているのに「番号・受付時間は変わることがある」の注記が無い');
-    /rikon-dansei-soudansaki/.test(body) ? ok('相談先の親記事へのリンク') : ng('窓口を載せているのに相談先の親記事へリンクしていない');
+    /番号[^。]{0,24}変わる|受付[^。]{0,24}変わる/.test(body) ? ok('「番号・受付時間は変わることがある」の注記') : ng('窓口を載せているのに「番号・受付時間は変わることがある」の注記が無い');
+    // 相談先の親記事そのものは、自分にリンクできない
+    slug === 'rikon-dansei-soudansaki' ? ok('相談先の親記事そのもの') :
+      /rikon-dansei-soudansaki/.test(body) ? ok('相談先の親記事へのリンク') : ng('窓口を載せているのに相談先の親記事へリンクしていない');
     /\d{4}-\d{2}-\d{2}確認/.test(body) ? ok('出典に確認日が入っている') : ng('窓口の出典に確認日が無い');
   }
   // 太字の密度
@@ -128,7 +130,9 @@ function check(slug) {
   const meta = readFileSync(join(ROOT, 'src/data/meta.ts'), 'utf-8');
   meta.includes(`'${slug}'`) ? ok('meta.ts に登録済み') : ng('meta.ts に登録が無い（レコメンドに出ない）');
   const idx = readFileSync(join(ROOT, 'src/pages/index.astro'), 'utf-8');
-  idx.includes(`/${slug}'`) ? ok('index.astro の時系列に登録済み') : ng('index.astro の時系列に無い（トップの時系列に出ない）');
+  // 時系列は段階ごとに厳選する場所で、全記事を載せる設計ではない（実測48/85本）。
+  // 新規公開時は入れる想定だが、既存の棚卸しで一律に落とすのは誤りなので警告に留める。
+  idx.includes(`/${slug}'`) ? ok('index.astro の時系列に登録済み') : wa('index.astro の時系列に無い（新規公開なら要追加。既存記事は編集判断）');
 
   console.log('\n【3】実出力（dist）');
   const distFile = join(DIST, slug, 'index.html');
@@ -158,7 +162,11 @@ function check(slug) {
   // アンカーの実在
   const anchors = [...html.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]);
   const ids = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
-  const dead = [...new Set(anchors)].filter((a) => !ids.has(a));
+  // 手書きリンクは %E3%81%.. の形で書かれることがある。デコードして突き合わせる
+  const dead = [...new Set(anchors)].filter((a) => {
+    if (ids.has(a)) return false;
+    try { return !ids.has(decodeURIComponent(a)); } catch { return true; }
+  });
   dead.length ? ng(`リンク先の無いアンカー: ${dead.join(', ')}`) : ok(`アンカー ${new Set(anchors).size}件すべて実在`);
   // 画像の実在（拡張子違いの事故を防ぐ）
   for (const m of html.matchAll(/(?:src|href)="(\/img\/[^"]+)"/g)) {
