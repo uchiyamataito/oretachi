@@ -4,7 +4,7 @@ description: "自分を責めても解決しないし、過度な自責は心の
 category: "気持ち・整理"
 tags: ["気持ち", "メンタル", "相談"]
 related_articles: ["rikon-koukai", "rikon-dansei-soudansaki", "rikon-saishuppatsu"]
-related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-nemurenai-byoin"]
+related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-nemurenai-byoin", "rikon-dansei-dv-soudan-dekiru"]
 author: "片瀬 海斗"
 published: "2026-06-28"
 updated: "2026-06-28"

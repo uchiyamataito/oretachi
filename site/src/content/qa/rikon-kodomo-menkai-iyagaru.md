@@ -25,3 +25,5 @@ disclaimer: "公的資料をもとにした一般的な情報であり、子ど�
 ---
 
 - **出典**：1. 大分家庭裁判所パンフレット「子どもの幸せのために親ができること〜面会交流〜」（同居親と別居親の間での板挟み・忠誠葛藤など） https://www.courts.go.jp/oita/vc-files/oita/file/202002.pdf 。2. こども家庭庁「養育費・親子交流相談支援センター」 https://www.cfa.go.jp/policies/hitori-oya/soudan 。いずれも2026-07-11確認
+
+家の中で怒鳴り声があり「子どものために自分が我慢すべきか」で迷っている人は → [子どものために我慢すべき？](/qa/rikon-kodomo-natsuiteru-gaman/)

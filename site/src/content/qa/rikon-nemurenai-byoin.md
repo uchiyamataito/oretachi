@@ -5,7 +5,7 @@ description: "つらさが続くなら心療内科・精神科に行っていい
 category: "気持ち"
 tags: ["気持ち", "心のケア", "相談窓口"]
 related_articles: ["rikon-kiridasareta-saisho-14nichi"]
-related_qa: ["rikon-kiridasareta-atama-masshiro"]
+related_qa: ["rikon-kiridasareta-atama-masshiro", "rikon-dansei-dv-soudan-dekiru"]
 author: "片瀬 海斗"
 published: "2026-06-25"
 updated: "2026-06-28"
@@ -23,3 +23,5 @@ disclaimer: "一般的な情報であり、医療行為ではありません。�
 > - **いのちの電話**（秘密厳守・名前不要）：フリーダイヤル **0120-783-556**（**毎日16:00〜21:00**／毎月10日は8:00〜翌8:00）・ナビダイヤル **0570-783-556**（10:00〜22:00） → [公式](https://www.inochinodenwa.org/)
 
 誰にも言えずに溜め込んでるよな。それで当たり前だ、格好悪いことじゃない。でも、受診や窓口に頼るのは“負け”じゃない。ちゃんと前に進むための一手だ。頭が真っ白なこと自体への向き合い方は、こっちにも書いてある。→ [離婚を切り出されて頭が真っ白。これって普通か？](/qa/rikon-kiridasareta-atama-masshiro/)
+
+なお、しんどかった日の記録を残しておきたいが見つかるのが不安、という人は → [怒鳴られた記録は、どこに残せば見つからない？](/qa/rikon-donarareta-memo/)

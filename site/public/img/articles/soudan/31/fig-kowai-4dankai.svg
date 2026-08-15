@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 464" role="img" aria-labelledby="t d" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="t">気を使う・顔色をうかがう・怖い・帰りたくないの4段階</title>
+  <desc id="d">1は気を使う段階で話題を選ぶ程度、2は顔色をうかがう段階で自分の話をしなくなる、3は怖い段階で先に謝る癖がつき動悸が出る、4は帰りたくない段階で眠れない食べられないが重なる。今日やることは、1が特に何もいらない、2が自分の話を誰か1人にする、3があった日だけ一行メモを残す、4が寝た時間と食事を毎日メモする。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="463" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">今、どのあたりにいるか</text>
+  <text x="52" y="68" font-size="12.5" fill="#6E6354">どこにいるかで、やることが変わる</text>
+
+  <!-- ① 気を使う -->
+  <rect x="36" y="88" width="144" height="264" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M36 128 V102 Q36 88 50 88 H166 Q180 88 180 102 V128 Z" fill="#1B3A57"/>
+  <text x="108" y="114" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">① 気を使う</text>
+  <text x="108" y="152" font-size="11" fill="#8C8270" text-anchor="middle">家での様子</text>
+  <text x="108" y="176" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">話題や言い方を</text>
+  <text x="108" y="196" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">選んでいる</text>
+  <line x1="60" y1="212" x2="156" y2="212" stroke="#ECE3D5"/>
+  <text x="108" y="234" font-size="11" fill="#8C8270" text-anchor="middle">体に出るもの</text>
+  <text x="108" y="258" font-size="13" fill="#6E6354" text-anchor="middle">まだ特にない</text>
+  <path d="M36 296 H180 V338 Q180 352 166 352 H50 Q36 352 36 338 Z" fill="#EFF7F2"/>
+  <text x="108" y="314" font-size="10.5" fill="#0F6E56" text-anchor="middle">今日やること</text>
+  <text x="108" y="334" font-size="12.5" font-weight="700" fill="#0F6E56" text-anchor="middle">特に何もいらない</text>
+
+  <!-- ② 顔色をうかがう -->
+  <rect x="196" y="88" width="144" height="264" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M196 128 V102 Q196 88 210 88 H326 Q340 88 340 102 V128 Z" fill="#1B3A57"/>
+  <text x="268" y="114" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">② 顔色をうかがう</text>
+  <text x="268" y="152" font-size="11" fill="#8C8270" text-anchor="middle">家での様子</text>
+  <text x="268" y="176" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">自分の話を</text>
+  <text x="268" y="196" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">しなくなる</text>
+  <line x1="220" y1="212" x2="316" y2="212" stroke="#ECE3D5"/>
+  <text x="268" y="234" font-size="11" fill="#8C8270" text-anchor="middle">体に出るもの</text>
+  <text x="268" y="258" font-size="13" fill="#6E6354" text-anchor="middle">家で休まらない</text>
+  <path d="M196 296 H340 V338 Q340 352 326 352 H210 Q196 352 196 338 Z" fill="#EFF7F2"/>
+  <text x="268" y="314" font-size="10.5" fill="#0F6E56" text-anchor="middle">今日やること</text>
+  <text x="268" y="332" font-size="12" font-weight="700" fill="#0F6E56" text-anchor="middle">自分の話を</text>
+  <text x="268" y="346" font-size="12" font-weight="700" fill="#0F6E56" text-anchor="middle">誰か1人にする</text>
+
+  <!-- ③ 怖い -->
+  <rect x="356" y="88" width="144" height="264" rx="14" fill="#FBF9F4" stroke="#E4DACB"/>
+  <path d="M356 128 V102 Q356 88 370 88 H486 Q500 88 500 102 V128 Z" fill="#1B3A57"/>
+  <text x="428" y="114" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">③ 怖い</text>
+  <text x="428" y="152" font-size="11" fill="#8C8270" text-anchor="middle">家での様子</text>
+  <text x="428" y="176" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">何が悪いか</text>
+  <text x="428" y="196" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">分からず先に謝る</text>
+  <line x1="380" y1="212" x2="476" y2="212" stroke="#ECE3D5"/>
+  <text x="428" y="234" font-size="11" fill="#8C8270" text-anchor="middle">体に出るもの</text>
+  <text x="428" y="258" font-size="13" fill="#6E6354" text-anchor="middle">動悸がする</text>
+  <path d="M356 296 H500 V338 Q500 352 486 352 H370 Q356 352 356 338 Z" fill="#FBF1EA"/>
+  <text x="428" y="314" font-size="10.5" fill="#B5481F" text-anchor="middle">今日やること</text>
+  <text x="428" y="332" font-size="12" font-weight="700" fill="#B5481F" text-anchor="middle">あった日だけ</text>
+  <text x="428" y="346" font-size="12" font-weight="700" fill="#B5481F" text-anchor="middle">一行メモを残す</text>
+
+  <!-- ④ 帰りたくない -->
+  <rect x="516" y="88" width="144" height="264" rx="14" fill="#FBF9F4" stroke="#E7B39F"/>
+  <path d="M516 128 V102 Q516 88 530 88 H646 Q660 88 660 102 V128 Z" fill="#B5481F"/>
+  <text x="588" y="114" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">④ 帰りたくない</text>
+  <text x="588" y="152" font-size="11" fill="#8C8270" text-anchor="middle">家での様子</text>
+  <text x="588" y="176" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">帰宅を遅らせ</text>
+  <text x="588" y="196" font-size="13.5" font-weight="700" fill="#2C2A26" text-anchor="middle">外で時間をつぶす</text>
+  <line x1="540" y1="212" x2="636" y2="212" stroke="#ECE3D5"/>
+  <text x="588" y="234" font-size="11" fill="#8C8270" text-anchor="middle">体に出るもの</text>
+  <text x="588" y="256" font-size="13" fill="#6E6354" text-anchor="middle">眠れない</text>
+  <text x="588" y="274" font-size="13" fill="#6E6354" text-anchor="middle">食べられない</text>
+  <path d="M516 296 H660 V338 Q660 352 646 352 H530 Q516 352 516 338 Z" fill="#FBF1EA"/>
+  <text x="588" y="314" font-size="10.5" fill="#B5481F" text-anchor="middle">今日やること</text>
+  <text x="588" y="332" font-size="12" font-weight="700" fill="#B5481F" text-anchor="middle">寝た時間と食事を</text>
+  <text x="588" y="346" font-size="12" font-weight="700" fill="#B5481F" text-anchor="middle">毎日メモする</text>
+
+  <!-- 注記 -->
+  <rect x="36" y="376" width="624" height="56" rx="8" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <text x="56" y="394" font-size="12.5" fill="#1B3A57">※これは「どれだけ参っているか」の目安。危ないかどうかの判定ではない。迷ったら、重いほうを選ぶ。</text>
+  <text x="56" y="412" font-size="12.5" font-weight="700" fill="#B5481F">※④で「消えたい」が出ているなら → #いのちSOS 0120-061-338（24時間・無料）</text>
+</svg>

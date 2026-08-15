@@ -8,7 +8,9 @@
     "prebuild": "node scripts/build-rag.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "build:rag": "node scripts/build-rag.mjs"
+    "build:rag": "node scripts/build-rag.mjs",
+    "check": "node scripts/prerelease-check.mjs",
+    "stamp": "node scripts/prerelease-check.mjs --stamp"
   },
   "dependencies": {
     "astro": "^4.15.0",
