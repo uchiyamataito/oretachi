@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 472" role="img" aria-labelledby="tj dj" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="tj">妻が出て行ったとき、何を見て、何を見ないか</title>
+  <desc id="dj">決定打は2つ。代理人（弁護士）から連絡が来たか、生活の基盤を移したか（転校・転園、住民票、郵便の転送）。ここまで動いていれば短期で戻る前提ではない。参考になるのは荷物の量や、通帳・保険証・母子手帳を持ち出したかどうかで、これは「当面は戻らないつもり」を意味するだけ。当てにならないのはLINEの文面と返事の速さで、出た直後はどの状況でも連絡が止まる。迷ったときは重いほうを前提に振る舞えばよく、その振る舞いは軽かった場合にも損をしない。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="471" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="36" y="28" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="52" y="46" font-size="19" font-weight="800" fill="#1B3A57">見るべき順番がある。多数決ではない</text>
+  <text x="52" y="68" font-size="12.5" fill="#6E6354">3つを同じ重さで数えない。上から順に見る</text>
+
+  <!-- 決定打 -->
+  <rect x="36" y="88" width="628" height="118" rx="12" fill="#FBF1EA" stroke="#E7B39F"/>
+  <rect x="56" y="104" width="76" height="24" rx="12" fill="#B5481F"/>
+  <text x="94" y="121" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">決定打</text>
+  <text x="144" y="121" font-size="12.5" fill="#2C2A26">この2つが来ていたら、短期で戻る前提ではない</text>
+  <rect x="56" y="138" width="288" height="52" rx="8" fill="#FFFFFF" stroke="#E7B39F"/>
+  <text x="200" y="160" font-size="13" font-weight="700" fill="#1B3A57" text-anchor="middle">① 代理人（弁護士）から</text>
+  <text x="200" y="178" font-size="13" font-weight="700" fill="#1B3A57" text-anchor="middle">連絡が来た</text>
+  <rect x="356" y="138" width="288" height="52" rx="8" fill="#FFFFFF" stroke="#E7B39F"/>
+  <text x="500" y="160" font-size="13" font-weight="700" fill="#1B3A57" text-anchor="middle">② 生活の基盤を移した</text>
+  <text x="500" y="178" font-size="11.5" fill="#6E6354" text-anchor="middle">転校・転園／住民票／郵便の転送</text>
+
+  <!-- 参考 -->
+  <rect x="36" y="222" width="628" height="92" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="56" y="238" width="60" height="24" rx="12" fill="#E2703A"/>
+  <text x="86" y="255" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">参考</text>
+  <text x="128" y="255" font-size="12.5" fill="#2C2A26">方向は分かるが、決めつけない</text>
+  <rect x="56" y="272" width="588" height="26" rx="8" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <text x="70" y="290" font-size="12.5" fill="#2C2A26">荷物の量／通帳・保険証・母子手帳を持ち出したか</text>
+  <text x="70" y="308" font-size="11.5" fill="#6E6354">＝「当面は戻らないつもり」。それ以上でも以下でもない</text>
+
+  <!-- 当てにならない -->
+  <rect x="36" y="330" width="628" height="92" rx="12" fill="#F4F7FA" stroke="#D5E0EA"/>
+  <rect x="56" y="346" width="112" height="24" rx="12" fill="#8C8270"/>
+  <text x="112" y="363" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">当てにならない</text>
+  <text x="180" y="363" font-size="12.5" fill="#6E6354">ここから読み取ろうとしない</text>
+  <rect x="56" y="380" width="588" height="26" rx="8" fill="#FFFFFF" stroke="#D5E0EA"/>
+  <text x="70" y="398" font-size="12.5" fill="#6E6354">LINEの文面／返事の速さ・既読の有無</text>
+  <text x="70" y="416" font-size="11.5" fill="#8C8270">出た直後は、どの状況でも連絡が止まる</text>
+
+  <text x="52" y="450" font-size="12.5" font-weight="700" fill="#1B3A57">迷ったときは、重いほうを前提に振る舞えばいい。軽かった場合にも、何ひとつ損をしない</text>
+</svg>
