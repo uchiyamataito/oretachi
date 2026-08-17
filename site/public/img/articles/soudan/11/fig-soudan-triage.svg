@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 590" role="img" aria-labelledby="ts ds" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="ts">相談先は、目的別に3つ</title>
+  <desc id="ds">①命は「消えたい」「眠れない・食べられない」と感じるとき。いま身の危険があるなら110番、薬を飲んだ・切ったなら119番。よりそいホットライン0120-279-338と#いのちSOS 0120-061-338はどちらも24時間・無料。②心はつらさ・孤独を受け止めてほしいとき。あなたのいばしょのチャットは24時間365日・無料・匿名。自治体の男性相談は市区町村名と男性相談で検索する。③実務はお金・親権・手続きの道筋をつけたいとき。法テラス0570-078374と自治体の無料法律相談。迷ったら①から。</desc>
+
+  <rect x="0.5" y="0.5" width="559" height="589" rx="14" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <rect x="28" y="26" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="44" y="44" font-size="19" font-weight="800" fill="#1B3A57">相談先は、目的別に3つ</text>
+  <text x="44" y="66" font-size="13" fill="#6E6354">全部を今日やる必要はない。迷ったら①から</text>
+
+  <!-- ① 命 -->
+  <rect x="28" y="86" width="504" height="188" rx="12" fill="#FBF1EA" stroke="#E7B39F"/>
+  <rect x="48" y="102" width="60" height="24" rx="12" fill="#B5481F"/>
+  <text x="78" y="119" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">① 命</text>
+  <text x="120" y="119" font-size="13" font-weight="700" fill="#2C2A26">「消えたい」／眠れない・食べられない</text>
+  <text x="512" y="119" font-size="12.5" font-weight="800" fill="#B5481F" text-anchor="end">迷わず今すぐ</text>
+  <rect x="48" y="136" width="464" height="124" rx="8" fill="#FFFFFF" stroke="#E7B39F"/>
+  <text x="64" y="160" font-size="15" font-weight="800" fill="#B5481F">いま身の危険 → 110番／薬を飲んだ・切った → 119番</text>
+  <text x="64" y="184" font-size="14" font-weight="700" fill="#2C2A26">よりそいホットライン 0120-279-338（24時間・無料）</text>
+  <text x="64" y="206" font-size="14" font-weight="700" fill="#2C2A26">#いのちSOS 0120-061-338（24時間・無料）</text>
+  <text x="64" y="228" font-size="13" fill="#2C2A26">チャットなら あなたのいばしょ（24時間365日・無料・匿名）</text>
+  <text x="64" y="250" font-size="12" fill="#6E6354">16:00〜21:00なら いのちの電話 0120-783-556（無料・名前不要）</text>
+
+  <!-- ② 心 -->
+  <rect x="28" y="290" width="504" height="134" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="48" y="306" width="60" height="24" rx="12" fill="#1B3A57"/>
+  <text x="78" y="323" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">② 心</text>
+  <text x="120" y="323" font-size="13" font-weight="700" fill="#2C2A26">つらさ・孤独を受け止めてほしい</text>
+  <rect x="48" y="340" width="464" height="58" rx="8" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <text x="64" y="362" font-size="13.5" font-weight="700" fill="#2C2A26">自治体の男性相談（男性相談員に話せる）</text>
+  <text x="64" y="382" font-size="12" fill="#6E6354">探し方＝「〔市区町村名〕 男性 相談」で検索。曜日・時間が限られる</text>
+  <text x="48" y="412" font-size="12" font-weight="700" fill="#B5481F">話しているうちに「消えたい」が出てきたら、①へ</text>
+
+  <!-- ③ 実務 -->
+  <rect x="28" y="440" width="504" height="94" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="48" y="456" width="60" height="24" rx="12" fill="#1B3A57"/>
+  <text x="78" y="473" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">③ 実務</text>
+  <text x="120" y="473" font-size="13" font-weight="700" fill="#2C2A26">お金・親権・手続きの道筋をつける</text>
+  <rect x="48" y="490" width="464" height="30" rx="8" fill="#FFFFFF" stroke="#ECE3D5"/>
+  <text x="64" y="510" font-size="13.5" fill="#2C2A26">法テラス 0570-078374（通話料は自己負担）／自治体の無料法律相談</text>
+
+  <text x="44" y="552" font-size="11.5" fill="#8C8270">※番号・受付時間は変わることがある。かける前に各公式で確認を（2026-08-17確認）</text>
+  <text x="44" y="570" font-size="11.5" fill="#8C8270">※これは医療や法的助言の代わりではない</text>
+</svg>
