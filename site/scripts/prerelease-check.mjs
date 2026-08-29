@@ -14,7 +14,7 @@
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, dirname } from 'node:path';
+import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -202,6 +202,19 @@ function checkSiteWide() {
   bad.length
     ? ng(`AMETA/QMETA を .slug で引いている（Astro5以降は undefined になり全件が既定値に落ちる）: ${bad.join(', ')}`)
     : ok('AMETA/QMETA の参照キーは .id');
+  // 1b) content collection の走査範囲外に .md が置かれていないか。
+  //     content.config.ts は「直下の .md のみ・_ 始まりは除外」に固定してある（理由はそのファイルのコメント）。
+  //     範囲外に置いたファイルは"黙って無視される"ので、書いたのに公開されない事故を機械で拾う。
+  for (const dir of ['articles', 'qa']) {
+    const base = join(ROOT, 'src/content', dir);
+    const stray = readdirSync(base, { recursive: true })
+      .filter((f) => typeof f === 'string' && f.endsWith('.md'))
+      .filter((f) => f.includes('/') || basename(f).startsWith('_'));
+    stray.length
+      ? wa(`src/content/${dir} に、公開対象外の .md が ${stray.length}件ある（下書きならOK。公開したいなら直下へ移し _ を外す）: ${stray.join(', ')}`)
+      : ok(`src/content/${dir} に公開対象外の置き忘れなし`);
+  }
+
   // 2) ビルド結果を実測：トップの adata/qdata が既定値に落ちていないか
   const top = readFileSync(join(DIST, 'index.html'), 'utf-8');
   for (const [id, need] of [['adata', 'phases'], ['qdata', 'phases']]) {
