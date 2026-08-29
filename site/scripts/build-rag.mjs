@@ -16,6 +16,9 @@ function run(dir, kind) {
   const full = join(siteRoot, 'src', 'content', dir);
   for (const f of readdirSync(full)) {
     if (!f.endsWith('.md')) continue;
+    // 下書き（_ 接頭辞）はRAGに入れない。Astroの content.config.ts の pattern と対で守る。
+    // ここを忘れると「サイトには出ないのにAIチャットだけが未レビュー原稿を出典として引く」状態になる。
+    if (f.startsWith('_')) continue;
     const slug = basename(f, '.md');
     const { data, body } = parseFrontmatter(readFileSync(join(full, f), 'utf8'));
     if (data.published && data.published > today) continue; // 未来日＝未公開は除外

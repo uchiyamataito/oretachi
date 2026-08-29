@@ -4,3 +4,9 @@ dist/
 .astro/
 .env
 .env.*
+
+# Claude Code のローカル設定。このリポジトリはPublicなので追跡しない。
+# settings.local.json（許可コマンド一覧＝内部運用手順）や将来の hooks が
+# 公開されるのを防ぐ。hooks はチェックアウトを開いただけでコードが走りうるため、
+# 供給網攻撃の足場になる（2026-08 keyv/cacheable 事案の手口）。
+.claude/
