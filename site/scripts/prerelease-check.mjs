@@ -318,6 +318,30 @@ function checkSiteWide() {
       : ok('ダッシュ不使用（記事・Q&A 両方を確認）');
   }
 
+  // 1e) 引用（>）の直後に空行なしで地の文が続いていないか。
+  //     Markdownの「遅延継続」で、その地の文が引用ブロックの中に描画される。
+  //     2026-08-29に rikon-kiridasareta-saisho-14nichi.md で発見。
+  //     「まず押さえる3つ」直下の "時間がない人、頭が回らない人は、ここだけ読めばいい。" が
+  //     別記事への注釈の引用に飲み込まれ、**本番でそう表示されていた**。
+  //     ソースを読んでいる限り気づけず、ビルド結果のHTMLを見ないと分からない種類の壊れ方。
+  {
+    const bad = [];
+    for (const dir of ['articles', 'qa']) {
+      for (const f of readdirSync(join(ROOT, 'src/content', dir)).filter((x) => x.endsWith('.md'))) {
+        const L = readFileSync(join(ROOT, 'src/content', dir, f), 'utf-8').split('\n');
+        for (let i = 0; i < L.length - 1; i++) {
+          const cur = L[i], nxt = L[i + 1];
+          if (cur.startsWith('>') && nxt.trim() && !nxt.startsWith('>') && !nxt.startsWith('#')) {
+            bad.push(`${dir}/${f}:${i + 2}（${nxt.slice(0, 28)}…）`);
+          }
+        }
+      }
+    }
+    bad.length
+      ? ng(`引用（>）の直後に空行が無く、地の文が引用に飲み込まれる: ${bad.join(', ')}`)
+      : ok('引用ブロックの閉じ忘れなし');
+  }
+
   // 2) ビルド結果を実測：トップの adata/qdata が既定値に落ちていないか
   const top = readFileSync(join(DIST, 'index.html'), 'utf-8');
   for (const [id, need] of [['adata', 'phases'], ['qdata', 'phases']]) {
