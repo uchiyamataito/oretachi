@@ -7,8 +7,8 @@ import { AMETA, QMETA } from '../data/meta';
 const arts = await getCollection('articles');
 const qas = await getCollection('qa');
 
-const adata = arts.map((a) => ({ slug: a.id, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published, ...(AMETA[a.slug] || { phases: [], kanshin: [], kids: false, pick: false, rank: 99, tag: '記事' }) }));
-const qdata = qas.map((q) => ({ slug: q.id, q: q.data.question, d: q.data.description, ...(QMETA[q.slug] || { phases: [], kanshin: [] }) }));
+const adata = arts.map((a) => ({ slug: a.id, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published, ...(AMETA[a.id] || { phases: [], kanshin: [], kids: false, pick: false, rank: 99, tag: '記事' }) }));
+const qdata = qas.map((q) => ({ slug: q.id, q: q.data.question, d: q.data.description, ...(QMETA[q.id] || { phases: [], kanshin: [] }) }));
 const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
 ---
 <BaseLayout
