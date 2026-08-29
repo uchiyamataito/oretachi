@@ -1,6 +1,6 @@
 ---
 // Q&Aを1ページずつ自動生成。回遊レコメンドも算出して渡す。
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import QaLayout from '../../layouts/QaLayout.astro';
 import { buildPool, recommend } from '../../data/reco';
 
@@ -9,13 +9,13 @@ export async function getStaticPaths() {
   const articles = await getCollection('articles');
   const pool = buildPool(articles, items);
   return items.map((entry) => {
-    const cur = pool.find((p) => p.type === 'qa' && p.slug === entry.slug);
+    const cur = pool.find((p) => p.type === 'qa' && p.slug === entry.id);
     const recos = cur ? recommend(pool, cur) : { related: [], next: [] };
-    return { params: { slug: entry.slug }, props: { entry, recos } };
+    return { params: { slug: entry.id }, props: { entry, recos } };
   });
 }
 
 const { entry, recos } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 <QaLayout entry={entry} recos={recos}><Content /></QaLayout>

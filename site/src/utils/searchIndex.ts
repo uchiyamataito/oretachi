@@ -19,7 +19,7 @@ export const strip = (s = ''): string =>
 // 記事コレクション → 検索インデックス
 export function buildArticleIndex(entries: any[]): SearchRecord[] {
   return entries.map((a) => ({
-    slug: a.slug,
+    slug: a.id,
     t: (a.data.title || '').toLowerCase(),
     s: `${(a.data.tags || []).join(' ')} ${a.data.description || ''}`.toLowerCase(),
     b: strip(a.body || ''),
@@ -29,7 +29,7 @@ export function buildArticleIndex(entries: any[]): SearchRecord[] {
 // Q&Aコレクション → 検索インデックス
 export function buildQaIndex(entries: any[]): SearchRecord[] {
   return entries.map((q) => ({
-    slug: q.slug,
+    slug: q.id,
     t: (q.data.question || '').toLowerCase(),
     s: `${(q.data.tags || []).join(' ')} ${q.data.description || ''}`.toLowerCase(),
     b: strip(q.body || ''),

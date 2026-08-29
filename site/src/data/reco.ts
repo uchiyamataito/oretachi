@@ -13,17 +13,17 @@ export type PoolItem = {
 // 全記事・Q&Aを1つのプールに（getStaticPaths から渡す collection を使う）
 export function buildPool(articles: any[], qas: any[]): PoolItem[] {
   const a = articles.map((e) => {
-    const m = AMETA[e.slug] || {};
+    const m = AMETA[e.id] || {};
     return {
-      slug: e.slug, type: 'article' as const, url: `/${e.slug}/`, title: e.data.title,
+      slug: e.id, type: 'article' as const, url: `/${e.id}/`, title: e.data.title,
       phases: m.phases || [], kanshin: m.kanshin || [], route: m.route, kids: !!m.kids,
       related: [...(e.data.related_articles || []), ...(e.data.related_qa || [])],
     };
   });
   const q = qas.map((e) => {
-    const m = QMETA[e.slug] || {};
+    const m = QMETA[e.id] || {};
     return {
-      slug: e.slug, type: 'qa' as const, url: `/qa/${e.slug}/`, title: e.data.question,
+      slug: e.id, type: 'qa' as const, url: `/qa/${e.id}/`, title: e.data.question,
       phases: m.phases || [], kanshin: m.kanshin || [], route: m.route, kids: false,
       related: [...(e.data.related_articles || []), ...(e.data.related_qa || [])],
     };

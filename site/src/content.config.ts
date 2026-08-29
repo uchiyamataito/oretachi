@@ -1,8 +1,9 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // 記事（深く理解させるコンテンツ）
 const articles = defineCollection({
-  type: 'content',
+  loader: glob({ base: './src/content/articles', pattern: '**/*.md' }),
   schema: z.object({
     title: z.string(),
     seo_title: z.string().optional(),
@@ -31,7 +32,7 @@ const articles = defineCollection({
 
 // Q&A（記事と同列の独立コンテンツ。カード一覧・検索・分類で探す）
 const qa = defineCollection({
-  type: 'content',
+  loader: glob({ base: './src/content/qa', pattern: '**/*.md' }),
   schema: z.object({
     question: z.string(),       // 質問（タイトル）。H1・パンくず・FAQ構造化データに使う会話体
     // <title>専用の短縮版。question が長く日本語SERPで切れる場合だけ指定する。

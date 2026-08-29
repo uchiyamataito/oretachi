@@ -7,9 +7,9 @@ import { QMETA, THEMES, PHASES } from '../../data/meta';
 const items = (await getCollection('qa')).sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
 
 const cards = items.map((q) => {
-  const m = QMETA[q.slug] || { phases: [], kanshin: [] };
+  const m = QMETA[q.id] || { phases: [], kanshin: [] };
   return {
-    slug: q.slug,
+    slug: q.id,
     question: q.data.question,
     description: q.data.description,
     kanshin: m.kanshin || [],

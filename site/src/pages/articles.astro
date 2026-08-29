@@ -9,9 +9,9 @@ const all = (await getCollection('articles')).sort((a, b) =>
   a.data.published < b.data.published ? 1 : -1
 );
 const cards = all.map((a) => {
-  const m = AMETA[a.slug] || { phases: [], kanshin: [], tag: '記事' };
+  const m = AMETA[a.id] || { phases: [], kanshin: [], tag: '記事' };
   return {
-    slug: a.slug,
+    slug: a.id,
     title: a.data.title,
     img: a.data.hero_image?.src || '',
     tag: m.tag || '記事',

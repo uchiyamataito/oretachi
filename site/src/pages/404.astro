@@ -10,7 +10,7 @@ import { AMETA } from '../data/meta';
 // 迷い込んだ人を行き止まりにしない。主要記事へ逃がす。
 const arts = await getCollection('articles');
 const picks = arts
-  .filter((a) => (AMETA[a.slug] || {}).pick)
+  .filter((a) => (AMETA[a.id] || {}).pick)
   .slice(0, 6);
 const fallback = picks.length
   ? picks
@@ -42,7 +42,7 @@ const fallback = picks.length
   <h2>よく読まれている記事</h2>
   <ul>
     {fallback.map((a) => (
-      <li><a href={`/${a.slug}/`}>{a.data.title}</a></li>
+      <li><a href={`/${a.id}/`}>{a.data.title}</a></li>
     ))}
   </ul>
 </BaseLayout>

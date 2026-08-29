@@ -7,8 +7,8 @@ import { AMETA, QMETA } from '../data/meta';
 const arts = await getCollection('articles');
 const qas = await getCollection('qa');
 
-const adata = arts.map((a) => ({ slug: a.slug, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published, ...(AMETA[a.slug] || { phases: [], kanshin: [], kids: false, pick: false, rank: 99, tag: '記事' }) }));
-const qdata = qas.map((q) => ({ slug: q.slug, q: q.data.question, d: q.data.description, ...(QMETA[q.slug] || { phases: [], kanshin: [] }) }));
+const adata = arts.map((a) => ({ slug: a.id, title: a.data.title, img: a.data.hero_image?.src || '', published: a.data.published, ...(AMETA[a.slug] || { phases: [], kanshin: [], kids: false, pick: false, rank: 99, tag: '記事' }) }));
+const qdata = qas.map((q) => ({ slug: q.id, q: q.data.question, d: q.data.description, ...(QMETA[q.slug] || { phases: [], kanshin: [] }) }));
 const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1 : -1));
 ---
 <BaseLayout
@@ -38,9 +38,9 @@ const newest = [...arts].sort((a, b) => (a.data.published < b.data.published ? 1
       <div class="sh"><h2>記事</h2><a href="/articles/">すべて見る →</a></div>
       <div class="cards">
         {newest.map((a) => (
-          <a class="card" href={`/${a.slug}/`}>
+          <a class="card" href={`/${a.id}/`}>
             <div class="thumb">{a.data.hero_image?.src ? <img src={a.data.hero_image.src} alt={a.data.title} loading="lazy" /> : <span class="thumb-ph" aria-hidden="true"></span>}</div>
-            <div class="cbody"><span class="tag1">{(AMETA[a.slug] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
+            <div class="cbody"><span class="tag1">{(AMETA[a.id] || {}).tag || '記事'}</span><h3>{a.data.title}</h3></div>
           </a>
         ))}
       </div>
