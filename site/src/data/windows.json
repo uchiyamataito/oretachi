@@ -1,0 +1,156 @@
+[
+  {
+    "name": "よりそいホットライン",
+    "tel": "0120-279-338",
+    "note": "24時間・無料",
+    "required": [
+      "24時間",
+      "無料"
+    ],
+    "forbidden": [],
+    "source": "https://www.since2011.net/yorisoi/",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "#いのちSOS",
+    "tel": "0120-061-338",
+    "note": "24時間・無料",
+    "required": [
+      "24時間",
+      "無料"
+    ],
+    "forbidden": [],
+    "source": "https://www.mhlw.go.jp/mamorouyokokoro/",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "こころの健康相談統一ダイヤル",
+    "tel": "0570-064-556",
+    "note": "受付日時は都道府県・政令市によって異なる／ナビダイヤル・通話料は自己負担",
+    "required": [
+      "都道府県",
+      "通話料"
+    ],
+    "forbidden": [
+      {
+        "phrase": "24時間",
+        "why": "受付日時は都道府県・政令市ごとに異なる。24時間ではない"
+      },
+      {
+        "phrase": "無料",
+        "why": "ナビダイヤルで通話料は自己負担"
+      }
+    ],
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/jisatsu/kokoro-dial.html",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "いのちの電話（フリーダイヤル）",
+    "tel": "0120-783-556",
+    "note": "毎日16:00〜21:00／毎月10日は8:00〜翌8:00・無料",
+    "required": [
+      "16:00",
+      "21:00",
+      "無料"
+    ],
+    "forbidden": [
+      {
+        "phrase": "24時間",
+        "why": "毎日16:00〜21:00（毎月10日を除く）"
+      }
+    ],
+    "source": "https://www.inochinodenwa.org/",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "いのちの電話（ナビダイヤル）",
+    "tel": "0570-783-556",
+    "note": "10:00〜22:00・通話料有料",
+    "required": [
+      "10:00",
+      "22:00",
+      "有料"
+    ],
+    "forbidden": [
+      {
+        "phrase": "無料",
+        "why": "ナビダイヤルは通話料が有料。フリーダイヤルと混同しやすい"
+      },
+      {
+        "phrase": "24時間",
+        "why": "10:00〜22:00"
+      }
+    ],
+    "source": "https://www.inochinodenwa.org/",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "DV相談プラス",
+    "tel": "0120-279-889",
+    "note": "電話は24時間／チャット12:00〜22:00／メール「プラス相談箱」24時間受付",
+    "required": [
+      "チャット"
+    ],
+    "forbidden": [
+      {
+        "phrase": "SNS",
+        "why": "提供しているのは電話・チャット・メール。SNS相談ではない"
+      },
+      {
+        "phrase": "被害・加害どちら",
+        "why": "一次ソースで確認できない。加害の相談は自治体の男女共同参画センター等へ"
+      }
+    ],
+    "source": "https://soudanplus.jp/",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "#8008（DV相談ナビ）",
+    "tel": "#8008",
+    "note": "全国共通番号。最寄りの配偶者暴力相談支援センターへつながる。受付時間は各センターによって異なる。一般の固定電話にかけたときと同じ通話料がかかる",
+    "required": [
+      "受付時間",
+      "通話料"
+    ],
+    "forbidden": [
+      {
+        "phrase": "24時間",
+        "why": "受付時間は各センターによって異なる"
+      },
+      {
+        "phrase": "無料",
+        "why": "一般の固定電話と同じ通話料がかかる"
+      }
+    ],
+    "source": "https://www.gender.go.jp/policy/no_violence/e-vaw/soudankikan/01.html",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "児童相談所虐待対応ダイヤル 189",
+    "tel": "189",
+    "note": "24時間365日・通話無料・匿名でもかけられる。一部のIP電話はつながらない",
+    "required": [
+      "24時間",
+      "無料"
+    ],
+    "forbidden": [],
+    "source": "https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou",
+    "confirmed": "2026-08-17"
+  },
+  {
+    "name": "法テラス",
+    "tel": "0570-078374",
+    "note": "平日9:00〜21:00・土曜9:00〜17:00／通話料は自己負担。無料の法律相談には収入等の要件あり",
+    "required": [
+      "通話料"
+    ],
+    "forbidden": [
+      {
+        "phrase": "無料で相談",
+        "why": "無料の法律相談には収入等の要件がある"
+      }
+    ],
+    "source": "https://www.houterasu.or.jp/site/soudanmadoguchi-houseido/support-dial.html",
+    "confirmed": "2026-08-17"
+  }
+]

@@ -53,6 +53,8 @@ const ng = (m) => { fails++; console.log(`  \x1b[31m✗ ${m}\x1b[0m`); };
 const wa = (m) => { warns++; console.log(`  \x1b[33m▲ ${m}\x1b[0m`); };
 
 /** 既存記事の太字密度レンジ（1本だけ極端にならないための基準） */
+const escapeRe = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 function boldDensityRange() {
   const vals = readdirSync(A_DIR).filter((f) => f.endsWith('.md')).map((f) => {
     const b = readFileSync(join(A_DIR, f), 'utf-8').split('---').slice(2).join('---');
@@ -213,6 +215,90 @@ function checkSiteWide() {
     stray.length
       ? wa(`src/content/${dir} に、公開対象外の .md が ${stray.length}件ある（下書きならOK。公開したいなら直下へ移し _ を外す）: ${stray.join(', ')}`)
       : ok(`src/content/${dir} に公開対象外の置き忘れなし`);
+  }
+
+  // 1c) 相談窓口の記述が正本（src/data/windows.ts）と矛盾していないか。
+  //     窓口情報は記事・Q&A 29本にベタ書きでコピーされており、「1本を直しても他が古いまま」
+  //     という事故が2026-08-29時点で5回起きている。危機のときに読む情報なので「気をつける」では止まらない。
+  //     ※ .md はMDXではないためコンポーネント化できない。だから文章を共通化するのではなく、
+  //       "正本との矛盾を機械で検出する" 方式にした（設計理由は src/data/windows.ts 冒頭）。
+  //
+  //     重大度を2つに分ける：
+  //       ✗ 失敗 … 禁止表現がある（＝事実の誤り。例：いのちの電話に「24時間」）
+  //       ▲ 警告 … 必須の注記が無い（＝省略。文脈により許容されうるが、読者が損をしうる）
+  //
+  //     照合範囲の決め方が肝。1行に複数の窓口が並ぶ（FAQの回答・出典欄）ため、
+  //     単純に「番号の後ろN文字」を見ると隣の窓口の説明を誤って拾う。実際に誤検知した：
+  //       「いのちの電話（0120-783-556・毎日16:00〜21:00）、…DV相談プラス（0120-279-889・24時間）」
+  //       → いのちの電話に「24時間」があると誤判定
+  //     そこで、行を"窓口の言及位置"で区間に切り、各窓口には自分の区間だけを見せる。
+  //     区間は「前の窓口の言及の終わり〜次の窓口の言及の始まり」。
+  //     これなら「16:00〜21:00なら いのちの電話 0120-783-556（無料）」のように
+  //     注記が番号より前にある書き方も正しく拾える。
+  {
+    // 正本は JSON。以前はここで .ts を正規表現で読んでいたが、コメント行を挟んだ3件が
+    // パターンから外れ、9件中6件しか検査されないまま**黙って素通り**していた。
+    // しかも漏れていたのが DV相談プラス・#8008 という、いちばん事故の多い窓口だった。
+    // 構文解析で落ちる余地を無くすため、サイト側と同じ JSON を直接読む。
+    const wins = JSON.parse(readFileSync(join(ROOT, 'src/data/windows.json'), 'utf-8'));
+    // 件数の下限を持たせる。将来また"黙って減る"事故が起きたら、ここで止まる。
+    if (!Array.isArray(wins) || wins.length < 9) ng(`windows.json の窓口が ${wins?.length} 件しか読めていない（9件以上のはず。検査が骨抜きになっている）`);
+    // 189 のような3桁は 0120-189-783 の一部にも一致するので、前後が数字・ハイフンでないことを要求する。
+    const telRe = (t) => new RegExp((/^\d{3}$/.test(t) ? '(?<![0-9-])' : '') + escapeRe(t) + (/^\d{3}$/.test(t) ? '(?![0-9-])' : ''), 'g');
+    let errs = 0, checked = 0; const omissions = [];
+    for (const dir of ['articles', 'qa']) {
+      for (const f of readdirSync(join(ROOT, 'src/content', dir)).filter((x) => x.endsWith('.md'))) {
+        const lines = readFileSync(join(ROOT, 'src/content', dir, f), 'utf-8').split('\n');
+        lines.forEach((line, li) => {
+          // この行に出てくる全窓口の言及位置を集める
+          const hits = [];
+          for (const w of wins) for (const m of line.matchAll(telRe(w.tel))) hits.push({ w, at: m.index, end: m.index + w.tel.length });
+          if (!hits.length) return;
+          hits.sort((a, b) => a.at - b.at);
+          hits.forEach((h, k) => {
+            checked++;
+            const from = k === 0 ? 0 : hits[k - 1].end;
+            const to = k === hits.length - 1 ? line.length : hits[k + 1].at;
+            let seg = line.slice(from, to);
+            // 前の窓口の説明が閉じたところまで切り詰める。
+            //   「よりそい（0120-279-338・24時間）やいのちの電話（0120-783-556・…）」
+            //   のように、前の窓口の閉じ括弧の後ろから自分が始まるため、
+            //   これをしないと隣の「24時間」を自分の注記だと誤って読む（実際に誤検知した）。
+            //   区切りが無ければ切らない＝「16:00〜21:00なら いのちの電話 0120-…」のように
+            //   注記が番号より前に置かれた書き方も拾える。
+            const head = seg.slice(0, h.at - from);
+            const cut = Math.max(head.lastIndexOf('）'), head.lastIndexOf(')'), head.lastIndexOf('、'), head.lastIndexOf('。'), head.lastIndexOf('／'));
+            if (cut >= 0) seg = seg.slice(cut + 1);
+            const miss = h.w.required.filter((r) => !seg.includes(r));
+            for (const fb of h.w.forbidden) {
+              if (!seg.includes(fb.phrase)) continue;
+              // 必須注記が揃っているなら、その禁止語は対比表現の可能性が高い。実例：
+              //   「#8008（…通話料がかかるので、無料で話したいなら上の0120へ）」
+              //   ＝「無料」はあるが、正しい事実（通話料がかかる）もちゃんと書かれている。
+              // 事実を書いたうえでの対比まで失敗にすると、正しい記事が公開できなくなる。
+              // よって 失敗＝「正しい事実が抜けたまま禁止語がある」場合に限り、
+              // それ以外は警告に落として人の目に回す。
+              if (miss.length === 0) { omissions.push(`${dir}/${f}:${li + 1}　${h.w.name} に「${fb.phrase}」がある（${fb.why}）。正しい注記も併記＝対比表現かもしれない`); }
+              else { errs++; ng(`${dir}/${f}:${li + 1}　${h.w.name} に「${fb.phrase}」（${fb.why}）。しかも正しい注記（${miss.join('・')}）が無い`); }
+            }
+            if (miss.length) omissions.push(`${dir}/${f}:${li + 1}　${h.w.name} に注記が無い（${miss.join('・')}）`);
+          });
+        });
+        if (/\*\*\*\*/.test(lines.join('\n'))) { errs++; ng(`${dir}/${f}：アスタリスクが4つ連続（画面に生の ** が出る）`); }
+      }
+    }
+    errs === 0 ? ok(`相談窓口に事実の誤りなし（${checked}箇所を正本と照合）`) : null;
+    // 省略は「昔からある棚卸し」なので、1件ずつ叫ばずに集計して出す。
+    // 全件見たいときは WINDOWS_VERBOSE=1 を付ける。
+    if (omissions.length) {
+      const byFile = {};
+      for (const o of omissions) { const k = o.split('　')[0].split(':')[0]; (byFile[k] ||= []).push(o); }
+      const files = Object.keys(byFile).sort((a, b) => byFile[b].length - byFile[a].length);
+      wa(`相談窓口の注記の省略 ${omissions.length}件／${files.length}ファイル（事実の誤りではない。まとめて直す候補）`);
+      if (process.env.WINDOWS_VERBOSE) omissions.forEach((o) => console.log(`      ${o}`));
+      else files.slice(0, 5).forEach((k) => console.log(`      ${k}（${byFile[k].length}件）  例: ${byFile[k][0].split('　')[1]}`));
+      if (!process.env.WINDOWS_VERBOSE) console.log(`      …全件は WINDOWS_VERBOSE=1 npm run check -- <slug> で表示`);
+    } else ok('相談窓口の注記に省略なし');
   }
 
   // 2) ビルド結果を実測：トップの adata/qdata が既定値に落ちていないか
