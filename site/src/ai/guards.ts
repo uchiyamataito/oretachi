@@ -9,7 +9,7 @@
 // テスト実行： node --experimental-strip-types src/ai/guards.test.ts
 
 /** ガードの総合判定。crisis=助けへ / blocked_abuse=送信拒否 / sealed=生成停止 / proceed=（PIIマスキング後）生成へ。 */
-export type GuardAction = 'crisis' | 'blocked_abuse' | 'sealed' | 'pii_refuse' | 'proceed';
+export type GuardAction = 'crisis' | 'blocked_abuse' | 'blocked_injection' | 'sealed' | 'pii_refuse' | 'proceed';
 
 export type AbuseReason = 'slur' | 'threat_direct' | 'threat_targeted';
 
@@ -49,8 +49,12 @@ function toHiragana(s: string): string {
   return s.replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
 }
 export function normalizeForMatch(text: string): string {
-  const base = toHiragana(text.normalize('NFKC').toLowerCase());
-  // 空白（半角/全角）・中黒・アスタリスク・各種ハイフン/長音・アンダースコア・ピリオドを除去。
+  // ①先にゼロ幅・不可視文字を落とす。JSの \s はこれらを含まないため、\s の除去だけでは残る。
+  //   LLMはゼロ幅文字を無視して意味を正しく読むので、ここが漏れるとガードだけが盲目になる。
+  //   （2026-08-29実測：「死\u200bに\u200bた\u200bい」が crisis を素通りして proceed になっていた）
+  const invisible = text.replace(/[\u200b-\u200f\u202a-\u202e\u2060-\u2064\ufeff\u180e\ufe00-\ufe0f\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '');
+  const base = toHiragana(invisible.normalize('NFKC').toLowerCase());
+  // ②空白（半角/全角）・中黒・アスタリスク・各種ハイフン/長音・アンダースコア・ピリオドを除去。
   return base.replace(/[\s　・*.\-‐―ー−_]/g, '');
 }
 
@@ -68,6 +72,10 @@ const CRISIS_STRONG: string[] = [
   // ↓ かな読み（C-1）
   'しにたい', 'しのう', 'しぬしかない', 'しんだほうがいい', 'しなせて',
   'ころしてほしい', 'ころしてくれ', 'じさつ', 'くびつり', 'らくにしね', 'このよからきえ',
+  // ↓ 2026-08-29追加。「い抜き」と当て字は攻撃ではなく日常的な書き方で、辞書に無いと素通りする。
+  //   見逃し＜誤検知（誤って窓口を出しても害は小さいが、見逃しは取り返しがつかない）。
+  '死にてえ', '死にてー', 'しにてえ', 'しにてー', '死んでしまいたい', 'しんでしまいたい',
+  '消えてなくなりたい', 'きえてなくなりたい', '死ぬしかねえ', '死ぬしかない',
 ];
 
 // 弱：文脈依存で危機の可能性。二段目（Haiku）で精緻化する前提。
@@ -82,6 +90,12 @@ const CRISIS_WEAK: string[] = [
   // ↓ かな読み（C-1）
   'もうげんかい', 'いきるのにつかれた', 'つかれはてた', 'いきるいみがない',
   'いきるかちがない', 'いきているいみ', 'そんざいかちがない', 'めがさめなければ', 'いきていたくない',
+  // ↓ 2026-08-29追加。「い抜き」（生きてる／疲れちゃった等）は口語として極めて普通で、
+  //   これが辞書に無いために「もう生きてる意味がない」が素通りしていた（実測）。
+  '生きてる意味', '生きてる価値', 'いきてるいみ', 'いきてるかち',
+  '疲れちゃった', 'つかれちゃった', '生きてるのに疲れた', 'いきてるのにつかれた',
+  '生きてても', 'いきてても', 'なにもかも嫌', 'なにもかもいや', '全部嫌になった', 'ぜんぶいやになった',
+  '消えちゃいたい', 'きえちゃいたい', 'いなくなりたく', '居場所がない', 'いばしょがない',
 ];
 
 // 照合はすべて normalizeForMatch 後のテキストで行う（辞書側も事前正規化）。
@@ -111,7 +125,9 @@ const stage2Stub: CrisisStage2 = async () => null;
 // 注：単純一致だけだと誤爆（「殺すほど腹が立つ」等の慣用）が出るため、組み合わせと慣用除外で精度を上げる。
 
 // 単独で成立する直接攻撃語（命令形＝他者に向く）。かな読み併記（C-1正規化と併用）
-const ABUSE_DIRECT: string[] = ['死ね', 'しね', 'タヒね', '殺してやる', 'ころしてやる', 'ぶっ殺', 'ぶっころ', '殺すぞ', 'ころすぞ'];
+// 当て字（氏ね/4ね/市ね/㋫ね等）はネットスラングの定番で、辞書に無いと素通りする（2026-08-29実測）。
+const ABUSE_DIRECT: string[] = ['死ね', 'しね', 'タヒね', '氏ね', '市ね', '4ね', 'しネ', '志ね', 'sine',
+  '殺してやる', 'ころしてやる', 'ぶっ殺', 'ぶっころ', '殺すぞ', 'ころすぞ'];
 // 侮蔑・差別スラー（内山さんが運用で追加。ここは最小の叩き台）
 const ABUSE_SLUR: string[] = ['きもい死ね', 'くたばれ'];
 // 対象語と組み合わさると攻撃になる暴力語（かな読み併記）
@@ -242,6 +258,12 @@ export const CRISIS_TEMPLATE =
   '・18歳までの方は、チャイルドライン 0120-99-7777（毎日16〜21時・無料）\n' +
   '危険を感じるほどつらいときは、ためらわず上の窓口にご連絡ください。';
 
+// プロンプトインジェクション疑い。攻撃者を教育しないよう、何を検知したかは明かさない。
+// 一般の利用者が誤って踏む可能性もあるため、責めない文面にする。
+export const INJECTION_TEMPLATE =
+  'ごめんなさい、その書き方だとうまく受け取れませんでした。' +
+  '設定や指示の話ではなく、いまお困りのことを普通の文章で書いてもらえると、力になれます。';
+
 export const ABUSE_TEMPLATE =
   'ごめんなさい、その内容は送れません。ここは離婚で悩む方が安心して使う場所なので、' +
   '攻撃的な言葉や嫌がらせにはお使いいただけません。困りごとがあれば、力になります。';
@@ -318,16 +340,25 @@ export async function screenInput(text: string, stage2: CrisisStage2 = stage2Stu
     return { action: 'blocked_abuse', response: ABUSE_TEMPLATE, detail };
   }
 
-  // 3) 封印テーマ：生成させず記事＋窓口へ。該当記事リンクも付ける。
+  // 3) プロンプトインジェクション疑い：生成させない。
+  //    2026-08-29まで、detectInjection() の結果は detail に入るだけで分岐に使われておらず、
+  //    「検知はするが素通りさせる」死にコードだった。テストもフラグが立つことしか見ていなかったため、
+  //    緑のまま防御が存在しない状態が続いていた（52 2026-08-29 節4）。
+  //    危機と攻撃より後に置くのは、危機の人が偶然この語を含んでも窓口誘導を優先するため。
+  if (injectionSuspected) {
+    return { action: 'blocked_injection', response: INJECTION_TEMPLATE, detail };
+  }
+
+  // 4) 封印テーマ：生成させず記事＋窓口へ。該当記事リンクも付ける。
   if (sealedTopic) {
     return { action: 'sealed', response: SEALED_TEMPLATES[sealedTopic], article: SEALED_LINKS[sealedTopic], detail };
   }
 
-  // 4) 高リスクPII：送信を拒否して入れ直してもらう。
+  // 5) 高リスクPII：送信を拒否して入れ直してもらう。
   if (pii.refuse) {
     return { action: 'pii_refuse', response: PII_REFUSE_TEMPLATE, detail };
   }
 
-  // 5) 続行：中リスクPIIはマスキング済みの本文を渡す。インジェクション疑いはフラグで伝える。
+  // 6) 続行：中リスクPIIはマスキング済みの本文を渡す。
   return { action: 'proceed', safeText: pii.masked, detail };
 }
