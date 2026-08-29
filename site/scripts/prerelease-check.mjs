@@ -181,11 +181,49 @@ function check(slug) {
   }
 }
 
+// ── サイト全体の健全性（記事1本ごとではなく、ビルド全体に1回だけ） ──────────
+// 2026-08-29 新設。Astro7移行時、index.astro が AMETA を a.slug で引いていて
+// （Astro7では entry.slug が entry.id に変わり undefined になる）、全記事の
+// メタ情報が既定値に落ちていた。ページは正常に表示されるので目視では気づけず、
+// 「見える文字」と「DOM構造」の比較も、この値が <script type="application/json">
+// の中にあるため素通りした。同じ形の事故を機械で止める。
+function checkSiteWide() {
+  console.log(`\n\x1b[1m── サイト全体 ──\x1b[0m`);
+  // 1) Astroエントリの .slug は Astro5 以降 存在しない。AMETA/QMETA を引くキーに混ざると全件既定値になる
+  const src = readdirSync(join(ROOT, 'src'), { recursive: true })
+    .filter((f) => typeof f === 'string' && /\.(astro|ts|js)$/.test(f));
+  const bad = [];
+  for (const f of src) {
+    const t = readFileSync(join(ROOT, 'src', f), 'utf-8');
+    t.split('\n').forEach((line, i) => {
+      if (/(AMETA|QMETA)\[[^\]]*\.slug\]/.test(line)) bad.push(`${f}:${i + 1}`);
+    });
+  }
+  bad.length
+    ? ng(`AMETA/QMETA を .slug で引いている（Astro5以降は undefined になり全件が既定値に落ちる）: ${bad.join(', ')}`)
+    : ok('AMETA/QMETA の参照キーは .id');
+  // 2) ビルド結果を実測：トップの adata/qdata が既定値に落ちていないか
+  const top = readFileSync(join(DIST, 'index.html'), 'utf-8');
+  for (const [id, need] of [['adata', 'phases'], ['qdata', 'phases']]) {
+    const m = top.match(new RegExp(`<script[^>]*id="${id}"[^>]*>(.*?)</script>`, 's'));
+    if (!m) { ng(`トップに ${id} が無い`); continue; }
+    let rows;
+    try { rows = JSON.parse(m[1].replace(/\\u003c/g, '<')); } catch { ng(`${id} がJSONとして壊れている`); continue; }
+    const empty = rows.filter((r) => !Array.isArray(r[need]) || r[need].length === 0);
+    empty.length === rows.length
+      ? ng(`${id} 全${rows.length}件の ${need} が空。メタ情報の引き当てが全滅している（レコメンドが機能しない）`)
+      : empty.length
+        ? ng(`${id} の ${empty.length}/${rows.length}件で ${need} が空: ${empty.slice(0, 5).map((r) => r.slug).join(', ')}`)
+        : ok(`${id} ${rows.length}件すべてにメタ情報が入っている`);
+  }
+}
+
 if (arg === '--all') {
   for (const f of readdirSync(A_DIR).filter((f) => f.endsWith('.md'))) check(f.replace(/\.md$/, ''));
 } else {
   check(arg.replace(/\.md$/, ''));
 }
+checkSiteWide();
 
 console.log('\n' + '─'.repeat(60));
 if (fails) {
