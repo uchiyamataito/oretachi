@@ -301,6 +301,23 @@ function checkSiteWide() {
     } else ok('相談窓口の注記に省略なし');
   }
 
+  // 1d) 文体ルールのうち「記事1本の検査では抜ける」もの。
+  //     ダッシュ全面禁止は check(slug) で見ているが、あれは articles しか回らないため
+  //     **Q&A側のダッシュが2026-08-29まで検出されていなかった**（実際に1件残っていた）。
+  //     記事単位の検査には、対象ディレクトリの穴という構造的な死角がある。ここで両方を見る。
+  {
+    const dashed = [];
+    for (const dir of ['articles', 'qa']) {
+      for (const f of readdirSync(join(ROOT, 'src/content', dir)).filter((x) => x.endsWith('.md'))) {
+        const t = readFileSync(join(ROOT, 'src/content', dir, f), 'utf-8');
+        t.split('\n').forEach((l, i) => { if (/[――—―]/.test(l)) dashed.push(`${dir}/${f}:${i + 1}`); });
+      }
+    }
+    dashed.length
+      ? ng(`ダッシュ（――／—／―）が残っている（全面禁止）: ${dashed.join(', ')}`)
+      : ok('ダッシュ不使用（記事・Q&A 両方を確認）');
+  }
+
   // 2) ビルド結果を実測：トップの adata/qdata が既定値に落ちていないか
   const top = readFileSync(join(DIST, 'index.html'), 'utf-8');
   for (const [id, need] of [['adata', 'phases'], ['qdata', 'phases']]) {
