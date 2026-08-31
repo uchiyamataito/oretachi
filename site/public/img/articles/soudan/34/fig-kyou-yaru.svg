@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 386" role="img" aria-labelledby="ty4 dy4" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="ty4">送る前のチェックリスト</title>
+  <desc id="dy4">口をきかない妻に声をかける前のチェックリスト。六項目ある。一つ目、疑問形になっていない。二つ目、いつも、なんで、普通は、が入っていない。三つ目、二行を超えていない。四つ目、言ったあとに反応を待たないと決めた。五つ目、いや俺だってという気持ちが言葉ににじんでいない。六つ目、返ってこなくても続けて二度目は送らないと決めた。上手い言葉を探すより、軽くて短いものを早く何度も置くほうが効くと書かれている。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="385" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">送る前に、これだけ</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">一晩置いて、翌朝もう一度読んでから送る</text>
+
+  <rect x="32" y="84" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="48" y="93" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#B5481F" stroke-width="1.5"/>
+  <text x="78" y="106" font-size="13.5" fill="#2C2A26"><tspan font-weight="800" fill="#B5481F">疑問形になっていない</tspan>（「？」で終わっていない）</text>
+
+  <rect x="32" y="126" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="135" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="148" font-size="13.5" fill="#2C2A26">「<tspan font-weight="700">いつも</tspan>」「<tspan font-weight="700">なんで</tspan>」「<tspan font-weight="700">普通は</tspan>」が入っていない</text>
+
+  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="190" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">二行</tspan>を超えていない</text>
+
+  <rect x="32" y="210" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="219" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="232" font-size="13.5" fill="#2C2A26">言ったあとに、<tspan font-weight="700">反応を待たない</tspan>と決めた</text>
+
+  <rect x="32" y="252" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="261" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="274" font-size="13.5" fill="#2C2A26">「<tspan font-weight="700">いや、俺だって</tspan>」が言葉ににじんでいない</text>
+
+  <rect x="32" y="294" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="48" y="303" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#B5481F" stroke-width="1.5"/>
+  <text x="78" y="316" font-size="13.5" fill="#2C2A26"><tspan font-weight="800" fill="#B5481F">返ってこなくても、続けて二度目は送らない</tspan>と決めた</text>
+
+  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">効くのは名文ではない。軽くて短いものを、早く、何度も置くことのほうだ</text>
+</svg>

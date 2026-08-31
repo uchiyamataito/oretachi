@@ -28,3 +28,4 @@ disclaimer: "一般的な情報です。つらさが強い時は医療機関や�
 
 - 抱えきれない時の窓口 → [男性の相談先・窓口](/rikon-dansei-soudansaki/)
 - 少しずつ立て直す → [離婚した男の再出発](/rikon-saishuppatsu/)
+我慢の末に自分が爆発してしまったなら → [ずっと我慢していたのに、こちらが先にキレてしまった](/qa/rikon-tsuma-fukigen-jibun-okoru/)

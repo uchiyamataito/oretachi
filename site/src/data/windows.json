@@ -2,14 +2,15 @@
   {
     "name": "よりそいホットライン",
     "tel": "0120-279-338",
-    "note": "24時間・無料",
+    "note": "24時間・無料。音声ガイダンスで番号を選ぶ（1＝暮らしの困りごと全般／5＝死にたいほどつらい方）",
     "required": [
       "24時間",
-      "無料"
+      "無料",
+      "音声"
     ],
     "forbidden": [],
     "source": "https://www.since2011.net/yorisoi/",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "#いのちSOS",
@@ -21,7 +22,7 @@
     ],
     "forbidden": [],
     "source": "https://www.mhlw.go.jp/mamorouyokokoro/",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "こころの健康相談統一ダイヤル",
@@ -42,7 +43,7 @@
       }
     ],
     "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/seikatsuhogo/jisatsu/kokoro-dial.html",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "いのちの電話（フリーダイヤル）",
@@ -60,7 +61,7 @@
       }
     ],
     "source": "https://www.inochinodenwa.org/",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "いのちの電話（ナビダイヤル）",
@@ -82,7 +83,7 @@
       }
     ],
     "source": "https://www.inochinodenwa.org/",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "DV相談プラス",
@@ -102,7 +103,7 @@
       }
     ],
     "source": "https://soudanplus.jp/",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "#8008（DV相談ナビ）",
@@ -123,19 +124,23 @@
       }
     ],
     "source": "https://www.gender.go.jp/policy/no_violence/e-vaw/soudankikan/01.html",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   },
   {
     "name": "児童相談所虐待対応ダイヤル 189",
     "tel": "189",
-    "note": "24時間365日・通話無料・匿名でもかけられる。一部のIP電話はつながらない",
+    "note": "通話無料・匿名でもかけられる。一部のIP電話はつながらない",
     "required": [
-      "24時間",
       "無料"
     ],
-    "forbidden": [],
-    "source": "https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou",
-    "confirmed": "2026-08-17"
+    "forbidden": [
+      {
+        "phrase": "24時間365日",
+        "why": "こども家庭庁の該当ページに24時間365日の記載がない。書くなら別の一次ソースを当てる"
+      }
+    ],
+    "source": "https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou-dial",
+    "confirmed": "2026-08-30"
   },
   {
     "name": "法テラス",
@@ -151,6 +156,6 @@
       }
     ],
     "source": "https://www.houterasu.or.jp/site/soudanmadoguchi-houseido/support-dial.html",
-    "confirmed": "2026-08-17"
+    "confirmed": "2026-08-30"
   }
 ]

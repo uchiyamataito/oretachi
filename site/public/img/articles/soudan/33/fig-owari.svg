@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="to do" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="to">短く終わる沈黙と、長引く沈黙の違い</title>
+  <desc id="do">短く終わる沈黙と長引く沈黙を五つの観点で比べた図。きっかけは、短く終わる側でははっきりしていて、長引く側でははっきりしない。生活の連絡は、短く終わる側では普通に来て、長引く側では事務的だけになる。こちらの動きは、短く終わる側では追いかけをやめていて、長引く側では問い詰めや謝罪の重ねがけが続く。声かけは、短く終わる側では短いものが週に何度かあり、長引く側ではゼロか一気にまとめて出される。過去の話は、短く終わる側では出てこず、長引く側では繰り返し出てくる。右の列に当てはまるものが多いほど、時間ではなくこちらの動きが原因になっている可能性が上がる。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="399" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">短く終わる沈黙と、長引く沈黙</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">分かれ目は、日数ではなくこの五つ</text>
+
+  <text x="32" y="100" font-size="11.5" font-weight="700" fill="#8C8270">見るところ</text>
+  <rect x="200" y="84" width="228" height="24" rx="12" fill="#0F6E56"/>
+  <text x="314" y="101" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">短く終わりやすい</text>
+  <rect x="440" y="84" width="228" height="24" rx="12" fill="#B5481F"/>
+  <text x="554" y="101" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">長引きやすい</text>
+
+  <g font-size="13" fill="#2C2A26">
+    <rect x="32" y="120" width="636" height="42" rx="8" fill="#FBF9F4"/>
+    <text x="48" y="146" font-size="12.5" font-weight="700" fill="#6E6354">きっかけ</text>
+    <text x="214" y="146">はっきりしている</text>
+    <text x="454" y="146">はっきりしない</text>
+
+    <rect x="32" y="170" width="636" height="42" rx="8" fill="#FBF9F4"/>
+    <text x="48" y="196" font-size="12.5" font-weight="700" fill="#6E6354">生活の連絡</text>
+    <text x="214" y="196">普通に来る</text>
+    <text x="454" y="196">事務的だけになる</text>
+
+    <rect x="32" y="220" width="636" height="42" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+    <text x="48" y="246" font-size="12.5" font-weight="700" fill="#B5481F">こちらの動き</text>
+    <text x="214" y="246" font-weight="700" fill="#0F6E56">追いかけをやめている</text>
+    <text x="454" y="246" font-weight="700" fill="#B5481F">問い詰め・謝罪が続く</text>
+
+    <rect x="32" y="270" width="636" height="42" rx="8" fill="#FBF9F4"/>
+    <text x="48" y="296" font-size="12.5" font-weight="700" fill="#6E6354">声かけ</text>
+    <text x="214" y="296">短いものが週に何度か</text>
+    <text x="454" y="296">ゼロか、まとめて一気に</text>
+
+    <rect x="32" y="320" width="636" height="42" rx="8" fill="#FBF9F4"/>
+    <text x="48" y="346" font-size="12.5" font-weight="700" fill="#6E6354">過去の話</text>
+    <text x="214" y="346">出てこない</text>
+    <text x="454" y="346">繰り返し出てくる</text>
+  </g>
+
+  <text x="32" y="382" font-size="13" font-weight="700" fill="#1B3A57">右に当てはまるほど、時間ではなく「こちらの動き」が原因の可能性が上がる。だから動かせる</text>
+</svg>

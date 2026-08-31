@@ -45,7 +45,7 @@ disclaimer: "一般的な情報であり、個別のケースの判断を示す�
 
 DVの相談窓口とは別に、子どものための窓口がある。
 
-> - **児童相談所虐待対応ダイヤル：189（いちはやく）**（24時間365日・通話無料・匿名でもかけられる。一部のIP電話はつながらない）[出典2] → [公式](https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou-dial)
+> - **児童相談所虐待対応ダイヤル：189（いちはやく）**（通話無料・匿名でもかけられる。一部のIP電話はつながらない）[出典2] → [公式](https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou-dial)
 
 ただし**189は通告の窓口**で、かけると児童相談所が動くことがある。「まだそこまでは」と感じるなら、先に**DV相談プラス（0120-279-889・電話は24時間）で、子どものことも含めて話す**ほうが現実的だ[出典3]。男性の相談にも対応していて、毎週日曜15〜21時は専用回線で受け付けている。
 
@@ -62,5 +62,5 @@ DVの相談窓口とは別に、子どものための窓口がある。
 ---
 
 - **出典1**：子どもの前で配偶者に暴力をふるうこと（面前DV）は児童虐待防止法2条の心理的虐待にあたる：内閣府男女共同参画局「DVと児童虐待」 https://www.gender.go.jp/policy/no_violence/dv-child_abuse/index.html 。2026-08-14確認
-- **出典2**：児童相談所虐待対応ダイヤル 189。通話料無料、匿名での通告・相談が可能、一部のIP電話はつながらない：こども家庭庁 https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou-dial 。児童相談所は24時間365日体制で対応：厚生労働省 https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/dial_189.html 。いずれも2026-08-14確認
+- **出典2**：児童相談所虐待対応ダイヤル 189。通話料無料、匿名での通告・相談が可能、一部のIP電話はつながらない：こども家庭庁 https://www.cfa.go.jp/policies/jidougyakutai/gyakutai-taiou-dial 。児童相談所は体制で対応：厚生労働省 https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/dial_189.html 。いずれも2026-08-14確認
 - **出典3**：DV相談プラス 0120-279-889（電話24時間／チャット12:00〜22:00／メール24時間受付）。男性の相談にも対応（毎週日曜15〜21時は専用回線で受け付け）：内閣府「DV相談プラス」 https://soudanplus.jp/ 。2026-08-14確認

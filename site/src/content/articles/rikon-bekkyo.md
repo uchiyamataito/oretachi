@@ -136,6 +136,35 @@ disclaimer: "本記事は別居の準備・判断に関する一般的な情報�
 - **引っ越し代は"相見積もり"で下がる**：1社で即決せず、**複数社（[SUUMO引越し見積もり](https://hikkoshi.suumo.jp/) などの一括見積もりでまとめて依頼できる）で比較**すると、同じ荷物でも数万円変わることがある。さらに、**繁忙期（3〜4月）・週末・月末を避ける**／荷物を減らすと安くなる。
 - **初期費用を抑える**：敷金礼金ゼロ・フリーレント・家具家電付きの物件も選択肢。最初の数か月は身軽でいい。
 
+<!-- rag:skip -->
+<div class="svc-table-wrap">
+<p class="pr-note">この表にはアフィリエイトリンク（<span class="pr-label">PR</span> と表示）を含みます。並び順は報酬ではなく、家を出る側の動きやすさで決めています。条件に合わないものは、合わないと書きます。</p>
+<div class="svc-table-scroll">
+<table class="svc-table">
+<thead><tr><th>探し先</th><th>こういうときに向く</th><th>先に知っておくこと</th></tr></thead>
+<tbody>
+<tr>
+<th class="svc-t-name"><a href="https://suumo.jp/" target="_blank" rel="noopener">SUUMO</a></th>
+<td>まず相場と物件量をつかみたい。職場や子どもの家からの距離で絞りたい。</td>
+<td>掲載が多いぶん、条件を決めずに眺めると時間が溶ける。家賃より先に「子に会いやすいか」を決めておく。</td>
+</tr>
+<tr>
+<th class="svc-t-name"><a href="https://www.homes.co.jp/" target="_blank" rel="noopener">LIFULL HOME&#39;S</a></th>
+<td>相場観の答え合わせをしたい。ポータルによって出てくる物件が違うため。</td>
+<td>2つ見れば十分なことが多い。3つ目からは同じ物件が並びやすい。</td>
+</tr>
+<tr>
+<th class="svc-t-name"><a href="A8_LINK_NOT_SET" target="_blank" rel="sponsored nofollow noopener">クロスハウス</a> <span class="pr-label">PR</span></th>
+<td>家具も家電も買わずに、身ひとつで早く出たい。別居が長引くか読めず、荷物を増やしたくない。</td>
+<td>公式サイトでは、敷金・礼金・仲介手数料は無料、家具家電付きで最短1か月から入居できると案内されている。ただし費用の条件は物件やプランによって違うことがあるので、金額は個別の物件ページで確かめてほしい。<strong>対応エリアも東京・神奈川・埼玉・千葉・愛知・京都・大阪・兵庫・奈良・福岡・北海道に限られる</strong>ので、エリア外の人はそもそも選べない。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="pr-note">クロスハウスの条件は公式サイトの表記（<a href="https://x-house.co.jp/" target="_blank" rel="noopener">x-house.co.jp</a>・2026年8月31日確認）。募集条件や対応エリアは変わることがあるので、申し込む前に必ず公式で確かめてほしい。</p>
+</div>
+<!-- /rag:skip -->
+
 > ※サービス名はあくまで一例で、特定のサイトや業者を保証するものではない。使い勝手は物件や人による。複数を見比べて、自分の条件に合うものを選んでくれ。
 
 ## 別居でありがちな失敗：先に知っておけば避けられる

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 386" role="img" aria-labelledby="ty dy" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="ty">今日やることのチェックリスト</title>
+  <desc id="dy">妻に無視されているときに今日やることのチェックリスト。六項目ある。一つ目、二つの質問で沈黙が一、二、三のどれかを決めた。二つ目、追いかけるのをいったんやめた。三つ目、いや俺だっての気持ちを紙に書き出して閉じた。これは全員共通。四つ目、型が一なら今日は置かず、二なら一つ詫び、三なら自分の生活を立て直す。五つ目、上手い言葉を探すより早く短く置くほうを選んだ。六つ目、すぐには変わらない前提で生活のほうも立て直しはじめた。今日は三つ目だけでも充分で、三分で終わり誰にも見せなくていい、と書かれている。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="385" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">今日やること</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">全部はやらなくていい</text>
+
+  <rect x="32" y="84" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="93" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="106" font-size="13.5" fill="#2C2A26">2つの質問で、沈黙が<tspan font-weight="700">1・2・3</tspan>のどれかを決めた</text>
+
+  <rect x="32" y="126" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="135" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="148" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">追いかけるのを、いったんやめた</tspan></text>
+
+  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#B5481F" stroke-width="1.5"/>
+  <text x="78" y="190" font-size="13.5" fill="#2C2A26"><tspan font-weight="800" fill="#B5481F">「いや、俺だって」を紙に書き出して、閉じた</tspan></text>
+
+  <rect x="32" y="210" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="219" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="232" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型1</tspan>なら｜今日は置かず、生活の連絡だけ送った</text>
+
+  <rect x="32" y="252" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="261" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="274" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型2</tspan>なら｜思い当たるものを一つだけ、短く詫びた</text>
+
+  <rect x="32" y="294" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="303" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="316" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型3</tspan>なら｜相手ではなく、自分の生活を一つ立て直した</text>
+
+  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">三つ目までは全員共通。四〜六は、自分の番号のところだけでいい</text>
+</svg>

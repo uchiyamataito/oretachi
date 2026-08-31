@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 458" role="img" aria-labelledby="th dh" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="th">場面別の、そのまま使える一言</title>
+  <desc id="dh">口をきかない妻への声のかけ方を五つの場面に分けた図。心当たりがないときは「何か悪かったなら直したい。今じゃなくていい」。心当たりがあるときは「この前の◯◯の言い方、悪かった。返事はいらない」。生活のことだけ伝えたいときは「明日の保育園、俺が送る」。しばらく間を空けたいときは「しばらく先に寝るようにする。避けてるわけじゃない」。気持ちのほうに触れたいときは「今まで一人で頑張ってきたんだよね。寂しかったよね」。五つに共通するのは、返事を要求していないこと、二行を超えないこと、言ったあとに反応を待たないことだと書かれている。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="457" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">場面別の、そのまま使える一言</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">どれも二行まで。口で言いにくければ、文字で置いていい</text>
+
+  <g>
+    <rect x="32" y="88" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+    <text x="52" y="112" font-size="11.5" font-weight="700" fill="#8C8270">心当たりがないとき</text>
+    <text x="52" y="134" font-size="14" font-weight="700" fill="#1B3A57">「何か悪かったなら直したい。今じゃなくていい。」</text>
+
+    <rect x="32" y="156" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+    <text x="52" y="180" font-size="11.5" font-weight="700" fill="#8C8270">心当たりがあるとき</text>
+    <text x="52" y="202" font-size="14" font-weight="700" fill="#1B3A57">「この前の◯◯の言い方、悪かった。返事はいらない。」</text>
+
+    <rect x="32" y="224" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+    <text x="52" y="248" font-size="11.5" font-weight="700" fill="#8C8270">生活のことだけ伝えたいとき</text>
+    <text x="52" y="270" font-size="14" font-weight="700" fill="#1B3A57">「明日の保育園、俺が送る。」</text>
+
+    <rect x="32" y="292" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+    <text x="52" y="316" font-size="11.5" font-weight="700" fill="#8C8270">しばらく間を空けたいとき</text>
+    <text x="52" y="338" font-size="14" font-weight="700" fill="#1B3A57">「しばらく先に寝るようにする。避けてるわけじゃない。」</text>
+
+    <rect x="32" y="360" width="636" height="60" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+    <text x="52" y="384" font-size="11.5" font-weight="700" fill="#B5481F">気持ちのほうに触れたいとき（難しいので後回しでいい）</text>
+    <text x="52" y="406" font-size="14" font-weight="700" fill="#B5481F">「今まで一人で頑張ってきたんだよね。寂しかったよね。」</text>
+  </g>
+
+  <text x="32" y="440" font-size="12.5" font-weight="700" fill="#1B3A57">共通するのは三つ。返事を要求しない／二行を超えない／言ったあと、反応を待たない</text>
+</svg>

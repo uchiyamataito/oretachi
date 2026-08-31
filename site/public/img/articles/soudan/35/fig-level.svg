@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" role="img" aria-labelledby="tl dl" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="tl">妻に気を使う度合いの、四つのレベル</title>
+  <desc id="dl">妻に気を使う度合いを四段階で示した図。レベル1は気配りで、機嫌を見て声をかけるタイミングを選ぶ段階。とくに疲れず、誰でもやっている。レベル2は先回りで、不機嫌にならないよう先に片づけたり話題を避けたりする段階。少し疲れるが、うまくやれている感覚がある。ここまでは関係を保つための技術なので減らす必要はない。レベル3は常時監視で、帰宅前に様子をうかがい、物音で身構え、自分の予定を相手の機嫌で決める段階。家にいる間、気が休まらない。レベル4は自分が後回しで、家にいる時間を減らし、自分の感情を報告しなくなり、何がしたいかが出てこない段階。これが普通になっている。レベル3から先は、気の使い方を工夫する段階ではなく、うかがう回数そのものを減らす段階だと書かれている。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="439" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">いま、どのレベルにいるか</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">ある日いきなり重くなるものではない。段階的に上がっていく</text>
+
+  <!-- L1 -->
+  <rect x="32" y="88" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="48" y="104" width="120" height="28" rx="8" fill="#0F6E56"/>
+  <text x="108" y="123" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">L1 気配り</text>
+  <text x="186" y="115" font-size="13.5" fill="#2C2A26">機嫌を見て、声をかけるタイミングを選ぶ</text>
+  <text x="186" y="136" font-size="11.5" fill="#6E6354">とくに疲れない。誰でもやっている</text>
+
+  <!-- L2 -->
+  <rect x="32" y="156" width="636" height="60" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="48" y="172" width="120" height="28" rx="8" fill="#0F6E56"/>
+  <text x="108" y="191" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">L2 先回り</text>
+  <text x="186" y="183" font-size="13.5" fill="#2C2A26">不機嫌にならないよう先に片づける。話題を避ける</text>
+  <text x="186" y="204" font-size="11.5" fill="#6E6354">少し疲れるが、うまくやれている感覚がある</text>
+
+  <!-- 境界 -->
+  <line x1="32" y1="232" x2="668" y2="232" stroke="#E7B39F" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="238" y="221" width="224" height="22" rx="11" fill="#FBF1EA"/>
+  <text x="350" y="237" font-size="11.5" font-weight="800" fill="#B5481F" text-anchor="middle">ここから先は、減らす段階</text>
+
+  <!-- L3 -->
+  <rect x="32" y="256" width="636" height="60" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="48" y="272" width="120" height="28" rx="8" fill="#E2703A"/>
+  <text x="108" y="291" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">L3 常時監視</text>
+  <text x="186" y="283" font-size="13.5" fill="#2C2A26">帰宅前にうかがう。物音で身構える。<tspan font-weight="700">予定を相手の機嫌で決める</tspan></text>
+  <text x="186" y="304" font-size="11.5" font-weight="700" fill="#B5481F">家にいる間、気が休まらない</text>
+
+  <!-- L4 -->
+  <rect x="32" y="324" width="636" height="60" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="48" y="340" width="120" height="28" rx="8" fill="#B5481F"/>
+  <text x="108" y="359" font-size="12.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">L4 自分が後回し</text>
+  <text x="186" y="351" font-size="13.5" fill="#2C2A26">家にいる時間を減らす。<tspan font-weight="700">自分の感情を報告しなくなる</tspan></text>
+  <text x="186" y="372" font-size="11.5" font-weight="700" fill="#B5481F">「これが普通」になっている。ここまで来ていても戻した人はいる</text>
+
+  <text x="32" y="416" font-size="13" font-weight="700" fill="#1B3A57">迷ったら一問。「自分がやりたいこと」で決めた予定が無い週が、何週続いているか</text>
+</svg>

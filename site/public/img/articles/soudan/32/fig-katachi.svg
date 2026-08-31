@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 448" role="img" aria-labelledby="tk dk" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="tk">妻の沈黙が、3つのどれかを決める</title>
+  <desc id="dk">妻の沈黙がどの型かを二つの質問で判定する図。質問一つ目、怒っているのが見て分かるか。はいなら一の一時停止で、数日から二週間、効く手は待つことと場を離すこと。いいえなら質問二つ目へ進む。質問二つ目、過去のことを持ち出されることがあるか。はいなら二の積み重なりで、一ヶ月から数ヶ月、効く手は認めて詫びること。どちらもいいえなら三のあきらめで、数ヶ月から年単位、効く手は生活を立て直しながら長く続けること。迷ったら番号の大きいほうを選ぶ、と書かれている。</desc>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#8C8270"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="699" height="447" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
+
+  <rect x="32" y="24" width="4" height="22" rx="2" fill="#E2703A"/>
+  <text x="48" y="42" font-size="19" font-weight="800" fill="#1B3A57">妻の沈黙は、3つのどれか</text>
+  <text x="48" y="64" font-size="13" fill="#6E6354">二つの質問で決まる。型が違えば、効く手は正反対になる</text>
+
+  <!-- Q1 -->
+  <rect x="32" y="92" width="300" height="72" rx="12" fill="#F4F7FA" stroke="#D5E0EA" stroke-width="1.5"/>
+  <text x="52" y="118" font-size="11.5" font-weight="700" fill="#1B3A57">質問1</text>
+  <text x="52" y="140" font-size="14" font-weight="800" fill="#2C2A26">怒っているのが、見て分かるか</text>
+  <text x="52" y="157" font-size="11" fill="#6E6354">ため息、物音、強い言い方が残っている</text>
+
+  <line x1="332" y1="128" x2="374" y2="128" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="353" y="120" font-size="10.5" font-weight="700" fill="#0F6E56" text-anchor="middle">はい</text>
+
+  <!-- card 1 -->
+  <rect x="380" y="92" width="288" height="72" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="396" y="106" width="118" height="22" rx="11" fill="#0F6E56"/>
+  <text x="455" y="122" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">1 一時停止</text>
+  <text x="524" y="122" font-size="11" fill="#6E6354">数日〜二週間</text>
+  <text x="396" y="148" font-size="13" font-weight="700" fill="#0F6E56">効く手：待つ。場を離す</text>
+
+  <line x1="182" y1="164" x2="182" y2="190" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="196" y="181" font-size="10.5" font-weight="700" fill="#8C8270">いいえ</text>
+
+  <!-- Q2 -->
+  <rect x="32" y="196" width="300" height="72" rx="12" fill="#F4F7FA" stroke="#D5E0EA" stroke-width="1.5"/>
+  <text x="52" y="222" font-size="11.5" font-weight="700" fill="#1B3A57">質問2</text>
+  <text x="52" y="244" font-size="14" font-weight="800" fill="#2C2A26">過去のことを、持ち出されるか</text>
+  <text x="52" y="261" font-size="11" fill="#6E6354">何年も前の話が、また出てくる</text>
+
+  <line x1="332" y1="232" x2="374" y2="232" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="353" y="224" font-size="10.5" font-weight="700" fill="#E2703A" text-anchor="middle">はい</text>
+
+  <!-- card 2 -->
+  <rect x="380" y="196" width="288" height="72" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="396" y="210" width="118" height="22" rx="11" fill="#E2703A"/>
+  <text x="455" y="226" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">2 積み重なり</text>
+  <text x="524" y="226" font-size="11" fill="#6E6354">一ヶ月〜数ヶ月</text>
+  <text x="396" y="252" font-size="13" font-weight="700" fill="#E2703A">効く手：認めて、詫びる</text>
+
+  <line x1="182" y1="268" x2="182" y2="316" stroke="#8C8270" stroke-width="1.5"/>
+  <line x1="182" y1="316" x2="374" y2="316" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="196" y="290" font-size="10.5" font-weight="700" fill="#8C8270">いいえ</text>
+
+  <!-- card 3 -->
+  <rect x="380" y="280" width="288" height="72" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="396" y="294" width="118" height="22" rx="11" fill="#B5481F"/>
+  <text x="455" y="310" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">3 あきらめ</text>
+  <text x="524" y="310" font-size="11" fill="#6E6354">数ヶ月〜年単位</text>
+  <text x="396" y="336" font-size="13" font-weight="700" fill="#B5481F">効く手：立て直しながら、長く</text>
+
+  <rect x="32" y="376" width="636" height="48" rx="8" fill="#FBF9F4" stroke="#E4DACB"/>
+  <text x="52" y="398" font-size="13" font-weight="700" fill="#1B3A57">迷ったら、番号の大きいほうを選ぶ。軽く見積もって手を間違えるほうが、取り返しがつきにくい</text>
+  <text x="52" y="416" font-size="11.5" fill="#6E6354">この三つは一本道ではない。日によって戻る。いちばん悪かった日を基準にしていい</text>
+</svg>

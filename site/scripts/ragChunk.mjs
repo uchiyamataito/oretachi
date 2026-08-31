@@ -22,7 +22,10 @@ export function parseFrontmatter(md) {
   const m = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!m) { console.warn('[rag] frontmatterを検出できませんでした（先頭が --- でない可能性）'); return { data: {}, body: md }; }
   const fm = m[1];
-  const body = m[2];
+  // <!-- rag:skip --> … <!-- /rag:skip --> で囲んだ範囲はRAGに入れない。
+  // 用途＝アフィリエイト等、PR表記とセットでしか出してはいけないブロック（09§3-b）。
+  // AIチャットが広告文だけを本文として再生産するのを、取り込み側で構造的に止める。
+  const body = m[2].replace(/<!--\s*rag:skip\s*-->[\s\S]*?<!--\s*\/rag:skip\s*-->/g, '');
   const get = (key) => {
     const q = fm.match(new RegExp('^' + key + ':\\s*"([\\s\\S]*?)"\\s*$', 'm'));
     if (q) return q[1].trim();

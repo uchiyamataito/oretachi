@@ -110,6 +110,33 @@ function check(slug) {
       /rikon-dansei-soudansaki/.test(body) ? ok('相談先の親記事へのリンク') : ng('窓口を載せているのに相談先の親記事へリンクしていない');
     /\d{4}-\d{2}-\d{2}確認/.test(body) ? ok('出典に確認日が入っている') : ng('窓口の出典に確認日が無い');
   }
+  // アフィリエイトリンクの必須要件（09§3-b・29）
+  // 「PR表記は部品で自動付与し、手動の貼り忘れを構造的に防ぐ」が原則だが、
+  // 記事は .md（MDXではない）でAstro部品を差せないため、貼り忘れは"機械で落とす"側で担保する。
+  const affAnchors = [...body.matchAll(/<a\b[^>]*rel="[^"]*\bsponsored\b[^"]*"[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+  if (affAnchors.length) {
+    // ①未設定リンクのまま公開されるのを止める（09§3-b前提条件(1)＝正規リンク発行済みであること）
+    /A8_LINK_NOT_SET/.test(body)
+      ? ng('アフィリエイトリンクが未設定（A8_LINK_NOT_SET）のまま。ASPの正規リンクを入れるまで公開しない（09§3-b）')
+      : ok('アフィリエイトリンクのURLが設定済み');
+    // ②PR表記がリンクの近傍にあるか（同じブロック内＝景表法ステマ規制）
+    const blocks = body.split(/<\/div>/);
+    const bad = blocks.filter((b) => /rel="[^"]*\bsponsored\b/.test(b) && !/pr-label|広告|PR/.test(b));
+    bad.length
+      ? ng(`アフィリエイトリンクの近傍にPR表記が無いブロックが ${bad.length}件（景表法ステマ規制・09§3-b）`)
+      : ok(`アフィリエイトリンク ${affAnchors.length}件すべてにPR表記が伴っている`);
+    // ③RAG除外（AIチャットが広告文をPR表記なしで再生産するのを止める）
+    const skipZones = body.match(/<!--\s*rag:skip\s*-->[\s\S]*?<!--\s*\/rag:skip\s*-->/g) || [];
+    const outside = affAnchors.filter((a) => !skipZones.some((z) => z.includes(a)));
+    outside.length
+      ? ng(`アフィリエイトリンクが rag:skip の外にある（AIチャットが広告文を本文として再生産しうる）: ${outside.length}件`)
+      : ok('アフィリエイトリンクはRAG除外ブロックの中にある');
+    // ③単推し禁止（29①：利益軸で2〜3社を並べる。1社だけの面を作らない）
+    const svcLinks = [...body.matchAll(/<a\b[^>]*href="https?:\/\/[^"]*"[^>]*target="_blank"/g)].length;
+    svcLinks >= 2
+      ? ok(`比較の選択肢が ${svcLinks}件（単推しになっていない）`)
+      : ng('アフィリエイトリンクが1件だけで並列の選択肢が無い（29①の単推し禁止）');
+  }
   // 太字の密度
   const [lo, hi] = boldDensityRange();
   const lines = body.split('\n').filter((l) => l.trim()).length;
