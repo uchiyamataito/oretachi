@@ -33,5 +33,5 @@
   <rect x="48" y="303" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="316" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型3</tspan>なら｜相手ではなく、自分の生活を一つ立て直した</text>
 
-  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">上の三つは全員共通。色のついた三つは、自分の番号のところだけでいい</text>
+  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">上の三つは全員共通。下の三つ（型1・型2・型3）は、自分の番号のところだけでいい</text>
 </svg>

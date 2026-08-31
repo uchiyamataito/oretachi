@@ -54,13 +54,13 @@
   <text x="196" y="290" font-size="10.5" font-weight="700" fill="#8C8270">いいえ</text>
 
   <!-- card 3 -->
-  <rect x="380" y="280" width="288" height="72" rx="12" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+  <rect x="380" y="280" width="288" height="72" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
   <rect x="396" y="294" width="118" height="22" rx="11" fill="#B5481F"/>
   <text x="455" y="310" font-size="11.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">3 あきらめ</text>
   <text x="524" y="310" font-size="11" fill="#6E6354">数ヶ月〜年単位</text>
   <text x="396" y="336" font-size="13" font-weight="700" fill="#B5481F">効く手：立て直しながら、長く</text>
 
   <rect x="32" y="376" width="636" height="48" rx="8" fill="#FBF9F4" stroke="#E4DACB"/>
-  <text x="52" y="398" font-size="13" font-weight="700" fill="#1B3A57">迷ったら、番号の大きいほうを選ぶ。軽く見積もって手を間違えるほうが、取り返しがつきにくい</text>
-  <text x="52" y="416" font-size="11.5" fill="#6E6354">この三つは一本道ではない。日によって戻る。いちばん悪かった日を基準にしていい</text>
+  <text x="52" y="398" font-size="13" font-weight="700" fill="#1B3A57">迷ったら、いったん 2 として動く。2の手は、どちらに転んでも大きく外さない</text>
+  <text x="52" y="416" font-size="11.5" fill="#6E6354">この三つは一本道ではない。日によって戻るので、ここ二週間を平均で見るといい</text>
 </svg>

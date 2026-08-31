@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 386" role="img" aria-labelledby="ty3 dy3" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="ty3">気の使いすぎから降りるチェックリスト</title>
-  <desc id="dy3">気を使いすぎている状態から降りるためのチェックリスト。六項目ある。一つ目、いま自分がどのレベルにいるかを表で確かめた。二つ目、この一週間で自分がやりたいことを基準に決めた予定があったかを確かめた。三つ目、いちばん影響の小さい確認を一つだけやめた。四つ目、やめた直後に落ち着かなくなるのは普通だと知っておいた。五つ目、一日の結果ではなく一週間で見ると決めた。六つ目、なんで不機嫌なんだを、自分の状態を伝える形に置き換えた。一日一つでよく、一週間で七つ、一ヶ月で三十になると書かれている。</desc>
+  <desc id="dy3">気を使いすぎている状態から降りるためのチェックリスト。六項目ある。一つ目、いま自分がどのレベルにいるかを表で確かめた。二つ目、自分がやりたいことで決めた予定が無い週が何週続いているかを数えた。三つ目、いちばん影響の小さい確認を一つだけやめた。四つ目、やめた直後に落ち着かなくなるのは普通だと知っておいた。五つ目、一日の結果ではなく一週間で見ると決めた。六つ目、なんで不機嫌なんだを、自分の状態を伝える形に置き換えた。一日一つでよく、一週間で七つ、一ヶ月で三十になると書かれている。</desc>
 
   <rect x="0.5" y="0.5" width="699" height="385" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
 
@@ -14,11 +14,11 @@
 
   <rect x="32" y="126" width="636" height="34" rx="8" fill="#FBF9F4"/>
   <rect x="48" y="135" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
-  <text x="78" y="148" font-size="13.5" fill="#2C2A26">この一週間で「<tspan font-weight="700">自分がやりたいこと</tspan>」で決めた予定があったか確かめた</text>
+  <text x="78" y="148" font-size="13.5" fill="#2C2A26">「<tspan font-weight="700">自分がやりたいこと</tspan>」で決めた予定が無い週が、何週続いているか数えた</text>
 
-  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
-  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#B5481F" stroke-width="1.5"/>
-  <text x="78" y="190" font-size="13.5" fill="#2C2A26"><tspan font-weight="800" fill="#B5481F">いちばん影響の小さい確認を、一つだけやめた</tspan></text>
+  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="190" font-size="13.5" fill="#2C2A26">いちばん影響の小さい確認を、一つだけやめた</text>
 
   <rect x="32" y="210" width="636" height="34" rx="8" fill="#FBF9F4"/>
   <rect x="48" y="219" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
