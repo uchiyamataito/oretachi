@@ -69,7 +69,7 @@ const targets = [
   .sbtn.x{background:#000}
   .sbtn.threads{background:#000}
 
-  .share-fab{position:fixed;right:16px;bottom:18px;z-index:40;width:60px;height:60px;border-radius:50%;background:#fff;border:1px solid var(--line2);box-shadow:0 8px 20px -8px rgba(21,35,58,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);cursor:pointer}
+  .share-fab{position:fixed;right:16px;bottom:86px;z-index:40;width:60px;height:60px;border-radius:50%;background:#fff;border:1px solid var(--line2);box-shadow:0 8px 20px -8px rgba(21,35,58,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);cursor:pointer}
   .share-fab i{font-size:21px}
   .share-fab span{font-size:10px;font-weight:700;margin-top:1px}
 
@@ -93,7 +93,10 @@ const targets = [
   .sopt.x .sopt-ic{background:#000}
   .sopt.threads .sopt-ic{background:#000}
   .sopt-lb{font-size:.8rem;color:var(--ink);font-weight:700}
-  @media(min-width:900px){.share-fab{right:24px;bottom:24px}}
+  /* AIチャットのFAB（#aichat .ac-fab）と同じ右下に固定されているため、その上に積む。
+     チャット側の高さ＝モバイル(〜520px)は56px、521px以上は44px。いずれも bottom:18px 起点。
+     右端はチャット側の right:16px に合わせて揃える（ずらすと縦の列が崩れる）。 */
+  @media(min-width:521px){.share-fab{bottom:74px}}
 </style>
 
 <script is:inline>
