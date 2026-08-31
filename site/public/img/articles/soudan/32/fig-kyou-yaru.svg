@@ -16,21 +16,22 @@
   <rect x="48" y="135" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="148" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">追いかけるのを、いったんやめた</tspan></text>
 
-  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
-  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#B5481F" stroke-width="1.5"/>
-  <text x="78" y="190" font-size="13.5" fill="#2C2A26"><tspan font-weight="800" fill="#B5481F">「いや、俺だって」を紙に書き出して、閉じた</tspan></text>
+  <rect x="32" y="168" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="48" y="177" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
+  <text x="78" y="190" font-size="13.5" fill="#2C2A26">「いや、俺だって」を紙に書き出して、閉じた</text>
 
-  <rect x="32" y="210" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <line x1="32" y1="207" x2="668" y2="207" stroke="#E4DACB" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <rect x="32" y="210" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
   <rect x="48" y="219" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="232" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型1</tspan>なら｜今日は置かず、生活の連絡だけ送った</text>
 
-  <rect x="32" y="252" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="32" y="252" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
   <rect x="48" y="261" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="274" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型2</tspan>なら｜思い当たるものを一つだけ、短く詫びた</text>
 
-  <rect x="32" y="294" width="636" height="34" rx="8" fill="#FBF9F4"/>
+  <rect x="32" y="294" width="636" height="34" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
   <rect x="48" y="303" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="316" font-size="13.5" fill="#2C2A26"><tspan font-weight="700">型3</tspan>なら｜相手ではなく、自分の生活を一つ立て直した</text>
 
-  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">三つ目までは全員共通。四〜六は、自分の番号のところだけでいい</text>
+  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">上の三つは全員共通。色のついた三つは、自分の番号のところだけでいい</text>
 </svg>
