@@ -328,6 +328,55 @@ function checkSiteWide() {
     } else ok('相談窓口の注記に省略なし');
   }
 
+  // 1c-2) 「どれも無料」型の総括表現。1c は行ごとに窓口を照合するため、
+  //      **番号とは別の行・別の段落にある総括文**を構造的に見られない。
+  //      2026-09-01、これで事実の誤りが本番に出た：
+  //        「そのうえで、話を聞いてもらう窓口を挙げる。**どれも無料で、名前を言わなくていい。**」
+  //        （空行）
+  //        「> - よりそい（0120-279-338）…」「> - いのちの電話 ナビダイヤル 0570-783-556（通話料有料）」
+  //      windows.json は 0570 に forbidden:「無料」を持っていたのに、
+  //      「無料」は番号の2行前にあったため 1c を素通りし、記事4本が有料窓口を無料と書いたまま公開された。
+  //      → 総括表現は「その語がリストの全メンバーに掛かる」と読まれる。
+  //        近くの窓口を全部集め、1つでも禁止していれば失敗にする。
+  {
+    const wins = JSON.parse(readFileSync(join(ROOT, 'src/data/windows.json'), 'utf-8'));
+    // 総括語の「直後」に禁止語が来るものだけを見る。離れていると別のものに掛かっている。
+    //   ✓ 拾う 「**どれも無料で**、名前を言わなくていい」＝どれも→無料が隣接
+    //   ✗ 拾わない 「…（無料）… 。**いずれも**2026-08-14確認」
+    //     ＝「いずれも」が掛かっているのは確認日であって無料ではない（出典欄の定型）
+    //     この形を拾うと、公開済みの正しい記事2本が誤検出になった（2026-09-02に実測）
+    const SWEEP = /(どれも|いずれも|すべて|全て|全部|みんな|各窓口とも)[^。]{0,10}?(無料|24時間|匿名)/;
+    const NEAR = 12; // 総括文の前後この行数までを「掛かる範囲」とみなす
+    const telRe = (t) => new RegExp((/^\d{3}$/.test(t) ? '(?<![0-9-])' : '') + escapeRe(t) + (/^\d{3}$/.test(t) ? '(?![0-9-])' : ''), 'g');
+    let bad = 0, scanned = 0;
+    for (const dir of ['articles', 'qa']) {
+      for (const f of readdirSync(join(ROOT, 'src/content', dir)).filter((x) => x.endsWith('.md'))) {
+        const lines = readFileSync(join(ROOT, 'src/content', dir, f), 'utf-8').split('\n');
+        lines.forEach((line, li) => {
+          if (!SWEEP.test(line)) return;
+          scanned++;
+          // 総括文に含まれる禁止語の候補（windows.json 側で forbidden されている語だけを見る）
+          // 出典欄は「窓口名（注記）」の羅列で、総括語は確認日に掛かる。検査対象から外す。
+          if (/^\s*\d+\.\s/.test(line) && /https?:\/\//.test(line)) return;
+          const claimed = [...new Set(wins.flatMap((w) => w.forbidden.map((fb) => fb.phrase)))]
+            .filter((ph) => new RegExp(`(どれも|いずれも|すべて|全て|全部|みんな|各窓口とも)[^。]{0,10}?${escapeRe(ph)}`).test(line));
+          if (!claimed.length) return;
+          const near = lines.slice(Math.max(0, li - NEAR), li + NEAR + 1).join('\n');
+          for (const ph of claimed) {
+            for (const w of wins) {
+              if (!w.forbidden.some((fb) => fb.phrase === ph)) continue;
+              if (!telRe(w.tel).test(near)) continue;
+              bad++;
+              ng(`${dir}/${f}:${li + 1}　総括表現「${ph}」が ${w.name}（${w.tel}）にも掛かっている。`
+                + `この窓口に「${ph}」は使えない（${w.forbidden.find((fb) => fb.phrase === ph).why}）`);
+            }
+          }
+        });
+      }
+    }
+    bad === 0 ? ok(`総括表現の掛かり違いなし（「どれも◯◯」型 ${scanned}件を近傍の窓口と照合）`) : null;
+  }
+
   // 1d) 文体ルールのうち「記事1本の検査では抜ける」もの。
   //     ダッシュ全面禁止は check(slug) で見ているが、あれは articles しか回らないため
   //     **Q&A側のダッシュが2026-08-29まで検出されていなかった**（実際に1件残っていた）。
