@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 386" role="img" aria-labelledby="ty3 dy3" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
-  <title id="ty3">気の使いすぎから降りるチェックリスト</title>
-  <desc id="dy3">気を使いすぎている状態から降りるためのチェックリスト。六項目ある。一つ目、いま自分がどのレベルにいるかを表で確かめた。二つ目、自分がやりたいことで決めた予定が無い週が何週続いているかを数えた。三つ目、いちばん影響の小さい確認を一つだけやめた。四つ目、やめた直後に落ち着かなくなるのは普通だと知っておいた。五つ目、一日の結果ではなく一週間で見ると決めた。六つ目、なんで不機嫌なんだを、自分の状態を伝える形に置き換えた。一日一つでよく、一週間で七つ、一ヶ月で三十になると書かれている。</desc>
+  <title id="ty3">気の使いすぎをやめていくチェックリスト</title>
+  <desc id="dy3">気を使いすぎている状態をやめていくためのチェックリスト。六項目ある。一つ目、いま自分がどのレベルにいるかを図で確かめた。二つ目、自分がやりたいことで決めた予定が無い週が何週続いているかを数えた。三つ目、いちばん影響の小さい確認を一つだけやめた。四つ目、やめた直後に落ち着かなくなるのは普通だと知っておいた。五つ目、一日の結果ではなく一週間で見ると決めた。六つ目、なんで不機嫌なんだを、自分の状態を伝える形に置き換えた。まず一つ手放して一週間もたせ、できたら次の一つへ、と書かれている。</desc>
 
   <rect x="0.5" y="0.5" width="699" height="385" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
 
@@ -10,7 +10,7 @@
 
   <rect x="32" y="84" width="636" height="34" rx="8" fill="#FBF9F4"/>
   <rect x="48" y="93" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
-  <text x="78" y="106" font-size="13.5" fill="#2C2A26">いま自分が<tspan font-weight="700">どのレベル</tspan>にいるかを、表で確かめた</text>
+  <text x="78" y="106" font-size="13.5" fill="#2C2A26">いま自分が<tspan font-weight="700">どのレベル</tspan>にいるかを、図で確かめた</text>
 
   <rect x="32" y="126" width="636" height="34" rx="8" fill="#FBF9F4"/>
   <rect x="48" y="135" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
@@ -32,5 +32,5 @@
   <rect x="48" y="303" width="16" height="16" rx="3" fill="#FFFFFF" stroke="#E7B39F" stroke-width="1.5"/>
   <text x="78" y="316" font-size="13.5" fill="#2C2A26">「なんで不機嫌なんだ」を、<tspan font-weight="700">自分の状態を伝える形</tspan>に置き換えた</text>
 
-  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">一日一つでいい。一週間で七つ、一ヶ月で三十だ</text>
+  <text x="32" y="360" font-size="13" font-weight="700" fill="#1B3A57">まず一つ手放して、一週間もたせる。できたら、次の一つだ</text>
 </svg>

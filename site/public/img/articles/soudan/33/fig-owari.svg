@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" role="img" aria-labelledby="to do" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="to">短く終わる沈黙と、長引く沈黙の違い</title>
-  <desc id="do">短く終わる沈黙と長引く沈黙を五つの観点で比べた図。きっかけは、短く終わる側でははっきりしていて、長引く側でははっきりしない。生活の連絡は、短く終わる側では普通に来て、長引く側では事務的だけになる。こちらの動きは、短く終わる側では追いかけをやめていて、長引く側では問い詰めや謝罪の重ねがけが続く。声かけは、短く終わる側では短いものが週に何度かあり、長引く側ではゼロか一気にまとめて出される。過去の話は、短く終わる側では出てこず、長引く側では繰り返し出てくる。五つのうちこちらの動きだけが自分で変えられるので、この行だけ色を変えている。</desc>
+  <desc id="do">短く終わる沈黙と長引く沈黙を五つの観点で比べた図。きっかけは、短く終わる側でははっきりしていて、長引く側でははっきりしない。生活の連絡は、短く終わる側では普通に来て、長引く側では事務的だけになる。こちらの動きは、短く終わる側では追いかけをやめていて、長引く側では問い詰めや謝罪の重ねがけが続く。声かけは、短く終わる側では短いものが週に何度かあり、長引く側ではゼロか一気にまとめて出される。過去の話は、短く終わる側では出てこず、長引く側では繰り返し出てくる。五つのうち、こちらの動きと声かけの二つは相手の許可なしに今日から変えられるので、この二行だけ色を変えている。</desc>
 
   <rect x="0.5" y="0.5" width="699" height="399" rx="12" fill="#FFFFFF" stroke="#ECE3D5"/>
 
@@ -30,10 +30,10 @@
     <text x="214" y="246" font-weight="700" fill="#0F6E56">追いかけをやめている</text>
     <text x="454" y="246" font-weight="700" fill="#B5481F">問い詰め・謝罪が続く</text>
 
-    <rect x="32" y="270" width="636" height="42" rx="8" fill="#FBF9F4"/>
-    <text x="48" y="296" font-size="12.5" font-weight="700" fill="#6E6354">声かけ</text>
-    <text x="214" y="296">短いものが週に何度か</text>
-    <text x="454" y="296">ゼロか、まとめて一気に</text>
+    <rect x="32" y="270" width="636" height="42" rx="8" fill="#FBF1EA" stroke="#E7B39F" stroke-width="1.5"/>
+    <text x="48" y="296" font-size="12.5" font-weight="700" fill="#B5481F">声かけ</text>
+    <text x="214" y="296" font-weight="700" fill="#0F6E56">短いものが週に何度か</text>
+    <text x="454" y="296" font-weight="700" fill="#B5481F">ゼロか、まとめて一気に</text>
 
     <rect x="32" y="320" width="636" height="42" rx="8" fill="#FBF9F4"/>
     <text x="48" y="346" font-size="12.5" font-weight="700" fill="#6E6354">過去の話</text>
@@ -41,5 +41,5 @@
     <text x="454" y="346">繰り返し出てくる</text>
   </g>
 
-  <text x="32" y="382" font-size="13" font-weight="700" fill="#1B3A57">五つのうち「こちらの動き」だけが、自分で変えられる。だから右に寄っていても打つ手がある</text>
+  <text x="32" y="382" font-size="13" font-weight="700" fill="#1B3A57">色のついた「こちらの動き」と「声かけ」の二つは、相手の許可なしに今日から変えられる</text>
 </svg>

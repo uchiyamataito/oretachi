@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 448" role="img" aria-labelledby="tk dk" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="tk">妻の沈黙が、3つのどれかを決める</title>
-  <desc id="dk">妻の沈黙がどの型かを二つの質問で判定する図。質問一つ目、きっかけがはっきりしていて、まだ二週間以内か。どちらもはいなら一の一時停止で、数日から二週間、効く手は待つことと場を離すこと。どちらかが違うなら質問二つ目へ。質問二つ目、この沈黙が始まる前は、よく怒られていたか。これは沈黙の前の話で、いま怒られていないことは判定に使わない。はいなら二の積み重なりで、一ヶ月から数ヶ月、効く手は認めて詫びること。いいえで前から静かだったなら三のあきらめで、数ヶ月から年単位、効く手は生活を立て直しながら長く続けること。迷ったら、いったん二として動く。二の手はどちらに転んでも大きく外さない。この三つは一本道ではなく、日によって戻るので、ここ二週間を平均で見るとよい。</desc>
+  <desc id="dk">妻の沈黙がどの型かを二つの質問で判定する図。質問一つ目、きっかけの言い合いから、まだ二週間以内か。きっかけを言えないなら、いいえでいい。はいなら一の一時停止で、数日から二週間、効く手は待つことと場を離すこと。いいえなら質問二つ目へ。質問二つ目、この沈黙が始まる前は、よく怒られていたか。見るのは沈黙が始まる前のことで、いま怒られていないことは判定に使わない。はいなら二の積み重なりで、一ヶ月から数ヶ月、効く手は認めて詫びること。いいえで前から静かだったなら三のあきらめで、数ヶ月から年単位、効く手は生活を立て直しながら長く続けること。迷ったら、いったん二として動く。二の手はどちらに転んでも大きく外さない。日によって様子は変わるので、一日で判定を変えず、ここ二週間でどちらが多いかで見る。</desc>
 
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -17,11 +17,11 @@
   <!-- Q1 -->
   <rect x="32" y="92" width="300" height="72" rx="12" fill="#F4F7FA" stroke="#D5E0EA" stroke-width="1.5"/>
   <text x="52" y="118" font-size="11.5" font-weight="700" fill="#1B3A57">質問1</text>
-  <text x="52" y="140" font-size="14" font-weight="800" fill="#2C2A26">きっかけがはっきりしていて、二週間以内か</text>
-  <text x="52" y="157" font-size="11" fill="#6E6354">何がきっかけかを、自分の口で言えるか</text>
+  <text x="52" y="140" font-size="14" font-weight="800" fill="#2C2A26">きっかけの言い合いから、二週間以内か</text>
+  <text x="52" y="157" font-size="11" fill="#6E6354">きっかけを言えないなら、「いいえ」でいい</text>
 
   <line x1="332" y1="128" x2="374" y2="128" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
-  <text x="353" y="118" font-size="9.5" font-weight="700" fill="#0F6E56" text-anchor="middle">どちらもはい</text>
+  <text x="353" y="118" font-size="10.5" font-weight="700" fill="#0F6E56" text-anchor="middle">はい</text>
 
   <!-- card 1 -->
   <rect x="380" y="92" width="288" height="72" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
@@ -31,13 +31,13 @@
   <text x="396" y="148" font-size="13" font-weight="700" fill="#0F6E56">効く手：待つ。場を離す</text>
 
   <line x1="182" y1="164" x2="182" y2="190" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
-  <text x="196" y="181" font-size="10.5" font-weight="700" fill="#8C8270">違う</text>
+  <text x="196" y="181" font-size="10.5" font-weight="700" fill="#8C8270">いいえ</text>
 
   <!-- Q2 -->
   <rect x="32" y="196" width="300" height="72" rx="12" fill="#F4F7FA" stroke="#D5E0EA" stroke-width="1.5"/>
   <text x="52" y="222" font-size="11.5" font-weight="700" fill="#1B3A57">質問2</text>
   <text x="52" y="244" font-size="14" font-weight="800" fill="#2C2A26">沈黙が始まる前は、よく怒られていたか</text>
-  <text x="52" y="261" font-size="11" fill="#6E6354">沈黙の「前」の話。いま怒られていないことは使わない</text>
+  <text x="52" y="261" font-size="11" fill="#6E6354">見るのは、沈黙が始まる「前」のこと</text>
 
   <line x1="332" y1="232" x2="374" y2="232" stroke="#8C8270" stroke-width="1.5" marker-end="url(#ar)"/>
   <text x="353" y="224" font-size="10.5" font-weight="700" fill="#E2703A" text-anchor="middle">はい</text>
@@ -62,5 +62,5 @@
 
   <rect x="32" y="376" width="636" height="48" rx="8" fill="#FBF9F4" stroke="#E4DACB"/>
   <text x="52" y="398" font-size="13" font-weight="700" fill="#1B3A57">迷ったら、いったん 2 として動く。2の手は、どちらに転んでも大きく外さない</text>
-  <text x="52" y="416" font-size="11.5" fill="#6E6354">この三つは一本道ではない。日によって戻るので、ここ二週間を平均で見るといい</text>
+  <text x="52" y="416" font-size="11.5" fill="#6E6354">日によって様子は変わる。一日で判定を変えず、ここ二週間でどちらが多いかで見る</text>
 </svg>
