@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 176" role="img" aria-labelledby="tf df" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+  <title id="tf">ふたりも｜婚前契約書をふたりでつくる無料ツール</title>
+  <desc id="df">オレタチの運営チームがつくった無料の自社ツール、ふたりもの案内バナー。婚前契約書を、ふたりでつくる。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要、無料。ボタンはふたりもをひらく。右側にふたつのキャラクターが並んでいる。</desc>
+
+  <rect x="0.5" y="0.5" width="699" height="175" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
+  <rect x="0.5" y="0.5" width="6" height="175" rx="3" fill="#E2703A"/>
+
+  <text x="40" y="42" font-size="11.5" font-weight="700" fill="#B5481F">オレタチの運営チームがつくった、無料の自社ツール</text>
+  <text x="40" y="74" font-size="21" font-weight="800" fill="#1B3A57">婚前契約書を、ふたりでつくる「ふたりも」</text>
+  <text x="40" y="100" font-size="12.5" fill="#6E6354">質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。</text>
+  <text x="40" y="118" font-size="12.5" fill="#6E6354">登録不要・無料。入力はこの端末とふたりの間だけ。</text>
+
+  <rect x="40" y="132" width="176" height="32" rx="16" fill="#E2703A"/>
+  <text x="128" y="153" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">ふたりもをひらく →</text>
+
+  <!-- ふたりのキャラクター -->
+  <ellipse cx="600" cy="140" rx="72" ry="18" fill="#F4F7FA"/>
+  <g>
+    <rect x="536" y="60" width="58" height="74" rx="28" fill="#E2703A"/>
+    <circle cx="553" cy="92" r="3.2" fill="#FFFFFF"/>
+    <circle cx="577" cy="92" r="3.2" fill="#FFFFFF"/>
+    <path d="M 557 104 Q 565 110 573 104" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="606" y="66" width="56" height="68" rx="27" fill="#0F6E56"/>
+    <circle cx="622" cy="95" r="3.2" fill="#FFFFFF"/>
+    <circle cx="646" cy="95" r="3.2" fill="#FFFFFF"/>
+    <path d="M 626 106 Q 634 112 642 106" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <path d="M 597 96 c -3 -5 -10 -3 -10 2 c 0 4 6 8 10 10 c 4 -2 10 -6 10 -10 c 0 -5 -7 -7 -10 -2 z" fill="#B5481F"/>
+</svg>

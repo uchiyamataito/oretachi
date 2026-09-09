@@ -7,7 +7,7 @@ related_articles: ["rikon-konzen-keiyaku", "rikon-saishuppatsu", "rikon-bengoshi
 related_qa: []
 author: "片瀬 海斗"
 published: "2026-07-02"
-updated: "2026-07-02"
+updated: "2026-09-09"
 canonical: "https://oretachi.me/qa/rikon-konzen-jijitsukon"
 disclaimer: "一般的な情報であり、個別の契約内容の有効性を示すものではありません。具体的な取り決めは行政書士・弁護士・公証役場にご確認ください。"
 ---
@@ -19,6 +19,10 @@ disclaimer: "一般的な情報であり、個別の契約内容の有効性を�
 **共通して注意したいのは、子に関する事項**。親権・養育費の額などを、あらかじめ確定的に縛ることはできない。これは法律婚でも事実婚でも同じで、子のことはその時々の「子の利益」で判断される。
 
 再婚か事実婚か、財産の状況によって最適な形は変わる。個別は専門家に確認してほしい。
+
+なお、**再婚・事実婚のどちらでも、二人の話し合いから契約書の下書きまでを無料で進められるツール「ふたりも」**を、このサイトの運営チームが作っている。登録不要で、入力はサーバに残らない。
+
+[![ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール](/img/banners/futarimo.svg)](https://futarimo.pages.dev)
 
 制度の土台は → [婚前契約書とは？](/rikon-konzen-keiyaku/)／再出発そのものの立て直しは → [離婚した男の再出発](/rikon-saishuppatsu/)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata/)。
 
