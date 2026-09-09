@@ -154,7 +154,7 @@ disclaimer: "本記事は別居の準備・判断に関する一般的な情報�
 <td>2つ見れば十分なことが多い。3つ目からは同じ物件が並びやすい。</td>
 </tr>
 <tr>
-<th class="svc-t-name"><a href="A8_LINK_NOT_SET" target="_blank" rel="sponsored nofollow noopener">クロスハウス</a> <span class="pr-label">PR</span></th>
+<th class="svc-t-name">クロスハウス <span class="pr-label">PR</span><br><a href="https://px.a8.net/svt/ejp?a8mat=4B7T8X+4RHMA+4EZ2+BWVTE" rel="sponsored nofollow noopener" target="_blank">東京・家具家電付き・3.8万円〜【クロスワンルーム】</a><img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4B7T8X+4RHMA+4EZ2+BWVTE" alt=""></th>
 <td>家具も家電も買わずに、身ひとつで早く出たい。別居が長引くか読めず、荷物を増やしたくない。</td>
 <td>公式サイトでは、敷金・礼金・仲介手数料は無料、家具家電付きで最短1か月から入居できると案内されている。ただし費用の条件は物件やプランによって違うことがあるので、金額は個別の物件ページで確かめてほしい。<strong>対応エリアも東京・神奈川・埼玉・千葉・愛知・京都・大阪・兵庫・奈良・福岡・北海道に限られる</strong>ので、エリア外の人はそもそも選べない。</td>
 </tr>
