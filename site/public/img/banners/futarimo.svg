@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 176" role="img" aria-labelledby="tf df" font-family="'Zen Kaku Gothic New','Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
   <title id="tf">ふたりも｜婚前契約書をふたりでつくる無料ツール</title>
-  <desc id="df">オレタチの運営チームがつくった無料の自社ツール、ふたりもの案内バナー。婚前契約書を、ふたりでつくる。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要、無料。ボタンはふたりもをひらく。右側にふたつのキャラクターが並んでいる。</desc>
+  <desc id="df">オレタチの運営チームが自分たちで作った無料ツール、ふたりもの案内バナー。婚前契約書を、ふたりでつくる。質問にふたりで答えるだけで、考えのズレが見えて、契約書の下書きまでできる。登録不要、無料。書いた内容はこの端末から外に出ない。ボタンはふたりもをひらく。右側にふたつのキャラクターが並んでいる。</desc>
 
   <rect x="0.5" y="0.5" width="699" height="175" rx="12" fill="#FBF9F4" stroke="#E4DACB"/>
   <rect x="0.5" y="0.5" width="6" height="175" rx="3" fill="#E2703A"/>
 
-  <text x="40" y="42" font-size="11.5" font-weight="700" fill="#B5481F">オレタチの運営チームがつくった、無料の自社ツール</text>
+  <text x="40" y="42" font-size="11.5" font-weight="700" fill="#B5481F">オレタチの運営チームが、自分たちで作った無料ツール</text>
   <text x="40" y="74" font-size="21" font-weight="800" fill="#1B3A57">婚前契約書を、ふたりでつくる「ふたりも」</text>
-  <text x="40" y="100" font-size="12.5" fill="#6E6354">質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。</text>
-  <text x="40" y="118" font-size="12.5" fill="#6E6354">登録不要・無料。入力はこの端末とふたりの間だけ。</text>
+  <text x="40" y="100" font-size="12.5" fill="#6E6354">質問にふたりで答えるだけ。考えのズレが見えて、契約書の下書きまでできる。</text>
+  <text x="40" y="118" font-size="12.5" fill="#6E6354">登録不要・無料。書いた内容は、この端末から外に出ない。</text>
 
   <rect x="40" y="132" width="176" height="32" rx="16" fill="#E2703A"/>
   <text x="128" y="153" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">ふたりもをひらく →</text>
