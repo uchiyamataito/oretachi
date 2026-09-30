@@ -521,3 +521,7 @@ article figcaption{font-size:.82rem;color:var(--muted);margin-top:.5em;text-alig
 .toc .toc-sub>summary:hover{color:var(--accent)}
 .toc .toc-sub ul{margin:4px 0 6px;padding-left:1.1em}
 .toc .toc-sub li{font-size:.9rem;margin:3px 0}
+
+/* ふたりも誘導バナー（記事内・2026-09-30）: SP版がタブレット幅で拡大されて広告臭が出るのを防ぐ */
+.futarimo-banner{display:block}
+@media(max-width:600px){.futarimo-banner{max-width:480px;margin-inline:auto}}

@@ -22,7 +22,7 @@ disclaimer: "一般的な情報であり、個別の契約内容の有効性を�
 
 なお、**再婚・事実婚のどちらでも、二人の話し合いから契約書の下書きまでを無料で進められるツール「ふたりも」**を、このサイトの運営チームが作っている。登録不要で、入力はサーバに残らない。
 
-<a href="https://futarimo.pages.dev"><picture><source media="(max-width: 640px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
+<a href="https://futarimo.pages.dev" class="futarimo-banner"><picture><source media="(max-width: 600px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
 
 制度の土台は → [婚前契約書とは？](/rikon-konzen-keiyaku/)／再出発そのものの立て直しは → [離婚した男の再出発](/rikon-saishuppatsu/)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata/)。
 

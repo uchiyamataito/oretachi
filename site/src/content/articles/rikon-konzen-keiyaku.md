@@ -173,7 +173,7 @@ disclaimer: "本記事は婚前契約書・夫婦財産契約の制度に関す�
 
 ここまで読んで「作ってみたい。でも、二人でどう進めればいいか分からない」となった人のために、**このサイトの運営チームが、無料のツールを作った。**「ふたりも」という。
 
-<a href="https://futarimo.pages.dev"><picture><source media="(max-width: 640px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
+<a href="https://futarimo.pages.dev" class="futarimo-banner"><picture><source media="(max-width: 600px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
 
 作った理由は単純だ。**婚前契約でいちばん難しいのは、書式ではなく、二人の話し合いのほう**だからだ。テンプレートをダウンロードしても、隣に座った相手と、何をどの順番で話せばいいかまでは教えてくれない。
 

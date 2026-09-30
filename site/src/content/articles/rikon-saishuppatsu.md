@@ -164,7 +164,7 @@ disclaimer: "本記事は生活・心の立て直しに関する一般的な情�
 
 **いつか、再婚を考える日が来たら。** 前の結婚のつまずきを繰り返さないために、結婚前に価値観をすり合わせて、婚前契約書の下書きまで作れる無料ツール「ふたりも」を、このサイトの運営チームが作っている。急ぐ話ではまったくない。頭の片隅にだけ置いておいてくれ（制度の中身は → [婚前契約書とは？](/rikon-konzen-keiyaku/)）。
 
-<a href="https://futarimo.pages.dev"><picture><source media="(max-width: 640px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
+<a href="https://futarimo.pages.dev" class="futarimo-banner"><picture><source media="(max-width: 600px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
 
 ## まとめ：再出発のチェックリスト
 
