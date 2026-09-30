@@ -137,13 +137,15 @@ function check(slug) {
       ? ok(`比較の選択肢が ${svcLinks}件（単推しになっていない）`)
       : ng('アフィリエイトリンクが1件だけで並列の選択肢が無い（29①の単推し禁止）');
   }
-  // 太字の密度
+  // 太字の密度（2026-09-30 内山さん指摘「太字が多すぎて見にくい」の再発防止。
+  // 既存レンジとの相対判定は、サイト全体が太字過多のとき素通りするため、絶対上限に変更した）
+  const BOLD_CAP = 0.45;
   const [lo, hi] = boldDensityRange();
   const lines = body.split('\n').filter((l) => l.trim()).length;
   const d = (body.match(/\*\*[^*]+\*\*/g) || []).length / lines;
-  d >= lo * 0.6 && d <= hi
-    ? ok(`太字の密度 ${d.toFixed(2)}／行（既存 ${lo.toFixed(2)}〜${hi.toFixed(2)}）`)
-    : wa(`太字の密度 ${d.toFixed(2)}／行が既存レンジ（${lo.toFixed(2)}〜${hi.toFixed(2)}）から外れている`);
+  d <= BOLD_CAP
+    ? ok(`太字の密度 ${d.toFixed(2)}／行（上限 ${BOLD_CAP}・参考: 既存 ${lo.toFixed(2)}〜${hi.toFixed(2)}）`)
+    : ng(`太字の密度 ${d.toFixed(2)}／行が上限 ${BOLD_CAP} を超えている（強調は各見出しブロックの核心1文＋構造ラベルだけに絞る）`);
 
   // レビュー後に本文が書き換わっていないか（今日いちばん危なかった失敗の再発防止）
   const stamped = (fm.match(/^reviewed_hash: "(.+)"/m) || [])[1];

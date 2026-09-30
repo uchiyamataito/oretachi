@@ -24,7 +24,7 @@ disclaimer: "一般的な情報であり、個別の契約内容の有効性や�
 
 「何をどう取り決めるか」を二人で整理するところからなら、**このサイトの運営チームが作った無料ツール「ふたりも」**が使える。質問に答えて一致とズレを見える化し、契約書の下書きまで作れる（登録不要・無料）。
 
-[![ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール](/img/banners/futarimo.svg)](https://futarimo.pages.dev)
+<a href="https://futarimo.pages.dev"><picture><source media="(max-width: 640px)" srcset="/img/banners/futarimo-sp.svg" /><img src="/img/banners/futarimo.svg" alt="ふたりも｜婚前契約書を、ふたりでつくる無料ツール。質問にふたりで答えて、価値観のすり合わせから契約書の下書きまで。登録不要・無料。オレタチの運営チームがつくった自社ツール" loading="lazy" /></picture></a>
 
 制度の全体像は → [婚前契約書とは？](/rikon-konzen-keiyaku/)／財産分与で何が対象になるかは → [財産分与で何が分けられる？](/rikon-zaisan-bunyo-taishou/)。個別の判断は → [失敗しない弁護士の選び方](/rikon-bengoshi-erabikata/)。
 
