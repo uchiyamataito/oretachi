@@ -1,6 +1,9 @@
 // 記事・Q&A の共通メタ（単一の元データ）。トップ(index)・記事一覧・Q&A一覧で共用する。
 // phases=段階（時系列）, kanshin=テーマ（関心）, kids=子ども関連, route=復縁/離婚, pick=編集部ピック, rank=人気順, tag=表示タグ
 // spouse_contact=妻との接点（やり取り）あり＝公開前レビューで「心理カウンセラー＋恋愛・夫婦カウンセラー」を必ず通す印（表示・SEOには不使用）
+// 🔴 phasesの注意（2026-09-30・実事故）：トップのレコメンドは診断の答え（切り出された直後/別居/協議・調停中/成立後 の4値）としか照合しない。
+//    「再出発」は記事一覧・Q&A一覧の絞り込みチップ専用の値で、レコメンドでは一生ヒットしない。
+//    再出発向けの記事をトップのおすすめにも出したい場合は、必ず「成立後」を併記すること（例: phases: ['成立後', '再出発']）。
 export const AMETA: Record<string, any> = {
   'rikon-kiridasareta-saisho-14nichi': { phases: ['切り出された直後'], kanshin: ['気持ち'], kids: false, spouse_contact: true, pick: true, rank: 1, pri: 2, tag: '気持ち・初動' },
   'rikon-nani-kara-hajimeru':          { phases: ['切り出された直後', '協議・調停中'], kanshin: ['手続き'], kids: false, pick: true, rank: 6, pri: 2, tag: '全体マップ' },
@@ -33,7 +36,7 @@ export const AMETA: Record<string, any> = {
   'rikon-bekkyo-sugoshikata':          { phases: ['別居', '切り出された直後'], kanshin: ['気持ち', '相談'], kids: false, spouse_contact: true, pri: 3, tag: '別居' },
   'rikon-yoikuhi':                     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '子ども', '手続き'], kids: true, pri: 3, tag: '養育費', route: 'rikon' },
   'rikon-konzen-keiyaku':              { phases: ['再出発', '成立後'], kanshin: ['お金', '相談'], kids: false, pri: 2, tag: '再出発', route: 'rikon' },
-  'rikon-konzen-kiridashikata':        { phases: ['再出発'], kanshin: ['相談', 'お金'], kids: false, pri: 3, tag: '再出発', route: 'rikon' },
+  'rikon-konzen-kiridashikata':        { phases: ['成立後', '再出発'], kanshin: ['相談', 'お金'], kids: false, pri: 3, tag: '再出発', route: 'rikon' },
   'rikon-hitorigurashi-kaji':          { phases: ['別居', '成立後', '再出発'], kanshin: ['気持ち', '相談'], kids: false, tag: '再出発', route: 'rikon' },
   'rikon-koninhiyou':                  { phases: ['別居', '協議・調停中'], kanshin: ['お金', '手続き'], kids: false, spouse_contact: true, pri: 3, tag: '婚姻費用', route: 'rikon' },
   'rikon-jukunen-okane':               { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], kids: false, pri: 3, tag: '熟年離婚', route: 'rikon' },
@@ -91,8 +94,8 @@ export const QMETA: Record<string, any> = {
   'rikon-yoikuhi-gakuhi':            { phases: ['成立後', '協議・調停中'], kanshin: ['お金', '子ども'], route: 'rikon' },
   'rikon-yoikuhi-kouseishousho':     { phases: ['協議・調停中', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-konzen-zaisanbunyo':        { phases: ['再出発', '成立後'], kanshin: ['お金', '手続き'], route: 'rikon' },
-  'rikon-konzen-template':           { phases: ['再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
-  'rikon-konzen-jijitsukon':         { phases: ['再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
+  'rikon-konzen-template':           { phases: ['成立後', '再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
+  'rikon-konzen-jijitsukon':         { phases: ['成立後', '再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
   'rikon-hitorigurashi-sonaeru':     { phases: ['別居', '成立後', '再出発'], kanshin: ['お金', '手続き'], route: 'rikon' },
   'rikon-jisui-shinai-eiyou':        { phases: ['別居', '成立後', '再出発'], kanshin: ['相談'], route: 'rikon' },
   'rikon-kajidaikou-hajimete':       { phases: ['別居', '成立後', '再出発'], kanshin: ['お金', '相談'], route: 'rikon' },
