@@ -14,9 +14,9 @@
     "stamp": "node scripts/prerelease-check.mjs --stamp"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.2.4",
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.2.9",
+    "@astrojs/markdown-remark": "^7.3.1",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5",
     "remark-cjk-friendly": "^2.3.1"
   },
   "engines": {
