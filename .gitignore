@@ -10,3 +10,7 @@ dist/
 # 公開されるのを防ぐ。hooks はチェックアウトを開いただけでコードが走りうるため、
 # 供給網攻撃の足場になる（2026-08 keyv/cacheable 事案の手口）。
 .claude/
+
+# Cloudflare（wrangler）のローカル状態と開発用の秘密。2026-10-02・K-5
+.dev.vars
+.wrangler/

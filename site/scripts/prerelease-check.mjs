@@ -3,6 +3,7 @@
 //
 //   使い方： npm run check -- <slug>      例) npm run check -- rikon-tsuma-ga-kowai
 //            npm run check -- --all       全記事を検査（既存記事の棚卸し用）
+//            node scripts/prerelease-check.mjs --site   サイト全体の検査だけ（postbuild から毎ビルド自動で走る）
 //
 // なぜ存在するか：
 //   `article-pipeline/SKILL.md` に文章のチェックリストがあったが、読み飛ばせるため
@@ -436,7 +437,9 @@ function checkSiteWide() {
   }
 }
 
-if (arg === '--all') {
+if (arg === '--site') {
+  // postbuild 用：記事単体の検査はせず、サイト全体だけ見る（2026-10-02・K-5）
+} else if (arg === '--all') {
   for (const f of readdirSync(A_DIR).filter((f) => f.endsWith('.md'))) check(f.replace(/\.md$/, ''));
 } else {
   check(arg.replace(/\.md$/, ''));

@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "prebuild": "node scripts/build-rag.mjs",
     "build": "astro build",
+    "postbuild": "node scripts/prerelease-check.mjs --site",
     "preview": "astro preview",
     "build:rag": "node scripts/build-rag.mjs",
     "check": "node scripts/prerelease-check.mjs",
