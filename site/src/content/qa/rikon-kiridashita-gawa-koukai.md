@@ -3,7 +3,7 @@ question: "離婚を切り出した側（妻）は、後悔する？"
 description: "する人もしない人もいて、確率では言えない。相手の後悔は動かせない。待つより自分を立て直すほうが建設的だ。"
 category: "気持ち・整理"
 tags: ["後悔", "気持ち", "復縁"]
-related_articles: ["rikon-fukuen-shuufuku", "rikon-saishuppatsu"]
+related_articles: ["rikon-fukuen-shuufuku", "rikon-saishuppatsu", "rikon-koukai"]
 related_qa: ["rikon-yori-modosu-kakuritsu"]
 author: "片瀬 海斗"
 published: "2026-06-28"
