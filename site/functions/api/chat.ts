@@ -72,6 +72,11 @@ function deriveTheme(category?: string): string {
 }
 
 export const onRequestPost: (ctx: { request: Request; env: Env }) => Promise<Response> = async ({ request, env }) => {
+  // 0) 【2026-10-26・CVE-2026-111497(Brotli)対策・多層防御】圧縮された要求本文は受け付けない。
+  //    このAPIは非圧縮の JSON しか必要としないので、Content-Encoding 付きは本文を読む前に 415 で返し、
+  //    展開処理が走る経路を入口で閉じる(ProjectA/58 §3-4②)。
+  if (request.headers.has('content-encoding')) return json({ error: 'unsupported_content_encoding' }, 415);
+
   // 1) 入力の受け取り＋基本バリデーション
   let body: { message?: string; turnstileToken?: string; deepen?: number };
   try { body = await request.json(); } catch { return json({ error: 'bad_request' }, 400); }
